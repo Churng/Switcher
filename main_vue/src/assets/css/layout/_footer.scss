@@ -1,0 +1,49 @@
+.footer{
+    background-color: $fc-500;
+    font-size: $fs-100;
+    position: relative;
+    .fas{
+        color: $fc-400;
+        margin-right: 0.5rem;
+    }
+}
+.footer-icons .fab{
+    color: $fc-400;
+    font-size: $fs-600; 
+}
+.footer-txt{
+    color: $fc-100;
+    font-size: $fs-100;
+    text-align: center;
+}
+@include ipad_767{
+    .footer-contents{
+        flex-direction: column;
+    }
+}
+@include media-breakpoint-up(lg){
+    .footer{
+        font-size: $fs-200;
+    }
+    .footer-contents{
+        padding-left: 3rem;
+    }
+    .footer-icons .fab{
+        font-size: $fs-700;
+    }
+}
+
+
+/*到頁首 (當瀏覽下滑時才出現)*/
+.goTop{
+    width: 3.13rem;
+    height: 3.13rem;
+    font-size: $fs-600;
+    cursor: pointer;
+    position: fixed;
+    top: 80%;
+    right: 0;
+    a{
+        line-height: 3.13rem;
+    }
+}

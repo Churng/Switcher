@@ -1,0 +1,64 @@
+/*商品卡*/
+.card img{
+    transition: all .25s ease-in-out;
+}
+.card:hover img{
+    transform: scale(0.95);
+}
+
+.card-body{
+    padding: 1rem 1rem 0rem;
+   .card-text{
+        text-align: start;
+        h3{
+        position: relative;
+        font-size: $fs-500;
+        @include ipad_767{
+            font-size: $fs-400;
+        }
+        &::before{
+            content: '';
+            width: 3px;
+            height: 100%;
+            background-color: $red;
+            position: absolute;
+            top:0;
+            left: -10px;
+            } 
+        }
+        .card-text-top{
+            font-size: $fs-200;
+        }
+        .onDate{
+            font-size: $fs-100;
+        }
+        .priceArea{
+            color: $orange;
+            font-size: $fs-300;
+            @include ipad_767{
+                font-size: $font-size-base;
+            }
+        }
+    } 
+}
+.isLease-icon{
+    color: $orange;
+}
+.notLease{
+    color: $blue; //已出租時icon顏色
+}
+.card{
+    cursor: pointer;
+    &:hover{
+        box-shadow: 0 1px 0 rgba(4,0,0,0.2);
+    }
+    img{
+        width: 100%;
+    }
+}
+
+/*特價時 card-text-top 加上*/
+.originalPrice{
+    font-size: $fs-100;
+    text-decoration: line-through;	
+}

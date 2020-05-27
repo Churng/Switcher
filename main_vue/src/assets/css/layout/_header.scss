@@ -1,0 +1,240 @@
+body{
+    color: $fc-300;
+    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+}
+.header{
+    width: 100%;
+    display: flex;
+    box-shadow: 0 1px 0 rgba(4,0,0,0.1);
+    font-size: 14px;
+    height: 74px;
+    @include ipad_767{
+        flex-direction: column;
+        background-color: $red;
+    }
+}
+.header-logo{
+    width: calc((100% - 149px) / 6);
+    background-color: $red;
+    line-height: 74px;
+    @include ipad_767{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        .homeLogo{
+            width: 30%;
+        }
+    }
+    img{
+        width: 80%;
+    }
+    .btn{
+        display: none;
+        @include ipad_767{
+            display: block;
+            line-height: 74px;
+            padding: 0rem;
+            &:focus{
+                box-shadow: none;
+            }
+        }
+    }
+}
+.collapse{
+    transition: 1s;
+}
+@include ipad_min768 {
+    .collapse:not(.show){
+        display: block;
+        width: 100%;
+    }
+}
+
+.header-navBar{
+    height: 100%;
+    overflow: hidden;
+    padding: 0;
+    @include ipad_767{
+        flex-direction: column;
+        overflow: inherit;      
+    }
+    li{
+        width: 20%;
+        box-sizing: border-box;
+        font-weight: bold;
+        text-align: center;
+        border-right: 1px solid $fc-200;
+        border-bottom: 1px solid $fc-200;
+        line-height: 74px;
+        cursor: pointer;
+        transition: border-color 150ms linear,background-color 150ms linear,color 150ms linear;
+        @include ipad_767{
+            width: 100%;
+            position: inherit;
+            z-index: 9999;
+            // height: 74px;
+            background-color: $white;
+        }
+        &:hover,&:active{
+            text-decoration: none;
+            .header-navBar-icon,.header-navBar-label{
+                color: $red;
+            }
+            &::after{
+                content: '';
+                position: absolute;
+                height: 3px;
+                background-color: $red;
+                right: 2px;
+                left: 2px;
+                bottom: 2px;
+            }
+            transition: border-color 150ms cubic-bezier(.165,.84,.44,1),background-color 150ms cubic-bezier(.165,.84,.44,1),color 150ms cubic-bezier(.165,.84,.44,1);
+        }
+        .header-navBar-icon{
+            color: $fc-100;
+        }
+        .header-navBar-label{
+            color: $fc-300;
+        }
+        a{
+            display: block;
+            transition: border-color 150ms linear,background-color 150ms linear,color 150ms linear;
+            &:hover,&:active{
+                text-decoration: none;
+            }
+        }
+    }
+}
+/*手機版展開導覽*/
+.header-navBar {
+    .sm-findChevron{
+        position: relative;
+    }
+    .sm-findChevron p:hover{
+        background-color: rgba(237,28,36,.1);
+    }
+}
+.findChevron{
+    width: 10%;
+    font-size: $fs-200;
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    @include ipad_767{
+        display: block;
+    }
+}
+.sm-openItem p{
+    line-height: 40px;
+}
+
+/* nav 滑入後顯示的區塊h-navBar*/
+.h-navBar-areaBg{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 74px;
+    bottom: 0;
+    height: 100%;
+    overflow-y: auto;
+    background: rgba(255,255,255,0);
+}
+.h-navBar-area{
+    position: relative;
+    z-index: 9999;
+    box-shadow: 0 1px 0 rgba(4,0,0,0.1);
+}
+.h-navBar{
+    position: absolute;
+    background-color: $white;
+    transition: opacity 100ms cubic-bezier(.445,.05,.55,.95),visibility 100ms cubic-bezier(.445,.05,.55,.95);
+    .h-dropItem-content{
+        a{
+            color: $fc-300;
+            &:hover{
+                text-decoration: none;
+                p{
+                    color: $red;
+                }
+                img,.h-dropItem-linkHead{
+                    opacity: .7;
+                    transition: opacity 150ms cubic-bezier(.165,.84,.44,1);
+                }
+            }
+            img,.h-dropItem-linkHead{
+                opacity: 1;
+                transition: opacity 150ms linear;
+            }
+        }
+    }
+}
+
+/*任天堂連結*/
+.h-dropItem-linkHead{
+    p{
+        color: $red;
+        font-size: $fs-300;
+        font-weight: 700;
+        @include ipad_768{
+            font-size: $fs-200;
+        }
+    }
+    .h-dropItem-linkHead-icon{
+        font-size: $fs-700;
+        color: $orange;
+        @include ipad_768{
+            font-size: $fs-600;
+        }
+    }
+}
+.h-dropItem-linkText{
+    font-size: 12px;
+    line-height: 20px;
+    color: $fc-400;
+}
+
+
+/* 手機板hover 尋找商品 h-dropItem-products消失*/
+@include ipad_767{
+    .h-navBar-areaBg{
+        display: none;
+    }
+}
+
+
+/*加入購物車hover*/
+.h-navBar-cart{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 15px;
+    z-index: 9999;
+    .cartItems{
+        background-color: $white;
+    }
+    .choosedImg{
+        width: 150px;
+        height: 100px;
+        img{
+            width: 100%;
+            overflow: hidden;
+        }
+    }
+    .choosedPrice{
+        color: $orange;
+    }
+    .fa-trash-alt{
+        cursor: pointer;
+        &:focus{
+            color: $fc-600;
+        }
+    }
+}
+.cart-footer{
+    h3{
+        color: $orange;
+    }
+}
