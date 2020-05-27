@@ -11,9 +11,9 @@
 </template>
 
 <script>
-import Header from '../src/components/Header'
+import Header from '../src/components/shared/Header'
 import Footer from '../src/views/Footer'
-import ShopList from '../src/components/ShopList'
+import ShopList from '../src/components/shared/ShopList'
 
 export default {
   components: { Header, Footer, ShopList }
