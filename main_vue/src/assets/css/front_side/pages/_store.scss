@@ -1,0 +1,77 @@
+/*返回上頁*/
+.returnMap{
+    font-size: $fs-200;
+    cursor: pointer;
+}
+/*賣家卡片*/
+.switcherStore-sellerCard{
+    padding: 1rem 1.88rem;
+    background-image: url('/img/users/Animal\ Crossing_wallpaper_02.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    .sellerImg{
+        width: $font-size-base*6.25;
+        height: $font-size-base*6.25;
+        background-repeat: no-repeat;
+        background-size: contain;
+        border-radius: 50%;
+        img{
+            width: 100%;
+        }
+    }
+    .sellerTxt p,.sellerTxt button{
+        font-size: $fs-200;
+    }
+}
+.switcherStore-sellerInfo{
+    .orange-txt{
+        color: $orange;
+    }
+}
+
+/*關於賣場*/
+.switcherStore-about{
+    background-color: $white;
+}
+.switcherStore-aboutInfo{
+    height: calc(100vh - 35rem); 
+    .about-text{
+        width: 100%;
+        height: calc(100vh - 35rem); 
+        overflow-y: auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+    .storeImg{
+        height: 100%;
+        background-image: url('/img/users/ryan-quintal-t8_tn3tqmoI-unsplash.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        box-shadow:0 0 4px 4px $white;  
+    }
+}
+@include mobile_576{
+    .about-storeImg{
+        display: none;
+    }
+}
+
+/*賣場列表*/
+.switcherStore-main{
+    .main-item{
+        font-size: $fs-300;
+        opacity: .5;
+        &:hover{
+            opacity: 1;
+        }
+    }
+    .active{
+        opacity: 1;
+    }
+}
+@include mobile_480{
+    .switcherStore-body{
+        justify-content: center;
+    }
+}

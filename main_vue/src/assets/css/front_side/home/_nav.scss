@@ -1,0 +1,74 @@
+/*如何使用*/
+.home-useInstructions{
+    margin: 50px 0px;
+    h2{
+        text-align: center;
+    }
+    .nav-tabs{
+        .nav-item{
+            width: 25%;
+            @include mobile_375{
+                width: 40%;
+            }
+        }
+        .nav-link{
+            display: block;
+            text-align: center;
+            border-radius: 45px 45px 0 0;
+            box-shadow: inset 5px 8px 7px rgba(0,0,0,.1);
+            color: $fc-300;
+            font-size: $fs-400;
+            background-color: $fc-500;
+            @include mobile_576{
+                border-radius: 35px 35px 0 0;
+            }
+            @include mobile_480{
+                font-size: $fs-200;
+            }
+        }
+        .active{
+            background-color: $danger;
+            color: $white;
+        }
+    }
+    .tab-content{
+        border: 0 solid $fc-200;
+        .tab-pane{
+            border-radius: 15px;
+        }
+        .active{
+            background-color: $danger;
+        }
+    }
+}
+.tab-pane-area{
+    width: auto;
+    list-style: none;
+    color: $white;
+    text-align: center;
+    padding: 40px 100px;
+    @include mobile_576{
+        padding: 40px 10px;
+    }
+    @include mobile_375{
+        flex-direction: column;
+    }
+    .tab-pane-icon{
+        font-size: 40px;
+        @include mobile_480{
+            font-size: 30px;
+        }
+    }
+    .tab-pane-text{
+        font-weight: 300;
+        @include mobile_480{
+            font-size: $fs-200;
+        }
+        h3{
+            font-size: 20px;
+            @include mobile_480{
+                font-size: $fs-300;
+            }
+        }
+    }
+}

@@ -1,7 +1,8 @@
 <template>
     <div class="header mb-3">
         <div class="header-logo text-center">
-            <a href="" class="homeLogo"><img src="@/assets/img/Swicher_Logo.png" alt=""></a>
+            <router-link to="/" class="homeLogo"><img src="img/Swicher_Logo.png" alt="logo"></router-link>
+            <!-- <a href="#" ><img src="img/Swicher_Logo.png" alt="logo"></a> -->
             <a class="btn mr-3 text-white" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><font-awesome-icon icon="bars"/></a>
         </div>
         <div class="collapse" id="collapseExample">
@@ -72,19 +73,19 @@
                 <div class="col-md-12 h-navBar h-navBar-p pt-4 pb-4" v-show="pcShow.findGame" :class="pcShow.findGame ? 'd-flex justify-content-center' : 'd-none'">
                     <div class="col-md-2 h-dropItem-content text-center">
                         <a href="" class="d-block">
-                            <img src="@/assets/img/icon/iconfinder_icon-game-controller-b_211668.png" alt="gameHost">
+                            <img src="/img/icon/iconfinder_icon-game-controller-b_211668.png" alt="gameHost">
                             <p>遊戲主機</p>
                         </a>
                     </div>
                     <div class="col-md-2 h-dropItem-content text-center">
                         <a href="" class="d-block">
-                            <img src="@/assets/img/icon/iconfinder_videogame_icons-20.png" alt="game">
+                            <img src="/img/icon/iconfinder_videogame_icons-20.png" alt="game">
                             <p>遊戲軟體</p>
                         </a>
                     </div>
                     <div class="col-md-2 h-dropItem-content text-center">
                         <a href="" class="d-block">
-                            <img src="@/assets/img/icon/iconfinder_icon-game-controller-a_211667.png" alt="gameStick">
+                            <img src="/img/icon/iconfinder_icon-game-controller-a_211667.png" alt="gameStick">
                             <p>遊戲配件</p>
                         </a>
                     </div>
@@ -92,8 +93,8 @@
                 <div class="col-md-12 h-navBar h-navBar-m pt-4 pb-4" v-show="pcShow.map" :class="pcShow.map ? 'd-flex justify-content-center' : 'd-none'">
                     <div class="col-md-2 h-dropItem-content text-center">
                         <a href="" class="d-block">
-                            <img src="@/assets/img/icon//iconfinder_Streamline-66_185086.png" alt="findPerson">
-                            <p>地圖搜尋</p>
+                            <img src="/img/icon//iconfinder_Streamline-66_185086.png" alt="findPerson">
+                            <p class="mt-2">地圖搜尋</p>
                         </a>
                     </div>
                 </div>
@@ -122,39 +123,39 @@
                     </div>
                 </div>
                 <div class="col-md-12 h-navBar h-navBar-user" v-show="pcShow.user" :class="pcShow.user ? 'd-flex justify-content-center' : 'd-none'">
-                    <div class="col-xl-1 h-dropItem-content mt-4 mb-4">
+                    <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
                         <a href="" class="d-block">
-                            <img src="@/assets/img/icon/iconfinder_READY_user-circle_2703062.png" alt="user">
+                            <img src="/img/icon/iconfinder_READY_user-circle_2703062.png" alt="user">
                             <p>會員資料</p>
                         </a>
                     </div>
-                    <div class="col-xl-1 h-dropItem-content mt-4 mb-4">
+                    <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
                         <a href="" class="d-block">
-                            <img src="@/assets/img/icon/iconfinder_list-alt_1608448.png" alt="userList">
+                            <img src="/img/icon/iconfinder_list-alt_1608448.png" alt="userList">
                             <p>訂單管理</p>
                         </a>
                     </div>
-                    <div class="col-xl-1 h-dropItem-content mt-4 mb-4">
+                    <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
                         <a href="" class="d-block">
-                            <img src="@/assets/img/icon/iconfinder_thefreeforty_shop_1243706.png" alt="userStore">
+                            <img src="/img/icon/iconfinder_thefreeforty_shop_1243706.png" alt="userStore">
                             <p>我的賣場</p>
                         </a>
                     </div>
-                    <div class="col-xl-1 h-dropItem-content mt-4 mb-4">
+                    <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
                         <a href="" class="d-block">
-                            <img src="@/assets/img/icon/iconfinder_bag_5925586.png" alt="userBag">
+                            <img src="/img/icon/iconfinder_bag_5925586.png" alt="userBag">
                             <p>商品上架</p>
                         </a>
                     </div>
-                    <div class="col-xl-1 h-dropItem-content mt-4 mb-4">
+                    <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
                         <a href="" class="d-block">
-                            <img src="@/assets/img/icon/iconfinder_66-wechat_1181189.png" alt="userChat">
+                            <img src="/img/icon/iconfinder_66-wechat_1181189.png" alt="userChat">
                             <p>聊天室</p>
                         </a>
                     </div>
-                    <div class="col-xl-1 h-dropItem-content mt-4 mb-4">
+                    <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
                         <a href="" class="d-block">
-                            <img src="@/assets/img/icon/iconfinder_icon-zoom-out_2867960.png" alt="loginout">
+                            <img src="/img/icon/iconfinder_icon-zoom-out_2867960.png" alt="loginout">
                             <p>會員登出</p>
                         </a>
                     </div>
@@ -163,7 +164,7 @@
                     <div class="col-md-4 cartItems shadow p-3 mb-5 bg-white rounded">
                         <ul class="pt-3 pb-3 list-unstyled mb-0">
                             <li class="d-flex justify-content-around align-items-center border-bottom border-light">
-                                <div class="choosedImg"><img src="@/assets/img/game/game03.jpg"></div>
+                                <div class="choosedImg"><img src="/img/game/game03.jpg"></div>
                                 <div class="choosedTxt">
                                     <a href="" class="choosedName mb-1">異度神劍 終極版</a>
                                     <p class="choosedPrice mb-1">NT 300</p>
@@ -171,7 +172,7 @@
                                 <i class="fas fa-trash-alt"></i>
                             </li>
                             <li class="d-flex justify-content-around align-items-center border-bottom border-light">
-                                <div class="choosedImg"><img src="@/assets/img/game/game03.jpg"></div>
+                                <div class="choosedImg"><img src="/img/game/game03.jpg"></div>
                                 <div class="choosedTxt">
                                     <a href="" class="choosedName mb-1">異度神劍 終極版</a>
                                     <p class="choosedPrice mb-1">NT 300</p>

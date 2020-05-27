@@ -1,0 +1,75 @@
+/*搜尋*/
+.form-control,.input-group-text{
+    border-radius: 0rem;
+}
+
+/*篩選區*/
+.nav-pills{
+    @include mobile_375{
+        font-size: $fs-100;
+    }
+    .nav-item{
+        border: 1px solid $fc-200;
+    }
+    .nav-link{
+        background-color: $white;
+        color: $fc-300;
+        border-radius: 0rem;
+        @include mobile_375{
+            padding: 0.5rem;
+        }
+        &.active{
+            background-color: $red;
+            color: $white; 
+        }
+    }   
+}
+.shop-navSelects{
+    .navbar-brand{
+        font-size: $font-size-base;
+        @include ipad_768 {
+            display: none;
+        }
+    }
+}
+@include mobile_576 {
+    .sortNav{
+        display: none;
+    }
+}
+@include mobile_480{
+    .shop-body{
+        justify-content: center;
+    }
+}
+/*說明卡 instructionCard*/
+.instructionCard{
+    position: fixed;
+    top:0;
+    bottom:0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 9999;
+    background: rgba(0,0,0,.5);
+    .card-header,.card-body,.card-footer{
+        background-color: rgba(255, 255, 255, 1);
+    }
+    .card-main{
+        box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    }
+    .card-title{
+        font-size: $fs-200;
+    }
+    .card-steps{
+        li{
+            width: 20%;
+        }
+        i{
+            font-size: $fs-700;
+        }
+        p{
+            font-size: $fs-200;
+        }
+    }
+}

@@ -6,7 +6,7 @@
 @import 'config/variables';
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
 
-/* myScss */
+/* sharedScss */
 
 //config
 @import 'config/mixin';
@@ -17,3 +17,17 @@
 
 //modules
 @import 'modules/shopItem';
+
+/* front_side Scss */
+
+//home
+@import 'front_side/home/banner';
+@import './front_side/home/home';
+@import 'front_side/home/nav';
+
+//pages
+@import 'front_side/pages/map';
+@import './front_side/pages/order';
+@import 'front_side/pages/product';
+@import 'front_side/pages/shop';
+@import './front_side/pages/store';

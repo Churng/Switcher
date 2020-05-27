@@ -3,20 +3,16 @@
       <Header />
       <!-- 往上鍵統一放在HEADER下一層 -->
       <el-backtop :bottom="60"></el-backtop>
-      <div class="container pt-5">
-        <ShopList />
-      </div>
-      <Footer />
+      <Home />
   </div>
 </template>
 
 <script>
 import Header from '../src/components/shared/Header'
-import Footer from '../src/views/Footer'
-import ShopList from '../src/components/shared/ShopList'
+import Home from '../src/views/Home'
 
 export default {
-  components: { Header, Footer, ShopList }
+  components: { Header, Home }
 }
 </script>
 

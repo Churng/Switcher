@@ -1,0 +1,140 @@
+.progress-txt{
+    p{
+       color: $fc-600;
+       @include ipad_767{
+           font-size: $fs-200;
+       }
+    }
+    .active{
+       color: $orange; 
+    }  
+}
+.switcherOrder-orderArea{
+    background-color: $white;
+}
+.switcherOrder-content{
+    font-size: $fs-200;
+    position: relative; 
+    @include media-breakpoint-up(lg){
+        font-size: $font-size-base;
+    }
+    img{
+        width: 100%;
+    }
+    h6{
+        @include media-breakpoint-up(lg){
+            font-size: $fs-300;
+        }
+    }
+    .category-games{
+        font-size: $fs-100;
+        @include media-breakpoint-up(lg){
+            font-size: $fs-200;
+        }
+    }
+    .content-prices span{
+        font-size: $font-size-base;
+        @include media-breakpoint-up(lg){
+            font-size: $fs-300;
+        }
+    }
+    .fa-trash-alt{
+        font-size: $fs-400;
+        color: $fc-700;
+        cursor: pointer;
+    }
+}
+.switcherOrder-orderArea div:last-child{
+    border-bottom: none !important;
+}
+@include ipad_767{
+    .switcherOrder-img{
+        margin-bottom: 0.5rem;
+    }
+    .switcherOrder-content .fa-trash-alt{
+        position: absolute;
+        bottom: 10px;
+        right: 15px;
+    }
+}
+@include mobile_320{
+    .sm-date{
+        flex-direction: column;
+    }
+    .sm-date:last-child p{
+        margin-left: 0rem !important;
+    }
+}
+.btn-warning{
+    border-color: $orange;
+    background-color: $orange;
+    color: $white;
+}
+.btn-warning:hover,.btn-warning:focus,.btn-warning:not(:disabled):not(.disabled):active{
+    background-color: $white;
+    color: $orange;
+}
+.btn-footer{
+    font-size: $fs-100;
+}
+/*租賃契約*/
+.switcherOrder-contract{
+    background-color: $white;
+    p{
+        margin-bottom: 0.25rem;
+        font-size: $fs-100;
+    }
+    .contract-info p{
+        color: $blue;
+    }
+    .size-sm,.contract-protocol p{
+        font-size: $fs-100;
+    }
+}
+/*同意預約*/
+#switcherOrder-end{
+    background: linear-gradient(to right,#F4F3F8,#FBFFFF);
+}
+.switcherOrder-bg{
+    min-height: calc(100vh - 11rem);
+    background-image: url('/img/22arcx-removebg.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    @include ipad_768{
+        background-position: bottom;
+    }
+    @include mobile_576{
+        min-height: calc(100vh - 15rem);
+    }
+}
+.switcherOrder-box{
+    width: 400px;
+    position: absolute;
+    top: 35%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index: 99;
+    @include ipad_768{
+        width: 300px;
+        top: 25%;
+    }
+}
+.endItem{
+    background-color: rgba(225,225,225,.8);
+    border: 5px solid $white;
+    box-shadow: 0 0 30px $fc-500;
+    backdrop-filter: blur(5px);
+    text-align: center;
+    padding: 20px;
+    .far{
+        font-size: $font-size-base*3.25;
+    }
+    .fa-check-circle{
+        color: $orange;
+    }
+    .fa-times-circle{
+        color: $fc-400;
+    }
+}

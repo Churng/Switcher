@@ -11308,7 +11308,7 @@ a.text-dark2:hover, a.text-dark2:focus {
   }
 }
 
-/* myScss */
+/* sharedScss */
 /* Desktop first */
 body {
   color: #3C3C3C;
@@ -11763,5 +11763,1080 @@ body {
 .originalPrice {
   font-size: 0.75rem;
   text-decoration: line-through;
+}
+
+/* front_side Scss */
+.home-banner {
+  height: 100%;
+  position: relative;
+}
+
+.carousel-caption {
+  position: absolute;
+  top: 35%;
+  left: 15%;
+  z-index: 9999;
+}
+
+.carousel-caption h2 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  opacity: .8;
+  text-shadow: -1px -1px 0 white, 1px 1px 0 #333,1px 1px 0 #444;
+}
+
+@media (min-width: 992px) {
+  .carousel-caption h2 {
+    font-size: 3.13rem;
+  }
+}
+
+.carousel-caption p {
+  font-size: 1.25rem;
+  font-style: italic;
+  text-shadow: -1px -1px 0 white, 1px 1px 0 #333,1px 1px 0 #444;
+}
+
+@media (min-width: 992px) {
+  .carousel-caption p {
+    font-size: 3.13rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .carousel-caption .btn {
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+  }
+}
+
+body {
+  color: #3C3C3C;
+}
+
+/*最新商品*/
+.home-newItems-area {
+  border-bottom: 1px solid #ededed;
+}
+
+@media (max-width: 375px) {
+  .home-newItems-area {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+@media (max-width: 767px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-newItems-item {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+/*精選賣家*/
+.home-sellers-area .card-main {
+  background-image: url("/img/users/AnimalCrossing_wallpaper_02.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: #fff;
+  font-weight: 300;
+}
+
+.home-sellers-area .card-main .card-body {
+  padding: 0rem;
+}
+
+.home-sellers-area .card-img {
+  width: 6.25rem;
+  height: 6.25rem;
+  background-size: contain;
+  border-radius: 50%;
+}
+
+@media (max-width: 480px) {
+  .home-sellers-area .card-img {
+    width: 5rem;
+    height: 5rem;
+  }
+}
+
+.home-sellers-area .card-img img {
+  width: 100%;
+}
+
+.home-sellers-area .card-txtArea {
+  line-height: .5;
+}
+
+.home-sellers-area .card-text, .home-sellers-area .evaluation {
+  font-size: 0.875rem;
+}
+
+@media (max-width: 480px) {
+  .card-buttons .btn {
+    font-size: 0.75rem;
+  }
+}
+
+/*平台特色*/
+.home-features {
+  background-image: url("/img/soft_bg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.home-features::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.home-features .circle {
+  width: 200px;
+  height: 200px;
+  border: 2px dashed #fff;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+@media (min-width: 992px) {
+  .home-features .circle {
+    height: 260px;
+    width: 260px;
+  }
+}
+
+@media (max-width: 576px) {
+  .home-features .circle {
+    margin-top: 0rem !important;
+    margin-bottom: 0rem !important;
+  }
+}
+
+@media (max-width: 375px) {
+  .home-features .circle {
+    margin-bottom: 1rem !important;
+  }
+}
+
+.home-features .circle .circle-txt {
+  padding: 2rem;
+}
+
+.home-features .circle i {
+  font-size: 2.2rem;
+}
+
+@media (min-width: 992px) {
+  .home-features .circle i {
+    font-size: 3.125rem;
+  }
+}
+
+.home-features .circle p {
+  font-size: 0.75rem;
+}
+
+@media (min-width: 992px) {
+  .home-features .circle p {
+    font-size: 0.875rem;
+  }
+}
+
+/*footer-logo*/
+.footer-logo {
+  font-size: 2.2rem;
+}
+
+.footer-logo img {
+  width: 100%;
+}
+
+.footer-logo .h-upKey {
+  cursor: pointer;
+}
+
+.footer-logo .h-upKey::before {
+  content: '';
+  border-right: 2px dashed #fff;
+}
+
+/*如何使用*/
+.home-useInstructions {
+  margin: 50px 0px;
+}
+
+.home-useInstructions h2 {
+  text-align: center;
+}
+
+.home-useInstructions .nav-tabs .nav-item {
+  width: 25%;
+}
+
+@media (max-width: 375px) {
+  .home-useInstructions .nav-tabs .nav-item {
+    width: 40%;
+  }
+}
+
+.home-useInstructions .nav-tabs .nav-link {
+  display: block;
+  text-align: center;
+  border-radius: 45px 45px 0 0;
+  -webkit-box-shadow: inset 5px 8px 7px rgba(0, 0, 0, 0.1);
+          box-shadow: inset 5px 8px 7px rgba(0, 0, 0, 0.1);
+  color: #3C3C3C;
+  font-size: 1.25rem;
+  background-color: #F2F2F2;
+}
+
+@media (max-width: 576px) {
+  .home-useInstructions .nav-tabs .nav-link {
+    border-radius: 35px 35px 0 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-useInstructions .nav-tabs .nav-link {
+    font-size: 0.875rem;
+  }
+}
+
+.home-useInstructions .nav-tabs .active {
+  background-color: #E60012;
+  color: #fff;
+}
+
+.home-useInstructions .tab-content {
+  border: 0 solid #ededed;
+}
+
+.home-useInstructions .tab-content .tab-pane {
+  border-radius: 15px;
+}
+
+.home-useInstructions .tab-content .active {
+  background-color: #E60012;
+}
+
+.tab-pane-area {
+  width: auto;
+  list-style: none;
+  color: #fff;
+  text-align: center;
+  padding: 40px 100px;
+}
+
+@media (max-width: 576px) {
+  .tab-pane-area {
+    padding: 40px 10px;
+  }
+}
+
+@media (max-width: 375px) {
+  .tab-pane-area {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.tab-pane-area .tab-pane-icon {
+  font-size: 40px;
+}
+
+@media (max-width: 480px) {
+  .tab-pane-area .tab-pane-icon {
+    font-size: 30px;
+  }
+}
+
+.tab-pane-area .tab-pane-text {
+  font-weight: 300;
+}
+
+@media (max-width: 480px) {
+  .tab-pane-area .tab-pane-text {
+    font-size: 0.875rem;
+  }
+}
+
+.tab-pane-area .tab-pane-text h3 {
+  font-size: 20px;
+}
+
+@media (max-width: 480px) {
+  .tab-pane-area .tab-pane-text h3 {
+    font-size: 1.125rem;
+  }
+}
+
+.switcherMap-searchArea .btn {
+  background-color: #fff;
+}
+
+.switcherMap-searchArea .btn:hover, .switcherMap-searchArea .btn:active {
+  background-color: #fff;
+  color: #3C3C3C;
+}
+
+.switcherMap-map, .seller-information {
+  height: calc(100vh - 13rem);
+}
+
+/*右側欄*/
+.seller-information {
+  background-color: #ededed;
+}
+
+@media (min-width: 992px) {
+  .seller-information .seller-header {
+    padding-right: 3rem;
+  }
+}
+
+.seller-information .textHeader {
+  font-size: 1.125rem;
+}
+
+@media (min-width: 992px) {
+  .seller-information .textHeader {
+    font-size: 1.25rem;
+  }
+}
+
+.seller-information .cardsArea {
+  height: calc(100vh - 19rem);
+  overflow-y: auto;
+}
+
+.seller-information .cardsArea .card-img {
+  width: 6.25rem;
+  height: 6.25rem;
+  background-size: contain;
+  border-radius: 50%;
+}
+
+.seller-information .cardsArea .card-img img {
+  width: 100%;
+}
+
+.seller-information .cardsArea .card-txtArea {
+  font-size: 0.875rem;
+}
+
+.seller-information .cardsArea .evaluation {
+  color: #FF7D01;
+}
+
+.seller-information .card-buttons button {
+  width: 45%;
+  font-size: 0.75rem;
+}
+
+@media (min-width: 992px) {
+  .seller-information .card-buttons button {
+    font-size: 1rem;
+  }
+}
+
+.seller-information .card-buttons .btn-secondary {
+  border-color: #FF7D01;
+  background-color: #FF7D01;
+  color: #fff;
+}
+
+.progress-txt p {
+  color: #999999;
+}
+
+@media (max-width: 767px) {
+  .progress-txt p {
+    font-size: 0.875rem;
+  }
+}
+
+.progress-txt .active {
+  color: #FF7D01;
+}
+
+.switcherOrder-orderArea {
+  background-color: #fff;
+}
+
+.switcherOrder-content {
+  font-size: 0.875rem;
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .switcherOrder-content {
+    font-size: 1rem;
+  }
+}
+
+.switcherOrder-content img {
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  .switcherOrder-content h6 {
+    font-size: 1.125rem;
+  }
+}
+
+.switcherOrder-content .category-games {
+  font-size: 0.75rem;
+}
+
+@media (min-width: 992px) {
+  .switcherOrder-content .category-games {
+    font-size: 0.875rem;
+  }
+}
+
+.switcherOrder-content .content-prices span {
+  font-size: 1rem;
+}
+
+@media (min-width: 992px) {
+  .switcherOrder-content .content-prices span {
+    font-size: 1.125rem;
+  }
+}
+
+.switcherOrder-content .fa-trash-alt {
+  font-size: 1.25rem;
+  color: #666666;
+  cursor: pointer;
+}
+
+.switcherOrder-orderArea div:last-child {
+  border-bottom: none !important;
+}
+
+@media (max-width: 767px) {
+  .switcherOrder-img {
+    margin-bottom: 0.5rem;
+  }
+  .switcherOrder-content .fa-trash-alt {
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+  }
+}
+
+@media (max-width: 320px) {
+  .sm-date {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .sm-date:last-child p {
+    margin-left: 0rem !important;
+  }
+}
+
+.btn-warning {
+  border-color: #FF7D01;
+  background-color: #FF7D01;
+  color: #fff;
+}
+
+.btn-warning:hover, .btn-warning:focus, .btn-warning:not(:disabled):not(.disabled):active {
+  background-color: #fff;
+  color: #FF7D01;
+}
+
+.btn-footer {
+  font-size: 0.75rem;
+}
+
+/*租賃契約*/
+.switcherOrder-contract {
+  background-color: #fff;
+}
+
+.switcherOrder-contract p {
+  margin-bottom: 0.25rem;
+  font-size: 0.75rem;
+}
+
+.switcherOrder-contract .contract-info p {
+  color: #337AB7;
+}
+
+.switcherOrder-contract .size-sm, .switcherOrder-contract .contract-protocol p {
+  font-size: 0.75rem;
+}
+
+/*同意預約*/
+#switcherOrder-end {
+  background: -webkit-gradient(linear, left top, right top, from(#F4F3F8), to(#FBFFFF));
+  background: linear-gradient(to right, #F4F3F8, #FBFFFF);
+}
+
+.switcherOrder-bg {
+  min-height: calc(100vh - 11rem);
+  background-image: url("/img/22arcx-removebg.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+@media (max-width: 768px) {
+  .switcherOrder-bg {
+    background-position: bottom;
+  }
+}
+
+@media (max-width: 576px) {
+  .switcherOrder-bg {
+    min-height: calc(100vh - 15rem);
+  }
+}
+
+.switcherOrder-box {
+  width: 400px;
+  position: absolute;
+  top: 35%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: 99;
+}
+
+@media (max-width: 768px) {
+  .switcherOrder-box {
+    width: 300px;
+    top: 25%;
+  }
+}
+
+.endItem {
+  background-color: rgba(225, 225, 225, 0.8);
+  border: 5px solid #fff;
+  -webkit-box-shadow: 0 0 30px #F2F2F2;
+          box-shadow: 0 0 30px #F2F2F2;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  text-align: center;
+  padding: 20px;
+}
+
+.endItem .far {
+  font-size: 3.25rem;
+}
+
+.endItem .fa-check-circle {
+  color: #FF7D01;
+}
+
+.endItem .fa-times-circle {
+  color: #737373;
+}
+
+.switcherProduct-header h2 {
+  font-size: 1.5rem;
+}
+
+@media (min-width: 992px) {
+  .switcherProduct-header h2 {
+    font-size: 2.2rem;
+  }
+}
+
+.switcherProduct-header p {
+  color: #FF7D01;
+  font-size: 1.125rem;
+}
+
+.switcherProduct-seller {
+  background-color: #fff;
+}
+
+.switcherProduct-seller .sellerImg {
+  width: 3.125rem;
+  height: 3.125rem;
+  background-size: contain;
+  border-radius: 50%;
+}
+
+.switcherProduct-seller .sellerImg img {
+  width: 100%;
+}
+
+.switcherProduct-seller .btn, .switcherProduct-seller .switcherStore-sellerInfo {
+  font-size: 0.75rem;
+  padding: 0.18rem;
+}
+
+@media (min-width: 992px) {
+  .switcherProduct-seller .btn, .switcherProduct-seller .switcherStore-sellerInfo {
+    font-size: 1rem;
+    padding: 0.375rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .sellerInfo-header, .sellerInfo-footer {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .switcherProduct-seller .btn {
+    width: 100% !important;
+  }
+  .sellerBtns .btn:last-child {
+    display: none;
+  }
+}
+
+@media (max-width: 320px) {
+  .switcherProduct-seller {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+/*商品資訊*/
+.contentBox {
+  width: 70%;
+  height: 18rem;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  background-color: #fff;
+  font-size: 0.875rem;
+  color: #737373;
+}
+
+.contentDate {
+  color: #666666;
+  font-size: 0.75rem;
+}
+
+@media (min-width: 992px) {
+  .contentDate {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .proInfo-content {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .contentBox {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/*右欄*/
+.columns-right {
+  background-color: #fff;
+}
+
+.columns-right .use-instructionCard {
+  cursor: pointer;
+}
+
+@media (min-width: 992px) {
+  .columns-category {
+    margin-top: 3rem;
+  }
+  .columns-details {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+@media (max-width: 576px) {
+  .columns-details {
+    font-size: 0.875rem;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.category-games {
+  padding: 5px 8px;
+}
+
+@media (max-width: 576px) {
+  .category-games {
+    font-size: 0.875rem;
+  }
+}
+
+.columns-priceArea {
+  font-size: 1.25rem;
+}
+
+@media (min-width: 992px) {
+  .columns-priceArea {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.columns-priceArea .price {
+  color: #FF7D01;
+  font-size: 1.5rem;
+}
+
+.columns-choose {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+@media (min-width: 992px) {
+  .columns-choose {
+    display: block;
+  }
+}
+
+@media (max-width: 576px) {
+  .columns-choose {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.columns-choose .choosed-date {
+  font-size: 0.875rem;
+}
+
+.columns-choose .btn-outline-warning, .columns-choose .btn-outline-warning:not(:disabled):not(.disabled):active {
+  border-color: #FF7D01;
+  background-color: #fff;
+  color: #FF7D01;
+}
+
+.columns-choose .btn-warning {
+  background-color: #FF7D01;
+  color: #fff;
+}
+
+.calendar {
+  width: 50%;
+  height: 200px;
+}
+
+@media (min-width: 992px) {
+  .calendar {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .calendar {
+    width: 100%;
+  }
+}
+
+.total-rentDate {
+  color: #FF7D01;
+}
+
+@media (max-width: 320px) {
+  .total-rentDate {
+    display: none;
+  }
+}
+
+/*商品評價*/
+.review-star .num-large {
+  font-size: 1.5rem;
+}
+
+.review-star .fa-star {
+  margin-right: 2px;
+}
+
+@media (max-width: 375px) {
+  .review-chooseBtn {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+.review-chooseBtn .btn-outline-light {
+  width: 70px;
+  height: 35px;
+  margin-right: 10px;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 576px) {
+  .review-chooseBtn .btn-outline-light {
+    width: 60px;
+    height: 25px;
+    font-size: 8px;
+    margin-right: 5px;
+    margin-top: 5px;
+  }
+}
+
+.review-list {
+  background-color: #fff;
+}
+
+.review-list .userImag {
+  width: 3.125rem;
+  height: 3.125rem;
+  background-size: contain;
+  border-radius: 50%;
+}
+
+.review-list .userImag img {
+  width: 100%;
+}
+
+.review-list .userReview {
+  font-size: 0.75rem;
+}
+
+.review-list li:last-child .review-item {
+  border-bottom: none !important;
+}
+
+@media (max-width: 576px) {
+  .switcherProduct-review {
+    margin-top: 1rem;
+  }
+  .review-navBar {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .review-star .stars {
+    font-size: 0.75rem;
+  }
+}
+
+/*搜尋*/
+.form-control, .input-group-text {
+  border-radius: 0rem;
+}
+
+/*篩選區*/
+@media (max-width: 375px) {
+  .nav-pills {
+    font-size: 0.75rem;
+  }
+}
+
+.nav-pills .nav-item {
+  border: 1px solid #ededed;
+}
+
+.nav-pills .nav-link {
+  background-color: #fff;
+  color: #3C3C3C;
+  border-radius: 0rem;
+}
+
+@media (max-width: 375px) {
+  .nav-pills .nav-link {
+    padding: 0.5rem;
+  }
+}
+
+.nav-pills .nav-link.active {
+  background-color: #E60012;
+  color: #fff;
+}
+
+.shop-navSelects .navbar-brand {
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .shop-navSelects .navbar-brand {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .sortNav {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .shop-body {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+/*說明卡 instructionCard*/
+.instructionCard {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.instructionCard .card-header, .instructionCard .card-body, .instructionCard .card-footer {
+  background-color: white;
+}
+
+.instructionCard .card-main {
+  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.instructionCard .card-title {
+  font-size: 0.875rem;
+}
+
+.instructionCard .card-steps li {
+  width: 20%;
+}
+
+.instructionCard .card-steps i {
+  font-size: 2.2rem;
+}
+
+.instructionCard .card-steps p {
+  font-size: 0.875rem;
+}
+
+/*返回上頁*/
+.returnMap {
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+/*賣家卡片*/
+.switcherStore-sellerCard {
+  padding: 1rem 1.88rem;
+  background-image: url("/img/users/Animal Crossing_wallpaper_02.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.switcherStore-sellerCard .sellerImg {
+  width: 6.25rem;
+  height: 6.25rem;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-radius: 50%;
+}
+
+.switcherStore-sellerCard .sellerImg img {
+  width: 100%;
+}
+
+.switcherStore-sellerCard .sellerTxt p, .switcherStore-sellerCard .sellerTxt button {
+  font-size: 0.875rem;
+}
+
+.switcherStore-sellerInfo .orange-txt {
+  color: #FF7D01;
+}
+
+/*關於賣場*/
+.switcherStore-about {
+  background-color: #fff;
+}
+
+.switcherStore-aboutInfo {
+  height: calc(100vh - 35rem);
+}
+
+.switcherStore-aboutInfo .about-text {
+  width: 100%;
+  height: calc(100vh - 35rem);
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.switcherStore-aboutInfo .storeImg {
+  height: 100%;
+  background-image: url("/img/users/ryan-quintal-t8_tn3tqmoI-unsplash.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-box-shadow: 0 0 4px 4px #fff;
+          box-shadow: 0 0 4px 4px #fff;
+}
+
+@media (max-width: 576px) {
+  .about-storeImg {
+    display: none;
+  }
+}
+
+/*賣場列表*/
+.switcherStore-main .main-item {
+  font-size: 1.125rem;
+  opacity: .5;
+}
+
+.switcherStore-main .main-item:hover {
+  opacity: 1;
+}
+
+.switcherStore-main .active {
+  opacity: 1;
+}
+
+@media (max-width: 480px) {
+  .switcherStore-body {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
 }
 /*# sourceMappingURL=main.css.map */

@@ -1,0 +1,56 @@
+.switcherMap-searchArea .btn{
+    background-color: $white;
+    &:hover,&:active{
+        background-color: $white;
+        color: $fc-300;
+    }
+}
+.switcherMap-map,.seller-information{
+    height: calc(100vh - 13rem);   
+}
+/*右側欄*/
+.seller-information{
+    background-color: $fc-200;
+    .seller-header{
+        @include media-breakpoint-up(lg){
+            padding-right: 3rem;
+        }
+    }
+    .textHeader{
+        font-size: $fs-300;
+        @include media-breakpoint-up(lg){
+            font-size: $fs-400;
+        }
+    }
+    .cardsArea{
+        height: calc(100vh - 19rem);
+        overflow-y: auto;
+        .card-img{
+            width: $font-size-base*6.25;
+            height: $font-size-base*6.25;
+            background-size: contain;
+            border-radius: 50%;
+            img{
+                width: 100%;
+            }
+        }
+        .card-txtArea{
+            font-size: $fs-200;
+        }
+        .evaluation{
+            color: $orange;
+        }
+    }
+    .card-buttons button{
+        width: 45%;
+        font-size: $fs-100;
+        @include media-breakpoint-up(lg){
+            font-size: $font-size-base;
+        }
+    }
+    .card-buttons .btn-secondary{
+        border-color: $orange;
+        background-color: $orange;
+        color: $white;
+    }
+}

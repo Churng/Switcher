@@ -2,7 +2,7 @@
     <ul class="row shop-body list-unstyled flex-wrap bg-white pt-5 pb-5">
         <li class="col-10 col-sm-6 col-md-6 col-xl-3 col-lg-4">
             <div class="card mb-4">
-                <img src="@/assets/img/gameHost/gameHost01.jpg" class="card-img-top" alt="gameHost">
+                <img src="/img/gameHost/gameHost01.jpg" class="card-img-top" alt="gameHost">
                 <div class="card-body">
                     <div class="card-text">
                         <h3>Switch 灰黑機</h3>
@@ -28,7 +28,7 @@
         </li>
         <li class="col-10 col-sm-6 col-md-6 col-xl-3 col-lg-4">
             <div class="card mb-4">
-                <img src="@/assets/img/gameHost/gameHost01.jpg" class="card-img-top" alt="gameHost">
+                <img src="/img/gameHost/gameHost01.jpg" class="card-img-top" alt="gameHost">
                 <div class="card-body">
                     <div class="card-text">
                         <h3>Switch 灰黑機</h3>

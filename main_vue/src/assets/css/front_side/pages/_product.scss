@@ -1,0 +1,210 @@
+.switcherProduct-header{
+    h2{
+        font-size: $fs-600;
+        @include media-breakpoint-up(lg){
+            font-size: $fs-700;
+        }
+    }
+    p{
+        color: $orange;
+        font-size: $fs-300;
+    }
+}
+.switcherProduct-seller{
+    background-color: $white;
+    .sellerImg{
+        width: $font-size-base*3.125;
+        height: $font-size-base*3.125;
+        background-size: contain;
+        border-radius: 50%;
+        img{
+            width: 100%;
+        }
+    }
+    .btn,.switcherStore-sellerInfo{
+        font-size: $fs-100;
+        padding: 0.18rem;
+        @include media-breakpoint-up(lg){
+            font-size: $font-size-base;
+            padding: 0.375rem;
+        }
+    }
+}
+@include mobile_576{
+    .sellerInfo-header,.sellerInfo-footer{
+        flex-direction: column;
+    }
+    .switcherProduct-seller .btn{
+        width: 100% !important;  
+    }
+    .sellerBtns .btn:last-child {
+        display: none;
+    }
+}
+@include mobile_320{
+   .switcherProduct-seller{
+       flex-direction: column;
+   } 
+}
+/*商品資訊*/
+.contentBox{
+    width: 70%;
+    height: 18rem;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background-color: $white;
+    font-size: $fs-200;
+    color: $fc-400;
+}
+.contentDate{
+    color: $fc-700;
+    font-size: $fs-100;
+    @include media-breakpoint-up(lg){
+        font-size: $fs-200;
+    }
+}
+@include mobile_576{
+    .proInfo-content{
+        flex-direction: column;
+    }
+    .contentBox{
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+}
+
+/*右欄*/
+.columns-right{
+    background-color: $white;
+    .use-instructionCard{
+        cursor: pointer;
+    }
+}
+@include media-breakpoint-up(lg){
+    .columns-category{
+        margin-top: 3rem;
+    }
+    .columns-details{
+        flex-direction: column;
+    }
+}
+@include mobile_576{
+    .columns-details{
+        font-size: $fs-200;
+        flex-direction: column;
+    }
+}
+
+.category-games{
+    padding: 5px 8px;
+    @include mobile_576{
+        font-size: $fs-200;
+    }
+}
+.columns-priceArea{
+    font-size: $fs-400;
+    @include media-breakpoint-up(lg){
+        flex-direction: column;
+    }
+    .price{
+        color: $orange;
+        font-size: $fs-600;
+    }
+}
+.columns-choose{
+    display: flex;
+    justify-content: space-around;
+    @include media-breakpoint-up(lg){
+        display: block;
+    }
+    @include mobile_576{
+        flex-direction: column;
+    }
+    .choosed-date{
+        font-size: $fs-200;
+    }
+    .btn-outline-warning,.btn-outline-warning:not(:disabled):not(.disabled):active{
+        border-color: $orange;
+        background-color: $white;
+        color: $orange;
+    }
+    .btn-warning{
+        background-color: $orange;
+        color: $white;
+    }
+}
+.calendar{
+    width: 50%;
+    height: 200px;
+    @include media-breakpoint-up(lg){
+        width: 100%;
+    }
+    @include mobile_576{
+        width: 100%;
+    }
+}
+.total-rentDate{
+    color: $orange;
+    @include mobile_320{
+        display: none;
+    }
+}
+
+
+/*商品評價*/
+.review-star{
+    .num-large{
+        font-size: $fs-600;
+    }
+    .fa-star{
+        margin-right: 2px;
+    }
+}
+.review-chooseBtn{
+    @include mobile_375{
+        justify-content: center;
+    }
+    .btn-outline-light{
+        width: 70px;
+        height: 35px;
+        margin-right: 10px;
+        font-size: $fs-100;
+        @include mobile_576{
+            width: 60px;
+            height: 25px;
+            font-size: 8px;
+            margin-right: 5px;
+            margin-top: 5px;
+        }
+    }
+}
+.review-list{
+    background-color: $white;
+    .userImag{
+        width: $font-size-base*3.125;
+        height: $font-size-base*3.125;
+        background-size: contain;
+        border-radius: 50%;
+        img{
+            width: 100%;
+        }
+    }
+    .userReview{
+        font-size: $fs-100;
+    }   
+    li:last-child .review-item{
+        border-bottom: none !important;
+    }
+}
+@include mobile_576{
+    .switcherProduct-review{
+        margin-top: 1rem;
+    }
+    .review-navBar{
+        flex-direction: column;
+    }
+    .review-star .stars{
+        font-size: $fs-100;
+    }
+}
