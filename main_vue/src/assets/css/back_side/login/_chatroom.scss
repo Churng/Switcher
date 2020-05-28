@@ -1,0 +1,241 @@
+
+
+
+.chat-cont{
+    // width: 600px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    // box-shadow: 0 0 10px $titlebcg;
+    background-color: $light;
+    .dialogue{
+        // width: 500px;
+        padding: 20px;
+        border-radius: 10px;
+        height: 70vh;
+
+        .chat-user{
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .local{
+            justify-content: flex-end;
+        }
+    
+    }
+}
+
+
+.chat-user .avatar{
+    width: 60px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.chat-user .pic{
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.chat-user .pic img{
+    width: 100%;
+}
+
+.chat-user .txt{
+    background-color: #aaa ;
+    padding: 10px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.remote .txt{
+    margin-left: 20px;
+    margin-right: 260px;
+    background-color: #fff;
+    color: #a1b4c5;
+}
+.local .txt{
+    margin-right: 20px;
+    margin-left: 260px;
+    order: -1;
+    background-color: #3e92cc;
+    color:#fff;
+}
+
+@media (max-width: 576px) { 
+    .remote .txt{
+        margin-left: 20px;
+        margin-right: 100px;
+        background-color: #fff;
+        color: #a1b4c5;
+    }
+    .local .txt{
+        margin-right: 20px;
+        margin-left: 100px;
+        order: -1;
+        background-color: #3e92cc;
+        color:#fff;
+    }
+    
+}
+@media (min-width: 768px) { 
+    .remote .txt{
+        margin-left: 20px;
+        margin-right: 170px;
+        background-color: #fff;
+        color: #a1b4c5;
+    }
+    .local .txt{
+        margin-right: 20px;
+        margin-left: 170px;
+        order: -1;
+        background-color: #3e92cc;
+        color:#fff;
+    }
+}
+
+@media (max-width: 414px) { 
+    .remote .txt{
+        margin-left: 20px;
+        margin-right: 50px;
+        background-color: #fff;
+        color: #a1b4c5;
+    }
+    .local .txt{
+        margin-right: 20px;
+        margin-left: 50px;
+        order: -1;
+        background-color: #3e92cc;
+        color:#fff;
+    }
+}
+
+.remote .txt::before,
+.local .txt::before{
+    content:'';
+    position: absolute;
+    top: 10px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+}
+.remote .txt:before{
+    border-right: 10px solid #fff;
+    left: -10px;
+}
+.local .txt:before{
+    border-left: 10px solid #3e92cc;
+    right: -10px;
+}
+
+//sender
+
+.sender-photo{
+    padding: 20px;
+    align-items: center;
+    .sender-pic{
+        width: 100px;
+        text-align: center;
+        flex-shrink: 0;
+        img{
+            width: 100%;
+
+        }
+    }
+
+}
+
+
+//打字欄
+@media (min-width: 768px) { 
+    .msg-bottom{
+
+        .row{
+            justify-content: space-around;
+            background-color: $light;
+            padding-bottom: 20px;
+            .bl-page{
+                width: 120px;
+                height: 50px;
+                margin-top: 68px;
+            }
+       
+        }
+    }
+}
+
+
+@media (max-width: 576px) { 
+    .msg-bottom{
+
+        .row{
+            justify-content: space-around;
+            background-color: $light;
+            padding-bottom: 20px;
+            .bl-page{
+                display: none;
+                width: 120px;
+                height: 50px;
+                margin-top: 68px;
+            }
+       
+        }
+    }
+}
+
+@media (max-width: 768px) { 
+    .user-msg-textarea{
+        display: inherit;
+        
+        .user-msg-text{
+            width: 100%;
+            resize: none;
+            width: 56vw;
+            height: 12vh;
+            margin-right: 5px;
+            border-radius: 10px; 
+        box-shadow: 0 0 0 1px $gray-500; 
+        border: 5px solid transparent; 
+    
+        }
+    
+    }
+}
+@media (min-width: 992px) { 
+    .user-msg-textarea{
+        display: inherit;
+        
+        .user-msg-text{
+            width: 100%;
+            resize: none;
+            width: 55vw;
+            height: 16vh;
+            margin-right: 5px;
+            border-radius: 10px; 
+        box-shadow: 0 0 0 1px $gray-500; 
+        border: 5px solid transparent; 
+    
+        }
+    
+    }
+}
+
+
+
+@media (max-width: 576px) { 
+    .user-msg-textarea{
+        display: inherit;
+        
+        .user-msg-text{
+            width: 100%;
+            resize: none;
+            width: 70vw;
+            height: 10vh;
+            margin-right: 5px;
+            border-radius: 10px; 
+            box-shadow: 0 0 0 1px $gray-500; 
+            border: 5px solid transparent; 
+    
+        }
+    
+    }
+}

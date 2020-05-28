@@ -1,0 +1,49 @@
+body{
+    color: $fc-300;
+}
+
+.inbox-title{
+    text-align: center;
+}
+
+.inbox-title{
+    .fa-envelope,p{
+        font-size:$fs-600;
+        font-weight: bold;
+        margin-right: 1rem;
+        line-height: 2rem;
+    }
+    
+}
+
+.inbox-mail{
+    line-height: 7rem;
+
+}
+
+@media (min-width: 576px) { 
+    .inbox-table{
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) { 
+   .inbox-table td{
+     padding: 0rem;
+     }
+}
+
+@media (max-width: 414px) { 
+    .inbox-table-mail{
+        width: 100%;
+        display: inline-block;  
+        overflow-x:scroll;
+
+    }
+}
+
+@media (max-width: 414px) { 
+    .text-center{
+        white-space: nowrap;
+    }
+}

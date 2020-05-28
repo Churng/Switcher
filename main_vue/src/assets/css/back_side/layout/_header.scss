@@ -1,0 +1,58 @@
+.header{
+    display: flex;
+    box-shadow: 0 1px 0 rgba(4,0,0,0.1);
+}
+.header-logo{
+    width: calc((100% - 149px) / 6);
+    background-color: $red;
+}
+.header-navBar{
+    width: 100%;
+    display: flex;
+    list-style-type: none;
+    li{
+        width: 20%;
+        box-sizing: border-box;
+        font-weight: bold;
+        text-align: center;
+        border-right: 1px solid $f-200;
+        line-height: 74px;
+        &:hover{
+            text-decoration: none;
+        }
+        .header-navBar-icon{
+            color: $f-100;
+        }
+        .header-navBar-label{
+            color: $f-300;
+        }
+        a{
+            display: block;
+            position: relative;
+            transition: border-color 150ms linear,background-color 150ms linear,color 150ms linear;
+            &:hover{
+                text-decoration: none;
+                .header-navBar-icon,.header-navBar-label{
+                    color: $red;
+                }
+                &::after{
+                    content: '';
+                    position: absolute;
+                    height: 3px;
+                    background-color: $red;
+                    right: 2px;
+                    left: 2px;
+                    bottom: 2px;
+                }
+                transition: border-color 150ms cubic-bezier(.165,.84,.44,1),background-color 150ms cubic-bezier(.165,.84,.44,1),color 150ms cubic-bezier(.165,.84,.44,1);
+            }
+        }
+    }
+}
+
+/* nav 滑入*/
+.h-navBar-dropInner{
+    background-color: $white;
+    box-shadow: 0 1px 0 rgba(4,0,0,0.1);
+    transition: background-color 200ms linear;
+}
