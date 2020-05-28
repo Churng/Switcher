@@ -11,12 +11,16 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import router from './router/index'
 import App from './App.vue'
 
+// const ta = require.context('./assets/JSON/7-11', false, /json$/)
+// const city = ta.keys().map(ta)
+// console.log(city)
+
 Vue.config.productionTip = false
 Vue.use(ElementUI, BootstrapVue)
 library.add(fas, fab)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
-
+// console.log(ta)
 new Vue({
   router,
   render: h => h(App)
