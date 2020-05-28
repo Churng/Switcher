@@ -1,0 +1,18 @@
+.seller-order.td{
+    vertical-align:middle;
+}
+
+@media (max-width: 414px) { 
+    .order-record > .tab-pane{
+        width: 100%;
+        display: inline-block;  
+        overflow-x:scroll;
+
+    }
+}
+
+@media (max-width: 414px) { 
+    .order-record.tbody{
+        white-space: nowrap;
+    }
+}

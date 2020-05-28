@@ -41,11 +41,11 @@
                     </div>
                 </li>
                 <li class="sm-findChevron">
-                    <a href="" class="d-none">
+                   <router-link to="/login">
                         <span class="header-navBar-icon mr-2"><font-awesome-icon icon="sign-in-alt"/></span>
                         <span class="header-navBar-label">登入/註冊</span>
-                    </a>
-                    <div class="d-flex justify-content-center w-100 pc-user" @click="pcShow.user=!pcShow.user">
+                    </router-link>
+                    <div class=" justify-content-center w-100 pc-user d-none" :class= "{'d-flex':token != ''}"  @click="pcShow.user=!pcShow.user">
                         <a href="">
                           <span class="header-navBar-icon mr-2"><font-awesome-icon icon="user-circle"/></span>
                           <span class="header-navBar-label">會員管理</span>
@@ -58,7 +58,7 @@
                         <p class="mb-0">我的賣場</p>
                         <p class="mb-0">商品上架</p>
                         <p class="mb-0">聊天室</p>
-                        <p class="mb-2">會員登出</p>
+                        <p class="mb-2"  @click.prevent="signout">會員登出</p>
                     </div>
                 </li>
                 <li class="d-flex justify-content-center sm-findChevron pc-shoppingCart"  @click="pcShow.shoppingCart=!pcShow.shoppingCart">
@@ -205,7 +205,13 @@ export default {
         eShop: false,
         user: false,
         shoppingCart: false
-      }
+      },
+      token: localStorage.getItem('token') || ''
+    }
+  },
+  methods: {
+    signout () {
+      localStorage.removeItem('token')
     }
   }
 }

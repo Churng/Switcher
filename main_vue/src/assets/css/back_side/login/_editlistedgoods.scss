@@ -1,0 +1,20 @@
+body{
+    color: $fc-300;
+}
+
+
+.O-price,.d-price{
+    color:$red ;
+}
+
+.upload-img{
+    width: 300px;
+}
+
+@media (max-width: 320px) { 
+
+    .upload-goods-photo{
+        display: none;
+    }
+}
+

@@ -1,0 +1,26 @@
+//font
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,300,400,500,700,900&display=swap');
+
+@import '../../../node_modules/bootstrap/scss/functions';
+@import '../Scss/variables';
+@import '../../../node_modules/bootstrap/scss/mixins';
+
+
+//BS4
+@import '../../../node_modules/bootstrap/scss/bootstrap.scss';
+
+//config
+
+
+//layout
+// @import 'layout/header';
+// @import 'layout/footer';
+
+//layout-login
+@import 'layout/login/login';
+@import 'layout/login/forgetpassword';
+@import 'layout/login/editmemberinfo';
+@import 'layout/login/editlistedgoods';
+@import 'layout/login/inbox';
+@import 'layout/login/chatroom';
+@import 'layout/login/ordersell';
