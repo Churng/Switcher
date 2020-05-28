@@ -11,7 +11,6 @@
         <div class="container-fluid">
             <Features />
             <Footer-logo />
-            <Footer />
         </div>
     </div>
 </template>
@@ -23,9 +22,8 @@ import NewItemsArea from '../components/front_side/NewItemsArea'
 import SellersArea from '../components/front_side/SellersArea'
 import Features from './front_side/Features'
 import FooterLogo from './front_side/FooterLogo'
-import Footer from './Footer'
 
 export default {
-  components: { Banner, UseInstructions, NewItemsArea, SellersArea, Features, FooterLogo, Footer }
+  components: { Banner, UseInstructions, NewItemsArea, SellersArea, Features, FooterLogo }
 }
 </script>

@@ -134,13 +134,7 @@ body{
 /* nav 滑入後顯示的區塊h-navBar*/
 .h-navBar-areaBg{
     position: absolute;
-    left: 0;
-    right: 0;
     top: 74px;
-    bottom: 0;
-    height: 100%;
-    overflow-y: auto;
-    background: rgba(255,255,255,0);
 }
 .h-navBar-area{
     position: relative;

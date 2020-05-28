@@ -1,7 +1,7 @@
 <template>
-    <div class="header mb-3">
+    <div class="header">
         <div class="header-logo text-center">
-            <router-link to="/" class="homeLogo"><img src="img/Swicher_Logo.png" alt="logo"></router-link>
+            <router-link to="/home" class="homeLogo"><img src="img/Swicher_Logo.png" alt="logo"></router-link>
             <!-- <a href="#" ><img src="img/Swicher_Logo.png" alt="logo"></a> -->
             <a class="btn mr-3 text-white" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><font-awesome-icon icon="bars"/></a>
         </div>
@@ -9,7 +9,7 @@
             <ul class="header-navBar w-100 mb-0 pl-0 d-flex list-unstyled">
                 <li class="sm-findChevron pc-findGame"  @click="pcShow.findGame=!pcShow.findGame">
                     <div class="d-flex justify-content-center w-100">
-                        <a href="" class="header-navBar-pro">
+                        <a href="#" class="header-navBar-pro">
                           <span class="header-navBar-icon mr-2"><font-awesome-icon icon="gamepad"/></span>
                           <span class="header-navBar-label">尋找周邊商品</span>
                         </a>
@@ -21,11 +21,11 @@
                         <p class="mb-2">遊戲配件</p>
                     </div>
                 </li>
-                <li class="d-flex justify-content-center sm-findChevron pc-map" @click="pcShow.map=!pcShow.map">
-                    <a href="">
+                <li class="d-flex justify-content-center sm-findChevron pc-map">
+                    <router-link to="/findSeller" class="w-100">
                         <span class="header-navBar-icon mr-2"><font-awesome-icon icon="user"/></span>
                         <span class="header-navBar-label">尋找附近賣家</span>
-                    </a>
+                    </router-link>
                 </li>
                 <li class="sm-findChevron pc-eShop" @click="pcShow.eShop=!pcShow.eShop">
                     <div class="d-flex justify-content-center w-100">
@@ -87,14 +87,6 @@
                         <a href="" class="d-block">
                             <img src="/img/icon/iconfinder_icon-game-controller-a_211667.png" alt="gameStick">
                             <p>遊戲配件</p>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-12 h-navBar h-navBar-m pt-4 pb-4" v-show="pcShow.map" :class="pcShow.map ? 'd-flex justify-content-center' : 'd-none'">
-                    <div class="col-md-2 h-dropItem-content text-center">
-                        <a href="" class="d-block">
-                            <img src="/img/icon//iconfinder_Streamline-66_185086.png" alt="findPerson">
-                            <p class="mt-2">地圖搜尋</p>
                         </a>
                     </div>
                 </div>
@@ -210,7 +202,6 @@ export default {
       },
       pcShow: {
         findGame: false,
-        map: false,
         eShop: false,
         user: false,
         shoppingCart: false

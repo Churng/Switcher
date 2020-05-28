@@ -5,6 +5,9 @@
         color: $fc-300;
     }
 }
+.input-group-prepend{
+    cursor: pointer;
+}
 .switcherMap-map,.seller-information{
     height: calc(100vh - 13rem);   
 }
