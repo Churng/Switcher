@@ -1,25 +1,16 @@
 <template>
     <div class="header">
         <div class="header-logo text-center">
-            <router-link to="/home" class="homeLogo"><img src="img/Swicher_Logo.png" alt="logo"></router-link>
-            <!-- <a href="#" ><img src="img/Swicher_Logo.png" alt="logo"></a> -->
+            <router-link to="/home" class="homeLogo"><img src="/img/Swicher_Logo.png" alt="logo"></router-link>
             <a class="btn mr-3 text-white" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><font-awesome-icon icon="bars"/></a>
         </div>
         <div class="collapse" id="collapseExample">
             <ul class="header-navBar w-100 mb-0 pl-0 d-flex list-unstyled">
-                <li class="sm-findChevron pc-findGame"  @click="pcShow.findGame=!pcShow.findGame">
-                    <div class="d-flex justify-content-center w-100">
-                        <a href="#" class="header-navBar-pro">
-                          <span class="header-navBar-icon mr-2"><font-awesome-icon icon="gamepad"/></span>
-                          <span class="header-navBar-label">尋找周邊商品</span>
-                        </a>
-                        <span class="header-navBar-icon findChevron" @click="phoneShow.findGame=!phoneShow.findGame"><font-awesome-icon :icon="phoneShow.findGame ? 'angle-up' :'chevron-down'"/></span>
-                    </div>
-                    <div class="w-100 sm-openItem" v-if="phoneShow.findGame">
-                        <p class="mb-0">遊戲主機</p>
-                        <p class="mb-0">遊戲軟體</p>
-                        <p class="mb-2">遊戲配件</p>
-                    </div>
+                <li class="sm-findChevron pc-findGame d-flex justify-content-center">
+                    <router-link to="/findGames/allGame" class="w-100">
+                        <span class="header-navBar-icon mr-2"><font-awesome-icon icon="gamepad"/></span>
+                        <span class="header-navBar-label">尋找周邊商品</span>
+                    </router-link>
                 </li>
                 <li class="d-flex justify-content-center sm-findChevron pc-map">
                     <router-link to="/findSeller" class="w-100">
@@ -70,26 +61,6 @@
         </div>
         <div class="container-fluid h-navBar-areaBg">
             <div class="row h-navBar-area">
-                <div class="col-md-12 h-navBar h-navBar-p pt-4 pb-4" v-show="pcShow.findGame" :class="pcShow.findGame ? 'd-flex justify-content-center' : 'd-none'">
-                    <div class="col-md-2 h-dropItem-content text-center">
-                        <a href="" class="d-block">
-                            <img src="/img/icon/iconfinder_icon-game-controller-b_211668.png" alt="gameHost">
-                            <p>遊戲主機</p>
-                        </a>
-                    </div>
-                    <div class="col-md-2 h-dropItem-content text-center">
-                        <a href="" class="d-block">
-                            <img src="/img/icon/iconfinder_videogame_icons-20.png" alt="game">
-                            <p>遊戲軟體</p>
-                        </a>
-                    </div>
-                    <div class="col-md-2 h-dropItem-content text-center">
-                        <a href="" class="d-block">
-                            <img src="/img/icon/iconfinder_icon-game-controller-a_211667.png" alt="gameStick">
-                            <p>遊戲配件</p>
-                        </a>
-                    </div>
-                </div>
                 <div class="col-md-12 pt-4 pb-4 h-navBar h-navBar-N" v-show="pcShow.eShop" :class="pcShow.eShop ? 'd-flex justify-content-center' : 'd-none'">
                     <div class="col-md-6 col-lg-4 h-dropItem-content">
                         <a href="https://store.nintendo.com.hk/" target="_blank" class="d-block">
@@ -196,12 +167,10 @@ export default {
   data () {
     return {
       phoneShow: {
-        findGame: false,
         eShop: false,
         user: false
       },
       pcShow: {
-        findGame: false,
         eShop: false,
         user: false,
         shoppingCart: false
@@ -217,6 +186,19 @@ export default {
 }
 </script>
 
-<style lang="scss">
-
+<style lang="scss" scoped>
+.router-link-exact-active {
+  .header-navBar-icon,.header-navBar-label{
+    color: #E60012 !important;
+  }
+  &::after{
+      content: '';
+      position: absolute;
+      height: 3px;
+      background-color: #E60012;
+      right: 2px;
+      left: 2px;
+      bottom: 2px;
+  }
+}
 </style>

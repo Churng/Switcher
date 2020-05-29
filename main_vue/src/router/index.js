@@ -2,7 +2,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home'
 import FindSeller from '../views/FindSeller'
-// import SwitcherMap from '../views/front_side/SwitcherMap'
+import FindGames from '../views/FindGames'
+import AllGame from '../components/front_side/AllGame'
+import GameHost from '../components/front_side/GameHost'
+import Game from '../components/front_side/Game'
+import GameStick from '../components/front_side/GameStick'
 // back_side
 import Login from '../views/back_side/Login'
 Vue.use(VueRouter)
@@ -18,10 +22,38 @@ const routes = [
     component: Home
   },
   {
+    path: '/findGames',
+    name: 'FindGames',
+    component: FindGames,
+    children: [
+      {
+        path: 'allGame',
+        name: 'AllGame',
+        component: AllGame
+      },
+      {
+        path: 'gameHost',
+        name: 'GameHost',
+        component: GameHost
+      },
+      {
+        path: 'game',
+        name: 'Game',
+        component: Game
+      },
+      {
+        path: 'gameStick',
+        name: 'GameStick',
+        component: GameStick
+      }
+    ]
+  },
+  {
     path: '/findSeller',
     name: 'FindSeller',
     component: FindSeller
-  }, {
+  },
+  {
     path: '/login',
     name: 'Login',
     component: Login
