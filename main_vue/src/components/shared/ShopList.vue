@@ -23,7 +23,7 @@ export default {
       const api = 'http://switcher.rocket-coding.com/api/product/all'
       axios.get(api).then(res => {
         this.allItem = res.data.products
-        console.log(res.data.products)
+        // console.log(res.data.products)
       })
     }
   }
