@@ -5,7 +5,7 @@
                 {{ selectCity }}
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
-                <a class="dropdown-item" href="#" @click="selectCity=`${city.city_name}`" v-for="city in allStoreData" :key="city.city_id">{{ city.city_name }}</a>
+                <a class="dropdown-item" href="#" @click="selectCity=`${city.city_name}`" v-for="city in selectedData" :key="city.city_id">{{ city.city_name }}</a>
             </div>
         </div>
         <div class="col-md-2 dropdown county">
@@ -31,47 +31,12 @@
 
 export default {
   data () {
-    console.log(this.allStoreData)
     return {
       selectCity: '全台灣',
       selectTown: '鄉鎮',
       searchStore: '',
       searchData: '',
       selectedData: []
-    }
-  },
-  props: {
-    allStoreData: {
-      type: Array
-    }
-  },
-  computed: {
-    filteredSellers () {
-      const searchStore = this.searchStore.trim()
-      if (!searchStore) {
-        return this.allStoreData
-      }
-      const sellersArr = this.allStoreData.filter(item => {
-        if (item.stores.Address.indexOf(searchStore) !== -1) {
-          return item
-        }
-      })
-      return sellersArr
-    }
-  },
-  watch: {
-    selectCity (val) {
-      // 監聽城市後,回傳一個有區域的新陣列
-      this.allStoreData.some(storeData => {
-        if (val === storeData.city_name) {
-          this.selectedData = Array.from(new Set(storeData.stores.map(cityData => {
-            return cityData.Address.slice(3, 6)
-          })))
-          return true
-        }
-      })
-      // console.log(this.selectedData)
-      this.selectTown = this.selectedData[0]
     }
   }
 }

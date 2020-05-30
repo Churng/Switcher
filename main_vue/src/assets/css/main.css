@@ -12494,6 +12494,10 @@ body {
   color: #fff;
 }
 
+.card-info {
+  width: 60%;
+}
+
 .progress-txt p {
   color: #999999;
 }

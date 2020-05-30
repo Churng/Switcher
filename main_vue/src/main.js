@@ -12,18 +12,33 @@ import router from './router/index'
 import App from './App.vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+// 載入 vue2-leaflet，依照自己需要載入組件
+import { LMap, LTileLayer, LMarker, LPopup, LIcon } from 'vue2-leaflet'
+// 載入 css
+import 'leaflet/dist/leaflet.css'
+import { Icon } from 'leaflet'
 
-// const ta = require.context('./assets/JSON/7-11', false, /json$/)
-// const city = ta.keys().map(ta)
-// console.log(city)
+// 啟用載入的各組件
+Vue.component('l-map', LMap)
+Vue.component('l-tile-layer', LTileLayer)
+Vue.component('l-marker', LMarker)
+Vue.component('l-popup', LPopup)
+Vue.component('l-icon', LIcon)
 
-Vue.use(VueAxios, axios)
+// 設定預設 icon
+delete Icon.Default.prototype._getIconUrl
+Icon.Default.mergeOptions({
+  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+})
+
 Vue.config.productionTip = false
-Vue.use(ElementUI, BootstrapVue)
+Vue.use(ElementUI, BootstrapVue, axios, VueAxios)
 library.add(fas, fab)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
-// console.log(ta)
+
 new Vue({
   data: {
     test: false
