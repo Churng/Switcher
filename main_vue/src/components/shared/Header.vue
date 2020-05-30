@@ -41,24 +41,24 @@
                     </div>
                 </li>
                 <li class="sm-findChevron">
-                   <router-link to="/login">
+                   <router-link to="/login" v-show="!test">
                         <span class="header-navBar-icon mr-2"><font-awesome-icon icon="sign-in-alt"/></span>
                         <span class="header-navBar-label">登入/註冊</span>
                     </router-link>
-                    <div class=" justify-content-center w-100 pc-user d-none" :class= "{'d-flex':token != ''}"  @click="pcShow.user=!pcShow.user">
-                        <a href="">
+                    <div class=" d-flex justify-content-center w-100 pc-user"  @click="pcShow.user=!pcShow.user">
+                        <!-- <a href=""> -->
                           <span class="header-navBar-icon mr-2"><font-awesome-icon icon="user-circle"/></span>
                           <span class="header-navBar-label">會員管理</span>
-                        </a>
+                        <!-- </a> -->
                         <span class="header-navBar-icon findChevron" @click="phoneShow.user=!phoneShow.user"><font-awesome-icon :icon="phoneShow.user ? 'angle-up' :'chevron-down'"/></span>
                     </div>
                     <div class="w-100 sm-openItem" v-show="phoneShow.user">
-                        <p class="mb-0">會員資料</p>
+                        <router-link to="/editmemberinfo">會員資料</router-link>
                         <p class="mb-0">訂單管理</p>
                         <p class="mb-0">我的賣場</p>
                         <p class="mb-0">商品上架</p>
                         <p class="mb-0">聊天室</p>
-                        <p class="mb-2"  @click.prevent="signout">會員登出</p>
+                        <!-- <p class="mb-2"  @click.prevent="signout">會員登出</p> -->
                     </div>
                 </li>
                 <li class="d-flex justify-content-center sm-findChevron pc-shoppingCart"  @click="pcShow.shoppingCart=!pcShow.shoppingCart">
@@ -115,12 +115,16 @@
                     </div>
                 </div>
                 <div class="col-md-12 h-navBar h-navBar-user" v-show="pcShow.user" :class="pcShow.user ? 'd-flex justify-content-center' : 'd-none'">
-                    <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
-                        <a href="" class="d-block">
-                            <img src="/img/icon/iconfinder_READY_user-circle_2703062.png" alt="user">
-                            <p>會員資料</p>
-                        </a>
-                    </div>
+
+                        <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
+                             <router-link to="/editmemberinfo">
+                            <a href="" class="d-block">
+                                <img src="/img/icon/iconfinder_READY_user-circle_2703062.png" alt="user">
+                                <p>會員資料</p>
+                            </a>
+                               </router-link>
+                        </div>
+
                     <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
                         <a href="" class="d-block">
                             <img src="/img/icon/iconfinder_list-alt_1608448.png" alt="userList">
@@ -194,6 +198,7 @@
 export default {
   name: 'App',
   data () {
+    // console.log(this.$root.test)
     return {
       phoneShow: {
         findGame: false,
@@ -206,12 +211,20 @@ export default {
         user: false,
         shoppingCart: false
       },
-      token: localStorage.getItem('token') || ''
+      token: localStorage.getItem('token')
     }
   },
   methods: {
     signout () {
       localStorage.removeItem('token')
+    }
+  },
+  computed: {
+    // isLogin () {
+    //   return this.$route.name === 'Login'
+    // },
+    test () {
+      return this.$root.test
     }
   }
 }

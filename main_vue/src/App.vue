@@ -1,6 +1,6 @@
 <template>
   <div>
-      <Header />
+      <Header/>
       <!-- 往上鍵統一放在HEADER下一層 -->
       <!-- <el-backtop :bottom="60"></el-backtop> -->
       <router-view></router-view>

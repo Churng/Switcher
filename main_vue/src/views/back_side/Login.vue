@@ -11,7 +11,7 @@
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-login" role="tabpanel" aria-labelledby="nav-login-tab">
-                            <form class="signin" @submit.prevent="signin" >
+                            <form class="signin" @submit.prevent="login" >
                                 <div class="form-group">
                                     <label class="loglabel"  for="inputEmail">帳號</label>
                                     <input type="email" class="form-control" id="inputEmail" placeholder="name@example.com" v-model="user.Email" required >
@@ -34,7 +34,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="nav-registered" role="tabpanel" aria-labelledby="nav-registered-tab">
-                            <form class="registered @click.prevent" @submit.prevent="singup" >
+                            <form class="registered @click.prevent" @submit.prevent="signup" >
                                 <div class="form-group">
                                 <label for="Login-Name">名稱</label>
                                 <input type="text" class="form-control" id="Login-Name" placeholder="Name" v-model="user.Name" required >
@@ -90,25 +90,31 @@ export default {
     // 登入驗證資料結構 - 物件
       user: {
         Email: '', // 帳號
-        Password: '' // 密碼
+        Password: '',
+        rePassword: '',
+        Address: '',
+        Identity: '',
+        Phone: '',
+        Name: '',
+        error: false
       }
     }
   },
   methods: {
-    signin () {
-      // 登入 api
+    login () {
+      const vm = this
       const api = 'http://switcher.rocket-coding.com/login'
       // 內層是使用箭頭函式，沒有自己的 this 所以外層先宣告 this
-      const vm = this
-      this.$http.post(api, vm.user).then((response) => {
+      this.$http.post(api, this.user).then((response) => {
         if (response.data.result) {
         //   console.log(response.data)
           localStorage.setItem('token', response.data.token)
           vm.$router.push('/home')
+          this.$root.$emit('changeToHome')
         }
       })
     },
-    singup () {
+    signup () {
       const api = 'http://switcher.rocket-coding.com/register'
       const vm = this
       this.$http.post(api, vm.user).then((response) => {
