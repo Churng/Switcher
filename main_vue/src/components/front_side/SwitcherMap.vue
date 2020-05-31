@@ -38,9 +38,6 @@
 </template>
 
 <script>
-// const data = require('/JSON/all.json')
-// console.log(data)
-import newData from '@/assets/all.json'
 
 export default {
   name: 'App',
@@ -74,9 +71,6 @@ export default {
       }
     }
   },
-  created () {
-    console.log(newData)
-  },
   mounted () {
     // 等地圖創建後執行
     this.$nextTick(() => {
@@ -105,7 +99,7 @@ export default {
       margin: 0px;
   }
   .btn-outline-secondary{
-      font-size: 14px;
+      font-size: 12px;
       padding: 0rem;
   }
 </style>

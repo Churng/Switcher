@@ -5,7 +5,7 @@
                 {{ selectCity }}
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
-                <a class="dropdown-item" href="#" @click="selectCity=`${city.city_name}`" v-for="city in selectedData" :key="city.city_id">{{ city.city_name }}</a>
+                <a class="dropdown-item" href="#" @click="selectCity=`${county}`" v-for="(value,county) in newData" :key="county">{{ county }}</a>
             </div>
         </div>
         <div class="col-md-2 dropdown county">
@@ -18,25 +18,50 @@
         </div>
         <div class="col-md-4 input-group flex-nowrap">
             <input type="text" class="form-control rounded-left" placeholder="請輸入街道" aria-label="UserRoad" aria-describedby="addon-wrapping"
-              v-model="searchStore"
+              v-model="searchStreet"
+              @keyup.enter="searchMethod(searchStreet)"
             >
             <div class="input-group-prepend border-none">
-                <span class="input-group-text bg-danger text-white rounded-right" id="addon-wrapping">搜尋</span>
+                <span class="input-group-text bg-danger text-white rounded-right" id="addon-wrapping" @click="searchMethod(searchStreet)">搜尋</span>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import newData from '@/assets/all.json'
 
 export default {
   data () {
     return {
       selectCity: '全台灣',
       selectTown: '鄉鎮',
-      searchStore: '',
-      searchData: '',
-      selectedData: []
+      searchStreet: '',
+      selectedData: [],
+      sellers: []
+    }
+  },
+  props: {
+    newData: {
+      type: Object
+    }
+  },
+  methods: {
+    searchMethod (val) {
+      const filterData = newData.stores.filter(data => {
+        return data.Road.search(val) !== -1
+      })
+      this.sellers = filterData
+    }
+  },
+  watch: {
+    selectCity (val) {
+      const data = this.newData[val]
+      this.selectedData = Array.from(new Set(data.map(d => d.Zone)))
+      this.selectTown = this.selectedData[0]
+    },
+    searchStreet (val) {
+      this.searchMethod(val)
     }
   }
 }
@@ -44,7 +69,7 @@ export default {
 
 <style lang="scss" scoped>
 .dropdown-menu{
-  height: 200px;
+  height: 150px;
   overflow-y: scroll;
 }
 </style>
