@@ -1,14 +1,27 @@
 <template>
     <div class="vh-100">
         <FilterColumn />
-        <h2>GAME</h2>
+        <ul class="row shop-body list-unstyled flex-wrap bg-white pt-5 pb-5">
+          <ShopItem v-for="(item, index) in gameItem" :key="index" :item="item" :index="index"/>
+        </ul>
     </div>
 </template>
 
 <script>
 import FilterColumn from '../front_side/FilterColumn'
+import ShopItem from '../shared/ShopItem'
 
 export default {
-  components: { FilterColumn }
+  components: { FilterColumn, ShopItem },
+  data () {
+    return {
+      allItem: this.$root.productsData
+    }
+  },
+  computed: {
+    gameItem () {
+      console.log(this.allItem)
+    }
+  }
 }
 </script>

@@ -33,8 +33,25 @@
 </template>
 
 <script>
-export default {
+import axios from 'axios'
 
+export default {
+  data () {
+    return {
+      // allItem: [this.$root.productsData]
+    }
+  },
+  created () {
+    this.getProductData()
+  },
+  methods: {
+    getProductData () {
+      const api = 'http://switcher.rocket-coding.com/api/product/all'
+      axios.get(api).then(res => {
+        this.$root.productsData = res.data.products
+      })
+    }
+  }
 }
 </script>
 

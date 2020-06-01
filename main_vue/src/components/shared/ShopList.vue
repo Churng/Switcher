@@ -5,26 +5,13 @@
 </template>
 
 <script>
-import axios from 'axios'
 import ShopItem from '../shared/ShopItem'
 
 export default {
   components: { ShopItem },
   data () {
     return {
-      allItem: []
-    }
-  },
-  created () {
-    this.getProductData()
-  },
-  methods: {
-    getProductData () {
-      const api = 'http://switcher.rocket-coding.com/api/product/all'
-      axios.get(api).then(res => {
-        this.allItem = res.data.products
-        // console.log(res.data.products)
-      })
+      allItem: this.$root.productsData
     }
   }
 }
