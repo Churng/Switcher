@@ -1,4 +1,4 @@
-<template>
+`Bearer ${token}`<template>
     <div class="login">
         <div class="container">
             <div class="row  d-flex flex-column ">
@@ -83,6 +83,8 @@
 
 </style>
 <script>
+// import $http from 'vue-resource'
+
 export default {
   name: 'Login',
   data () {
@@ -105,9 +107,13 @@ export default {
       const vm = this
       const api = 'http://switcher.rocket-coding.com/login'
       // 內層是使用箭頭函式，沒有自己的 this 所以外層先宣告 this
-      this.$http.post(api, this.user).then((response) => {
+      this.$http.post(api, {
+        Email: this.user.Email,
+        Password: this.user.Password
+      }).then((response) => {
+        console.log(response)
         if (response.data.result) {
-        //   console.log(response.data)
+          // console.log(response.data)
           localStorage.setItem('token', response.data.token)
           vm.$router.push('/home')
           this.$root.$emit('changeToHome')
