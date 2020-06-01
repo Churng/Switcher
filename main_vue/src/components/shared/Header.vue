@@ -37,13 +37,11 @@
                         <span class="header-navBar-label">登入/註冊</span>
                     </router-link>
                     <div class=" d-flex justify-content-center w-100 pc-user"  @click="pcShow.user=!pcShow.user">
-                        <!-- <a href=""> -->
                           <span class="header-navBar-icon mr-2"><font-awesome-icon icon="user-circle"/></span>
                           <span class="header-navBar-label">會員管理</span>
-                        <!-- </a> -->
                         <span class="header-navBar-icon findChevron" @click="phoneShow.user=!phoneShow.user"><font-awesome-icon :icon="phoneShow.user ? 'angle-up' :'chevron-down'"/></span>
                     </div>
-                    <div class="w-100 sm-openItem" v-show="phoneShow.user">
+                    <div class="w-100 sm-openItem" v-show="phoneShow.user" >
                         <router-link to="/editmemberinfo">會員資料</router-link>
                         <p class="mb-0">訂單管理</p>
                         <p class="mb-0">我的賣場</p>

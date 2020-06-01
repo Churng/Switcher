@@ -12,6 +12,8 @@ import router from './router/index'
 import App from './App.vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+// import VueResource from 'vue-resource'
+
 // 載入 vue2-leaflet，依照自己需要載入組件
 import { LMap, LTileLayer, LMarker, LPopup, LIcon } from 'vue2-leaflet'
 // 載入 css
@@ -35,6 +37,7 @@ Icon.Default.mergeOptions({
 
 Vue.config.productionTip = false
 Vue.use(ElementUI, BootstrapVue, axios, VueAxios)
+Vue.prototype.$http = axios
 library.add(fas, fab)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
@@ -46,6 +49,7 @@ new Vue({
   created () {
     this.$on('changeToHome', function () {
       this.test = true
+      console.log(this.$http)
     })
   },
   router,
