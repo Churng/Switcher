@@ -45,12 +45,12 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 new Vue({
   data: {
     test: false,
-    productsData: []
+    productsData: [],
+    productSearchData: false
   },
   created () {
     this.$on('changeToHome', function () {
       this.test = true
-      console.log(this.$http)
     })
   },
   router,

@@ -2,7 +2,9 @@
 .form-control,.input-group-text{
     border-radius: 0rem;
 }
-
+.form-control:focus{
+    box-shadow: none;
+}
 /*篩選區*/
 .nav-pills{
     @include mobile_375{
@@ -24,6 +26,12 @@
         }
     }   
 }
+.shop-body{
+    min-height: calc(100vh - 15rem);
+}
+.collapse .nav-item{
+    cursor: pointer;
+}
 .shop-navSelects{
     .navbar-brand{
         font-size: $font-size-base;
@@ -40,6 +48,7 @@
 @include mobile_480{
     .shop-body{
         justify-content: center;
+        min-height: auto;
     }
 }
 /*說明卡 instructionCard*/

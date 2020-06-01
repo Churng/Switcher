@@ -8,7 +8,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                   <ul class="navbar-nav">
                     <li class="nav-item">
-                      <a class="nav-link active" href="#">所有發售中商品<span class="sr-only">(current)</span></a>
+                      <a class="nav-link text-white" href="#">所有可租借商品<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link text-white" href="#">最新推出</a>
@@ -33,3 +33,9 @@
             </div>
         </div>
 </template>
+
+<style lang="scss" scoped>
+.activeColor{
+  color: #e9ecef !important;
+}
+</style>

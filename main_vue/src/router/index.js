@@ -26,6 +26,7 @@ const routes = [
   {
     path: '/findGames',
     name: 'FindGames',
+    redirect: '/findGames/allGame',
     component: FindGames,
     children: [
       {
