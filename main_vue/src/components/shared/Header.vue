@@ -7,7 +7,7 @@
         <div class="collapse" id="collapseExample">
             <ul class="header-navBar w-100 mb-0 pl-0 d-flex list-unstyled">
                 <li class="sm-findChevron pc-findGame d-flex justify-content-center">
-                    <router-link to="/findGames/allGame" class="w-100">
+                    <router-link to="/findGames" class="w-100">
                         <span class="header-navBar-icon mr-2"><font-awesome-icon icon="gamepad"/></span>
                         <span class="header-navBar-label">尋找周邊商品</span>
                     </router-link>

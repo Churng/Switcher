@@ -12992,6 +12992,11 @@ body {
   border-radius: 0rem;
 }
 
+.form-control:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
 /*篩選區*/
 @media (max-width: 375px) {
   .nav-pills {
@@ -13020,6 +13025,14 @@ body {
   color: #fff;
 }
 
+.shop-body {
+  min-height: calc(100vh - 15rem);
+}
+
+.collapse .nav-item {
+  cursor: pointer;
+}
+
 .shop-navSelects .navbar-brand {
   font-size: 1rem;
 }
@@ -13041,6 +13054,7 @@ body {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+    min-height: auto;
   }
 }
 
@@ -13250,6 +13264,86 @@ body {
   .social-login .login-facebook, .social-login .login-google {
     width: 93px;
     margin-right: 0px;
+  }
+}
+
+body {
+  color: #3C3C3C;
+}
+
+.goods-photo {
+  margin-top: 1rem;
+}
+
+.row-info {
+  width: 100%;
+  margin-left: 0px;
+}
+
+#upload-memphoto {
+  width: 100%;
+}
+
+.shop-photo {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+.mem-upload-photo-sm {
+  display: none;
+}
+
+@media only screen and (max-width: 568px) {
+  .mem-upload-photo-sm {
+    display: block;
+    width: 100%;
+    padding: 60px 60px 0px 90px;
+    margin: auto;
+  }
+}
+
+@media (max-width: 414px) {
+  .mem-upload-photo-sm {
+    padding: 45px;
+  }
+}
+
+@media (max-width: 414px) {
+  .mem-info-sm {
+    margin-top: 0;
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .mem-info-sm {
+    margin-top: -5rem;
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .mem-upload-photo {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .ver-sm {
+    margin-left: 249px;
+    margin-top: 5px;
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .change-ver-sm {
+    margin-left: 232px;
+    margin-top: 5px;
+  }
+}
+
+@media (max-width: 414px) {
+  .btn-outline-social {
+    margin-left: 137px;
   }
 }
 /*# sourceMappingURL=main.css.map */

@@ -4,7 +4,7 @@
                 <img :src="item.Images[0]" class="card-img-top" alt="gameHost">
                 <div class="card-body">
                     <div class="card-text">
-                        <h3>{{ item.Name }}</h3>
+                        <h3 class="d-flex justify-content-between">{{ item.Name }}<span class="category-games bg-danger text-white rounded">{{ item.Category }}</span></h3>
                         <div class="card-text-top d-flex justify-content-between">
                             <div class="card-mainTxt">
                                 <span class="location mr-2">{{item.City }}</span>
@@ -18,7 +18,7 @@
                                 <span>{{ item.PublishDate }}</span>
                             </div>
                             <div class="priceArea">
-                                <p class="mb-0">租金<span>{{ item.OriginPrice }}</span>元/日</p>
+                                <p class="mb-0">租金<span>{{ item.OriginPrice }}</span>元 / 日</p>
                             </div>
                         </div>
                     </div>
@@ -35,3 +35,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+
+.category-games{
+  font-size: 12px;
+}
+</style>

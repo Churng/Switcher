@@ -15,6 +15,10 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/',
+    redirect: '/home'
+  },
+  {
     path: '/home',
     name: 'Home',
     component: Home
@@ -22,6 +26,7 @@ const routes = [
   {
     path: '/findGames',
     name: 'FindGames',
+    redirect: '/findGames/allGame',
     component: FindGames,
     children: [
       {
