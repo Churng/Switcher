@@ -24,16 +24,17 @@
                 <div class="sortNav">排序 :</div>
                 <div class="btn-group">
                     <button class="btn btn-secondary btn-sm dropdown-toggle bg-light text-dark ml-2 pr-4 pl-4" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        價格(低到高)
+                     價格(低到高)
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <button class="dropdown-item disabled" type="button">價格(低到高)</button>
+                        <button class="dropdown-item disabled" type="button" @click="isAllItem">價格(低到高)</button>
                         <button class="dropdown-item" type="button">價格(高到低)</button>
                     </div>
                 </div>
             </div>
         </div>
         <ul class="row shop-body list-unstyled flex-wrap bg-white pt-5 pb-5 mb-0">
+          <h3 class="text-center w-100" v-if="$root.productsData.length <=0">尚無任何商品</h3>
           <ShopItem v-for="(item, index) in searchList" :key="index" :item="item" :index="index" />
           <h3 class="text-center w-100" v-if="$root.productSearchData.length <= 0">查無資料</h3>
         </ul>
@@ -41,13 +42,13 @@
 </template>
 
 <script>
-// import FilterColumn from '../front_side/FilterColumn'
 import ShopItem from '../shared/ShopItem'
 
 export default {
   data () {
     return {
-      isRent: false
+      isRent: false,
+      priceCondition: ''
     }
   },
   components: { ShopItem },
@@ -58,19 +59,6 @@ export default {
       } else {
         return this.$root.productsData
       }
-      // if (this.isRent === true) {
-      //   const filterStatus = this.$root.productsData.filter(data => {
-      //     return data.Status.search('可出租') !== -1
-      //   })
-      //   return filterStatus
-      // }
-    },
-    isCheap () {
-      const filterPrice = this.$root.productsData.filter(data => {
-        return data.Price - data.OriginPrice >= -1
-      })
-      console.log(filterPrice)
-      return filterPrice
     }
   },
   methods: {
@@ -78,13 +66,22 @@ export default {
       const filterStatus = this.$root.productsData.filter(data => {
         return data.Status.search('可出租') !== -1
       })
-      this.$root.productsData = filterStatus
+      this.$root.productSearchData = filterStatus
     },
     isNew () {
-      this.$root.productsData.sort(function (a, b) {
+      const filterNew = this.$root.productsData.sort(function (a, b) {
         return Date.parse(b.PublishDate.replace(/-/g, '/')) - Date.parse(a.PublishDate.replace(/-/g, '/'))
       })
-      console.log(this.$root.productsData)
+      this.$root.productSearchData = filterNew
+    },
+    isCheap () {
+      const filterPrice = this.$root.productsData.filter(data => {
+        return data.OriginPrice - data.Price > 0
+      })
+      this.$root.productSearchData = filterPrice
+    },
+    isAllItem () {
+      this.$root.productSearchData = false
     }
   }
 }
