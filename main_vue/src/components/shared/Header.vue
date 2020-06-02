@@ -32,7 +32,7 @@
                     </div>
                 </li>
                 <li class="sm-findChevron">
-                   <router-link to="/login" v-show="!test">
+                   <router-link to="/login" v-show="!ChangeMemberinfo">
                         <span class="header-navBar-icon mr-2"><font-awesome-icon icon="sign-in-alt"/></span>
                         <span class="header-navBar-label">登入/註冊</span>
                     </router-link>
@@ -187,11 +187,8 @@ export default {
     }
   },
   computed: {
-    // isLogin () {
-    //   return this.$route.name === 'Login'
-    // },
-    test () {
-      return this.$root.test
+    ChangeMemberinfo () {
+      return this.$root.ChangeMemberinfo
     }
   }
 }
