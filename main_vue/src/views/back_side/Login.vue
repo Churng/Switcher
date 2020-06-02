@@ -19,7 +19,7 @@
                                 <div class="form-group">
                                     <label class="d-flex justify-content-between LogininputPassword" for="inputPassword" >
                                         <p class="password">密碼</p>
-                                        <p class="forgetpassword"><a href="#">忘記密碼？</a></p>
+                                        <router-link to="/ResetPassword"><p class="forgetpassword"><a href="#">忘記密碼？</a></p></router-link>
                                     </label>
                                     <input type="password" class="form-control" id="inputPassword"  placeholder="1234567890" v-model="user.Password" required>
                                 </div>
@@ -111,7 +111,7 @@ export default {
         Email: this.user.Email,
         Password: this.user.Password
       }).then((response) => {
-        console.log(response)
+        // console.log(response)
         if (response.data.result) {
           // console.log(response.data)
           localStorage.setItem('token', response.data.token)

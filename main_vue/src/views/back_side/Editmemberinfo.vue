@@ -23,7 +23,7 @@
           <div class="col-md-7 col-sm-10">
             <input
               type="text"
-              v-model="Name"
+              v-model= "userData[0].Name"
               class="form-control w-100"
               id="info-name"
               placeholder="請輸入名字..."
@@ -36,7 +36,7 @@
           <div class="col-md-7 col-sm-10">
             <input
               type="text"
-              v-model="Email"
+              v-model= "userData[0].Email"
               class="form-control w-100"
               id="info-email"
               placeholder="請輸入信箱..."
@@ -51,7 +51,7 @@
           <div class="col-md-7 col-sm-10">
             <input
               type="text"
-              v-model="Phone"
+              v-model= "userData[0].Phone"
               class="form-control w-100"
               id="info-phone"
               placeholder="請輸入手機號碼..."
@@ -64,10 +64,10 @@
           <div class="col-md-7 col-sm-10">
             <input
               type="text"
-              v-model="Identity"
               class="form-control w-100"
               id="info-identity"
               placeholder="請輸入身分證字號..."
+              v-model= "userData[0].Identity"
             />
           </div>
           <button type="button" class="btn btn-outline-social active w-md-25 change-ver-sm">驗證身份</button>
@@ -76,7 +76,11 @@
         <div class="form-group form-inline">
           <label for="inputPassword" class="col-md-2 col-sm-2 col-form-label">密碼</label>
           <div class="col-md-7 col-sm-10">
-            <input type="text" class="form-control w-100" id="info-password" placeholder="更改密碼..." />
+            <input type="text"
+            class="form-control w-100"
+            id="info-password"
+            placeholder="更改密碼..."
+            v-model= "userData[0].Password"/>
           </div>
           <button type="button" class="btn btn-outline-social active w-md-25 change-ver-sm">更改密碼</button>
         </div>
@@ -89,6 +93,7 @@
               class="form-control w-100"
               id="info-address"
               placeholder="請輸入地址..."
+              v-model= "userData[0].Address"
             />
           </div>
         </div>
@@ -110,7 +115,11 @@
         </div>
         <div class="col-md-8 bg-light px-5 pt-5 pb-5 pl-4">
           <p>關於賣場</p>
-          <textarea class="form-control" id="inputgoods-intro" rows="3" placeholder="請輸入商品資訊..."></textarea>
+          <textarea class="form-control"
+          id="inputgoods-intro"
+          rows="3"
+          placeholder="請輸入商品資訊..."
+          v-model="userData[0].StoreDescription"></textarea>
           <div class="d-flex align-items-baseline mt-3">
             <p>主要回應時間:</p>
             <button type="button" class="btn btn-light">早上</button>
@@ -124,7 +133,7 @@
       <div class="row bg-light d-flex justify-content-center">
         <div class="mt-5 mb-3">
           <button type="button" class="btn btn-danger">取消</button>
-          <button type="button" class="btn btn-primary">儲存變更</button>
+          <button type="submit" class="btn btn-warning" @submit.prevent="updateinfo">儲存變更</button>
         </div>
       </div>
     </div>
@@ -140,35 +149,40 @@ import axios from 'axios'
 export default {
   data(){
     return{
-      Name: '',
-      Email: '',
-      Phone: '',
-      Identity: '',
-      Address: '',
-      data: 'info'
+      userData: [
+        {
+          Name:'',
+          Password:'',
+          Phone:'',
+          Email:'',
+          Identity:'',
+          Address:'',
+          StoreDescription:'',
+          Reply:''
+        }
+      ]
     }
   },
    methods:{
-     getuserinfo(){
-     const api = 'http://switcher.rocket-coding.com/api/member'
+     updateinfo(){
+      const vm = this
+      const api = `http://switcher.rocket-coding.com/api/member/update/${this.ID}`
+    }
+  },
+  created(){
+    const api = 'http://switcher.rocket-coding.com/api/member'
      const token = localStorage.getItem('token')
-     this.axios
+     this.$http
       .get(api,{
          headers: {
             Authorization: `Bearer ${token}`}
       })
-      .then(response => {this.data = response;
-      console.log(response)
+      .then(response => {this.userData = response.data;
+      console.log(this.userData)
       })
       .catch(function (error) {
         console.log(error)
       })
-
-     }
-
-  },
-  created(){
-    this.getuserinfo()
   }
 }
 </script>
