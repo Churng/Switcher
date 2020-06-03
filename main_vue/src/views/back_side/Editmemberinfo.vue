@@ -12,16 +12,14 @@
     <div class="row border-bottom row-info">
       <div class="mem-upload-photo-sm">
         <form>
-          <!-- <img  class="rounded-circle personal-photo" :src="imageUrl" /> -->
+          <div class="head_img">
+            <img  class="rounded-circle personal-photo" :src="userData.Photo" />
+          </div>
+          <div class="setting_right" @click.stop="uploadHeadImg">
+            <div class="caption">更改頭像</div>
+          </div>
           <div class="file-loading mt-5 mx-100">
-            <input
-              type="file"
-              @change= "uploadFile"
-              ref="files"
-              id="upload-memphoto"
-              name="Upload-memphoto"
-              required
-            />
+            <input type="file" accept="image/*" @change="handleFile" class="hiddenInput" />
           </div>
         </form>
       </div>
@@ -172,7 +170,9 @@ export default {
           Identity: "",
           Address: "",
           StoreDescription: "",
-          Reply: ""
+          Reply: "",
+          imageUrl: "",
+          Photo:""
         }
       ]
     };
@@ -222,11 +222,10 @@ export default {
           console.log(error);
         });
     },
-    uploadFile() {
-      const uploadedFile = this.$refs.files.files[0];
-      const vm = this;
+    uploadHeadImg(){
+      console.log(this)
       const formData = new FormData();
-      formData.append("memberphoto", uploadedFile);
+      formData.append("memberphoto", uploadHeadImg);
       const api = `http://switcher.rocket-coding.com/api/member/upload/user`;
       this.$http
         .post(api, formData, {
@@ -236,15 +235,82 @@ export default {
           }
         })
         .then(response => {
-           console.log(response)
+           console.log(this)
           if (response.data.result) {
-            vm.$set(vm.tempProduct, "imageUrl", response.data.imageUrl);
+            vm.$set(vm.userData, "Photo", response.data.imageUrl);
           }
         });
-    }
+    },
+    // 将头像显示
+    handleFile: function (e) {
+      let $target = e.target || e.srcElement
+      let file = $target.files[0]
+      var reader = new FileReader()
+      reader.onload = (data) => {
+        let res = data.target || data.srcElement
+        this.userInfo.avatar = res.result
+      }
+      reader.readAsDataURL(file)
+    },
+    // uploadFile() {
+    //   const uploadedFile = this.$refs.files.files[0];
+    //   const vm = this;
+    //   const formData = new FormData();
+    //   formData.append("memberphoto", uploadedFile);
+    //   const api = `http://switcher.rocket-coding.com/api/member/upload/user`;
+    //   this.$http
+    //     .post(api, formData, {
+    //       headers: {
+    //         Authorization: `Bearer ${token}`,
+    //         "Content-Type": "multipart/form-data"
+    //       }
+    //     })
+    //     .then(response => {
+    //       if (response.data.result) {
+    //         vm.$set(vm.tempProduct, "imageUrl", response.data.imageUrl);
+    //       }
+    //     });
+    // }
   },
   created() {
     this.getMember();
   }
 };
 </script>
+<style>
+  .item_bock {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height:94px;
+  width: 300px;
+  padding:0px 24px 0px 38px;
+  border-bottom: 1px solid #f7f7f7;
+  background: #fff;
+}
+.head_p {
+  height:132px;
+}
+.head_img{
+  height: 90px;
+}
+.head_img img{
+  width:90px;
+  height:90px;
+  border-radius:50px
+}
+.setting_right{
+  display: flex;
+  height: 37px;
+  justify-content: flex-end;
+  align-items: center;
+}
+.hiddenInput{
+  display: none;
+}
+.caption {
+  color: #8F8F8F;
+  font-size: 26px;
+  height: 37px;
+}
+</style>

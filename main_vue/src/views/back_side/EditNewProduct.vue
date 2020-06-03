@@ -71,7 +71,7 @@
             </div>
             <div class="col-2 d-flex flex-column w-md-50">
               <div class>
-                <label for="original-price" class="O-price">原價</label>
+                <label for="original-price" class="O-price text-primary">原價</label>
                 <input type="text" class="original-price" />
               </div>
               <div class>
@@ -80,7 +80,7 @@
               </div>
             </div>
             <div class="col-8 w-50 ml-5">
-              <label for="special-offer">特價</label>
+              <label for="special-offer " class="text-primary">特價</label>
               <input type="text" class="special-offer" />＊當有特價請填此欄
             </div>
           </div>
@@ -183,9 +183,8 @@
         <div class="row bg-light d-flex justify-content-center">
           <div class="mt-3 mb-3">
             <button type="button" class="btn btn-danger">取消</button>
-            <button onclick="on()" type="submit" class="btn btn-primary">儲存變更</button>
+            <button onclick="on()" type="submit" class="btn btn-warning">儲存變更</button>
           </div>
-          <!-- <div id="overlay" onclick="off()"></div> -->
         </div>
       </form>
     </div>

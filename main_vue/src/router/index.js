@@ -14,6 +14,7 @@ import Login from '../views/back_side/Login'
 import Editmemberinfo from '../views/back_side/Editmemberinfo'
 import ResetPassword from '../views/back_side/ResetPassword'
 import EditNewProduct from '../views/back_side/EditNewProduct'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -67,22 +68,34 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: Login,
+    meta: {
+      isLogin: false
+    }
   },
   {
     path: '/editmemberinfo',
     name: 'Editmemberinfo',
-    component: Editmemberinfo
+    component: Editmemberinfo,
+    meta: {
+      isLogin: true
+    }
   },
   {
     path: '/resetpassword',
     name: 'ResetPassword',
-    component: ResetPassword
+    component: ResetPassword,
+    meta: {
+      isLogin: true
+    }
   },
   {
     path: '/editnewproduct',
     name: 'EditNewProduct',
-    component: EditNewProduct
+    component: EditNewProduct,
+    meta: {
+      isLogin: true
+    }
   }
 ]
 

@@ -38,7 +38,7 @@
                     </router-link>
                     <div class=" d-flex justify-content-center w-100 pc-user"  @click="pcShow.user=!pcShow.user">
                           <span class="header-navBar-icon mr-2"><font-awesome-icon icon="user-circle"/></span>
-                          <span class="header-navBar-label">會員管理</span>
+                          <span class="header-navBar-label ">會員管理</span>
                         <span class="header-navBar-icon findChevron" @click="phoneShow.user=!phoneShow.user"><font-awesome-icon :icon="phoneShow.user ? 'angle-up' :'chevron-down'"/></span>
                     </div>
                     <div class="w-100 sm-openItem" v-show="phoneShow.user" >
@@ -47,7 +47,7 @@
                         <p class="mb-0">我的賣場</p>
                         <p class="mb-0">商品上架</p>
                         <p class="mb-0">聊天室</p>
-                        <!-- <p class="mb-2"  @click.prevent="signout">會員登出</p> -->
+                        <p class="mb-2"  @click.prevent="signout">會員登出</p>
                     </div>
                 </li>
                 <li class="d-flex justify-content-center sm-findChevron pc-shoppingCart"  @click="pcShow.shoppingCart=!pcShow.shoppingCart">
