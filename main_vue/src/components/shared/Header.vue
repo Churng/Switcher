@@ -13,9 +13,9 @@
                     </router-link>
                 </li>
                 <li class="d-flex justify-content-center sm-findChevron pc-map">
-                    <router-link to="/findSeller" class="w-100">
-                        <span class="header-navBar-icon mr-2"><font-awesome-icon icon="user"/></span>
-                        <span class="header-navBar-label">尋找附近賣家</span>
+                    <router-link to="/group" class="w-100">
+                        <span class="header-navBar-icon mr-2"><font-awesome-icon icon="users"/></span>
+                        <span class="header-navBar-label">團隊介紹</span>
                     </router-link>
                 </li>
                 <li class="sm-findChevron pc-eShop" @click="pcShow.eShop=!pcShow.eShop">
@@ -169,7 +169,6 @@
 export default {
   name: 'App',
   data () {
-    // console.log(this.$root.test)
     return {
       phoneShow: {
         eShop: false,
@@ -210,5 +209,9 @@ export default {
       left: 2px;
       bottom: 2px;
   }
+}
+.router-link-exact-active[data-v-d87d4f92]::after{
+    display: none;
+    opacity: 0;
 }
 </style>

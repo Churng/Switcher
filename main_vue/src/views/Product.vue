@@ -32,7 +32,7 @@
                             <span class="sr-only">Next</span>
                           </a>
                     </div>
-                    <SellerStore />
+                    <ProductSellerStore />
                     <div class="switcherProduct-proInfo">
                         <h5 class="mb-4">商品資訊</h5>
                         <div class="proInfo-content d-flex justify-content-between align-items-end">
@@ -147,7 +147,7 @@
 </template>
 
 <script>
-import SellerStore from '../components/front_side/SellerStore'
+import ProductSellerStore from '../components/front_side/ProductSellerStore'
 import ChooseProduct from '../components/front_side/ChooseProduct'
 import InstructionCard from '../components/front_side/InstructionCard'
 
@@ -158,7 +158,7 @@ export default {
       loading: false
     }
   },
-  components: { SellerStore, ChooseProduct, InstructionCard },
+  components: { ProductSellerStore, ChooseProduct, InstructionCard },
   created () {
     this.getProduct()
   },
