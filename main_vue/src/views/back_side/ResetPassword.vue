@@ -1,11 +1,11 @@
 <template>
-<div class="ResetPassword">
-    <div class="container-fulid">
+<div class="ResetPassword vh-100">
+    <!-- <div class="container-fulid">
         <div class="alert alert-secondary alert-mail" role="alert">
             <i class="far fa-check-circle"></i>
             已寄送至信箱！
         </div>
-    </div>
+    </div> -->
 
     <div class="container">
         <div class=" bg-light mt-md-5 mb-md-5  px-md-4 py-md-4 w-md-50  forgetpw">
