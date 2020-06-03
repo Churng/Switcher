@@ -17,7 +17,7 @@
             <div class="row shop-mainHeader">
                 <ul class="col-md-8 nav nav-pills">
                   <li class="nav-item">
-                      <router-link to="/findGames/allGame" class="nav-link rounded-top">全部商品</router-link>
+                      <router-link to="/findGames/allGame" class="nav-link rounded-top" @click.native="isAllItem">全部商品</router-link>
                   </li>
                   <li class="nav-item">
                       <router-link to="/findGames/gameHost" class="nav-link rounded-top">遊戲主機</router-link>
@@ -40,6 +40,7 @@
 export default {
   data () {
     return {
+      originalData: [],
       search: ''
     }
   },
@@ -50,8 +51,12 @@ export default {
     getProductData () {
       const api = 'http://switcher.rocket-coding.com/api/product/all'
       this.$http.get(api).then(res => {
-        this.$root.productsData = res.data.products
-        console.log(this.$root.productsData)
+        const originalData = res.data.products
+        this.originalData = originalData
+        this.$root.productsData = originalData.sort(function (a, b) {
+          return a.Price - b.Price
+        })
+        // console.log(this.$root.productsData)
       })
     },
     searchGame (val) {
@@ -60,13 +65,11 @@ export default {
       })
       this.$root.productSearchData = filterSearch
       this.search = ''
+    },
+    isAllItem () {
+      this.$root.productSearchData = false
     }
   }
-  // watch: {
-  //   search (val) {
-  //     this.searchGame(val)
-  //   }
-  // }
 }
 </script>
 
