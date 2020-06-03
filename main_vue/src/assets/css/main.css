@@ -12005,6 +12005,7 @@ body {
 .card img {
   -webkit-transition: all .25s ease-in-out;
   transition: all .25s ease-in-out;
+  height: 190px;
 }
 
 .card:hover img {
@@ -13031,6 +13032,7 @@ body {
 
 .collapse .nav-item {
   cursor: pointer;
+  color: #fff;
 }
 
 .shop-navSelects .navbar-brand {

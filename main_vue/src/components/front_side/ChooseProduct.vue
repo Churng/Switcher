@@ -6,7 +6,7 @@
                 <div class="d-flex align-items-baseline mt-3">
                     <el-date-picker
                       v-model="value1"
-                      @click="totalDays(start, end)"
+                      @click="totalDays"
                       type="daterange"
                       range-separator="至"
                       start-placeholder="开始日期"
@@ -67,8 +67,8 @@ export default {
     }
   },
   computed: {
-    totalDays (start, end) {
-      return console.log(this.start, this.end)
+    totalDays (value1, value2) {
+      return console.log(value1, value2)
     }
   }
 }

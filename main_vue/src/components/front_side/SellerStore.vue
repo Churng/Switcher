@@ -16,26 +16,26 @@
             <div class="switcherStore-sellerInfo">
                 <div class="sellerInfo-header d-flex justify-content-around">
                     <div class="sellerInfo-comment">
-                        <font-awesome-icon icon="star"/>
+                        <font-awesome-icon icon="star" class="mr-2"/>
                         <span>評價</span>
-                        <span class="orange-txt">700 則</span>
+                        <span class="orange-txt ml-2">700 則</span>
                     </div>
                     <div class="sellerInfo-joinTime">
-                        <font-awesome-icon icon="user-plus"/>
+                        <font-awesome-icon icon="user-plus" class="mr-2"/>
                         <span>加入時間</span>
-                        <span class="orange-txt">3個月 前</span>
+                        <span class="orange-txt ml-2">3個月 前</span>
                     </div>
                 </div>
                 <div class="sellerInfo-footer d-flex justify-content-around">
                     <div class="sellerInfo-products">
-                        <font-awesome-icon icon="shopping-bag"/>
+                        <font-awesome-icon icon="shopping-bag" class="mr-2"/>
                         <span>商品</span>
-                        <span class="orange-txt">52</span>
+                        <span class="orange-txt ml-2">52</span>
                     </div>
                     <div class="sellerInfo-chat">
-                        <font-awesome-icon icon="comment-dots"/>
+                        <font-awesome-icon icon="comment-dots" class="mr-2"/>
                         <span>主要回應時間</span>
-                        <span class="orange-txt">上午/ 晚上</span>
+                        <span class="orange-txt ml-2">上午/ 晚上</span>
                     </div>
                 </div>
             </div>

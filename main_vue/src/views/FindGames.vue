@@ -1,6 +1,7 @@
 <template>
     <section id="switcherShop" class="bg-light">
-        <div class="container pt-5">
+        <div class="loading vh-100" v-if="loading"><img src="/img/Spinner-1.1s-200px.gif" alt="loading"></div>
+        <div class="container pt-5" v-else>
                   <!-- 往上鍵統一放在HEADER下一層 -->
             <el-backtop :bottom="60"></el-backtop>
             <div class="row searchBar justify-content-end mb-3">
@@ -20,13 +21,13 @@
                       <router-link to="/findGames/allGame" class="nav-link rounded-top" @click.native="isAllItem">全部商品</router-link>
                   </li>
                   <li class="nav-item">
-                      <router-link to="/findGames/gameHost" class="nav-link rounded-top">遊戲主機</router-link>
+                      <router-link to="/findGames/gameHost" class="nav-link rounded-top" @click.native="isAllItem">遊戲主機</router-link>
                   </li>
                   <li class="nav-item">
-                      <router-link to="/findGames/game" class="nav-link rounded-top">遊戲軟體</router-link>
+                      <router-link to="/findGames/game" class="nav-link rounded-top" @click.native="isAllItem">遊戲軟體</router-link>
                   </li>
                   <li class="nav-item">
-                      <router-link to="/findGames/gameStick" class="nav-link rounded-top">遊戲配件</router-link>
+                      <router-link to="/findGames/gameStick" class="nav-link rounded-top" @click.native="isAllItem">遊戲配件</router-link>
                   </li>
               </ul>
             </div>
@@ -41,7 +42,8 @@ export default {
   data () {
     return {
       originalData: [],
-      search: ''
+      search: '',
+      loading: false
     }
   },
   created () {
@@ -50,12 +52,14 @@ export default {
   methods: {
     getProductData () {
       const api = 'http://switcher.rocket-coding.com/api/product/all'
+      this.loading = true
       this.$http.get(api).then(res => {
         const originalData = res.data.products
         this.originalData = originalData
         this.$root.productsData = originalData.sort(function (a, b) {
           return a.Price - b.Price
         })
+        this.loading = false
         // console.log(this.$root.productsData)
       })
     },
@@ -77,5 +81,14 @@ export default {
 .router-link-exact-active{
   background-color: #E60012 !important;
   color: #fff !important;
+}
+.loading img{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  z-index: 999;
 }
 </style>

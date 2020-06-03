@@ -8,7 +8,7 @@
                 </div>
             </div>
             <div class="row switcherProduct-columns">
-                <div class="col-12 col-lg-8 pb-4">
+                <div class="col-12 col-lg-8 pb-sm-4 pb-md-0">
                     <div class="switcherProduct-header">
                         <h2>{{product[0].Name}}</h2>
                         <p>Nintendo</p>
@@ -45,11 +45,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-4 columns-right">
-                    <div class="use-instructionCard d-flex justify-content-end align-items-center mt-3">
-                        <!-- 點擊後跳出說明卡 -->
-                        <i class="text-warning"><font-awesome-icon icon="exclamation-circle"/></i>
-                        <span class="text-muted ml-2">使用說明</span>
-                    </div>
+                    <InstructionCard />
                     <div class="columns-category d-flex align-items-center mb-3">
                         <span class="category-games bg-danger text-white mr-5 rounded">{{product[0].Category}}</span>
                         <span :class="product[0].Status=='可出租' ? 'isLease-icon':'notLease'"><font-awesome-icon icon="circle"/></span>
@@ -152,6 +148,7 @@
 <script>
 import SellerStore from '../components/front_side/SellerStore'
 import ChooseProduct from '../components/front_side/ChooseProduct'
+import InstructionCard from '../components/front_side/InstructionCard'
 
 export default {
   data () {
@@ -159,7 +156,7 @@ export default {
       product: ''
     }
   },
-  components: { SellerStore, ChooseProduct },
+  components: { SellerStore, ChooseProduct, InstructionCard },
   created () {
     this.getProduct()
   },
@@ -168,7 +165,7 @@ export default {
       const api = `http://switcher.rocket-coding.com/api/product/${this.$route.params.id}`
       this.$http.get(api).then(res => {
         this.product = res.data
-        console.log(this.product)
+        // console.log(this.product)
       })
     }
   }
@@ -178,5 +175,8 @@ export default {
 <style lang="scss" scoped>
 .text-muted{
   cursor: pointer;
+}
+.contentBox{
+  padding: 10px;
 }
 </style>

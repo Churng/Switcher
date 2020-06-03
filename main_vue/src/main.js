@@ -44,7 +44,9 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 new Vue({
   data: {
-    ChangeMemberinfo: false
+    ChangeMemberinfo: false,
+    productsData: [],
+    productSearchData: false
   },
   created () {
     this.$on('changeToHome', function () {

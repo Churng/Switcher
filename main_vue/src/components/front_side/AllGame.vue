@@ -24,16 +24,16 @@
                 <div class="sortNav">排序 :</div>
                 <div class="btn-group">
                     <button class="btn btn-secondary btn-sm dropdown-toggle bg-light text-dark ml-2 pr-4 pl-4" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     價格(低到高)
+                     {{ seletTxt }}
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <button class="dropdown-item disabled" type="button" @click="isAllItem">價格(低到高)</button>
-                        <button class="dropdown-item" type="button">價格(高到低)</button>
+                        <button class="dropdown-item" type="button" @click="isAllItem('價格(低到高)')">價格(低到高)</button>
+                        <button class="dropdown-item" type="button" @click="turnAllItem('價格(高到低)')">價格(高到低)</button>
                     </div>
                 </div>
             </div>
         </div>
-        <ul class="row shop-body list-unstyled flex-wrap bg-white pt-5 pb-5 mb-0">
+        <ul class="row shop-body list-unstyled flex-wrap bg-white pt-5 pb-2 mb-0">
           <h3 class="text-center w-100" v-if="$root.productsData.length <=0">尚無任何商品</h3>
           <ShopItem v-for="(item, index) in searchList" :key="index" :item="item" :index="index" />
           <h3 class="text-center w-100" v-if="$root.productSearchData.length <= 0">查無資料</h3>
@@ -47,8 +47,8 @@ import ShopItem from '../shared/ShopItem'
 export default {
   data () {
     return {
-      isRent: false,
-      priceCondition: ''
+      priceCondition: '',
+      seletTxt: '價格(低到高)'
     }
   },
   components: { ShopItem },
@@ -63,6 +63,7 @@ export default {
   },
   methods: {
     isRentMethod () {
+      this.isClick = !this.isClick
       const filterStatus = this.$root.productsData.filter(data => {
         return data.Status.search('可出租') !== -1
       })
@@ -80,14 +81,23 @@ export default {
       })
       this.$root.productSearchData = filterPrice
     },
-    isAllItem () {
-      this.$root.productSearchData = false
+    isAllItem (txt) {
+      this.seletTxt = txt
+      this.$root.productSearchData = this.$root.productsData.sort(function (a, b) {
+        return a.Price - b.Price
+      })
+    },
+    turnAllItem (txt) {
+      this.seletTxt = txt
+      this.$root.productSearchData = this.$root.productsData.sort(function (a, b) {
+        return b.Price - a.Price
+      })
     }
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .activeColor{
   color: #e9ecef !important;
 }
