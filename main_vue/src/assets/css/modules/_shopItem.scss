@@ -1,6 +1,7 @@
 /*商品卡*/
 .card img{
     transition: all .25s ease-in-out;
+    height: 190px;
 }
 .card:hover img{
     transform: scale(0.95);

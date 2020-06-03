@@ -12005,6 +12005,7 @@ body {
 .card img {
   -webkit-transition: all .25s ease-in-out;
   transition: all .25s ease-in-out;
+  height: 190px;
 }
 
 .card:hover img {
@@ -13031,6 +13032,7 @@ body {
 
 .collapse .nav-item {
   cursor: pointer;
+  color: #fff;
 }
 
 .shop-navSelects .navbar-brand {
@@ -13344,6 +13346,67 @@ body {
 @media (max-width: 414px) {
   .btn-outline-social {
     margin-left: 137px;
+  }
+}
+
+body {
+  color: #3C3C3C;
+}
+
+.forgetpw {
+  margin: 0px auto;
+}
+
+.forgetpw .resetpassword {
+  text-align: center;
+  font-size: 1.375rem;
+}
+
+.forgetpw .resetpassword .fa-search {
+  font-size: 80px;
+}
+
+@media (max-width: 576px) {
+  .forgetpw {
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 15px;
+  }
+}
+
+@media (min-width: 768px) {
+  .forgetpw {
+    width: 500px;
+  }
+}
+
+.resetleter {
+  font-size: 50px;
+}
+
+.reset-button {
+  text-align: center;
+}
+
+.reset-button {
+  padding-left: 11px;
+}
+
+.reset-button .btn-danger, .reset-button .btn-warning {
+  width: 120px;
+  margin-right: 20px;
+}
+
+@media (min-width: 768px) {
+  .alert-mail {
+    width: 300px;
+  }
+}
+
+@media (max-width: 414px) {
+  .reset-button .btn-danger,
+  .reset-button .btn-primary {
+    width: 93px;
   }
 }
 /*# sourceMappingURL=main.css.map */

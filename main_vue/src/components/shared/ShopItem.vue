@@ -4,7 +4,10 @@
             <img :src="item.Images[0]" class="card-img-top" alt="gameHost">
             <div class="card-body">
                 <div class="card-text">
-                    <h3 class="d-flex justify-content-between">{{ item.Name }}<span class="category-games bg-danger text-white rounded">{{ item.Category }}</span></h3>
+                    <div class="d-flex justify-content-between">
+                        <h6 class="font-weight-bold">{{ item.Name }}</h6>
+                        <span class="category-games bg-danger text-white rounded">{{ item.Category }}</span>
+                    </div>
                     <div class="card-text-top d-flex justify-content-between">
                         <div class="card-mainTxt">
                             <span class="location mr-2">{{item.City }}</span>
