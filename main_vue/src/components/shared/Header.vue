@@ -86,12 +86,12 @@
                 <div class="col-md-12 h-navBar h-navBar-user" v-show="pcShow.user" :class="pcShow.user ? 'd-flex justify-content-center' : 'd-none'">
 
                         <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
-                             <router-link to="/editmemberinfo">
+                            <router-link to="/editmemberinfo">
                             <a href="" class="d-block">
                                 <img src="/img/icon/iconfinder_READY_user-circle_2703062.png" alt="user">
                                 <p>會員資料</p>
                             </a>
-                               </router-link>
+                            </router-link>
                         </div>
 
                     <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
@@ -107,10 +107,12 @@
                         </a>
                     </div>
                     <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
+                         <router-link to="/editnewproduct">
                         <a href="" class="d-block">
                             <img src="/img/icon/iconfinder_bag_5925586.png" alt="userBag">
                             <p>商品上架</p>
                         </a>
+                         </router-link>
                     </div>
                     <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
                         <a href="" class="d-block">

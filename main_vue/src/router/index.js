@@ -11,6 +11,7 @@ import GameStick from '../components/front_side/GameStick'
 import Login from '../views/back_side/Login'
 import Editmemberinfo from '../views/back_side/Editmemberinfo'
 import ResetPassword from '../views/back_side/ResetPassword'
+import EditNewProduct from '../views/back_side/EditNewProduct'
 Vue.use(VueRouter)
 
 const routes = [
@@ -70,6 +71,11 @@ const routes = [
     path: '/resetpassword',
     name: 'ResetPassword',
     component: ResetPassword
+  },
+  {
+    path: '/editnewproduct',
+    name: 'EditNewProduct',
+    component: EditNewProduct
   }
 ]
 
