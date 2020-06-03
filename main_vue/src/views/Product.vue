@@ -1,6 +1,7 @@
 <template>
-    <section id="switcherProduct" class="bg-light" v-if="product">
-        <div class="container-fluid">
+    <section id="switcherProduct" class="bg-light">
+        <div class="loading vh-100" v-if="loading"><img src="/img/Spinner-1.1s-200px.gif" alt="loading"></div>
+        <div class="container-fluid" v-else>
             <div class="row returnShop mb-2">
                 <div class="col-12 d-flex text-muted align-items-center mt-5">
                     <i class="mr-2"><font-awesome-icon icon="chevron-left"/></i>
@@ -153,7 +154,8 @@ import InstructionCard from '../components/front_side/InstructionCard'
 export default {
   data () {
     return {
-      product: ''
+      product: '',
+      loading: false
     }
   },
   components: { SellerStore, ChooseProduct, InstructionCard },
@@ -163,9 +165,11 @@ export default {
   methods: {
     getProduct () {
       const api = `http://switcher.rocket-coding.com/api/product/${this.$route.params.id}`
+      this.loading = true
       this.$http.get(api).then(res => {
         this.product = res.data
         // console.log(this.product)
+        this.loading = false
       })
     }
   }
@@ -178,5 +182,17 @@ export default {
 }
 .contentBox{
   padding: 10px;
+}
+</style>
+
+<style lang="scss" scoped>
+.loading img{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  z-index: 999;
 }
 </style>
