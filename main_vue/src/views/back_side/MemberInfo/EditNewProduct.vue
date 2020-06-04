@@ -1,5 +1,5 @@
 <template>
-<div class="Editproduct vh-100">
+<div class="Editproduct">
   <div class="container">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
@@ -28,16 +28,28 @@
     </div>
   </div>
 
-  <section>
+  <section @submit.prevent="updateProduct">
     <div class="container bg-light">
       <form class="w-75 m-auto pt-5">
         <div class="name mb-4">
           <label for>商品名稱</label>
-          <input type="text" placeholder="請輸入商品名稱" class="ml-3 w-75" />
+          <input type="text" placeholder="請輸入商品名稱" class="ml-3 w-75" v-model.trim="commodity.Name" />
         </div>
         <div class="place d-flex flex-row mb-4">
           <label for class>交易地點</label>
-          <div class="col-md-3 mb-3 ml-3">
+          <div class="ChooseCity ml-md-3">
+            <label for="City" class="d-none"></label>
+            <input type="text"  v-model.trim="commodity.City"  id="City" placeholder="請填寫城市名稱ex:台南市">
+          </div>
+          <div class="ChooseCity ml-md-3">
+            <label for="Zone" class="d-none"></label>
+            <input type="text"  v-model.trim="commodity.Zone" id="Zone" placeholder="請填寫區域名稱ex:永康區">
+          </div>
+          <div class="ChooseCity ml-md-3">
+            <label for="Store" class="d-none"></label>
+            <input type="text" v-model.trim="commodity.Store" id="Store" placeholder="請填寫門市名稱ex:佳鼎門市">
+          </div>
+          <!-- <div class="col-md-3 mb-3 ml-3">
             <select class="custom-select d-block w-100" id="country" required>
               <option value>--請選擇地區--</option>
               <option>高雄市</option>
@@ -57,7 +69,7 @@
               <option>California</option>
             </select>
             <div class="invalid-feedback">請選擇門市</div>
-          </div>
+          </div> -->
         </div>
         <div class="time">
           <!-- 這裡會插入套件顯示日期 -->
@@ -72,16 +84,16 @@
             <div class="col-2 d-flex flex-column w-md-50">
               <div class>
                 <label for="original-price" class="O-price text-primary">原價</label>
-                <input type="text" class="original-price" />
+                <input type="text" v-model="commodity.OriginPrice" class="original-price" />
               </div>
               <div class>
                 <label for="deposit" class="d-price">押金</label>
-                <input type="text" class="deposit" />
+                <input type="text" class="deposit" v-model="commodity.Deposit" />
               </div>
             </div>
             <div class="col-8 w-50 ml-5">
               <label for="special-offer " class="text-primary">特價</label>
-              <input type="text" class="special-offer" />＊當有特價請填此欄
+              <input type="text" class="special-offer" v-model="commodity.Price" />＊當有特價請填此欄
             </div>
           </div>
         </div>
@@ -90,26 +102,39 @@
             <label class="cat-lable" for>商品類別</label>
           </div>
 
+          <select class="custom-select w-25 ml-md-3">
+            <option selected>請選擇類別</option>
+            <option :value="0">遊戲主機</option>
+            <option :value="1">遊戲配件</option>
+            <option :value="2">遊戲片</option>
+          </select>
+
+        </div>
+        <!-- <div class="Product-category d-flex flex-row mb-4">
+          <div class>
+            <label class="cat-lable" for>商品類別</label>
+          </div>
+
           <div class="form-check ml-3">
-            <input class="form-check-input" type="checkbox" value id="cat-game-machine" />
+            <input class="form-check-input" type="radio" :value="GameCategory" id="cat-game-machine" />
             <label class="form-check-label" for="cat-game-machine">遊戲主機</label>
           </div>
           <div class="form-check ml-3">
-            <input class="form-check-input" type="checkbox" value id="cat-game-acs" />
+            <input class="form-check-input" type="radio" :value="GameCategory" id="cat-game-acs" />
             <label class="form-check-label" for="cat-game-acs">遊戲配件</label>
           </div>
           <div class="form-check ml-3">
-            <input class="form-check-input" type="checkbox" value id="cat-game-card" />
+            <input class="form-check-input" type="radio" :value="GameCategory" id="cat-game-card"  />
             <label class="form-check-label" for="cat-game-card">遊戲片</label>
           </div>
           <p>/請擇一選取</p>
-        </div>
+        </div> -->
         <div class="Quantity d-flex mb-4">
           <div class>
             <label class="cat-lable" for>商品數量</label>
           </div>
           <div class="ml-3">
-            <select class="custom-select d-block w-100" id="country" required>
+            <select class="custom-select d-block w-100" id="country" v-model.number="commodity.Quantity"  required>
               <option value>--請選擇數量--</option>
               <option>1</option>
               <option>2</option>
@@ -129,10 +154,11 @@
             <div class="mb-3">
               <input
                 class="form-check-input"
+                v-model.number="commodity.Status"
                 type="radio"
                 name="exampleRadios"
                 id="normal"
-                value="option1"
+                :value="0"
                 checked
               />
               <label class="form-check-label" for="normal">可出租</label>
@@ -140,10 +166,11 @@
             <div class>
               <input
                 class="form-check-input"
+                v-model.number="commodity.Status"
                 type="radio"
                 name="exampleRadios"
                 id="Notforrent"
-                value="option1"
+                :value="1"
                 checked
               />
               <label class="form-check-label" for="Notforrent">已出租/請擇一選取</label>
@@ -157,7 +184,7 @@
           <div class="ml-3">
             <div class>
               <label for="deposit" class="rental"></label>
-              <input type="text" class="days" />／天
+              <input type="text" class="days" v-model.number="commodity.Period" />／天
             </div>
             <div class="invalid-feedback">Please select a valid country.</div>
           </div>
@@ -172,6 +199,7 @@
               <!-- <label for="inputgoods-intro">輸入商品特色或描述商品外觀~</label> -->
               <textarea
                 class="form-control w-75"
+                v-model="commodity.Description"
                 id="inputgoods-intro"
                 rows="3"
                 placeholder="請輸入商品資訊..."
@@ -183,7 +211,7 @@
         <div class="row bg-light d-flex justify-content-center">
           <div class="mt-3 mb-3">
             <button type="button" class="btn btn-danger">取消</button>
-            <button onclick="on()" type="submit" class="btn btn-warning">儲存變更</button>
+            <button type="submit" class="btn btn-warning">儲存變更</button>
           </div>
         </div>
       </form>
@@ -191,3 +219,62 @@
   </section>
 </div>
 </template>
+
+<script>
+export default {
+  data () {
+    return {
+      commodity: {
+        Name: '',
+        OriginPrice: null,
+        Price: null,
+        Deposit: null,
+        Quantity: null,
+        City: '',
+        Zone: '',
+        Store: '',
+        Status: 0,
+        Category: 0,
+        Period: null,
+        Description: '',
+        PublishDate: ''
+      }
+
+    }
+  },
+  methods: {
+    updateProduct () {
+      const api = 'http://switcher.rocket-coding.com/api/product/add'
+      const token = localStorage.getItem('token')
+      const newproduct = {
+        Name: this.commodity.Name,
+        OriginPrice: this.commodity.OriginPrice,
+        Price: this.commodity.Price,
+        Deposit: this.commodity.Deposit,
+        Quantity: this.commodity.Quantity,
+        City: this.commodity.City,
+        Zone: this.commodity.Zone,
+        Store: this.commodity.Store,
+        Status: this.commodity.Status,
+        Category: this.commodity.Category,
+        Period: this.commodity.Period,
+        Description: this.commodity.Description,
+        PublishDate: this.commodity.PublishDate
+      }
+      this.$http.post(api, newproduct, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+
+      }).then((response) => {
+        console.log(response)
+        if (response.data.result) {
+          // console.log(response.data)
+          localStorage.setItem('token', response.data.token)
+        }
+      })
+    }
+  }
+
+}
+</script>

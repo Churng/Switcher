@@ -278,7 +278,7 @@ export default {
 };
 </script>
 <style>
-  .item_bock {
+  /* .item_bock {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -312,5 +312,5 @@ export default {
   color: #8F8F8F;
   font-size: 26px;
   height: 37px;
-}
+} */
 </style>

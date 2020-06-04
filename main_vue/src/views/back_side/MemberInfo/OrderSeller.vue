@@ -1,5 +1,5 @@
 <template>
-  <div class>
+  <div class="OrderManagement">
     <div class="container">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb mb-4">

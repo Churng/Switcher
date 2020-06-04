@@ -4,7 +4,7 @@ body{
 
 @media (max-width: 320px) { 
     .login{
-        height: 130vh;
+        height: calc(100%-80px);
     }
     
 }
@@ -58,6 +58,7 @@ body{
 @media (max-width: 320px) { 
     .login-content{
         width: 100%;
+        min-height: 890px;
         margin: 0 auto;
         padding: 25px;
         .login-btn,.registered-submit{
