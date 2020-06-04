@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home'
-import FindSeller from '../views/FindSeller'
+import Group from '../views/Group'
 import FindGames from '../views/FindGames'
 import Product from '../views/Product'
 import AllGame from '../components/front_side/AllGame'
@@ -63,9 +63,9 @@ const routes = [
     component: Product
   },
   {
-    path: '/findSeller',
-    name: 'FindSeller',
-    component: FindSeller
+    path: '/group',
+    name: 'Group',
+    component: Group
   },
   {
     path: '/login',

@@ -1,7 +1,6 @@
 <template>
     <section id="switcherShop" class="bg-light">
-        <div class="loading vh-100" v-if="loading"><img src="/img/Spinner-1.1s-200px.gif" alt="loading"></div>
-        <div class="container pt-5" v-else>
+        <div class="container pt-5">
                   <!-- 往上鍵統一放在HEADER下一層 -->
             <el-backtop :bottom="60"></el-backtop>
             <div class="row searchBar justify-content-end mb-3">
@@ -41,28 +40,10 @@
 export default {
   data () {
     return {
-      originalData: [],
-      search: '',
-      loading: false
+      search: ''
     }
   },
-  created () {
-    this.getProductData()
-  },
   methods: {
-    getProductData () {
-      const api = 'http://switcher.rocket-coding.com/api/product/all'
-      this.loading = true
-      this.$http.get(api).then(res => {
-        const originalData = res.data.products
-        this.originalData = originalData
-        this.$root.productsData = originalData.sort(function (a, b) {
-          return a.Price - b.Price
-        })
-        this.loading = false
-        // console.log(this.$root.productsData)
-      })
-    },
     searchGame (val) {
       const filterSearch = this.$root.productsData.filter(data => {
         return data.Name.search(val) !== -1
@@ -81,14 +62,5 @@ export default {
 .router-link-exact-active{
   background-color: #E60012 !important;
   color: #fff !important;
-}
-.loading img{
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  margin: auto;
-  z-index: 999;
 }
 </style>

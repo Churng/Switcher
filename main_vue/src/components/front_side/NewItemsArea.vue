@@ -2,33 +2,33 @@
     <div class="home-newItems-area pb-5 text-center">
         <h2 class="mb-5">最新商品</h2>
         <ul class="home-newItems-item row list-unstyled flex-wrap pb-5">
-            <li class="col-10 col-sm-6 col-md-6 col-xl-3 col-lg-4">
-                <div class="card mb-4">
-                    <img src="/img/gameHost/gameHost01.jpg" class="card-img-top" alt="gameHost">
-                    <div class="card-body">
-                        <div class="card-text">
-                            <h3>Switch 灰黑機</h3>
-                            <div class="card-text-top d-flex justify-content-between">
-                                <div class="card-mainTxt">
-                                    <span class="location mr-2">高雄市</span>
-                                    <span class="isLease-icon"><i class="fas fa-circle"></i></span>
-                                    <span class="isLease">可出租</span>
-                                </div>
-                            </div>
-                            <div class="card-text-bottom d-flex justify-content-between align-items-baseline mb-2">
-                                <div class="onDate">
-                                    <span>上架日期</span>
-                                    <span>2020/05/05</span>
-                                </div>
-                                <div class="priceArea">
-                                    <p class="mb-0">租金<span>10</span>元/日</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
+          <ShopItem v-for="(item, index) in isNewList()" :key="index" :item="item" :index="index" />
         </ul>
-        <button type="button" class="btn btn-danger btn-lg"><span class="fas fa-chevron-circle-right mr-2"></span>尋找更多</button>
+        <button type="button" class="btn btn-danger btn-lg"
+        @click="$router.push({name: 'FindGames', params: '/findGames/allGame'})">
+        <span class="fas fa-chevron-circle-right mr-2"></span>尋找更多
+        </button>
     </div>
 </template>
+
+<script>
+import ShopItem from '../shared/ShopItem'
+
+export default {
+  props: {
+    originalData: Array
+  },
+  components: { ShopItem },
+  methods: {
+    isNewList () {
+      // 深拷貝(賦予新址)
+      const copyData = JSON.parse(JSON.stringify(this.originalData))
+      const sliceData = copyData.slice(0, 8)
+      sliceData.sort(function (a, b) {
+        return Date.parse(b.PublishDate.replace(/-/g, '/')) - Date.parse(a.PublishDate.replace(/-/g, '/'))
+      })
+      return sliceData
+    }
+  }
+}
+</script>
