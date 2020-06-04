@@ -74,7 +74,7 @@
                             <p>剩餘商品數量 : <span>{{product[0].Quantity}}</span></p>
                         </div>
                     </div>
-                    <ChooseProduct />
+                    <ChooseProduct :product="product"/>
                 </div>
             </div>
             <div class="row switcherProduct-review pt-3 pb-3">
@@ -154,7 +154,7 @@ import InstructionCard from '../components/front_side/InstructionCard'
 export default {
   data () {
     return {
-      product: '',
+      product: [],
       loading: false
     }
   },
@@ -168,8 +168,9 @@ export default {
       this.loading = true
       this.$http.get(api).then(res => {
         this.product = res.data
-        // console.log(this.product)
+        console.log(this.product)
         this.loading = false
+        return this.product
       })
     }
   }
@@ -182,17 +183,5 @@ export default {
 }
 .contentBox{
   padding: 10px;
-}
-</style>
-
-<style lang="scss" scoped>
-.loading img{
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  margin: auto;
-  z-index: 999;
 }
 </style>

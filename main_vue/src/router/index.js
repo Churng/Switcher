@@ -8,6 +8,7 @@ import AllGame from '../components/front_side/AllGame'
 import GameHost from '../components/front_side/GameHost'
 import Game from '../components/front_side/Game'
 import GameStick from '../components/front_side/GameStick'
+import Seller from '../views/Seller'
 
 // back_side
 import Login from '../views/back_side/Login'
@@ -61,6 +62,11 @@ const routes = [
     path: '/findGames/:id',
     name: 'Product',
     component: Product
+  },
+  {
+    path: '/seller/:id',
+    name: 'Seller',
+    component: Seller
   },
   {
     path: '/group',

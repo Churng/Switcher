@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 <template>
   <div class="login ">
+=======
+`Bearer ${token}`<template>
+  <div class="login bg-light">
+>>>>>>> e8287bae547f42a34231fb1a4744b7851fbae140
     <div class="container">
       <div class="row d-flex flex-column">
         <div class="login-content">

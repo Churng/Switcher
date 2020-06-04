@@ -11,16 +11,19 @@
                       start-placeholder="开始日期"
                       end-placeholder="结束日期">
                   </el-date-picker>
-                  <p class="total-rentDate ml-2">共<span>30</span>日</p>
+                  <!-- <p class="total-rentDate ml-2">共<span>30</span>日</p> -->
                 </div>
             </div>
             <div class="quantity d-flex align-items-baseline mt-3 mb-3">
-                <p class="mr-4">商品數量 </p>
-                <select class="form-control w-50" id="exampleFormControlSelect1">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                </select>
+                <p class="mr-4">商品數量</p>
+                <el-select v-model="quantity" placeholder="请選擇數量">
+                  <el-option
+                    v-for="(item, index) in product[0].Quantity"
+                    :key="index"
+                    :label="item"
+                    :value="index">
+                  </el-option>
+                </el-select>
             </div>
             <div class="columns-btnArea">
                 <button type="button" class="btn btn-outline-warning w-100 mb-3">賣家聊聊</button>
@@ -62,9 +65,11 @@ export default {
         }]
       },
       value1: '',
-      value2: ''
+      value2: '',
+      quantity: ''
     }
-  }
+  },
+  props: ['product']
   // computed: {
   //   totalDays (value1, value2) {
   //     return console.log(value1, value2)
