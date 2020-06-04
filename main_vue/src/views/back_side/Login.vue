@@ -1,5 +1,5 @@
 `Bearer ${token}`<template>
-  <div class="login vh-100">
+  <div class="login bg-light">
     <div class="container">
       <div class="row d-flex flex-column">
         <div class="login-content">

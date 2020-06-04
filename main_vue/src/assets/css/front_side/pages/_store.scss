@@ -6,7 +6,7 @@
 /*賣家卡片*/
 .switcherStore-sellerCard{
     padding: 1rem 1.88rem;
-    background-image: url('/img/users/Animal\ Crossing_wallpaper_02.jpg');
+    background-image: url('/img/users/AnimalCrossing_wallpaper_02.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -35,10 +35,10 @@
     background-color: $white;
 }
 .switcherStore-aboutInfo{
-    height: calc(100vh - 35rem); 
+    height: 300px; 
     .about-text{
         width: 100%;
-        height: calc(100vh - 35rem); 
+        height: 100%;
         overflow-y: auto;
         white-space: pre-wrap;
         word-wrap: break-word;

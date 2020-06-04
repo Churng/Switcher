@@ -13107,7 +13107,7 @@ body {
 /*賣家卡片*/
 .switcherStore-sellerCard {
   padding: 1rem 1.88rem;
-  background-image: url("/img/users/Animal Crossing_wallpaper_02.jpg");
+  background-image: url("/img/users/AnimalCrossing_wallpaper_02.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -13139,12 +13139,12 @@ body {
 }
 
 .switcherStore-aboutInfo {
-  height: calc(100vh - 35rem);
+  height: 300px;
 }
 
 .switcherStore-aboutInfo .about-text {
   width: 100%;
-  height: calc(100vh - 35rem);
+  height: 100%;
   overflow-y: auto;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -13199,9 +13199,11 @@ body {
 
 .login-content {
   width: 400px;
-  margin: 0 auto;
+  margin: 80px auto;
   padding: 25px;
-  padding-top: 60px;
+  background-color: #fff;
+  border: 1px solid #dfdfdf;
+  border-radius: 8px;
 }
 
 .loglabel {

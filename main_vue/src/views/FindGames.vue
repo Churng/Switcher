@@ -4,10 +4,18 @@
                   <!-- 往上鍵統一放在HEADER下一層 -->
             <el-backtop :bottom="60"></el-backtop>
             <div class="row searchBar justify-content-end mb-3">
+              <el-select v-model="countyValue" clearable placeholder="请選擇地區">
+                  <el-option
+                    v-for="(idx, county) in searchCity"
+                    :key="county.id"
+                    :label="county"
+                    :value="idx">
+                  </el-option>
+                </el-select>
                 <div class="col-md-5 d-flex">
                     <input type="text" class="form-control rounded-left" placeholder="請輸入遊戲關鍵字" aria-label="Recipient's username" aria-describedby="basic-addon2"
                       v-model="search"
-                      @keydown="searchGame(search)"
+                      @keyup.13="searchGame(search)"
                     >
                     <div class="input-group-append">
                         <span class="input-group-text bg-danger text-white rounded-right" id="basic-addon2" @click="searchGame(search)"><font-awesome-icon icon="search"/></span>
@@ -36,23 +44,46 @@
 </template>
 
 <script>
-
 export default {
   data () {
     return {
-      search: ''
+      countyValue: [],
+      search: '',
+      searchData: {}
+    }
+  },
+  computed: {
+    searchCity () {
+      const copyData = JSON.parse(JSON.stringify(this.$root.productsData))
+      // 整理:城市篩選的api
+      copyData.forEach(data => {
+        const county = data.City
+        if (!this.searchData[county]) {
+          this.$set(this.searchData, county, [data])
+        } else {
+          this.searchData[county].push(data)
+        }
+      })
+      return this.searchData
     }
   },
   methods: {
-    searchGame (val) {
-      const filterSearch = this.$root.productsData.filter(data => {
-        return data.Name.search(val) !== -1
+    searchGame (search) {
+      const filterSearch = this.countyValue.filter(data => {
+        return (data.Name.search(search) !== -1)
       })
       this.$root.productSearchData = filterSearch
       this.search = ''
+      return this.$root.productSearchData
     },
     isAllItem () {
       this.$root.productSearchData = false
+    }
+  },
+  watch: {
+    countyValue (val) {
+      this.$root.productSearchData = val
+      return this.$root.productSearchData
     }
   }
 }

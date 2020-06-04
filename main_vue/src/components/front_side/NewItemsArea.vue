@@ -15,14 +15,11 @@
 import ShopItem from '../shared/ShopItem'
 
 export default {
-  props: {
-    originalData: Array
-  },
   components: { ShopItem },
   methods: {
     isNewList () {
       // 深拷貝(賦予新址)
-      const copyData = JSON.parse(JSON.stringify(this.originalData))
+      const copyData = JSON.parse(JSON.stringify(this.$root.productsData))
       const sliceData = copyData.slice(0, 8)
       sliceData.sort(function (a, b) {
         return Date.parse(b.PublishDate.replace(/-/g, '/')) - Date.parse(a.PublishDate.replace(/-/g, '/'))
