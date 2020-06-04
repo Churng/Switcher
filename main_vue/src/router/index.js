@@ -11,10 +11,12 @@ import GameStick from '../components/front_side/GameStick'
 
 // back_side
 import Login from '../views/back_side/Login'
-import Editmemberinfo from '../views/back_side/Editmemberinfo'
 import ResetPassword from '../views/back_side/ResetPassword'
-import EditNewProduct from '../views/back_side/EditNewProduct'
-
+import Editmemberinfo from '../views/back_side/MemberInfo/Editmemberinfo'
+import EditNewProduct from '../views/back_side/MemberInfo/EditNewProduct'
+import OrderSeller from '../views/back_side/MemberInfo/OrderSeller'
+import Inbox from '../views/back_side/MemberInfo/Inbox'
+import Chatroom from '../views/back_side/MemberInfo/Chatroom'
 Vue.use(VueRouter)
 
 const routes = [
@@ -74,14 +76,6 @@ const routes = [
     }
   },
   {
-    path: '/editmemberinfo',
-    name: 'Editmemberinfo',
-    component: Editmemberinfo,
-    meta: {
-      isLogin: true
-    }
-  },
-  {
     path: '/resetpassword',
     name: 'ResetPassword',
     component: ResetPassword,
@@ -90,12 +84,40 @@ const routes = [
     }
   },
   {
+    path: '/editmemberinfo',
+    name: 'Editmemberinfo',
+    component: Editmemberinfo
+  },
+  {
     path: '/editnewproduct',
     name: 'EditNewProduct',
     component: EditNewProduct,
     meta: {
       isLogin: true
     }
+  },
+  {
+    path: '/orderseller',
+    name: 'OrderSeller',
+    component: OrderSeller,
+    meta: {
+      isLogin: true
+    }
+  },
+  {
+    path: '/inbox',
+    name: 'Inbox',
+    component: Inbox,
+    meta: {
+      isLogin: true
+    },
+    children: [
+      {
+        path: '/chatroom:id',
+        name: 'Chatroom',
+        component: Chatroom
+      }
+    ]
   }
 ]
 

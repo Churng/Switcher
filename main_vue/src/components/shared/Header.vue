@@ -95,10 +95,12 @@
                         </div>
 
                     <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
+                        <router-link to="/orderseller">
                         <a href="" class="d-block">
                             <img src="/img/icon/iconfinder_list-alt_1608448.png" alt="userList">
                             <p>訂單管理</p>
                         </a>
+                        </router-link>
                     </div>
                     <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
                         <a href="" class="d-block">
@@ -115,10 +117,12 @@
                          </router-link>
                     </div>
                     <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
-                        <a href="" class="d-block">
-                            <img src="/img/icon/iconfinder_66-wechat_1181189.png" alt="userChat">
-                            <p>聊天室</p>
-                        </a>
+                        <router-link to="/inbox">
+                            <a href="" class="d-block">
+                                <img src="/img/icon/iconfinder_66-wechat_1181189.png" alt="userChat">
+                                <p>聊天室</p>
+                            </a>
+                        </router-link>
                     </div>
                     <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
                         <a href="" class="d-block">
@@ -210,5 +214,8 @@ export default {
       left: 2px;
       bottom: 2px;
   }
+}
+a {
+  text-decoration: none;
 }
 </style>
