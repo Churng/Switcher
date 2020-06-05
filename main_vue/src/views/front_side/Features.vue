@@ -7,7 +7,7 @@
                     <div class="circle-txt">
                         <i class="mb-2"><font-awesome-icon icon="location-arrow"/></i>
                         <h6>尋找方便</h6>
-                        <p class="pt-0">透過地圖來搜尋賣家指定的面交地點，搜尋遊戲關鍵字，立刻可以找最近及安全的賣家</p>
+                        <p class="pt-0">透過搜尋地區/遊戲關鍵字，立刻可以找到最近及安全的賣家</p>
                     </div>
                 </div>
                 <div class="circle mb-5">

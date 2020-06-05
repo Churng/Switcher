@@ -20,10 +20,8 @@
                 </li>
                 <li class="sm-findChevron pc-eShop" @click="pcShow.eShop=!pcShow.eShop">
                     <div class="d-flex justify-content-center w-100">
-                        <a href="">
-                          <span class="header-navBar-icon mr-2"><font-awesome-icon icon="shopping-bag"/></span>
-                          <span class="header-navBar-label">Nintendo eShop</span>
-                        </a>
+                        <span class="header-navBar-icon mr-2"><font-awesome-icon icon="shopping-bag"/></span>
+                        <span class="header-navBar-label">Nintendo eShop</span>
                         <span class="header-navBar-icon findChevron" @click="phoneShow.eShop=!phoneShow.eShop"><font-awesome-icon :icon="phoneShow.eShop ? 'angle-up' :'chevron-down'"/></span>
                     </div>
                     <div class="w-100 sm-openItem" v-show="phoneShow.eShop">
@@ -59,23 +57,23 @@
         </div>
         <div class="container-fluid h-navBar-areaBg">
             <div class="row h-navBar-area">
-                <div class="col-md-12 pt-4 pb-4 h-navBar h-navBar-N" v-show="pcShow.eShop" :class="pcShow.eShop ? 'd-flex justify-content-center' : 'd-none'">
+                <div class="col-md-12 pt-4 pb-4 h-navBar h-navBar-N" :class="[pcShow.eShop ? 'h-navBar-N-DN' : 'd-none']">
                     <div class="col-md-6 col-lg-4 h-dropItem-content">
                         <a href="https://store.nintendo.com.hk/" target="_blank" class="d-block">
-                            <div class="h-dropItem-linkHead d-flex justify-content-between align-items-baseline">
+                            <div class="h-dropItem-linkHead d-flex align-items-baseline">
                                 <p><span class="fas"><font-awesome-icon icon="chevron-circle-right"/></span> Nintendo eShop (官方網頁)</p>
-                                <div class="h-dropItem-linkHead-icon"><font-awesome-icon icon="shopping-bag"/></div>
+                                <div class="h-dropItem-linkHead-icon ml-4"><font-awesome-icon icon="shopping-bag"/></div>
                             </div>
                             <div class="h-dropItem-linkText ">
                                 <span>連接到提供Nintendo eShop下載軟體購買服務的網頁。</span>
                             </div>
                         </a>
                     </div>
-                    <div class="col-md-6 col-lg-5 h-dropItem-content">
+                    <div class="col-md-6 col-lg-4 h-dropItem-content">
                         <a href="https://www.whatsmall.com/eshops/nintendohk" target="_blank" class="d-block">
-                            <div class="h-dropItem-linkHead d-flex justify-content-between align-items-baseline">
+                            <div class="h-dropItem-linkHead d-flex align-items-baseline">
                                 <p><span class="fas"><font-awesome-icon icon="chevron-circle-right"/></span> Nintendo eShop (服務由第三方提供)</p>
-                                <div class="h-dropItem-linkHead-icon"><font-awesome-icon icon="shopping-bag"/></div>
+                                <div class="h-dropItem-linkHead-icon ml-4"><font-awesome-icon icon="shopping-bag"/></div>
                             </div>
                             <div class="h-dropItem-linkText mb-3">
                                 <span>連接到提供Nintendo eShop下載軟體購買服務的外部網頁。</span>
@@ -84,22 +82,16 @@
                     </div>
                 </div>
                 <div class="col-md-12 h-navBar h-navBar-user" v-show="pcShow.user" :class="pcShow.user ? 'd-flex justify-content-center' : 'd-none'">
-
-                        <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
-                            <router-link to="/editmemberinfo">
-                            <a href="" class="d-block">
-                                <img src="/img/icon/iconfinder_READY_user-circle_2703062.png" alt="user">
-                                <p>會員資料</p>
-                            </a>
-                            </router-link>
-                        </div>
-
                     <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
-                        <router-link to="/orderseller">
-                        <a href="" class="d-block">
+                        <router-link to="/editmemberinfo" class="d-block">
+                            <img src="/img/icon/iconfinder_READY_user-circle_2703062.png" alt="user">
+                            <p>會員資料</p>
+                        </router-link>
+                    </div>
+                    <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
+                        <router-link to="/orderseller" class="d-block">
                             <img src="/img/icon/iconfinder_list-alt_1608448.png" alt="userList">
                             <p>訂單管理</p>
-                        </a>
                         </router-link>
                     </div>
                     <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
@@ -109,32 +101,26 @@
                         </a>
                     </div>
                     <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
-                         <router-link to="/editnewproduct">
-                        <a href="" class="d-block">
+                         <router-link to="/editnewproduct" class="d-block">
                             <img src="/img/icon/iconfinder_bag_5925586.png" alt="userBag">
                             <p>商品上架</p>
-                        </a>
-                         </router-link>
-                    </div>
-                    <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
-                        <router-link to="/inbox">
-                            <a href="" class="d-block">
-                                <img src="/img/icon/iconfinder_66-wechat_1181189.png" alt="userChat">
-                                <p>聊天室</p>
-                            </a>
                         </router-link>
                     </div>
                     <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
-                        <a href="" class="d-block">
+                        <router-link to="/inbox" class="d-block">
+                            <img src="/img/icon/iconfinder_66-wechat_1181189.png" alt="userChat">
+                            <p>聊天室</p>
+                        </router-link>
+                    </div>
+                    <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
+                        <a href="#" class="d-block">
                             <img src="/img/icon/iconfinder_icon-zoom-out_2867960.png" alt="loginout">
                             <p>會員登出</p>
                         </a>
                     </div>
                 </div>
                 <div class="row h-navBar-cart" v-show="pcShow.shoppingCart" :class="pcShow.shoppingCart ? 'd-flex justify-content-end' : 'd-none'">
-                    <div class="col-md-4 cartItems shadow p-3 mb-5 bg-white rounded">
-                       <div class="text-center"><span class="font-weight-bold text-center">沒有商品在購物車內</span></div>
-                    </div>
+                    <Cart />
                 </div>
             </div>
         </div>
@@ -142,6 +128,8 @@
 </template>
 
 <script>
+import Cart from '../front_side/Cart'
+
 export default {
   name: 'App',
   data () {
@@ -158,6 +146,7 @@ export default {
       token: localStorage.getItem('token')
     }
   },
+  components: { Cart },
   methods: {
     signout () {
       localStorage.removeItem('token')
@@ -192,5 +181,9 @@ a {
 .router-link-exact-active[data-v-d87d4f92]::after{
     display: none;
     opacity: 0;
+}
+.h-navBar-N-DN{
+    display: flex;
+    justify-content: center;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div class="switcherProduct-seller d-flex align-items-center pt-3 pb-3 mb-4">
-        <div class="col-md-5 col-lg-6 d-flex align-items-center">
+        <div class="col-md-5 col-lg-5 d-flex align-items-center">
             <div class="sellerImg mr-3">
                 <img src="/img/users/iconfinder_11_avatar_2754576.png" alt="user01">
             </div>
@@ -12,7 +12,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-7 col-lg-6">
+        <div class="col-md-7 col-lg-7">
             <div class="switcherStore-sellerInfo">
                 <div class="sellerInfo-header d-flex justify-content-around">
                     <div class="sellerInfo-comment">

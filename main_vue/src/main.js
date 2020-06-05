@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import router from './router/index'
 import App from './App.vue'
 import axios from 'axios'
+import store from './store'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI, BootstrapVue, axios)
@@ -18,11 +19,6 @@ Vue.prototype.$http = axios
 library.add(fas, fab)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
-
-// export default new Vuex.Store({
-//   productsData: [],
-//   plugins: [createVuexAlong()]
-// })
 
 new Vue({
   data: {
@@ -37,5 +33,6 @@ new Vue({
     })
   },
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')

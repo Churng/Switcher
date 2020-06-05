@@ -2,6 +2,13 @@
     <section id="switcherProduct" class="bg-light">
         <div class="loading vh-100" v-if="loading"><img src="/img/Spinner-1.1s-200px.gif" alt="loading"></div>
         <div class="container-fluid" v-else>
+            <el-alert
+              title="請輸入日期 / 數量"
+              type="error"
+              show-icon
+              v-if="loginCart"
+              >
+            </el-alert>
             <div class="row returnShop mb-2">
                 <div class="col-12 d-flex text-muted align-items-center mt-5">
                     <i class="mr-2"><font-awesome-icon icon="chevron-left"/></i>
@@ -48,7 +55,8 @@
                 <div class="col-12 col-lg-4 columns-right">
                     <InstructionCard />
                     <div class="columns-category d-flex align-items-center mb-3">
-                        <span class="category-games bg-danger text-white mr-5 rounded">{{product[0].Category}}</span>
+                        <span class="category-games bg-danger text-white mr-3 rounded">{{product[0].Category}}</span>
+                        <span class="font-weight-bold mr-3">{{product[0].City}} {{product[0].Zone}}</span>
                         <span :class="product[0].Status=='可出租' ? 'isLease-icon':'notLease'"><font-awesome-icon icon="circle"/></span>
                         <span class="isLease ml-1">{{product[0].Status}}</span>
                     </div>
@@ -74,7 +82,7 @@
                             <p>剩餘商品數量 : <span>{{product[0].Quantity}}</span></p>
                         </div>
                     </div>
-                    <ChooseProduct :product="product"/>
+                    <ChooseProduct :product="product" :loginCart="loginCart" @openFater='text'/>
                 </div>
             </div>
             <div class="row switcherProduct-review pt-3 pb-3">
@@ -155,7 +163,8 @@ export default {
   data () {
     return {
       product: [],
-      loading: false
+      loading: false,
+      loginCart: false
     }
   },
   components: { ProductSellerStore, ChooseProduct, InstructionCard },
@@ -168,10 +177,13 @@ export default {
       this.loading = true
       this.$http.get(api).then(res => {
         this.product = res.data
-        console.log(this.product)
+        // console.log(this.product)
         this.loading = false
         return this.product
       })
+    },
+    text () {
+      this.loginCart = !this.loginCart
     }
   }
 }
