@@ -11,14 +11,26 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import router from './router/index'
 import App from './App.vue'
 import axios from 'axios'
-import store from './store'
+// import VueI18n from 'vue-i18n'
+import { ValidationProvider } from 'vee-validate'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI, BootstrapVue, axios)
+// Vue.use(VueI18n)
 Vue.prototype.$http = axios
 library.add(fas, fab)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.component('ValidationProvider', ValidationProvider)
+// const i18n = new VueI18n({
+//   locale: 'zhTW'
+// })
+// Vue.use(ValidationProvider, {
+//   i18n,
+//   dictionary: {
+//     zhTW
+//   }
+// })
 
 new Vue({
   data: {
@@ -32,7 +44,7 @@ new Vue({
       console.log(this.$http)
     })
   },
+  // i18n,
   router,
-  store,
   render: h => h(App)
 }).$mount('#app')

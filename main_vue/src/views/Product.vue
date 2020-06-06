@@ -40,7 +40,7 @@
                           </a>
                     </div>
                     <ProductSellerStore />
-                    <div class="switcherProduct-proInfo">
+                    <div class="switcherProduct-proInfo mb-3">
                         <h5 class="mb-4">商品資訊</h5>
                         <div class="proInfo-content d-flex justify-content-between align-items-end">
                             <div class="contentBox">
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-4 columns-right">
+                <div class="col-12 col-lg-4 columns-right mb-3">
                     <InstructionCard />
                     <div class="columns-category d-flex align-items-center mb-3">
                         <span class="category-games bg-danger text-white mr-3 rounded">{{product[0].Category}}</span>
@@ -61,7 +61,7 @@
                         <span class="isLease ml-1">{{product[0].Status}}</span>
                     </div>
                     <div class="columns-priceArea">
-                        <p class="price mr-1 font-weight-bold">NT <span>{{product[0].Price}}</span> 元/日</p>
+                        <p class="price mr-1 font-weight-bold">NT <span>{{product[0].Price}}</span> 元 / 日</p>
                         <p class="mr-1">押金 : NT <span>{{product[0].Deposit}}</span></p>
                     </div>
                     <div class="columns-details d-flex justify-content-between">
@@ -82,10 +82,10 @@
                             <p>剩餘商品數量 : <span>{{product[0].Quantity}}</span></p>
                         </div>
                     </div>
-                    <ChooseProduct :product="product" :loginCart="loginCart" @openFater='text'/>
+                    <ChooseProduct :product="product" :loginCart="loginCart" @openFater='openWarn'/>
                 </div>
             </div>
-            <div class="row switcherProduct-review pt-3 pb-3">
+            <div class="row switcherProduct-review pb-3">
                 <div class="col-md-12">
                     <h5>商品評價</h5>
                     <div class="review-navBar bg-danger text-white d-flex justify-content-around align-items-center pt-2 pb-2">
@@ -182,7 +182,7 @@ export default {
         return this.product
       })
     },
-    text () {
+    openWarn () {
       this.loginCart = !this.loginCart
     }
   }

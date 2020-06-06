@@ -10,6 +10,7 @@ import Game from '../components/front_side/Game'
 import GameStick from '../components/front_side/GameStick'
 import Seller from '../views/Seller'
 import CartList from '../views/CartList'
+import CartContract from '../views/CartContract'
 
 // back_side
 import Login from '../views/back_side/Login'
@@ -67,7 +68,14 @@ const routes = [
   {
     path: '/cartList',
     name: 'CartList',
-    component: CartList
+    component: CartList,
+    children: [
+      {
+        path:'cartContract',
+        name: 'CartContract',
+        component: CartContract
+      }
+    ]
   },
   {
     path: '/seller/:id',

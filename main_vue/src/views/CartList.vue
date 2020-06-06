@@ -1,6 +1,13 @@
 <template>
     <section id="switcherOrder-one" class="bg-light">
         <div class="container">
+            <el-alert
+              title="請正確輸入資料"
+              type="error"
+              show-icon
+              v-if="isError"
+              >
+            </el-alert>
             <div class="row returnShop">
                 <div class="col-12 d-flex text-muted align-items-center mt-5">
                     <i class="mr-2"><font-awesome-icon icon="chevron-left"/></i>
@@ -94,43 +101,21 @@
         </div>
         <div class="container">
             <h4 class="text-center mb-5">請輸入資料</h4>
-            <div class="row d-flex justify-content-center">
-                <ul class="col-md-8 list-unstyled">
-                    <li class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">中文姓名 *</span>
-                          </div>
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                    </li>
-                    <li class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">行動電話 *</span>
-                          </div>
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                    </li>
-                    <li class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">E-mail *</span>
-                          </div>
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                    </li>
-                </ul>
-            </div>
-            <div class="content-btn d-block justify-content-center text-center mb-5">
-                <button type="button" class="btn btn-warning">取消</button>
-                <button type="button" class="btn btn-warning">下一步</button>
-            </div>
+            <CartInputs />
         </div>
     </section>
 </template>
 
 <script>
+import CartInputs from '../components/front_side/CartInputs'
+
 export default {
   data () {
     return {
-      p: ''
+      isError: false
     }
-  }
+  },
+  components: { CartInputs }
 //   created () {
 //     this.getCartData()
 //   },

@@ -2,7 +2,7 @@
     <div class="columns-choose">
         <div class="choosed">
             <div class="rentDate">
-                <div>選擇日期 : </div>
+                <div>請選擇日期 : </div>
                 <div class="d-flex align-items-baseline mt-3">
                     <el-date-picker
                       v-model="value1"
@@ -26,9 +26,10 @@
                   </el-option>
                 </el-select>
             </div>
-            <div class="columns-btnArea">
+            <div class="columns-btnArea mb-4">
                 <button type="button" class="btn btn-outline-warning w-100 mb-3">賣家聊聊</button>
-                <button type="button" class="btn btn-warning w-100" @click="isLogin">我要租借</button>
+                <button type="button" class="btn btn-warning w-100" @click="isLogin" v-if="product[0].Status==='可出租'">我要租借</button>
+                <button type="button" class="btn btn-secondary w-100" disabled v-else>我要租借</button>
             </div>
         </div>
     </div>

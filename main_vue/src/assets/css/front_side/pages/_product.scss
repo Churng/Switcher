@@ -54,7 +54,7 @@
     white-space: pre-wrap;
     word-wrap: break-word;
     background-color: $white;
-    font-size: $fs-200;
+    font-size: $fs-300;
     color: $fc-400;
 }
 .contentDate{
@@ -191,7 +191,7 @@
         }
     }
     .userReview{
-        font-size: $fs-100;
+        font-size: $fs-200;
     }   
     li:last-child .review-item{
         border-bottom: none !important;
