@@ -76,10 +76,7 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: Login,
-    meta: {
-      isLogin: false
-    }
+    component: Login
   },
   {
     path: '/resetpassword',
