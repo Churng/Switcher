@@ -45,7 +45,7 @@
                         <p class="mb-0">我的賣場</p>
                         <p class="mb-0">商品上架</p>
                         <p class="mb-0">聊天室</p>
-                        <p class="mb-2"  @click.prevent="signout">會員登出</p>
+                        <p class="mb-2" @click.prevent="signout">會員登出</p>
                     </div>
                 </li>
                 <li class="d-flex justify-content-center sm-findChevron pc-shoppingCart"  @click="pcShow.shoppingCart=!pcShow.shoppingCart">
@@ -113,9 +113,9 @@
                         </router-link>
                     </div>
                     <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
-                        <a href="#" class="d-block">
+                        <a href="#" class="d-block" @click.prevent="signout">
                             <img src="/img/icon/iconfinder_icon-zoom-out_2867960.png" alt="loginout">
-                            <p>會員登出</p>
+                            <p >會員登出</p>
                         </a>
                     </div>
                 </div>
@@ -150,10 +150,14 @@ export default {
   methods: {
     signout () {
       localStorage.removeItem('token')
+      this.$root.ChangeMemberinfo = false
+      this.pcShow.user = false
+      console.log(this.$root.ChangeMemberinfo)
     }
   },
   computed: {
     ChangeMemberinfo () {
+      console.log(1231132)
       return this.$root.ChangeMemberinfo
     }
   }

@@ -20,6 +20,7 @@ import EditNewProduct from '../views/back_side/MemberInfo/EditNewProduct'
 import OrderSeller from '../views/back_side/MemberInfo/OrderSeller'
 import Inbox from '../views/back_side/MemberInfo/Inbox'
 import Chatroom from '../views/back_side/MemberInfo/Chatroom'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -69,6 +70,7 @@ const routes = [
     path: '/cartList',
     name: 'CartList',
     component: CartList,
+    meta: { requiresAuth: true },
     children: [
       {
         path: 'cartContract',
@@ -91,17 +93,12 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login,
-    meta: {
-      isLogin: false
-    }
+    meta: { requiresAuth: true }
   },
   {
     path: '/resetpassword',
     name: 'ResetPassword',
-    component: ResetPassword,
-    meta: {
-      isLogin: true
-    }
+    component: ResetPassword
   },
   {
     path: '/editmemberinfo',
@@ -111,26 +108,17 @@ const routes = [
   {
     path: '/editnewproduct',
     name: 'EditNewProduct',
-    component: EditNewProduct,
-    meta: {
-      isLogin: true
-    }
+    component: EditNewProduct
   },
   {
     path: '/orderseller',
     name: 'OrderSeller',
-    component: OrderSeller,
-    meta: {
-      isLogin: true
-    }
+    component: OrderSeller
   },
   {
     path: '/inbox',
     name: 'Inbox',
     component: Inbox,
-    meta: {
-      isLogin: true
-    },
     children: [
       {
         path: '/chatroom:id',
@@ -138,6 +126,10 @@ const routes = [
         component: Chatroom
       }
     ]
+  },
+  {
+    path: '*',
+    redirect: '/login'
   }
 ]
 

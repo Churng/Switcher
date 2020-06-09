@@ -183,13 +183,13 @@ export default {
     return {
       // 登入驗證資料結構 - 物件
       user: {
-        Email: '', // 帳號
-        Password: '',
-        rePassword: '',
-        Address: '',
-        Identity: '',
-        Phone: '',
-        Name: '',
+        Email: null, // 帳號
+        Password: null,
+        rePassword: null,
+        Address: null,
+        Identity: null,
+        Phone: null,
+        Name: null,
         error: false
       },
       connected: false
@@ -216,9 +216,7 @@ export default {
         Email: this.user.Email,
         Password: this.user.Password
       }).then((response) => {
-        // console.log(response)
         if (response.data.result) {
-          // console.log(response.data)
           localStorage.setItem('token', response.data.token)
           vm.$router.push('/home')
           this.$root.$emit('changeToHome')
