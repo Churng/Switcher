@@ -64,17 +64,27 @@ export default {
           this.searchData[county].push(data)
         }
       })
+      console.log(this.searchData)
       return this.searchData
     }
   },
   methods: {
     searchGame (search) {
-      const filterSearch = this.countyValue.filter(data => {
-        return (data.Name.search(search) !== -1)
-      })
-      this.$root.productSearchData = filterSearch
-      this.search = ''
-      return this.$root.productSearchData
+      if (!this.countyValue) {
+        const filterSearch = this.$root.productsData.filter(data => {
+          return (data.Name.search(search) !== -1)
+        })
+        this.$root.productSearchData = filterSearch
+        this.search = ''
+        return this.$root.productSearchData
+      } else {
+        const filterSearch = this.countyValue.filter(data => {
+          return (data.Name.search(search) !== -1)
+        })
+        this.$root.productSearchData = filterSearch
+        this.search = ''
+        return this.$root.productSearchData
+      }
     },
     isAllItem () {
       this.$root.productSearchData = false

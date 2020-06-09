@@ -1,4 +1,5 @@
 <template>
+<div class="EditpersonInfo">
   <div class="container">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
@@ -149,6 +150,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>

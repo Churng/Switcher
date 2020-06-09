@@ -2,6 +2,13 @@
     <section id="switcherProduct" class="bg-light">
         <div class="loading vh-100" v-if="loading"><img src="/img/Spinner-1.1s-200px.gif" alt="loading"></div>
         <div class="container-fluid" v-else>
+            <el-alert
+              title="請輸入日期 / 數量"
+              type="error"
+              show-icon
+              v-if="loginCart"
+              >
+            </el-alert>
             <div class="row returnShop mb-2">
                 <div class="col-12 d-flex text-muted align-items-center mt-5">
                     <i class="mr-2"><font-awesome-icon icon="chevron-left"/></i>
@@ -33,7 +40,7 @@
                           </a>
                     </div>
                     <ProductSellerStore />
-                    <div class="switcherProduct-proInfo">
+                    <div class="switcherProduct-proInfo mb-3">
                         <h5 class="mb-4">商品資訊</h5>
                         <div class="proInfo-content d-flex justify-content-between align-items-end">
                             <div class="contentBox">
@@ -45,15 +52,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-4 columns-right">
+                <div class="col-12 col-lg-4 columns-right mb-3">
                     <InstructionCard />
                     <div class="columns-category d-flex align-items-center mb-3">
-                        <span class="category-games bg-danger text-white mr-5 rounded">{{product[0].Category}}</span>
+                        <span class="category-games bg-danger text-white mr-3 rounded">{{product[0].Category}}</span>
+                        <span class="font-weight-bold mr-3">{{product[0].City}} {{product[0].Zone}}</span>
                         <span :class="product[0].Status=='可出租' ? 'isLease-icon':'notLease'"><font-awesome-icon icon="circle"/></span>
                         <span class="isLease ml-1">{{product[0].Status}}</span>
                     </div>
                     <div class="columns-priceArea">
-                        <p class="price mr-1 font-weight-bold">NT <span>{{product[0].Price}}</span> 元/日</p>
+                        <p class="price mr-1 font-weight-bold">NT <span>{{product[0].Price}}</span> 元 / 日</p>
                         <p class="mr-1">押金 : NT <span>{{product[0].Deposit}}</span></p>
                     </div>
                     <div class="columns-details d-flex justify-content-between">
@@ -74,10 +82,10 @@
                             <p>剩餘商品數量 : <span>{{product[0].Quantity}}</span></p>
                         </div>
                     </div>
-                    <ChooseProduct :product="product"/>
+                    <ChooseProduct :product="product" :loginCart="loginCart" @openFater='openWarn'/>
                 </div>
             </div>
-            <div class="row switcherProduct-review pt-3 pb-3">
+            <div class="row switcherProduct-review pb-3">
                 <div class="col-md-12">
                     <h5>商品評價</h5>
                     <div class="review-navBar bg-danger text-white d-flex justify-content-around align-items-center pt-2 pb-2">
@@ -155,7 +163,8 @@ export default {
   data () {
     return {
       product: [],
-      loading: false
+      loading: false,
+      loginCart: false
     }
   },
   components: { ProductSellerStore, ChooseProduct, InstructionCard },
@@ -168,10 +177,13 @@ export default {
       this.loading = true
       this.$http.get(api).then(res => {
         this.product = res.data
-        console.log(this.product)
+        // console.log(this.product)
         this.loading = false
         return this.product
       })
+    },
+    openWarn () {
+      this.loginCart = !this.loginCart
     }
   }
 }

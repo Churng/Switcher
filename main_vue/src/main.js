@@ -11,7 +11,6 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import router from './router/index'
 import App from './App.vue'
 import axios from 'axios'
-
 Vue.config.productionTip = false
 Vue.use(ElementUI, BootstrapVue, axios)
 Vue.prototype.$http = axios

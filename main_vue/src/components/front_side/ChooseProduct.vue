@@ -2,11 +2,12 @@
     <div class="columns-choose">
         <div class="choosed">
             <div class="rentDate">
-                <div>選擇日期 : </div>
+                <div>請選擇日期 : </div>
                 <div class="d-flex align-items-baseline mt-3">
                     <el-date-picker
                       v-model="value1"
                       type="daterange"
+                      value-format="yyyy-MM-dd HH:mm:ss"
                       range-separator="至"
                       start-placeholder="开始日期"
                       end-placeholder="结束日期">
@@ -25,9 +26,10 @@
                   </el-option>
                 </el-select>
             </div>
-            <div class="columns-btnArea">
+            <div class="columns-btnArea mb-4">
                 <button type="button" class="btn btn-outline-warning w-100 mb-3">賣家聊聊</button>
-                <button type="button" class="btn btn-warning w-100">我要租借</button>
+                <button type="button" class="btn btn-warning w-100" @click="isLogin" v-if="product[0].Status==='可出租'">我要租借</button>
+                <button type="button" class="btn btn-secondary w-100" disabled v-else>我要租借</button>
             </div>
         </div>
     </div>
@@ -65,15 +67,38 @@ export default {
         }]
       },
       value1: '',
-      value2: '',
-      quantity: ''
+      quantity: 0
     }
   },
-  props: ['product']
-  // computed: {
-  //   totalDays (value1, value2) {
-  //     return console.log(value1, value2)
-  //   }
-  // }
+  props: ['product', 'loginCart'],
+  methods: {
+    isLogin () {
+      const token = localStorage.getItem('token')
+      if (!token) {
+        this.$router.push('/login')
+      } else {
+        if ((this.value1 === '' && this.quantity === 0) || (this.value1 === '') || (this.quantity === 0)) {
+          this.openAlert()
+        } else {
+          this.postData()
+          return this.$router.push('/cartList')
+        }
+      }
+    },
+    postData () {
+      const api = 'http://switcher.rocket-coding.com/api/cart'
+      this.$http.post(api, {
+        ProductId: this.product[0].Id,
+        Quantity: this.quantity,
+        StartDate: this.value1[0],
+        EndDate: this.value1[1]
+      }).then(res => {
+        console.log('post', res)
+      })
+    },
+    openAlert () {
+      this.$emit('openFater', this.loginCart === true)
+    }
+  }
 }
 </script>

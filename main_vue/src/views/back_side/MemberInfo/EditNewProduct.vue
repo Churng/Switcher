@@ -10,10 +10,10 @@
         </ol>
       </nav>
 
-      <div class="row border-bottom">
+      <!-- <div class="row border-bottom">
         <div class="col-6 bg-light px-5 py-5 d-flex align-items-end">
           <img src="https://fakeimg.pl/250x250/" />
-          <input type="file" name="upload" class="ml-3" />
+          <input type="file" accept="image/*" @change="previewImage" name="upload" class="ml-3" />
         </div>
         <div class="col-6 bg-light">
           <div class="d-flex flex-wrap justify-content-around upload-goods-photo">
@@ -25,7 +25,12 @@
             <img class="goods-photo" src="https://fakeimg.pl/145x145/" />
           </div>
         </div>
-      </div>
+      </div> -->
+
+      <form runat="server">
+        <input type='file' id="imgInp" />
+        <img id="blah" src="#" alt="your image" />
+      </form>
     </div>
 
     <section @submit.prevent="updateProduct">
@@ -231,7 +236,7 @@
               </div>
             </div>
           </div>
-          <div class="PublicTime d-none">{{PublishDate|dateFormat('yyyy/MM/DD')}}</div>
+          <div class="PublicTime d-none">{{PublishDate|dateFormat}}</div>
           <div class="row bg-light d-flex justify-content-center">
             <div class="mt-3 mb-3">
               <button type="button" class="btn btn-danger">取消</button>
@@ -261,21 +266,18 @@ export default {
         Category: 0,
         Period: null,
         Description: '',
-        PublishDate: new Date()
+        PublishDate: ''
       }
     }
   },
   filters: {
     dateFormat: function (dateStr, pattern = '') {
       // 根據根據給定的時間字符串，得到特定的時間
-      var dt = new Date(dateStr)
-      var y = dt.getFullYear()
-      var m = dt.getMonth() + 1
-      var d = dt.getDate()
-      console.log(dt)
-      if (pattern.toLowerCase() === 'yyyy/mm/dd') {
-        return `${y}/${m}/${d}`
-      }
+      var date = new Date(dateStr)
+      var y = date.getFullYear()
+      var m = date.getMonth() + 1
+      var d = date.getDate()
+      return `${y}/${m}/${d}`
     }
   },
   methods: {

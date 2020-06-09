@@ -1,5 +1,5 @@
 <template>
-  <div class="login ">
+  <div class="login bg-light">
     <div class="container">
       <div class="row d-flex flex-column">
         <div class="login-content">
@@ -178,7 +178,6 @@
 <style>
 </style>
 <script>
-// import $http from 'vue-resource'
 
 export default {
   name: 'Login',
@@ -186,13 +185,13 @@ export default {
     return {
       // 登入驗證資料結構 - 物件
       user: {
-        Email: '', // 帳號
-        Password: '',
-        rePassword: '',
-        Address: '',
-        Identity: '',
-        Phone: '',
-        Name: '',
+        Email: null, // 帳號
+        Password: null,
+        rePassword: null,
+        Address: null,
+        Identity: null,
+        Phone: null,
+        Name: null,
         error: false
       }
     }

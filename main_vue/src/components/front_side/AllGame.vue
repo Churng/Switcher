@@ -36,7 +36,7 @@
         <ul class="row shop-body list-unstyled flex-wrap bg-white pt-5 pb-2 mb-0">
           <h3 class="text-center w-100" v-if="$root.productsData.length <=0">尚無任何商品</h3>
           <ShopItem v-for="(item, index) in searchList" :key="index" :item="item" :index="index" />
-          <h3 class="text-center w-100" v-if="$root.productSearchData.length <= 0">查無資料</h3>
+          <h3 class="text-center w-100" v-if="$root.productSearchData.length < 0">查無資料</h3>
         </ul>
     </div>
 </template>
