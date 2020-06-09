@@ -7,12 +7,12 @@
                     <el-date-picker
                       v-model="value1"
                       type="daterange"
-                      value-format="yyyy-MM-dd HH:mm:ss"
+                      value-format="yyyy-MM-dd"
                       range-separator="至"
                       start-placeholder="开始日期"
                       end-placeholder="结束日期">
                   </el-date-picker>
-                  <!-- <p class="total-rentDate ml-2">共<span>30</span>日</p> -->
+                  <p class="total-rentDate ml-2">共<span>{{totalDays}}</span>日</p>
                 </div>
             </div>
             <div class="quantity d-flex align-items-baseline mt-3 mb-3">
@@ -66,11 +66,31 @@ export default {
           }
         }]
       },
-      value1: '',
-      quantity: 0
+      value1: '0',
+      quantity: 0,
+      totalDay: 0
     }
   },
   props: ['product', 'loginCart'],
+  computed: {
+    totalDays () {
+      const sDate1 = this.value1[0]
+      const sDate2 = this.value1[1]
+      var aDate, oDate1, oDate2, iDays
+      if (this.value1 === '0') {
+        return '0'
+      } else {
+        aDate = sDate1.split('-')
+        // 轉換為12-18-2002格式
+        oDate1 = new Date(aDate[1] + '-' + aDate[2] + '-' + aDate[0])
+        aDate = sDate2.split('-')
+        oDate2 = new Date(aDate[1] + '-' + aDate[2] + '-' + aDate[0])
+        // 把相差的毫秒數轉換為天數
+        iDays = parseInt(Math.abs(oDate1 - oDate2) / 1000 / 60 / 60 / 24)
+        return iDays
+      }
+    }
+  },
   methods: {
     isLogin () {
       const token = localStorage.getItem('token')
@@ -87,13 +107,22 @@ export default {
     },
     postData () {
       const api = 'http://switcher.rocket-coding.com/api/cart'
+      const token = localStorage.getItem('token')
       this.$http.post(api, {
         ProductId: this.product[0].Id,
         Quantity: this.quantity,
         StartDate: this.value1[0],
-        EndDate: this.value1[1]
+        EndDate: this.value1[1],
+        Period: this.totalDays
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       }).then(res => {
         console.log('post', res)
+      }).catch(err => {
+        console.log(err)
       })
     },
     openAlert () {

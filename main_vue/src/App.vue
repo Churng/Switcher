@@ -34,6 +34,21 @@ export default {
       })
     }
   }
+  // mounted () {
+  //   window.fbAsyncInit = function () {
+  //     FB.init({
+  //       appId: '582425672683465',
+  //       xfbml: true,
+  //       version: 'v7.0'
+  //     })
+  //     FB.AppEvents.logPageView()
+  //   }
+  //   FB.getLoginStatus (result => {
+  //     if (result.status === 'connected') {
+  //       this.connected = true
+  //     }
+  //   })
+  // }
 }
 </script>
 

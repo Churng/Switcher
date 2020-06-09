@@ -41,7 +41,6 @@ new Vue({
   created () {
     this.$on('changeToHome', function () {
       this.ChangeMemberinfo = true
-      console.log(this.$http)
     })
   },
   // i18n,

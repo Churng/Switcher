@@ -71,7 +71,7 @@ const routes = [
     component: CartList,
     children: [
       {
-        path:'cartContract',
+        path: 'cartContract',
         name: 'CartContract',
         component: CartContract
       }

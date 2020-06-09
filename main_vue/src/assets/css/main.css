@@ -12578,6 +12578,9 @@ body {
     bottom: 10px;
     right: 15px;
   }
+  .switcherOrder-content .fa-trash-alt:hover {
+    color: #E60012;
+  }
 }
 
 @media (max-width: 320px) {
@@ -12765,7 +12768,7 @@ body {
   white-space: pre-wrap;
   word-wrap: break-word;
   background-color: #fff;
-  font-size: 0.875rem;
+  font-size: 1.125rem;
   color: #737373;
 }
 
@@ -12967,7 +12970,7 @@ body {
 }
 
 .review-list .userReview {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
 }
 
 .review-list li:last-child .review-item {
@@ -13193,7 +13196,7 @@ body {
 
 @media (max-width: 320px) {
   .login {
-    height: 130vh;
+    height: calc(100%-80px);
   }
 }
 
@@ -13254,6 +13257,7 @@ body {
 @media (max-width: 320px) {
   .login-content {
     width: 100%;
+    min-height: 890px;
     margin: 0 auto;
     padding: 25px;
   }

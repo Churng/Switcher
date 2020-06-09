@@ -70,7 +70,7 @@
               <div class="tab-content-thirdlogin">
                 <p>以下帳號快速登入</p>
                 <div class="social-login">
-                  <button type="button" class="btn btn-social login-facebook">Facebook</button>
+                  <button type="button" class="btn btn-social login-facebook" @click.prevent="fbSignIn">Facebook</button>
                   <button type="button" class="btn btn-danger login-google">Google</button>
                 </div>
               </div>
@@ -164,7 +164,7 @@
               <div class="tab-content-thirdlogin">
                 <p>以下帳號快速登入</p>
                 <div class="social-login">
-                  <button type="button" class="btn btn-social login-facebook">Facebook</button>
+                  <button type="button" class="btn btn-social login-facebook" @click.prevent="fbSignIn">Facebook</button>
                   <button type="button" class="btn btn-danger login-google">Google</button>
                 </div>
               </div>
@@ -175,11 +175,8 @@
     </div>
   </div>
 </template>
-<style>
-</style>
-<script>
-// import $http from 'vue-resource'
 
+<script>
 export default {
   name: 'Login',
   data () {
@@ -194,8 +191,21 @@ export default {
         Phone: '',
         Name: '',
         error: false
-      }
+      },
+      connected: false
     }
+  },
+  mounted () {
+    window.fbAsyncInit = function init () {
+      window.FB.init({
+        appId: '582425672683465',
+        cookie: true,
+        xfbml: true,
+        version: 'v7.0'
+      })
+      window.FB.AppEvents.logPageView()
+    }
+    this.fbInit(document, 'script', 'facebook-jssdk')
   },
   methods: {
     login () {
@@ -224,6 +234,26 @@ export default {
         } else {
           alert('註冊失敗！')
         }
+      })
+    },
+    fbInit (d, s, id) {
+      let js = null
+      const fjs = d.getElementsByTagName(s)[0]
+      if (d.getElementById(id)) { return }
+      js = d.createElement(s)
+      js.id = id
+      js.src = 'https://connect.facebook.net/en_US/sdk.js'
+      fjs.parentNode.insertBefore(js, fjs)
+    },
+    fbSignIn () {
+      window.FB.login(({ status, authResponse }) => {
+        if (status === 'connected') {
+          this.$router.push('/home')
+          this.$root.$emit('changeToHome')
+        }
+      },
+      {
+        scope: 'public_profile,email'
       })
     }
   }
