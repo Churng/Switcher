@@ -5,16 +5,8 @@
 @import '../Scss/variables';
 @import '../../../node_modules/bootstrap/scss/mixins';
 
-
 //BS4
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
-
-//config
-
-
-//layout
-// @import 'layout/header';
-// @import 'layout/footer';
 
 //layout-login
 @import 'layout/login/login';

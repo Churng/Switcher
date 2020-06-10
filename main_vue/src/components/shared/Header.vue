@@ -18,11 +18,11 @@
                         <span class="header-navBar-label">團隊介紹</span>
                     </router-link>
                 </li>
-                <li class="sm-findChevron pc-eShop" @click="pcShow.eShop=!pcShow.eShop">
+                <li class="sm-findChevron pc-eShop" @click.prevent="pcShow.eShop=!pcShow.eShop">
                     <div class="d-flex justify-content-center w-100">
                         <span class="header-navBar-icon mr-2"><font-awesome-icon icon="shopping-bag"/></span>
                         <span class="header-navBar-label">Nintendo eShop</span>
-                        <span class="header-navBar-icon findChevron" @click="phoneShow.eShop=!phoneShow.eShop"><font-awesome-icon :icon="phoneShow.eShop ? 'angle-up' :'chevron-down'"/></span>
+                        <span class="header-navBar-icon findChevron" @click.prevent="phoneShow.eShop=!phoneShow.eShop"><font-awesome-icon :icon="phoneShow.eShop ? 'angle-up' :'chevron-down'"/></span>
                     </div>
                     <div class="w-100 sm-openItem" v-show="phoneShow.eShop">
                         <p class="mb-0">Nintendo eShop (官方網頁)</p>
@@ -30,28 +30,27 @@
                     </div>
                 </li>
                 <li class="sm-findChevron">
-                   <router-link to="/login" v-show="!ChangeMemberinfo">
+                    <router-link to="/login" v-if="!$root.ChangeMember">
                         <span class="header-navBar-icon mr-2"><font-awesome-icon icon="sign-in-alt"/></span>
                         <span class="header-navBar-label">登入/註冊</span>
                     </router-link>
-                    <div class=" d-flex justify-content-center w-100 pc-user"  @click="pcShow.user=!pcShow.user">
+                    <div class=" d-flex justify-content-center w-100 pc-user" v-else @click="pcShow.user=!pcShow.user">
                           <span class="header-navBar-icon mr-2"><font-awesome-icon icon="user-circle"/></span>
                           <span class="header-navBar-label ">會員管理</span>
-                        <span class="header-navBar-icon findChevron" @click="phoneShow.user=!phoneShow.user"><font-awesome-icon :icon="phoneShow.user ? 'angle-up' :'chevron-down'"/></span>
+                        <span class="header-navBar-icon findChevron" @click.prevent="phoneShow.user=!phoneShow.user"><font-awesome-icon :icon="phoneShow.user ? 'angle-up' :'chevron-down'"/></span>
                     </div>
                     <div class="w-100 sm-openItem" v-show="phoneShow.user" >
-                        <router-link to="/editmemberinfo">會員資料</router-link>
-                        <p class="mb-0">訂單管理</p>
+                        <router-link to="/editmemberinfo"><p class="mb-0">會員資料</p></router-link>
+                        <router-link to="/orderseller"><p class="mb-0">訂單管理</p></router-link>
                         <p class="mb-0">我的賣場</p>
-                        <p class="mb-0">商品上架</p>
-                        <p class="mb-0">聊天室</p>
+                        <router-link to="/editnewproduct"><p class="mb-0">商品上架</p></router-link>
+                        <router-link to="/inbox"><p class="mb-0">聊天室</p></router-link>
                         <p class="mb-2" @click.prevent="signout">會員登出</p>
                     </div>
                 </li>
-                <li class="d-flex justify-content-center sm-findChevron pc-shoppingCart"  @click="pcShow.shoppingCart=!pcShow.shoppingCart">
-                    <a href="">
-                        <span class="header-navBar-icon"><font-awesome-icon icon="shopping-cart"/></span>
-                    </a>
+                <li class="d-flex justify-content-center sm-findChevron pc-shoppingCart" @click.prevent="userCart">
+                    <span class="header-navBar-icon"><font-awesome-icon icon="shopping-cart"/></span>
+                    <span class="ml-2" v-if="$root.cartQuantity">( {{this.$root.getCartLen}} )</span>
                 </li>
             </ul>
         </div>
@@ -119,16 +118,18 @@
                         </a>
                     </div>
                 </div>
-                <div class="row h-navBar-cart" v-show="pcShow.shoppingCart" :class="pcShow.shoppingCart ? 'd-flex justify-content-end' : 'd-none'">
-                    <Cart />
-                </div>
+                <!-- <div class="row h-navBar-cart" :class="pcShow.shoppingCart ? 'd-none' : 'd-flex justify-content-end'">
+                  <div class="col-md-4 cartItems shadow p-3 mb-5 bg-white rounded" v-if="this.$root.getCarts.length === 0">
+                    <div class="text-center"><span class="font-weight-bold text-center">沒有商品在購物車內</span></div>
+                  </div>
+                </div> -->
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import Cart from '../front_side/Cart'
+let token = localStorage.getItem('token')
 
 export default {
   name: 'App',
@@ -142,23 +143,43 @@ export default {
         eShop: false,
         user: false,
         shoppingCart: false
-      },
-      token: localStorage.getItem('token')
+      }
     }
   },
-  components: { Cart },
+  created () {
+    token = localStorage.getItem('token')
+    if (token) {
+      this.$root.cartQuantity = true
+      this.$root.ChangeMember = true
+      this.$root.getCartLen = localStorage.getItem('cartLen')
+    } else {
+      this.$root.cartQuantity = false
+      this.$root.ChangeMember = false
+    }
+  },
   methods: {
     signout () {
       localStorage.removeItem('token')
-      this.$root.ChangeMemberinfo = false
+      localStorage.removeItem('cartLen')
+      this.$root.ChangeMember = false
       this.pcShow.user = false
-      console.log(this.$root.ChangeMemberinfo)
-    }
-  },
-  computed: {
-    ChangeMemberinfo () {
-      console.log(1231132)
-      return this.$root.ChangeMemberinfo
+      this.$root.cartQuantity = false
+      this.logoutSuccess()
+      this.$router.push('/home')
+    },
+    userCart () {
+      token = localStorage.getItem('token')
+      if (token) {
+        this.$router.push('/cartList')
+      } else {
+        this.$router.push('/login')
+      }
+    },
+    logoutSuccess () {
+      this.$notify({
+        title: '登出成功',
+        type: 'success'
+      })
     }
   }
 }

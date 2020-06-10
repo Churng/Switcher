@@ -218,8 +218,11 @@ export default {
       }).then((response) => {
         if (response.data.result) {
           localStorage.setItem('token', response.data.token)
+          this.getCartData()
           vm.$router.push('/home')
           this.$root.$emit('changeToHome')
+          this.$root.ChangeMember = true
+          this.$root.cartQuantity = true
         }
       })
     },
@@ -230,8 +233,14 @@ export default {
         if (response.data.result) {
           vm.$router.push('/home')
         } else {
-          alert('註冊失敗！')
+          this.errorImg()
         }
+      })
+    },
+    errorImg () {
+      this.$notify.error({
+        title: '註冊失敗',
+        message: '註冊失敗!請再重試一次'
       })
     },
     fbInit (d, s, id) {
@@ -252,6 +261,19 @@ export default {
       },
       {
         scope: 'public_profile,email'
+      })
+    },
+    getCartData () {
+      const api = 'http://switcher.rocket-coding.com/api/cart'
+      const token = localStorage.getItem('token')
+      this.$http.get(api, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).then(res => {
+        this.$root.getCarts = res.data.carts
+        this.$root.getCartLen = res.data.carts.length
+        localStorage.setItem('cartLen', res.data.carts.length)
       })
     }
   }

@@ -10,7 +10,8 @@ import Game from '../components/front_side/Game'
 import GameStick from '../components/front_side/GameStick'
 import Seller from '../views/Seller'
 import CartList from '../views/CartList'
-import CartContract from '../views/CartContract'
+import OrderContract from '../components/front_side/OrderContract'
+import FinishOrder from '../views/FinishOrder'
 
 // back_side
 import Login from '../views/back_side/Login'
@@ -22,6 +23,12 @@ import Inbox from '../views/back_side/MemberInfo/Inbox'
 import Chatroom from '../views/back_side/MemberInfo/Chatroom'
 
 Vue.use(VueRouter)
+
+// 解決报错显示:路由重复
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push (location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 
 const routes = [
   {
@@ -70,14 +77,17 @@ const routes = [
     path: '/cartList',
     name: 'CartList',
     component: CartList,
-    meta: { requiresAuth: true },
-    children: [
-      {
-        path: 'cartContract',
-        name: 'CartContract',
-        component: CartContract
-      }
-    ]
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/orderContract',
+    name: 'OrderContract',
+    component: OrderContract
+  },
+  {
+    path: '/finishOrder',
+    name: 'FinishOrder',
+    component: FinishOrder
   },
   {
     path: '/seller/:id',

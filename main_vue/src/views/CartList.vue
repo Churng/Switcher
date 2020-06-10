@@ -1,5 +1,5 @@
 <template>
-    <section id="switcherOrder-one" class="bg-light">
+    <section id="switcherOrder-one" class="bg-light pb-5">
         <div class="container">
             <el-alert
               title="請正確輸入資料"
@@ -11,10 +11,14 @@
             <div class="row returnShop">
                 <div class="col-12 d-flex text-muted align-items-center mt-5">
                     <i class="mr-2"><font-awesome-icon icon="chevron-left"/></i>
-                    <span @click="$router.go(-1)">返回上一頁</span>
+                    <span @click.prevent="$router.go(-1)">返回上一頁</span>
                 </div>
             </div>
-            <div class="row">
+            <div class="text-center vh-100 d-flex flex-column justify-content-center align-items-center" v-if="$root.getCarts.length === 0 || this.$root.getCartLen === 0">
+              <h2 class="font-weight-bold pt-5 pb-5">沒有商品在購物車內</h2>
+              <span class="shopping"><font-awesome-icon icon="cart-arrow-down"/></span>
+            </div>
+            <div class="row" v-if="$root.getCarts.length">
                 <div class="col-md-6 col-10 mx-auto mt-5 mb-5">
                     <div class="progress-txt d-flex justify-content-around">
                         <p class="active">Step1.確認購物車</p>
@@ -26,10 +30,11 @@
                 </div>
             </div>
         </div>
-        <div class="container mb-5">
-            <div class="switcherOrder-orderArea border border-secondary pt-3 pb-3 pl-3 pr-3">
-                <h6><i class="mr-2"><font-awesome-icon icon="store"/></i>賣家帳號 : <span>{{getCarts[0].Seller}}</span></h6>
-                <div class="row switcherOrder-content d-flex align-items-center pb-3 border-bottom border-light mb-3"  v-for="(item, index) in getCarts" :key="index">
+        <div class="container mb-5" v-if="$root.getCarts.length">
+            <div>
+              <div class="switcherOrder-orderArea border border-secondary pt-3 pb-3 pl-3 pr-3" v-for="(index, item) in cartData" :key="item.Id">
+                <h6><i class="mr-2"><font-awesome-icon icon="store"/></i>賣家帳號 : <span>{{item}}</span></h6>{{index}}
+                <!-- <div class="row switcherOrder-content d-flex align-items-center pb-3 border-bottom border-light mb-3">
                     <div class="col-md-4 switcherOrder-img">
                         <img :src="item.Product.ImageUrl" alt="game">
                     </div>
@@ -49,7 +54,7 @@
                             </div>
                         </div>
                         <div class="content-prices d-flex align-items-baseline">
-                            <p class="mb-1 mr-2">租金 : <span >{{item.Product.Price}}</span>元</p>
+                            <p class="mb-1 mr-2">租金 : <span >{{item.Product.Total}}</span>元</p>
                             <p class="mb-1">押金 : <span>{{item.Product.Deposit}}</span>元</p>
                         </div>
                         <div class="d-flex align-items-baseline">
@@ -62,12 +67,18 @@
                         </div>
                     </div>
                     <div class="col-md-1 switcherOrder-delete" @click="open(item.Id)"><font-awesome-icon icon="trash-alt"/></div>
+                </div> -->
+                <div class="d-flex justify-content-end pr-3">
+                  <p class="totalTxt mr-3">總租金 : <span class="totalNum">{{totalPrice}}</span> 元</p>
+                  <p class="totalTxt ml-3">總押金 : <span class="totalNum">{{totalDeposit}}</span> 元</p>
                 </div>
+              </div>
             </div>
         </div>
-        <div class="container">
-            <h4 class="text-center mb-5">請輸入資料</h4>
-            <CartInputs />
+        <div class="container" v-if="$root.getCartLen > 0">
+            <h4 class="text-center mb-3">請輸入資料</h4>
+            <div class="endLine mb-4"></div>
+            <CartInputs :totalPrice="totalPrice" :totalDeposit="totalDeposit"/>
         </div>
     </section>
 </template>
@@ -79,7 +90,7 @@ export default {
   data () {
     return {
       isError: false,
-      getCarts: []
+      cartData: []
     }
   },
   components: { CartInputs },
@@ -87,18 +98,6 @@ export default {
     this.getCartData()
   },
   methods: {
-    getCartData () {
-      const api = 'http://switcher.rocket-coding.com/api/cart'
-      const token = localStorage.getItem('token')
-      this.$http.get(api, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }).then(res => {
-        this.getCarts = res.data.carts
-        console.log(this.getCarts)
-      })
-    },
     open (idx) {
       this.$confirm('此操作將永遠刪除該文件, 是否继续 ?', '提示', {
         confirmButtonText: '確定',
@@ -115,7 +114,8 @@ export default {
           this.$message({
             type: 'success',
             message: '删除成功!'
-          })
+          }),
+          this.getCartData()
         )
       }).catch(() => {
         this.$message({
@@ -123,6 +123,55 @@ export default {
           message: '已取消删除'
         })
       })
+    },
+    async getCartData () {
+      const api = 'http://switcher.rocket-coding.com/api/cart'
+      const token = localStorage.getItem('token')
+      await this.$http.get(api, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).then(res => {
+        // 整理成賣家:{Product}
+        const data = res.data.carts
+        data.forEach(data => {
+          const seller = data.Seller
+          if (!this.cartData[seller]) {
+            this.$set(this.cartData, seller, [data])
+          } else {
+            this.cartData[seller].push(data)
+          }
+        })
+        // 原生資料
+        this.$root.getCarts = res.data.carts
+        this.$root.getCartLen = res.data.carts.length
+        localStorage.setItem('cartLen', res.data.carts.length)
+        console.log(this.cartData)
+        this.isError = false
+        return this.cartData
+      })
+    }
+  },
+  computed: {
+    totalPrice () {
+      var countTotal = 0
+      if (this.$root.getCarts.length) {
+        for (var i = 0; i < this.$root.getCartLen; i++) {
+          var item = this.$root.getCarts[i].Product
+          countTotal += item.Total
+        }
+      }
+      return countTotal.toLocaleString()
+    },
+    totalDeposit () {
+      var depositTotal = 0
+      if (this.$root.getCarts.length) {
+        for (var i = 0; i < this.$root.getCartLen; i++) {
+          var item = this.$root.getCarts[i].Product
+          depositTotal += item.Deposit
+        }
+      }
+      return depositTotal.toLocaleString()
     }
   }
 }
@@ -134,5 +183,22 @@ export default {
 }
 .switcherOrder-content .fa-trash-alt:hover{
   color: #FF7D01;
+}
+.endLine{
+  width: 100px;
+  height: 5px;
+  background: #ededed;
+  margin: 0 auto;
+}
+.totalTxt{
+  font-size: 20px;
+}
+.totalNum{
+  font-size: 30px;
+  color: #FF7D01;
+  font-weight: 700;
+}
+.shopping{
+  font-size: 80px;
 }
 </style>
