@@ -201,18 +201,18 @@ export default {
       const api = "http://switcher.rocket-coding.com/api/member/update";
       const token = localStorage.getItem("token");
       const updateInfo = {
-          Id: "userData[0].Id",
-          Name: "userData[0].Name",
-          Password: "userData[0].Password",
-          Phone: "userData[0].Phone",
-          Email: "userData[0].Email",
-          Identity: "userData[0].Identity",
-          Address: "userData[0].Address",
-          StoreDescription: "userData[0].StoreDescription",
-          Reply: ""
+          Id: this.userData[0].Id,
+          Name: this.userData[0].Name,
+          Password: this.userData[0].Password,
+          Phone: this.userData[0].Phone,
+          Email: this.userData[0].Email,
+          Identity: this.userData[0].Identity,
+          Address: this.userData[0].Address,
+          StoreDescription: this.userData[0].StoreDescription,
+          Reply: '早上'
         }
       this.$http
-        .put(api, this.userData, {
+        .put(api, updateInfo, {
           headers: {
             Authorization: `Bearer ${token}`
           }

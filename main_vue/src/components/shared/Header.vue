@@ -95,10 +95,12 @@
                         </router-link>
                     </div>
                     <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
-                        <a href="" class="d-block">
-                            <img src="/img/icon/iconfinder_thefreeforty_shop_1243706.png" alt="userStore">
-                            <p>我的賣場</p>
-                        </a>
+                        <router-link to="/sellerstore">
+                            <a href="" class="d-block">
+                                <img src="/img/icon/iconfinder_thefreeforty_shop_1243706.png" alt="userStore">
+                                <p>我的賣場</p>
+                            </a>
+                        </router-link>
                     </div>
                     <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
                          <router-link to="/editnewproduct" class="d-block">
@@ -157,7 +159,6 @@ export default {
   },
   computed: {
     ChangeMemberinfo () {
-      console.log(1231132)
       return this.$root.ChangeMemberinfo
     }
   }

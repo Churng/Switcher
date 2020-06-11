@@ -20,7 +20,8 @@ import EditNewProduct from '../views/back_side/MemberInfo/EditNewProduct'
 import OrderSeller from '../views/back_side/MemberInfo/OrderSeller'
 import Inbox from '../views/back_side/MemberInfo/Inbox'
 import Chatroom from '../views/back_side/MemberInfo/Chatroom'
-
+import SellerStore from '../views/back_side/MemberInfo/SellerStore'
+import EditProduct from '../components/back_side/EditProduct'
 Vue.use(VueRouter)
 
 const routes = [
@@ -103,25 +104,29 @@ const routes = [
   {
     path: '/editmemberinfo',
     name: 'Editmemberinfo',
-    component: Editmemberinfo
+    component: Editmemberinfo,
+    meta: { requiresAuth: true }
   },
   {
     path: '/editnewproduct',
     name: 'EditNewProduct',
-    component: EditNewProduct
+    component: EditNewProduct,
+    meta: { requiresAuth: true }
   },
   {
     path: '/orderseller',
     name: 'OrderSeller',
-    component: OrderSeller
+    component: OrderSeller,
+    meta: { requiresAuth: true }
   },
   {
     path: '/inbox',
     name: 'Inbox',
     component: Inbox,
+    meta: { requiresAuth: true },
     children: [
       {
-        path: '/chatroom:id',
+        path: 'chatroom:id',
         name: 'Chatroom',
         component: Chatroom
       }
@@ -130,6 +135,17 @@ const routes = [
   {
     path: '*',
     redirect: '/login'
+  },
+  {
+    path: '/sellerstore',
+    name: 'SellerStore',
+    component: SellerStore,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/editproduct',
+    name: 'EditProduct',
+    component: EditProduct
   }
 ]
 

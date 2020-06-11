@@ -63,93 +63,129 @@
             </div>
             <div class="row switcherStore-main bg-danger justify-content-center text-center pt-2 pb-2">
                 <div class="col-md-2 border-right"><a href="" class="main-item active d-block text-white">所有商品</a></div>
-                <div class="col-md-2 border-right"><a href="" class="main-item d-block text-white">遊戲主機</a></div>
-                <div class="col-md-2 border-right"><a href="" class="main-item d-block text-white">遊戲軟體</a></div>
-                <div class="col-md-2 border-right"><a href="" class="main-item d-block text-white">遊戲配件</a></div>
+                <!-- <div class="col-md-2 border-right"><a href="" class="main-item d-block text-white" @click.native="isAllItem">遊戲主機</a></div>
+                <div class="col-md-2 border-right"><a href="" class="main-item d-block text-white" @click.native="isAllItem">遊戲軟體</a></div>
+                <div class="col-md-2 border-right"><a href="" class="main-item d-block text-white" @click.native="isAllItem">遊戲配件</a></div> -->
                 <div class="col-md-2"><a href="" class="main-item d-block text-white">優惠活動</a></div>
+                <!-- <ul class="row switcherStore-body list-unstyled flex-wrap pt-5 pb-4">
+                    <li class="col-10 col-sm-6 col-md-6 col-xl-3 col-lg-4">
+                        <div class="card mb-4">
+                            <img src="/img/gameHost/gameHost01.jpg" class="card-img-top" alt="gameHost">
+                            <div class="card-body">
+                                <div class="card-text">
+                                    <h3>Switch 灰黑機</h3>
+                                    <div class="card-text-top d-flex justify-content-between">
+                                        <div class="card-mainTxt">
+                                            <span class="location mr-2">高雄市</span>
+                                            <span class="isLease-icon"><i class="fas fa-circle"></i></span>
+                                            <span class="isLease">可出租</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-text-bottom d-flex justify-content-between align-items-baseline mb-2">
+                                        <div class="onDate">
+                                            <span>上架日期</span>
+                                            <span>2020/05/05</span>
+                                        </div>
+                                        <div class="priceArea">
+                                            <p class="mb-0">租金<span>10</span>元/日</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="col-10 col-sm-6 col-md-6 col-xl-3 col-lg-4">
+                        <div class="card mb-4">
+                            <img src="/img/gameHost/gameHost01.jpg" class="card-img-top" alt="gameHost">
+                            <div class="card-body">
+                                <div class="card-text">
+                                    <h3>Switch 灰黑機</h3>
+                                    <div class="card-text-top d-flex justify-content-between">
+                                        <div class="card-mainTxt">
+                                            <span class="location mr-2">高雄市</span>
+                                            <span class="isLease-icon"><i class="fas fa-circle"></i></span>
+                                            <span class="isLease">可出租</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-text-bottom d-flex justify-content-between align-items-baseline mb-2">
+                                        <div class="onDate">
+                                            <span>上架日期</span>
+                                            <span>2020/05/05</span>
+                                        </div>
+                                        <div class="priceArea">
+                                            <p class="mb-0">租金<span>10</span>元/日</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="col-10 col-sm-6 col-md-6 col-xl-3 col-lg-4">
+                        <div class="card mb-4">
+                            <img src="/img/gameHost/gameHost01.jpg" class="card-img-top" alt="gameHost">
+                            <div class="card-body">
+                                <div class="card-text">
+                                    <h3>Switch 灰黑機</h3>
+                                    <div class="card-text-top d-flex justify-content-between">
+                                        <div class="card-mainTxt">
+                                            <span class="location mr-2">高雄市</span>
+                                            <span class="isLease-icon"><i class="fas fa-circle"></i></span>
+                                            <span class="isLease">可出租</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-text-bottom d-flex justify-content-between align-items-baseline mb-2">
+                                        <div class="onDate">
+                                            <span>上架日期</span>
+                                            <span>2020/05/05</span>
+                                        </div>
+                                        <div class="priceArea">
+                                            <p class="mb-0">租金<span>10</span>元/日</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul> -->
             </div>
-            <div class="mx-auto">
-                <ul class="row switcherStore-body list-unstyled flex-wrap pt-5 pb-4">
-                    <li class="col-10 col-sm-6 col-md-6 col-xl-3 col-lg-4">
-                        <div class="card mb-4">
-                            <img src="/img/gameHost/gameHost01.jpg" class="card-img-top" alt="gameHost">
-                            <div class="card-body">
-                                <div class="card-text">
-                                    <h3>Switch 灰黑機</h3>
-                                    <div class="card-text-top d-flex justify-content-between">
-                                        <div class="card-mainTxt">
-                                            <span class="location mr-2">高雄市</span>
-                                            <span class="isLease-icon"><i class="fas fa-circle"></i></span>
-                                            <span class="isLease">可出租</span>
-                                        </div>
-                                    </div>
-                                    <div class="card-text-bottom d-flex justify-content-between align-items-baseline mb-2">
-                                        <div class="onDate">
-                                            <span>上架日期</span>
-                                            <span>2020/05/05</span>
-                                        </div>
-                                        <div class="priceArea">
-                                            <p class="mb-0">租金<span>10</span>元/日</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="col-10 col-sm-6 col-md-6 col-xl-3 col-lg-4">
-                        <div class="card mb-4">
-                            <img src="/img/gameHost/gameHost01.jpg" class="card-img-top" alt="gameHost">
-                            <div class="card-body">
-                                <div class="card-text">
-                                    <h3>Switch 灰黑機</h3>
-                                    <div class="card-text-top d-flex justify-content-between">
-                                        <div class="card-mainTxt">
-                                            <span class="location mr-2">高雄市</span>
-                                            <span class="isLease-icon"><i class="fas fa-circle"></i></span>
-                                            <span class="isLease">可出租</span>
-                                        </div>
-                                    </div>
-                                    <div class="card-text-bottom d-flex justify-content-between align-items-baseline mb-2">
-                                        <div class="onDate">
-                                            <span>上架日期</span>
-                                            <span>2020/05/05</span>
-                                        </div>
-                                        <div class="priceArea">
-                                            <p class="mb-0">租金<span>10</span>元/日</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="col-10 col-sm-6 col-md-6 col-xl-3 col-lg-4">
-                        <div class="card mb-4">
-                            <img src="/img/gameHost/gameHost01.jpg" class="card-img-top" alt="gameHost">
-                            <div class="card-body">
-                                <div class="card-text">
-                                    <h3>Switch 灰黑機</h3>
-                                    <div class="card-text-top d-flex justify-content-between">
-                                        <div class="card-mainTxt">
-                                            <span class="location mr-2">高雄市</span>
-                                            <span class="isLease-icon"><i class="fas fa-circle"></i></span>
-                                            <span class="isLease">可出租</span>
-                                        </div>
-                                    </div>
-                                    <div class="card-text-bottom d-flex justify-content-between align-items-baseline mb-2">
-                                        <div class="onDate">
-                                            <span>上架日期</span>
-                                            <span>2020/05/05</span>
-                                        </div>
-                                        <div class="priceArea">
-                                            <p class="mb-0">租金<span>10</span>元/日</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+            <EditProduct />
         </div>
     </section>
 </template>
+
+<script>
+import EditProduct from '../../../components/back_side/EditProduct'
+
+export default {
+  data () {
+    return {
+    }
+  },
+  methods: {
+    getProduct () {
+      const api = 'http://switcher.rocket-coding.com/api/member'
+      const token = localStorage.getItem('token')
+      this.$http
+        .get(api, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        .then(response => {
+          this.userData = response.data
+          console.log(this.userData)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    },
+    isAllItem () {
+      this.$root.productSearchData = false
+    }
+  },
+  created () {
+    this.getProduct()
+  },
+  components: { EditProduct }
+}
+</script>

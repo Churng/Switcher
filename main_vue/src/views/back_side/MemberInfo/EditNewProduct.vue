@@ -27,10 +27,10 @@
         </div>
       </div> -->
 
-      <form runat="server">
+      <!-- <form runat="server">
         <input type='file' id="imgInp" />
         <img id="blah" src="#" alt="your image" />
-      </form>
+      </form> -->
     </div>
 
     <section @submit.prevent="updateProduct">
@@ -236,11 +236,11 @@
               </div>
             </div>
           </div>
-          <div class="PublicTime d-none">{{PublishDate|dateFormat}}</div>
+          <div class="PublicTime d-none" >{{PublishDate}}</div>
           <div class="row bg-light d-flex justify-content-center">
             <div class="mt-3 mb-3">
               <button type="button" class="btn btn-danger">取消</button>
-              <button type="submit" class="btn btn-warning">儲存變更</button>
+              <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#staticBackdrop">儲存</button>
             </div>
           </div>
         </form>
@@ -266,24 +266,15 @@ export default {
         Category: 0,
         Period: null,
         Description: '',
-        PublishDate: ''
+        PublishDate: new Date()
       }
-    }
-  },
-  filters: {
-    dateFormat: function (dateStr, pattern = '') {
-      // 根據根據給定的時間字符串，得到特定的時間
-      var date = new Date(dateStr)
-      var y = date.getFullYear()
-      var m = date.getMonth() + 1
-      var d = date.getDate()
-      return `${y}/${m}/${d}`
     }
   },
   methods: {
     updateProduct () {
       const api = 'http://switcher.rocket-coding.com/api/product/add'
       const token = localStorage.getItem('token')
+      const today = new Date()
       const newproduct = {
         Name: this.commodity.Name,
         OriginPrice: this.commodity.OriginPrice,
@@ -297,22 +288,27 @@ export default {
         Category: this.commodity.Category,
         Period: this.commodity.Period,
         Description: this.commodity.Description,
-        PublishDate: this.commodity.PublishDate
+        PublishDate: this.commodity.PublishDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
+      }
+      const headers = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       }
       this.$http
-        .post(api, newproduct, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        })
+        .post(api, newproduct, headers)
         .then(response => {
-          console.log(response)
+          // console.log(response)
           if (response.data.result) {
-            // console.log(response.data)
+            console.log(response.data)
             localStorage.setItem('token', response.data.token)
           }
         })
+    },
+    uploadPhoto () {
+
     }
+
   }
 }
 </script>
