@@ -1,99 +1,84 @@
 <template>
     <section id="switcherOrder-one" class="bg-light pb-5">
-        <div class="container">
-            <el-alert
-              title="請正確輸入資料"
-              type="error"
-              show-icon
-              v-if="isError"
-              >
-            </el-alert>
-            <div class="row returnShop">
-                <div class="col-12 d-flex text-muted align-items-center mt-5">
-                    <i class="mr-2"><font-awesome-icon icon="chevron-left"/></i>
-                    <span @click.prevent="$router.go(-1)">返回上一頁</span>
-                </div>
-            </div>
-            <div class="text-center vh-100 d-flex flex-column justify-content-center align-items-center" v-if="$root.getCarts.length === 0 || this.$root.getCartLen === 0">
-              <h2 class="font-weight-bold pt-5 pb-5">沒有商品在購物車內</h2>
-              <span class="shopping"><font-awesome-icon icon="cart-arrow-down"/></span>
-            </div>
-            <div class="row" v-if="$root.getCarts.length">
-                <div class="col-md-6 col-10 mx-auto mt-5 mb-5">
-                    <div class="progress-txt d-flex justify-content-around">
-                        <p class="active">Step1.確認購物車</p>
-                        <p>Step2.同意租賃</p>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 50%; background-color: #E60012;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container mb-5" v-if="$root.getCarts.length">
-            <div>
-              <div class="switcherOrder-orderArea border border-secondary pt-3 pb-3 pl-3 pr-3" v-for="(index, item) in cartData" :key="item.Id">
-                <h6><i class="mr-2"><font-awesome-icon icon="store"/></i>賣家帳號 : <span>{{item}}</span></h6>{{index}}
-                <!-- <div class="row switcherOrder-content d-flex align-items-center pb-3 border-bottom border-light mb-3">
-                    <div class="col-md-4 switcherOrder-img">
-                        <img :src="item.Product.ImageUrl" alt="game">
-                    </div>
-                    <div class="col-md-7">
-                        <div class="d-flex align-items-baseline">
-                            <h6>{{item.Product.Name}}</h6>
-                            <span class="category-games bg-danger text-white ml-3 rounded">{{item.Product.Category}}</span>
-                        </div>
-                        <div class="d-flex">
-                            <div class="d-flex align-items-baseline mr-3">
-                                <font-awesome-icon icon="user-circle"/>
-                                <p class="ml-1 mb-1">{{item.Seller}}</p>
-                            </div>
-                            <div class="d-flex align-items-baseline">
-                                <span class="isLease-icon"><font-awesome-icon icon="circle"/></span>
-                                <span class="isLease">{{item.Product.Status}}</span>
-                            </div>
-                        </div>
-                        <div class="content-prices d-flex align-items-baseline">
-                            <p class="mb-1 mr-2">租金 : <span >{{item.Product.Total}}</span>元</p>
-                            <p class="mb-1">押金 : <span>{{item.Product.Deposit}}</span>元</p>
-                        </div>
-                        <div class="d-flex align-items-baseline">
-                            <p class="mb-1 mr-2">商品數量 : <span>{{item.Product.Quantity}}</span></p>
-                            <p class="mb-1">面交地點 : <span>7-11 {{item.Product.Store}} 門市</span></p>
-                        </div>
-                        <div class="d-flex align-items-baseline sm-date">
-                            <p class="mb-1">選擇日期 : <span class="choosed-date">{{item.Product.StartDate}} ~ {{item.Product.EndDate}}</span></p>
-                            <p class="mb-1 ml-2">共<span>{{item.Product.Period}}</span>日</p>
-                        </div>
-                    </div>
-                    <div class="col-md-1 switcherOrder-delete" @click="open(item.Id)"><font-awesome-icon icon="trash-alt"/></div>
-                </div> -->
-                <div class="d-flex justify-content-end pr-3">
-                  <p class="totalTxt mr-3">總租金 : <span class="totalNum">{{totalPrice}}</span> 元</p>
-                  <p class="totalTxt ml-3">總押金 : <span class="totalNum">{{totalDeposit}}</span> 元</p>
-                </div>
+      <el-backtop :bottom="60"></el-backtop>
+      <div class="container" v-if="$root.getCarts.length === 0 || this.$root.getCartLen === 0">
+          <div class="text-center vh-100 d-flex flex-column justify-content-center align-items-center">
+            <h2 class="font-weight-bold pt-5 pb-5">沒有商品在購物車內</h2>
+            <span class="shopping"><font-awesome-icon icon="cart-arrow-down"/></span>
+          </div>
+      </div>
+      <div class="container mb-5" v-if="$root.getCarts.length">
+          <div class="row pt-5">
+              <div class="col-md-6 col-10 mx-auto mt-5 mb-5">
+                  <h4 class="text-center mb-3 font-weight-bold">您的購物車</h4>
+                  <div class="endLine mb-4"></div>
+              </div>
+          </div>
+          <div>
+            <div class="switcherOrder-orderArea border border-secondary pt-3 pb-3 pl-3 pr-3 mb-4" v-for="(index, item) in cartData" :key="index[0].Id">
+              <h6><i class="mr-2"><font-awesome-icon icon="store"/></i>賣家帳號 : <span>{{item}}</span></h6>
+              <div class="row switcherOrder-content d-flex align-items-center pb-3 border-bottom border-light mb-3" v-for="info in index" :key="info.Id">
+                  <div class="col-md-4 switcherOrder-img">
+                      <img :src="info.Product.ImageUrl" alt="game">
+                  </div>
+                  <div class="col-md-7">
+                      <div class="d-flex align-items-baseline">
+                          <h6>{{info.Product.Name}}</h6>
+                          <span class="category-games bg-danger text-white ml-3 rounded">{{info.Product.Category}}</span>
+                      </div>
+                      <div class="d-flex">
+                          <div class="d-flex align-items-baseline mr-3">
+                              <font-awesome-icon icon="user-circle"/>
+                              <p class="ml-1 mb-1">{{info.Seller}}</p>
+                          </div>
+                          <div class="d-flex align-items-baseline">
+                              <span class="isLease-icon"><font-awesome-icon icon="circle"/></span>
+                              <span class="isLease">{{info.Product.Status}}</span>
+                          </div>
+                      </div>
+                      <div class="content-prices d-flex align-items-baseline">
+                          <p class="mb-1 mr-2">租金 : <span >{{info.Product.Total}}</span>元</p>
+                          <p class="mb-1">押金 : <span>{{info.Product.Deposit}}</span>元</p>
+                      </div>
+                      <div class="d-flex align-items-baseline">
+                          <p class="mb-1 mr-2">商品數量 : <span>{{info.Product.Quantity}}</span></p>
+                          <p class="mb-1">面交地點 : <span>7-11 {{info.Product.Store}} 門市</span></p>
+                      </div>
+                      <div class="d-flex align-items-baseline sm-date">
+                          <p class="mb-1">選擇日期 : <span class="choosed-date">{{info.Product.StartDate}} ~ {{info.Product.EndDate}}</span></p>
+                          <p class="mb-1 ml-2">共<span>{{info.Product.Period}}</span>日</p>
+                      </div>
+                  </div>
+                  <div class="col-md-1 switcherOrder-delete" @click.prevent="open(index[0].Id)"><font-awesome-icon icon="trash-alt"/></div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                  <el-button type="warning" class="submitBtn" @click.prevent="goToSubmit(item, index, totalPrice(index), totalDeposit(index))">送出預約<i class="el-icon-sold-out ml-2"></i></el-button>
+                  <div class="d-flex justify-content-end pr-3">
+                    <p class="totalTxt mr-3">總租金 : <span class="totalNum">{{totalPrice(index)}}</span> 元</p>
+                    <p class="totalTxt ml-3">總押金 : <span class="totalNum">{{totalDeposit(index)}}</span> 元</p>
+                  </div>
               </div>
             </div>
+          </div>
+      </div>
+      <div class="container">
+        <div class="row ">
+          <div class="col-12 d-flex justify-content-center">
+            <button type="button" class="btn btn-outline-primary btn-lg" @click.prevent="$router.push('/findGames/allGame')"><font-awesome-icon icon="shopping-cart" class="mr-2"/>繼續選購</button>
+          </div>
         </div>
-        <div class="container" v-if="$root.getCartLen > 0">
-            <h4 class="text-center mb-3">請輸入資料</h4>
-            <div class="endLine mb-4"></div>
-            <CartInputs :totalPrice="totalPrice" :totalDeposit="totalDeposit"/>
-        </div>
+      </div>
     </section>
 </template>
 
 <script>
-import CartInputs from '../components/front_side/CartInputs'
 
 export default {
   data () {
     return {
-      isError: false,
-      cartData: []
+      cartData: {}
     }
   },
-  components: { CartInputs },
   created () {
     this.getCartData()
   },
@@ -125,6 +110,9 @@ export default {
       })
     },
     async getCartData () {
+      this.cartData = {}
+      this.$root.getCarts = []
+      this.$root.getCartLen = 0
       const api = 'http://switcher.rocket-coding.com/api/cart'
       const token = localStorage.getItem('token')
       await this.$http.get(api, {
@@ -146,32 +134,38 @@ export default {
         this.$root.getCarts = res.data.carts
         this.$root.getCartLen = res.data.carts.length
         localStorage.setItem('cartLen', res.data.carts.length)
-        console.log(this.cartData)
+        // console.log(this.cartData)
         this.isError = false
-        return this.cartData
+        return this.$root.getCarts
       })
-    }
-  },
-  computed: {
-    totalPrice () {
+    },
+    totalPrice (val) {
       var countTotal = 0
-      if (this.$root.getCarts.length) {
-        for (var i = 0; i < this.$root.getCartLen; i++) {
-          var item = this.$root.getCarts[i].Product
-          countTotal += item.Total
-        }
+      for (var i = 0; i < val.length; i++) {
+        var item = val[i].Product
+        countTotal += item.Total
       }
       return countTotal.toLocaleString()
     },
-    totalDeposit () {
-      var depositTotal = 0
-      if (this.$root.getCarts.length) {
-        for (var i = 0; i < this.$root.getCartLen; i++) {
-          var item = this.$root.getCarts[i].Product
-          depositTotal += item.Deposit
-        }
+    totalDeposit (val) {
+      var countTotal = 0
+      for (var i = 0; i < val.length; i++) {
+        var item = val[i].Product
+        countTotal += item.Deposit
       }
-      return depositTotal.toLocaleString()
+      return countTotal.toLocaleString()
+    },
+    goToSubmit (seller, index, Price, Deposit) {
+      var sellerId = 0
+      for (var i = 0; i < index.length; i++) {
+        sellerId = index[i].SellerId
+      }
+      this.$root.orderInfo.seller = seller
+      this.$root.orderProducts = index
+      this.$root.orderInfo.totalPrice = Price
+      this.$root.orderInfo.totalDeposit = Deposit
+      this.$root.orderInfo.totalProducts = index.length
+      this.$router.push({ name: 'CartInputs', params: { id: sellerId } })
     }
   }
 }
@@ -200,5 +194,8 @@ export default {
 }
 .shopping{
   font-size: 80px;
+}
+.submitBtn{
+  height: fit-content;
 }
 </style>

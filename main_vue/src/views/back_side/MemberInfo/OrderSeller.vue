@@ -1,6 +1,5 @@
 <template>
-  <div class="OrderManagement">
-    <el-backtop :bottom="60"></el-backtop>
+  <div class="OrderManagement vh-100">
     <div class="container">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb mb-4">
@@ -34,14 +33,14 @@
           >訂購紀錄</a>
         </div>
       </nav>
-      <div class="tab-content order-record" id="nav-tabContent-order">
+      <div class="tab-content order-record vh-100 bg-light" id="nav-tabContent-order">
         <div
           class="tab-pane fade show active"
           id="nav-rented"
           role="tabpanel"
           aria-labelledby="nav-rented-tab"
         >
-          <RentalRecord :orderData="orderData"/>
+          <RentalRecord :orderData="orderData" :userData="userData"/>
         </div>
         <div
           class="tab-pane fade"
@@ -49,7 +48,7 @@
           role="tabpanel"
           aria-labelledby="nav-ordered-tab"
         >
-          <OrderRecord :rentalData="rentalData"/>
+          <OrderRecord :rentalData="rentalData" :userData="userData"/>
         </div>
       </div>
     </div>
@@ -64,11 +63,13 @@ export default {
   data () {
     return {
       orderData: [],
-      rentalData: []
+      rentalData: [],
+      userData: []
     }
   },
   components: { RentalRecord, OrderRecord },
   created () {
+    this.getUserData()
     this.getOrderData()
     this.getRentalData()
   },
@@ -99,6 +100,21 @@ export default {
         }).then(res => {
         console.log('訂購紀錄', res.data.orders)
         this.rentalData = res.data.orders
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+    getUserData () {
+      const api = 'http://switcher.rocket-coding.com/api/member'
+      const token = localStorage.getItem('token')
+      this.$http.get(api,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }).then(res => {
+        console.log('我是誰', res.data.member)
+        this.userData = res.data.member
       }).catch(err => {
         console.log(err)
       })

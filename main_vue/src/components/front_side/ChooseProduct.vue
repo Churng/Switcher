@@ -19,7 +19,7 @@
                 <p class="mr-4">商品數量</p>
                 <el-select v-model="quantity" placeholder="请選擇數量">
                    <el-option
-                    v-for="(item, index) in product[0].Quantity"
+                    v-for="(item, index) in product.Quantity"
                     :key="index"
                     :label="item"
                     :value="item">
@@ -28,7 +28,7 @@
             </div>
             <div class="columns-btnArea mb-4">
                 <button type="button" class="btn btn-outline-warning w-100 mb-3">賣家聊聊</button>
-                <button type="button" class="btn btn-warning w-100" @click="isLogin" v-if="product[0].Status==='可出租'">我要租借</button>
+                <button type="button" class="btn btn-warning w-100" @click="isLogin" v-if="product.Status==='可出租'">我要租借</button>
                 <button type="button" class="btn btn-secondary w-100" disabled v-else>我要租借</button>
             </div>
         </div>
@@ -108,7 +108,7 @@ export default {
       const api = 'http://switcher.rocket-coding.com/api/cart'
       const token = localStorage.getItem('token')
       this.$http.post(api, {
-        ProductId: this.product[0].Id,
+        ProductId: this.product.Id,
         Quantity: this.quantity,
         StartDate: this.value1[0],
         EndDate: this.value1[1],

@@ -84,7 +84,8 @@ export default {
         this.$root.orderResult = res.data.message
         this.$router.push('/finishOrder')
       }).catch(err => {
-        console.log(err)
+        this.$root.orderResult = err
+        this.$router.push('/finishOrder')
       })
     }
   }

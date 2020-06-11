@@ -165,14 +165,6 @@ export default {
       localStorage.removeItem('cartLen')
       this.$root.ChangeMember = false
       this.pcShow.user = false
-<<<<<<< HEAD
-      console.log(this.$root.ChangeMemberinfo)
-    }
-  },
-  computed: {
-    ChangeMemberinfo () {
-      return this.$root.ChangeMemberinfo
-=======
       this.$root.cartQuantity = false
       this.logoutSuccess()
       this.$router.push('/home')
@@ -190,7 +182,6 @@ export default {
         title: '登出成功',
         type: 'success'
       })
->>>>>>> 7d1234c0d2fad3b84cd0f67b3c3355bbb19f92bb
     }
   }
 }

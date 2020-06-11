@@ -31,6 +31,7 @@ new Vue({
     getCarts: [],
     getCartLen: 0,
     cartQuantity: false,
+    orderProducts: [],
     orderInfo: {
       buyerName: '',
       totalProducts: 0,
