@@ -25,14 +25,23 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 new Vue({
   data: {
-    ChangeMemberinfo: false,
+    ChangeMember: false,
     productsData: [],
-    productSearchData: false
-  },
-  created () {
-    this.$on('changeToHome', function () {
-      this.ChangeMemberinfo = true
-    })
+    productSearchData: false,
+    getCarts: [],
+    getCartLen: 0,
+    cartQuantity: false,
+    orderInfo: {
+      buyerName: '',
+      totalProducts: 0,
+      totalPrice: 0,
+      totalDeposit: 0,
+      phone: '',
+      mail: '',
+      seller: '',
+      orderDate: ''
+    },
+    orderResult: ''
   },
   router,
   render: h => h(App)

@@ -13190,6 +13190,7 @@ body {
   }
 }
 
+/* back_side Scss */
 body {
   color: #3C3C3C;
 }
@@ -13284,6 +13285,10 @@ body {
 
 body {
   color: #3C3C3C;
+}
+
+.EditpersonInfo {
+  margin-bottom: 64px;
 }
 
 .goods-photo {

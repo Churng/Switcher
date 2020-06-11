@@ -18,11 +18,11 @@
             <div class="quantity d-flex align-items-baseline mt-3 mb-3">
                 <p class="mr-4">商品數量</p>
                 <el-select v-model="quantity" placeholder="请選擇數量">
-                  <el-option
+                   <el-option
                     v-for="(item, index) in product[0].Quantity"
                     :key="index"
                     :label="item"
-                    :value="index">
+                    :value="item">
                   </el-option>
                 </el-select>
             </div>
@@ -95,13 +95,12 @@ export default {
     isLogin () {
       const token = localStorage.getItem('token')
       if (!token) {
-        this.$router.push('/login')
+        this.openLoginInfo()
       } else {
         if ((this.value1 === '' && this.quantity === 0) || (this.value1 === '') || (this.quantity === 0)) {
           this.openAlert()
         } else {
           this.postData()
-          return this.$router.push('/cartList')
         }
       }
     },
@@ -120,13 +119,29 @@ export default {
           Authorization: `Bearer ${token}`
         }
       }).then(res => {
-        console.log('post', res)
+        this.$root.getCarts = res.data.carts
+        this.$root.getCartLen = res.data.carts.length
+        localStorage.setItem('cartLen', res.data.carts.length)
+        this.correctPost()
       }).catch(err => {
         console.log(err)
       })
     },
     openAlert () {
       this.$emit('openFater', this.loginCart === true)
+    },
+    openLoginInfo () {
+      this.$notify.info({
+        title: '消息',
+        message: '尚未登入會員! 請先登入後再下單喔！'
+      })
+    },
+    correctPost () {
+      this.$notify({
+        title: '已加入購物車',
+        // message: '这是一条成功的提示消息',
+        type: 'success'
+      })
     }
   }
 }
