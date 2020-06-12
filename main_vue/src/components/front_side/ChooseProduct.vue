@@ -71,7 +71,7 @@ export default {
       totalDay: 0
     }
   },
-  props: ['product', 'loginCart'],
+  props: ['product'],
   computed: {
     totalDays () {
       const sDate1 = this.value1[0]
@@ -100,7 +100,18 @@ export default {
         if ((this.value1 === '' && this.quantity === 0) || (this.value1 === '') || (this.quantity === 0)) {
           this.openAlert()
         } else {
-          this.postData()
+          if (this.$root.getCartLen > 0) {
+            this.$root.getCarts.filter(obj => {
+              // console.log(obj.Seller, this.product.Member)
+              if (this.product.Member !== obj.Seller) {
+                return this.postErrInfo
+              } else {
+                return this.postData()
+              }
+            })
+          } else {
+            this.postData()
+          }
         }
       }
     },
@@ -128,12 +139,15 @@ export default {
       })
     },
     openAlert () {
-      this.$emit('openFater', this.loginCart === true)
+      this.$message({
+        message: '請正確輸入租借日期/商品數量',
+        type: 'warning'
+      })
     },
     openLoginInfo () {
       this.$notify.info({
         title: '消息',
-        message: '尚未登入會員! 請先登入後再下單喔！'
+        message: '尚未登入會員! 請先登入後再下單呦！'
       })
     },
     correctPost () {
@@ -142,6 +156,9 @@ export default {
         // message: '这是一条成功的提示消息',
         type: 'success'
       })
+    },
+    postErrInfo () {
+      this.$message.error('此商品跟您購物車裡的賣家不符合,請先結單後再預約~')
     }
   }
 }

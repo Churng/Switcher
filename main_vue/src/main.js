@@ -14,6 +14,15 @@ import axios from 'axios'
 Vue.config.productionTip = false
 Vue.use(ElementUI, BootstrapVue, axios)
 Vue.prototype.$http = axios
+/*
+axios.interceptors.response.use(response => {
+  console.log(response)
+  return response
+}, error => {
+  console.log(error.response)
+})
+*/
+
 library.add(fas, fab)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)

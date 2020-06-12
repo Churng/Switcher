@@ -1,5 +1,5 @@
 <template>
-    <div class="use-instructionCard">
+    <div class="use-instructionCard orderDetails">
       <!-- 訂購紀錄詳情 -->
         <button class="btn btn-primary openDetailBtn" type="submit" @click="dialogVisible = true">詳請</button>
         <div class="container" v-if="dialogVisible">
@@ -48,8 +48,8 @@ export default {
 </script>
 
 <style lang="scss">
-.openDetailBtn{
-  font-size: 14px;
+.orderDetails{
+  line-height: 55px;
 }
 .orderBody{
   padding: 10px;

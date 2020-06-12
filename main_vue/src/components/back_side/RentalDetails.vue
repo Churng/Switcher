@@ -1,5 +1,5 @@
 <template>
-    <div class="use-instructionCard">
+    <div class="use-instructionCard rentalDetails">
       <!-- 出租紀錄詳情 -->
         <button class="btn btn-primary openDetailBtn" type="submit" @click="dialogVisible = true">詳請</button>
         <div class="container" v-if="dialogVisible">
@@ -53,13 +53,7 @@ export default {
 </script>
 
 <style lang="scss">
-.openDetailBtn{
-  font-size: 14px;
-}
-.orderBody{
-  padding: 10px;
-}
-.cardContent p{
-  margin-bottom: 0.5rem;
+.rentalDetails{
+  line-height: 49px;
 }
 </style>

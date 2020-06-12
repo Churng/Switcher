@@ -79,7 +79,7 @@ export default {
   methods: {
     goToContract () {
       if ((this.name === '') || (this.phone === '') || (this.mail === '')) {
-        console.log(this.$root.getCarts)
+        this.openError()
       } else {
         const today = new Date()
         this.$root.orderInfo.buyerName = this.name
@@ -88,6 +88,9 @@ export default {
         this.$root.orderInfo.orderDate = '西元' + today.getFullYear() + '年' + (today.getMonth() + 1) + '月' + today.getDate() + '日'
         this.$router.push('/orderContract')
       }
+    },
+    openError () {
+      this.$message.error('輸入框不得空白')
     }
   }
 }

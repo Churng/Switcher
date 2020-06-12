@@ -5,7 +5,7 @@
                 <img src="/img/users/iconfinder_11_avatar_2754576.png" alt="user01">
             </div>
             <div class="sellerTxt">
-                <h6 class="mb-2">阿瑄</h6>
+                <h6 class="mb-2">{{product.Member}}</h6>
                 <div class="sellerBtns d-flex">
                     <button type="button" class="btn btn-outline-secondary w-50 mr-1" @click="$router.push({name: 'Seller', params: '/seller/:id'})">進入賣場</button>
                     <button type="button" class="btn btn-outline-secondary w-50 ml-1">我要聊聊</button>
@@ -42,3 +42,9 @@
         </div>
     </div>
 </template>
+
+<script>
+export default {
+  props: ['product']
+}
+</script>

@@ -40,7 +40,8 @@
           role="tabpanel"
           aria-labelledby="nav-rented-tab"
         >
-          <RentalRecord :orderData="orderData" :userData="userData"/>
+          <div class="pt-5 d-flex justify-content-center" v-if="OrderError"><h2>尚無出租紀錄</h2></div>
+          <RentalRecord :orderData="orderData" :userData="userData" v-else/>
         </div>
         <div
           class="tab-pane fade"
@@ -48,7 +49,8 @@
           role="tabpanel"
           aria-labelledby="nav-ordered-tab"
         >
-          <OrderRecord :rentalData="rentalData" :userData="userData"/>
+          <div class="pt-5 d-flex justify-content-center" v-if="RentalError"><h2>尚無訂購紀錄</h2></div>
+          <OrderRecord :rentalData="rentalData" :userData="userData" v-else/>
         </div>
       </div>
     </div>
@@ -64,14 +66,14 @@ export default {
     return {
       orderData: [],
       rentalData: [],
-      userData: []
+      userData: [],
+      OrderError: false,
+      RentalError: false
     }
   },
   components: { RentalRecord, OrderRecord },
   created () {
     this.getUserData()
-    this.getOrderData()
-    this.getRentalData()
   },
   methods: {
     getOrderData () {
@@ -86,7 +88,12 @@ export default {
         console.log('出租紀錄', res.data.orders)
         this.orderData = res.data.orders
       }).catch(err => {
-        console.log(err)
+        console.log(err.response)
+        const errObj = err.response
+        if (errObj.status === 404 && errObj.data.message === '無訂單記錄') {
+          this.OrderError = true
+          return this.OrderError
+        }
       })
     },
     getRentalData () {
@@ -101,7 +108,12 @@ export default {
         console.log('訂購紀錄', res.data.orders)
         this.rentalData = res.data.orders
       }).catch(err => {
-        console.log(err)
+        console.log(err.response)
+        const errObj = err.response
+        if (errObj.status === 404 && errObj.data.message === '無訂單記錄') {
+          this.RentalError = true
+          return this.RentalError
+        }
       })
     },
     getUserData () {
@@ -115,6 +127,8 @@ export default {
         }).then(res => {
         console.log('我是誰', res.data.member)
         this.userData = res.data.member
+        this.getRentalData()
+        this.getOrderData()
       }).catch(err => {
         console.log(err)
       })

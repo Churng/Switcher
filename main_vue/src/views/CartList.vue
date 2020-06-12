@@ -1,7 +1,9 @@
 <template>
     <section id="switcherOrder-one" class="bg-light pb-5">
       <el-backtop :bottom="60"></el-backtop>
-      <div class="container" v-if="$root.getCarts.length === 0 || this.$root.getCartLen === 0">
+      <div class="loading vh-100" v-if="loading"><img src="/img/Spinner-1.1s-200px.gif" alt="loading"></div>
+      <div>
+        <div class="container" v-if="$root.getCarts.length === 0 || this.$root.getCartLen === 0">
           <div class="text-center vh-100 d-flex flex-column justify-content-center align-items-center">
             <h2 class="font-weight-bold pt-5 pb-5">沒有商品在購物車內</h2>
             <span class="shopping"><font-awesome-icon icon="cart-arrow-down"/></span>
@@ -52,11 +54,11 @@
                   <div class="col-md-1 switcherOrder-delete" @click.prevent="open(index[0].Id)"><font-awesome-icon icon="trash-alt"/></div>
               </div>
               <div class="d-flex justify-content-between align-items-center">
-                  <el-button type="warning" class="submitBtn" @click.prevent="goToSubmit(item, index, totalPrice(index), totalDeposit(index))">送出預約<i class="el-icon-sold-out ml-2"></i></el-button>
                   <div class="d-flex justify-content-end pr-3">
                     <p class="totalTxt mr-3">總租金 : <span class="totalNum">{{totalPrice(index)}}</span> 元</p>
                     <p class="totalTxt ml-3">總押金 : <span class="totalNum">{{totalDeposit(index)}}</span> 元</p>
                   </div>
+                  <el-button type="warning" class="submitBtn" @click.prevent="goToSubmit(item, index, totalPrice(index), totalDeposit(index))">送出預約<i class="el-icon-sold-out ml-2"></i></el-button>
               </div>
             </div>
           </div>
@@ -68,6 +70,7 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 </template>
 
@@ -76,7 +79,8 @@
 export default {
   data () {
     return {
-      cartData: {}
+      cartData: {},
+      loading: false
     }
   },
   created () {
@@ -115,6 +119,7 @@ export default {
       this.$root.getCartLen = 0
       const api = 'http://switcher.rocket-coding.com/api/cart'
       const token = localStorage.getItem('token')
+      this.loading = true
       await this.$http.get(api, {
         headers: {
           Authorization: `Bearer ${token}`
@@ -134,8 +139,8 @@ export default {
         this.$root.getCarts = res.data.carts
         this.$root.getCartLen = res.data.carts.length
         localStorage.setItem('cartLen', res.data.carts.length)
-        // console.log(this.cartData)
-        this.isError = false
+        // console.log(this.$root.getCarts)
+        this.loading = false
         return this.$root.getCarts
       })
     },

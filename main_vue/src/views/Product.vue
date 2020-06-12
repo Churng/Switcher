@@ -2,13 +2,6 @@
     <section id="switcherProduct" class="bg-light">
         <div class="loading vh-100" v-if="loading"><img src="/img/Spinner-1.1s-200px.gif" alt="loading"></div>
         <div class="container-fluid">
-            <el-alert
-              title="請輸入日期 / 數量"
-              type="error"
-              show-icon
-              v-if="loginCart"
-              >
-            </el-alert>
             <div class="row returnShop mb-2">
                 <div class="col-12 d-flex text-muted align-items-center mt-5">
                     <i class="mr-2"><font-awesome-icon icon="chevron-left"/></i>
@@ -39,7 +32,7 @@
                             <span class="sr-only">Next</span>
                           </a>
                     </div>
-                    <ProductSellerStore />
+                    <ProductSellerStore :product="product"/>
                     <div class="switcherProduct-proInfo mb-3">
                         <h5 class="mb-4">商品資訊</h5>
                         <div class="proInfo-content d-flex justify-content-between align-items-end">
@@ -82,7 +75,7 @@
                             <p>剩餘商品數量 : <span>{{product.Quantity}}</span></p>
                         </div>
                     </div>
-                    <ChooseProduct :product="product" :loginCart="loginCart" @openFater='openWarn'/>
+                    <ChooseProduct :product="product"/>
                 </div>
             </div>
             <div class="row switcherProduct-review pb-3">
@@ -163,8 +156,7 @@ export default {
   data () {
     return {
       product: {},
-      loading: false,
-      loginCart: false
+      loading: false
     }
   },
   components: { ProductSellerStore, ChooseProduct, InstructionCard },
@@ -180,9 +172,6 @@ export default {
         // console.log(this.product)
         this.loading = false
       })
-    },
-    openWarn () {
-      this.loginCart = !this.loginCart
     }
   }
 }

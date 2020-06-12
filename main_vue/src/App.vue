@@ -31,6 +31,8 @@ export default {
           return a.Price - b.Price
         })
         this.loading = false
+      }).catch(err => {
+        console.log(err)
       })
     }
   }

@@ -10,20 +10,19 @@
         <th scope="col">詳請</th>
       </tr>
     </thead>
-    <RentalDetails />
-    <tbody class="text-center seller-order" v-if="filterRental">
+    <tbody class="text-center seller-order" v-if="noneData">
       <tr>
-        <td colspan="6"><h2>尚無紀錄</h2></td>
+        <td colspan="6"><h2>尚無出租紀錄</h2></td>
       </tr>
     </tbody>
-    <tbody class="text-center seller-order orderContents" v-for="item in orderData" :key="item.Id" v-else>
+    <tbody class="text-center seller-order orderContents" v-for="(item, index) in filterIdArr" :key="index" v-else>
       <tr>
         <td>{{item.User.Name}}</td>
-        <td>{{item.Product[0].ProductName}}</td>
-        <td>{{item.Product[0].StartDate}}</td>
-        <td>{{item.Product[0].EndDate}}</td>
+        <td>{{item.Product.ProductName}}</td>
+        <td>{{item.Product.StartDate}}</td>
+        <td>{{item.Product.EndDate}}</td>
         <td>{{item.Status}}</td>
-          <RentalDetails />
+        <RentalDetails />
       </tr>
     </tbody>
   </table>
@@ -35,27 +34,25 @@ import RentalDetails from '../back_side/RentalDetails'
 export default {
   data () {
     return {
-      filterRental: []
+      noneData: false
     }
   },
-  props: ['orderData'],
+  props: ['orderData', 'userData'],
   components: { RentalDetails },
-  methods: {
-    filterData () {
-      const filter = this.orderData.filter(data => {
-        return (data.Product.length === 0)
+  computed: {
+    filterIdArr () {
+      const vm = this
+      return vm.orderData.filter(item => {
+        console.log(item.Product.Seller, vm.userData.Name)
+        if (item.Product.Seller === vm.userData.Name) {
+          console.log(item)
+          return item
+        } else {
+          vm.noneData = true
+          return vm.noneData
+        }
       })
-      this.filterRental = filter
     }
   }
 }
 </script>
-
-<style lang="scss">
-.table td{
-  vertical-align: inherit;
-}
-.orderContents{
-  overflow-y: scroll;
-}
-</style>

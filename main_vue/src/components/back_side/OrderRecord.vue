@@ -11,23 +11,19 @@
         <th scope="col">評論</th>
       </tr>
     </thead>
-    <button @click="filterData()">11</button>
-    <OrderDetails />
-    <!-- <tbody class="text-center seller-order" v-if="filterOrder">
+    <tbody class="text-center seller-order" v-if="noneData">
       <tr>
-        <td colspan="7"><h2>尚無紀錄</h2></td>
+        <td colspan="7"><h2>尚無訂購紀錄</h2></td>
       </tr>
-    </tbody> -->
-    <tbody class="text-center buyer-order orderContents" v-for="item in filterData" :key="item.Id">
-      <tr>
-        <td>{{item.Product[0].Seller}}</td>
-        <td>{{item.Product[0].ProductName}}</td>
-        <td>{{item.Product[0].StartDate}}</td>
-        <td>{{item.Product[0].EndDate}}</td>
+    </tbody>
+    <tbody class="text-center buyer-order orderContents" v-else v-for="(item, index) in filterIdArr" :key="index">
+      <tr v-for="product in item.Product" :key="product.ProductId">
+        <td>{{product.Seller}}</td>
+        <td>{{product.ProductName}}</td>
+        <td>{{product.StartDate}}</td>
+        <td>{{product.EndDate}}</td>
         <td>{{item.Status}}</td>
-        <td>
-          <button class="btn btn-primary openDetailBtn" type="submit">詳請</button>
-        </td>
+        <OrderDetails />
         <td>
           <button class="btn btn-social openDetailBtn" type="submit">去評論</button>
         </td>
@@ -42,19 +38,20 @@ import OrderDetails from '../back_side/OrderDetails'
 export default {
   data () {
     return {
-      filterOrder: []
+      noneData: false
     }
   },
-  props: ['rentalData'],
+  props: ['rentalData', 'userData'],
   components: { OrderDetails },
-  methods: {
-    filterData () {
-      this.rentalData.forEach(e => {
-        if (e.Product.length > 0) {
-          console.log(1515)
-          return this.rentalData
+  computed: {
+    filterIdArr () {
+      const vm = this
+      return vm.rentalData.filter(item => {
+        if (item.User.Name === vm.userData.Name) {
+          return item.Product
         } else {
-          return this.filterOrder
+          vm.noneData = true
+          return vm.noneData
         }
       })
     }
@@ -64,9 +61,10 @@ export default {
 
 <style lang="scss">
 .table td{
-  vertical-align: inherit;
+  vertical-align: inherit !important;
 }
 .orderContents{
+  height: 100%;
   overflow-y: scroll;
 }
 </style>
