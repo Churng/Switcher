@@ -1,5 +1,5 @@
 <template>
-  <table class="table mt-3 bg-light">
+  <table class="table mt-3">
     <thead class="text-center">
       <tr>
         <th scope="col">購買者</th>
@@ -10,26 +10,49 @@
         <th scope="col">詳請</th>
       </tr>
     </thead>
-    <tbody class="text-center seller-order" v-for="item in orderData" :key="item.Id">
-      <tr class>
-        <td class="vertical-align:middle;">{{item.User.Name}}</td>
-        <td>{{item.Product[0].ProductName}}</td>
-        <td>{{item.Product[0].StartDate}}</td>
-        <td>{{item.Product[0].EndDate}}</td>
+    <tbody class="text-center seller-order" v-if="noneData">
+      <tr>
+        <td colspan="6"><h2>尚無出租紀錄</h2></td>
+      </tr>
+    </tbody>
+    <tbody class="text-center seller-order orderContents" v-for="(item, index) in filterIdArr" :key="index" v-else>
+      <tr>
+        <td>{{item.User.Name}}</td>
+        <td>{{item.Product.ProductName}}</td>
+        <td>{{item.Product.StartDate}}</td>
+        <td>{{item.Product.EndDate}}</td>
         <td>{{item.Status}}</td>
-        <td>
-          <OrderDetails />
-        </td>
+        <RentalDetails />
       </tr>
     </tbody>
   </table>
 </template>
 
 <script>
-import OrderDetails from '../back_side/OrderDetails'
+import RentalDetails from '../back_side/RentalDetails'
 
 export default {
-  props: ['orderData'],
-  components: { OrderDetails }
+  data () {
+    return {
+      noneData: false
+    }
+  },
+  props: ['orderData', 'userData'],
+  components: { RentalDetails },
+  computed: {
+    filterIdArr () {
+      const vm = this
+      return vm.orderData.filter(item => {
+        console.log(item.Product.Seller, vm.userData.Name)
+        if (item.Product.Seller === vm.userData.Name) {
+          console.log(item)
+          return item
+        } else {
+          vm.noneData = true
+          return vm.noneData
+        }
+      })
+    }
+  }
 }
 </script>

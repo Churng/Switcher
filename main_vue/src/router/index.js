@@ -10,6 +10,7 @@ import Game from '../components/front_side/Game'
 import GameStick from '../components/front_side/GameStick'
 import Seller from '../views/Seller'
 import CartList from '../views/CartList'
+import CartInputs from '../views/CartInputs'
 import OrderContract from '../components/front_side/OrderContract'
 import FinishOrder from '../views/FinishOrder'
 
@@ -82,6 +83,11 @@ const routes = [
     name: 'CartList',
     component: CartList,
     meta: { requiresAuth: true }
+  },
+  {
+    path: '/cartInputs/:id',
+    name: 'CartInputs',
+    component: CartInputs
   },
   {
     path: '/orderContract',

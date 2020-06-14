@@ -11943,6 +11943,11 @@ body {
   color: #FF7D01;
 }
 
+/*彈框位置*/
+.el-notification.right {
+  top: 12% !important;
+}
+
 .footer {
   background-color: #F2F2F2;
   font-size: 0.75rem;
@@ -12768,7 +12773,6 @@ body {
   white-space: pre-wrap;
   word-wrap: break-word;
   background-color: #fff;
-  font-size: 1.125rem;
   color: #737373;
 }
 
@@ -13365,6 +13369,10 @@ body {
   .btn-outline-social {
     margin-left: 137px;
   }
+}
+
+.openDetailBtn {
+  font-size: 14px;
 }
 
 body {

@@ -1,6 +1,6 @@
 <template>
-    <div class="use-instructionCard orderDetails">
-      <!-- 訂購紀錄詳情 -->
+    <div class="use-instructionCard rentalDetails">
+      <!-- 出租紀錄詳情 -->
         <button class="btn btn-primary openDetailBtn" type="submit" @click="dialogVisible = true">詳請</button>
         <div class="container" v-if="dialogVisible">
             <div class="row instructionCard justify-content-center align-items-center visible">
@@ -19,6 +19,7 @@
                               <p>總押金：<span>200</span></p>
                               <p>交易門市：<span>欣欣鼎門市</span></p>
                               <p>E-mail：<span>user02@mail.com</span></p>
+                              <p>連絡電話：<span>0912123123</span></p>
                               <p>訂單成立時間：<span>2020/05/16</span></p>
                             </div>
                             <div class="cardImgArea w-25 d-flex flex-column justify-content-center">
@@ -27,8 +28,12 @@
                               <el-button type="success" round>去聊聊</el-button>
                             </div>
                         </div>
-                        <div class="card-footer text-center">
-                            <el-button type="success" plain>取消訂單</el-button>
+                        <div class="card-footer">
+                            <div class="sellerBtns d-flex justify-content-around">
+                                <el-button type="info" plain>取消訂單</el-button>
+                                <el-button type="success" plain>接受訂單</el-button>
+                            </div>
+                            <h5 class="font-weight-bold text-center">訂單<span>已完成</span></h5>
                         </div>
                     </div>
                 </div>
@@ -48,13 +53,7 @@ export default {
 </script>
 
 <style lang="scss">
-.orderDetails{
-  line-height: 55px;
-}
-.orderBody{
-  padding: 10px;
-}
-.cardContent p{
-  margin-bottom: 0.5rem;
+.rentalDetails{
+  line-height: 49px;
 }
 </style>

@@ -19,7 +19,7 @@
                 <p class="mr-4">商品數量</p>
                 <el-select v-model="quantity" placeholder="请選擇數量">
                    <el-option
-                    v-for="(item, index) in product[0].Quantity"
+                    v-for="(item, index) in product.Quantity"
                     :key="index"
                     :label="item"
                     :value="item">
@@ -28,7 +28,7 @@
             </div>
             <div class="columns-btnArea mb-4">
                 <button type="button" class="btn btn-outline-warning w-100 mb-3">賣家聊聊</button>
-                <button type="button" class="btn btn-warning w-100" @click="isLogin" v-if="product[0].Status==='可出租'">我要租借</button>
+                <button type="button" class="btn btn-warning w-100" @click="isLogin" v-if="product.Status==='可出租'">我要租借</button>
                 <button type="button" class="btn btn-secondary w-100" disabled v-else>我要租借</button>
             </div>
         </div>
@@ -71,7 +71,7 @@ export default {
       totalDay: 0
     }
   },
-  props: ['product', 'loginCart'],
+  props: ['product'],
   computed: {
     totalDays () {
       const sDate1 = this.value1[0]
@@ -100,7 +100,18 @@ export default {
         if ((this.value1 === '' && this.quantity === 0) || (this.value1 === '') || (this.quantity === 0)) {
           this.openAlert()
         } else {
-          this.postData()
+          if (this.$root.getCartLen > 0) {
+            this.$root.getCarts.filter(obj => {
+              // console.log(obj.Seller, this.product.Member)
+              if (this.product.Member !== obj.Seller) {
+                return this.postErrInfo
+              } else {
+                return this.postData()
+              }
+            })
+          } else {
+            this.postData()
+          }
         }
       }
     },
@@ -108,7 +119,7 @@ export default {
       const api = 'http://switcher.rocket-coding.com/api/cart'
       const token = localStorage.getItem('token')
       this.$http.post(api, {
-        ProductId: this.product[0].Id,
+        ProductId: this.product.Id,
         Quantity: this.quantity,
         StartDate: this.value1[0],
         EndDate: this.value1[1],
@@ -128,12 +139,15 @@ export default {
       })
     },
     openAlert () {
-      this.$emit('openFater', this.loginCart === true)
+      this.$message({
+        message: '請正確輸入租借日期/商品數量',
+        type: 'warning'
+      })
     },
     openLoginInfo () {
       this.$notify.info({
         title: '消息',
-        message: '尚未登入會員! 請先登入後再下單喔！'
+        message: '尚未登入會員! 請先登入後再下單呦！'
       })
     },
     correctPost () {
@@ -142,6 +156,9 @@ export default {
         // message: '这是一条成功的提示消息',
         type: 'success'
       })
+    },
+    postErrInfo () {
+      this.$message.error('此商品跟您購物車裡的賣家不符合,請先結單後再預約~')
     }
   }
 }
