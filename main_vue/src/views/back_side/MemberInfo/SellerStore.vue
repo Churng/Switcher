@@ -148,13 +148,13 @@
                     </li>
                 </ul> -->
             </div>
-            <EditProduct />
+            <PerProduct />
         </div>
     </section>
 </template>
 
 <script>
-import EditProduct from '../../../components/back_side/EditProduct'
+import PerProduct from '../../../components/back_side/PerProduct'
 
 export default {
   data () {
@@ -186,6 +186,6 @@ export default {
   created () {
     this.getProduct()
   },
-  components: { EditProduct }
+  components: { PerProduct }
 }
 </script>

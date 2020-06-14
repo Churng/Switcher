@@ -25,7 +25,7 @@
                                 </div>
                             </div>
                             <div class="Edit-Deletebutton">
-                                <el-button type="info" icon="el-icon-edit" class="editbutton" plain ></el-button>
+                                <el-button type="info" icon="el-icon-edit" class="editbutton" @click="editPerProduct(data.Id)" plain ></el-button>
                                 <el-button type="info" icon="el-icon-delete" @click="deleteProduct(data.Id)" plain ></el-button>
                             </div>
                         </div>
@@ -73,6 +73,14 @@ export default {
       const api = `http://switcher.rocket-coding.com/api/product/delete/${Id}`
       this.$http.delete(api, headers).then(response => {
         vm.getAllProduct()// 更新產品列表
+      })
+    },
+    editPerProduct (id) {
+      this.$router.push({
+        path: '/editperproduct',
+        query: {
+          id
+        }
       })
     }
   },

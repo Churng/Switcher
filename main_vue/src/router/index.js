@@ -22,7 +22,10 @@ import OrderSeller from '../views/back_side/MemberInfo/OrderSeller'
 import Inbox from '../views/back_side/MemberInfo/Inbox'
 import Chatroom from '../views/back_side/MemberInfo/Chatroom'
 import SellerStore from '../views/back_side/MemberInfo/SellerStore'
-import EditProduct from '../components/back_side/EditProduct'
+import PerProduct from '../components/back_side/PerProduct'
+import EditPerProduct from '../views/back_side/MemberInfo/EditPerProduct'
+import NotFound404 from '../views/back_side/NotFound404'
+
 Vue.use(VueRouter)
 
 // 解決报错显示:路由重复
@@ -143,19 +146,25 @@ const routes = [
     ]
   },
   {
-    path: '*',
-    redirect: '/login'
-  },
-  {
     path: '/sellerstore',
     name: 'SellerStore',
     component: SellerStore,
     meta: { requiresAuth: true }
   },
   {
-    path: '/editproduct',
-    name: 'EditProduct',
-    component: EditProduct
+    path: '/perproduct',
+    name: 'PerProduct',
+    component: PerProduct
+  },
+  {
+    path: '/editperproduct',
+    name: 'EditPerProduct',
+    component: EditPerProduct
+  },
+  {
+    path: '*',
+    name: 'NotFound404',
+    component: NotFound404
   }
 ]
 
