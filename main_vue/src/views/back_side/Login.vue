@@ -220,11 +220,18 @@ export default {
         if (response.data.result) {
           localStorage.setItem('token', response.data.token)
           this.getCartData()
+          this.loginSuccess()
           vm.$router.push('/home')
           this.$root.$emit('changeToHome')
           this.$root.ChangeMember = true
           this.$root.cartQuantity = true
         }
+      })
+    },
+    loginSuccess () {
+      this.$notify({
+        title: '登入成功',
+        type: 'success'
       })
     },
     signup () {

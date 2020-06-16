@@ -18,7 +18,7 @@ import FinishOrder from '../views/FinishOrder'
 import Login from '../views/back_side/Login'
 import ResetPassword from '../views/back_side/ResetPassword'
 import Editmemberinfo from '../views/back_side/MemberInfo/Editmemberinfo'
-import EditNewProduct from '../views/back_side/MemberInfo/EditNewProduct'
+import AddNewProduct from '../views/back_side/MemberInfo/AddNewProduct'
 import OrderSeller from '../views/back_side/MemberInfo/OrderSeller'
 import Inbox from '../views/back_side/MemberInfo/Inbox'
 import Chatroom from '../views/back_side/MemberInfo/Chatroom'
@@ -26,6 +26,8 @@ import SellerStore from '../views/back_side/MemberInfo/SellerStore'
 import PerProduct from '../components/back_side/PerProduct'
 import EditPerProduct from '../views/back_side/MemberInfo/EditPerProduct'
 import NotFound404 from '../views/back_side/NotFound404'
+import UploadProductphoto from '../components/back_side/UploadProductphoto'
+import AddProductphoto from '../components/back_side/AddProductphoto'
 
 Vue.use(VueRouter)
 
@@ -127,9 +129,20 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
-    path: '/editnewproduct',
-    name: 'EditNewProduct',
-    component: EditNewProduct,
+    path: '/addnewproduct',
+    name: 'AddNewProduct',
+    component: AddNewProduct,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/addproductphoto/:id',
+    name: 'AddProductphoto',
+    component: AddProductphoto
+  },
+  {
+    path: '/uploadproductphoto/:id',
+    name: 'UploadProductphoto',
+    component: UploadProductphoto,
     meta: { requiresAuth: true }
   },
   {

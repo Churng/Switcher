@@ -112,7 +112,7 @@
         <img class="rounded-circle personal-photo" :src="userData.member.Photo" />
         </div>
         <div class="file-loading mt-5 mx-100">
-          <input ref="userImg"  id="upload-memphoto" name="Upload-memphoto" type="file" accept="image/*" @change="userImage" required />
+          <input ref="uploadfile"  id="upload-memphoto" name="Upload-memphoto" type="file" accept="image/*" @change="userImage" required />
         </div>
       </div>
 
@@ -138,9 +138,11 @@
           ></textarea>
           <div class="d-flex align-items-baseline mt-3">
             <p>主要回應時間:</p>
-            <button type="button" class="btn btn-light">早上</button>
-            <button type="button" class="btn btn-light active">下午</button>
-            <button type="button" class="btn btn-light">晚上</button>
+            <div class="ml-3">
+              <el-checkbox-group v-model="GetReply" text-color="fff" fill="#FF7D01">
+                <el-checkbox-button v-for="choosetime in time" :label="choosetime" :key="choosetime">{{choosetime}}</el-checkbox-button>
+              </el-checkbox-group>
+            </div>
           </div>
         </div>
       </div>
@@ -149,8 +151,8 @@
     <div class="container">
       <div class="row bg-light d-flex justify-content-center">
         <div class="mt-5 mb-3">
-          <button type="button" class="btn btn-danger">取消</button>
-          <button type="button" class="btn btn-warning" @click="updateinfo">儲存變更</button>
+          <button type="button" class="btn btn-danger" @click="$router.go(-1)">取消</button>
+          <button type="button" class="btn btn-warning ml-3" @click="updateinfo">儲存變更</button>
         </div>
       </div>
     </div>
@@ -166,6 +168,7 @@
 <script>
 import axios from "axios";
 
+const TimeOption = ['早上', '中午', '晚上'];
 export default {
   data() {
     return {
@@ -181,11 +184,13 @@ export default {
           Photo: '',
           StoreImage: '',
           StoreDescription: '',
-          Reply: '早上'
+          Reply: ''
         }
       },
       preview: '',
-      image: null
+      image: null,
+      GetReply: [],
+      time: TimeOption
     };
   },
   methods: {
@@ -201,15 +206,21 @@ export default {
         .then(response => {
           this.userData = response.data
           console.log(this.userData)
+
         })
         .catch(function(error) {
           console.log(error)
         });
     },
     updateinfo() {
-      const api = "http://switcher.rocket-coding.com/api/member/update"
+      console.log(this.GetReply)
+      const api = "http://switcher.rocket-coding.com/api/member"
       const token = localStorage.getItem("token");
-      const updateInfo = {
+      let reply = ''
+      this.GetReply.forEach(item => {
+        reply += `${item}/`
+      });
+      const Info = {
           Id: this.userData.member.Id,
           Name: this.userData.member.Name,
           Password: this.userData.member.Password,
@@ -220,28 +231,39 @@ export default {
           Photo: this.userData.member.Photo,
           StoreImage: this.userData.member.StoreImage,
           StoreDescription: this.userData.member.StoreDescription,
-          Reply: '早上'
+          Reply: reply
         }
+      console.log(reply)
+      const updateInfo = JSON.stringify(Info)
       this.$http
-        .put(api, updateInfo, {
+        .patch(api, updateInfo, {
           headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
           }
         })
         .then(response => {
+          this.updateSuccess()
           console.log(response);
         })
         .catch(error => {
           console.log(error);
         });
     },
+    updateSuccess() {
+      this.$notify({
+        title: '修改成功',
+        type: 'success'
+      })
+    },
     userImage() {
       const vm = this
-      const userImg = this.$refs.userImg.files[0]
+      const userImg = this.$refs.uploadfile.files[0]
       const formData = new FormData()
       formData.append('uploadImg',userImg)
       const token = localStorage.getItem("token");
       const api = 'http://switcher.rocket-coding.com/api/member/upload/user'
+      console.log(userImg)
       this.$http
       .post(api,formData,{
         headers: {
@@ -251,6 +273,14 @@ export default {
       })
       .then(response => {
         console.log(response)
+        this.photoSuccess()
+        // vm.$set(vm.userData, 'imgUrl' , response.data.member.Photo)
+      })
+    },
+    photoSuccess() {
+        this.$notify({
+        title: '上傳個人圖片成功',
+        type: 'success'
       })
     },
     storeImage() {
@@ -267,15 +297,23 @@ export default {
         }
       })
       .then(response => {
-        console.log(response)
+        // console.log(response)
+        this.storeSuccess()
       })
     },
+    storeSuccess() {
+       this.$notify({
+        title: '上傳商店圖片成功',
+        type: 'success'
+      })
+    }
   },
   created() {
     this.getMember();
   }
 };
 </script>
+
 <style lang="scss" scode>
 .member-photo-upload{
   width: 200px;
@@ -286,5 +324,10 @@ export default {
     height: 100%;
   }
 }
-
+.el-checkbox-button.is-focus .el-checkbox-button__inner{
+  border-color:#FF7D01;
+}
+.el-checkbox-button__inner:hover{
+  color:#FF7D01;
+}
 </style>

@@ -14,7 +14,7 @@
                             <img src="/img/users/iconfinder_11_avatar_2754576.png" alt="user01">
                         </div>
                         <div class="sellerTxt text-white">
-                            <h6 class="mb-0">阿瑄</h6>
+                            <h6 class="mb-0">{{sellerData.member.Name}}</h6>
                             <p class="card-text mb-0">主要商品 : <span>遊戲片</span></p>
                             <p class="mb-1">面交地點 : <span>7-11 鳳文門市</span></p>
                             <button type="button" class="btn btn-light pl-4 pr-4 w-100">我要聊聊</button>
@@ -44,7 +44,7 @@
                             <div class="sellerInfo-chat">
                                 <font-awesome-icon icon="comment-dots"/>
                                 <span>主要回應時間</span>
-                                <span class="orange-txt">上午/ 晚上</span>
+                                <span class="orange-txt">{{sellerData.member.Reply}}</span>
                             </div>
                         </div>
                     </div>
@@ -55,7 +55,8 @@
             <h5 class="mt-4"><i class="mr-2"><font-awesome-icon icon="store"/></i>關於賣場</h5>
             <div class="row switcherStore-aboutInfo justify-content-between mb-5">
                 <div class="col-md-6 about-text">
-                    <p> 歡迎光臨 本賣場有實體店面 請安心租借 Switch 相關產品 保固採上網註冊 會給普評價跟負評價的買家請勿下標 買家若對商品疑慮的話 可先詢問清楚後再決定是否下標</p>
+                    <p>{{sellerData.member.StoreDescription}}</p>
+                    <!-- 歡迎光臨 本賣場有實體店面 請安心租借 Switch 相關產品 保固採上網註冊 會給普評價跟負評價的買家請勿下標 買家若對商品疑慮的話 可先詢問清楚後再決定是否下標 -->
                 </div>
                 <div class="col-md-6 about-storeImg">
                     <div class="storeImg"></div>
@@ -63,9 +64,9 @@
             </div>
             <div class="row switcherStore-main bg-danger justify-content-center text-center pt-2 pb-2">
                 <div class="col-md-2 border-right"><a href="" class="main-item active d-block text-white">所有商品</a></div>
-                <!-- <div class="col-md-2 border-right"><a href="" class="main-item d-block text-white" @click.native="isAllItem">遊戲主機</a></div>
-                <div class="col-md-2 border-right"><a href="" class="main-item d-block text-white" @click.native="isAllItem">遊戲軟體</a></div>
-                <div class="col-md-2 border-right"><a href="" class="main-item d-block text-white" @click.native="isAllItem">遊戲配件</a></div> -->
+                <div class="col-md-2 border-right"><a href="" class="main-item d-block text-white" @click="isAllItem">遊戲主機</a></div>
+                <div class="col-md-2 border-right"><a href="" class="main-item d-block text-white" @click="isAllItem">遊戲軟體</a></div>
+                <div class="col-md-2 border-right"><a href="" class="main-item d-block text-white" @click="isAllItem">遊戲配件</a></div>
                 <div class="col-md-2"><a href="" class="main-item d-block text-white">優惠活動</a></div>
                 <!-- <ul class="row switcherStore-body list-unstyled flex-wrap pt-5 pb-4">
                     <li class="col-10 col-sm-6 col-md-6 col-xl-3 col-lg-4">
@@ -159,9 +160,35 @@ import PerProduct from '../../../components/back_side/PerProduct'
 export default {
   data () {
     return {
+      sellerData: {
+        member: {
+          Name: '',
+          Reply: '',
+          StoreDescription: '',
+          StoreImage: ''
+        }
+      }
     }
   },
   methods: {
+    getSeller () {
+      const api = 'http://switcher.rocket-coding.com/api/member'
+      const token = localStorage.getItem('token')
+      this.$http
+        .get(api, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        .then(response => {
+          this.sellerData = response.data
+          console.log(this.sellerData)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    },
+
     getProduct () {
       const api = 'http://switcher.rocket-coding.com/api/member'
       const token = localStorage.getItem('token')
@@ -173,7 +200,7 @@ export default {
         })
         .then(response => {
           this.userData = response.data
-          console.log(this.userData)
+          // console.log(this.userData)
         })
         .catch(function (error) {
           console.log(error)
@@ -184,6 +211,7 @@ export default {
     }
   },
   created () {
+    this.getSeller()
     this.getProduct()
   },
   components: { PerProduct }

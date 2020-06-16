@@ -1,0 +1,68 @@
+<template>
+    <div class="container bg-light">
+        <div class="NewProductImg px-5 py-5" >
+            <p>上傳圖片</p>
+            <!-- <div class="product-photo-upload" v-for="item in Editproductphoto" :key="item">
+              <img class="img" alt="商品圖片" :src="item" width="200" />
+            </div> -->
+            <div class="file-loading mt-5 mx-100">
+              <input ref="ProductImage"  id="upload-prophoto" name="Upload-prophoto" type="file" accept="image/*" @change="uploadPhoto"  required />
+            </div>
+            <!-- <hr> -->
+            <div class="Button mx-auto d-flex justify-content-center pt-3">
+              <button type="button" class="btn btn-primary " @click="$router.go(-1)">上一頁</button>
+              <button type="button" class="btn btn-warning ml-3" @click="BackStore">確定</button>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+  data () {
+    return {
+      Editproductphoto: []
+    }
+  },
+  methods: {
+    uploadPhoto () {
+      const id = this.$route.params.id
+      // console.log(id)
+      const photo = this.$refs.ProductImage.files[0]
+      // console.log(photo)
+      const form = new FormData()
+      form.append('ProductImage', photo)
+      // console.log(form)
+      const token = localStorage.getItem('token')
+      const api = `http://switcher.rocket-coding.com/api/product/upload/${id}`
+      this.$http
+        .post(api, form, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data'
+          }
+        })
+        .then(response => {
+          console.log(response)
+          // this.getProductUrl(response.data.product.Id)
+        })
+    },
+    BackStore () {
+      this.$router.push({
+        path: '/sellerstore'
+      })
+    }
+  }
+}
+</script>
+<style scoped>
+.NewProductImg{
+    height: 100vh;
+}
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+</style>

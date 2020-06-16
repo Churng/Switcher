@@ -33,7 +33,7 @@
       </form> -->
     </div>
 
-    <section @submit.prevent="updateProduct">
+    <section>
       <div class="container bg-light">
         <form class="w-75 m-auto pt-5">
           <div class="name mb-4">
@@ -236,11 +236,12 @@
               </div>
             </div>
           </div>
-          <div class="PublicTime d-none" >{{PublishDate}}</div>
+          <div class="PublicTime d-none" >${PublishDate}</div>
           <div class="row bg-light d-flex justify-content-center">
             <div class="mt-3 mb-3">
-              <button type="button" class="btn btn-danger">取消</button>
-              <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#staticBackdrop">儲存</button>
+              <button type="submit" class="btn btn-warning ml-3" data-toggle="modal" data-target="#staticBackdrop" @click="addProduct">儲存</button>
+              <button type="submit" class="btn btn-primary ml-3" data-toggle="modal" data-target="#staticBackdrop" @click="BacktoStore">取消</button>
+              <router-view />
             </div>
           </div>
         </form>
@@ -266,12 +267,12 @@ export default {
         Category: 0,
         Period: null,
         Description: '',
-        PublishDate: ''
+        PublishDate: new Date()
       }
     }
   },
   methods: {
-    updateProduct () {
+    addProduct () {
       const api = 'http://switcher.rocket-coding.com/api/product/add'
       const token = localStorage.getItem('token')
       const today = new Date()
@@ -298,17 +299,30 @@ export default {
       this.$http
         .post(api, newproduct, headers)
         .then(response => {
-          // console.log(response)
+          console.log(response)
           if (response.data.result) {
             console.log(response.data)
-            localStorage.setItem('token', response.data.token)
+            this.$router.push({
+              name: 'AddProductphoto',
+              params: {
+                id: response.data.product.Id
+              }
+            })
           }
         })
     },
-    uploadPhoto () {
-
+    BacktoStore () {
+      this.$router.push({
+        path: '/sellerstore'
+      })
     }
-
   }
 }
 </script>
+<style lang="scss">
+.product-photo-upload{
+  width: 100%;
+  height: 300px;
+  border: 1px solid #dee2e6;
+}
+</style>

@@ -87,7 +87,6 @@ export default {
   created () {
     this.getAllProduct()
   }
-
 }
 </script>
 

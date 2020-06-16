@@ -102,7 +102,7 @@
                         </router-link>
                     </div>
                     <div class="col-xl-1 h-dropItem-content mt-4 mb-4 text-center">
-                         <router-link to="/editnewproduct" class="d-block">
+                         <router-link to="/addnewproduct" class="d-block">
                             <img src="/img/icon/iconfinder_bag_5925586.png" alt="userBag">
                             <p>商品上架</p>
                         </router-link>

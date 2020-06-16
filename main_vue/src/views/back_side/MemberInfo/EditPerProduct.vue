@@ -4,7 +4,7 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <a href="#">首頁</a>
+            <a href="/Home">首頁</a>
           </li>
           <li class="breadcrumb-item active" aria-current="page">編輯商品</li>
         </ol>
@@ -33,7 +33,7 @@
       </form> -->
     </div>
 
-    <section @submit.prevent="updateProduct">
+    <section >
       <div class="container bg-light">
         <form class="w-75 m-auto pt-5">
           <div class="name mb-4">
@@ -42,7 +42,7 @@
               type="text"
               placeholder="請輸入商品名稱"
               class="ml-3 w-75"
-              v-model.trim="Productdata.Name"
+              v-model.trim="Productdata.product.Name"
             />
           </div>
           <div class="place d-flex flex-row mb-4">
@@ -51,7 +51,7 @@
               <label for="City" class="d-none"></label>
               <input
                 type="text"
-                v-model.trim="Productdata.City"
+                v-model.trim="Productdata.product.City"
                 id="City"
                 placeholder="請填寫城市名稱ex:台南市"
               />
@@ -60,7 +60,7 @@
               <label for="Zone" class="d-none"></label>
               <input
                 type="text"
-                v-model.trim="Productdata.Zone"
+                v-model.trim="Productdata.product.Zone"
                 id="Zone"
                 placeholder="請填寫區域名稱ex:永康區"
               />
@@ -69,7 +69,7 @@
               <label for="Store" class="d-none"></label>
               <input
                 type="text"
-                v-model.trim="Productdata.Store"
+                v-model.trim="Productdata.product.Store"
                 id="Store"
                 placeholder="請填寫門市名稱ex:佳鼎門市"
               />
@@ -108,16 +108,16 @@
               <div class="col-2 d-flex flex-column w-md-50">
                 <div class>
                   <label for="original-price" class="O-price text-primary">原價</label>
-                  <input type="text" v-model="Productdata.OriginPrice" class="original-price" />
+                  <input type="text" v-model="Productdata.product.OriginPrice" class="original-price" />
                 </div>
                 <div class>
                   <label for="deposit" class="d-price">押金</label>
-                  <input type="text" class="deposit" v-model="Productdata.Deposit" />
+                  <input type="text" class="deposit" v-model="Productdata.product.Deposit" />
                 </div>
               </div>
-              <div class="col-8 w-50 ml-5">
+              <div class="col-8 ml-5 d-flex flex-column ">
                 <label for="special-offer" class="text-primary">特價</label>
-                <input type="text" class="special-offer" v-model="Productdata.Price" />＊當有特價請填此欄
+                <input type="text" class="special-offer w-50" v-model="Productdata.product.Price" />＊當有特價請填此欄
               </div>
             </div>
           </div>
@@ -126,7 +126,7 @@
               <label class="cat-lable" for>商品類別</label>
             </div>
 
-            <select class="custom-select w-25 ml-md-3" v-model="Productdata.Category" required>
+            <select class="custom-select w-25 ml-md-3" v-model="Productdata.product.Category" required>
               <option selected>請選擇類別</option>
               <option :value="0">遊戲主機</option>
               <option :value="1">遊戲配件</option>
@@ -141,7 +141,7 @@
               <select
                 class="custom-select d-block w-100"
                 id="country"
-                v-model.number="Productdata.Quantity"
+                v-model.number="Productdata.product.Quantity"
                 required
               >
                 <option value>--請選擇數量--</option>
@@ -163,7 +163,7 @@
               <div class="mb-3">
                 <input
                   class="form-check-input"
-                  v-model.number="Productdata.Status"
+                  v-model.number="Productdata.product.Status"
                   type="radio"
                   name="exampleRadios"
                   id="normal"
@@ -175,7 +175,7 @@
               <div class>
                 <input
                   class="form-check-input"
-                  v-model.number="Productdata.Status"
+                  v-model.number="Productdata.product.Status"
                   type="radio"
                   name="exampleRadios"
                   id="Notforrent"
@@ -193,7 +193,7 @@
             <div class="ml-3">
               <div class>
                 <label for="deposit" class="rental"></label>
-                <input type="text" class="days" v-model.number="Productdata.Period" />／天
+                <input type="text" class="days" v-model.number="Productdata.product.Period" />／天
               </div>
               <div class="invalid-feedback">Please select a valid country.</div>
             </div>
@@ -208,7 +208,7 @@
                 <!-- <label for="inputgoods-intro">輸入商品特色或描述商品外觀~</label> -->
                 <textarea
                   class="form-control w-75"
-                  v-model="Productdata.Description"
+                  v-model="Productdata.product.Description"
                   id="inputgoods-intro"
                   rows="3"
                   placeholder="請輸入商品資訊..."
@@ -216,11 +216,13 @@
               </div>
             </div>
           </div>
-          <div class="PublicTime d-none" >{{PublishDate}}</div>
+          <div class="PublicTime d-none">
+            ${PublishDate}
+          </div>
           <div class="row bg-light d-flex justify-content-center">
             <div class="mt-3 mb-3">
-              <button type="button" class="btn btn-danger mr-4" @click="Editcancel">取消</button>
-              <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#staticBackdrop">確定更改</button>
+              <button type="button" class="btn btn-danger mr-4" @click="$router.go(-1)">取消</button>
+              <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#staticBackdrop" @click="updateProduct">更改</button>
             </div>
           </div>
         </form>
@@ -234,55 +236,66 @@ export default {
   data () {
     return {
       Productdata: {
-        Name: '',
-        OriginPrice: null,
-        Price: null,
-        Deposit: null,
-        Quantity: null,
-        City: '',
-        Zone: '',
-        Store: '',
-        Status: 0,
-        Category: 0,
-        Period: null,
-        Description: '',
-        PublishDate: '',
-        Id: ''
+        product: {
+          Name: '',
+          OriginPrice: null,
+          Price: null,
+          Deposit: null,
+          Quantity: null,
+          City: '',
+          Zone: '',
+          Store: '',
+          Status: 0,
+          Category: 0,
+          Period: null,
+          Description: '',
+          PublishDate: '',
+          Id: ''
+        }
+
       }
     }
   },
   methods: {
     updateProduct () {
-      const api = 'http://switcher.rocket-coding.com/api/product/add'
       const token = localStorage.getItem('token')
       const today = new Date()
-      const newproduct = {
-        Name: this.commodity.Name,
-        OriginPrice: this.commodity.OriginPrice,
-        Price: this.commodity.Price,
-        Deposit: this.commodity.Deposit,
-        Quantity: this.commodity.Quantity,
-        City: this.commodity.City,
-        Zone: this.commodity.Zone,
-        Store: this.commodity.Store,
-        Status: this.commodity.Status,
-        Category: this.commodity.Category,
-        Period: this.commodity.Period,
-        Description: this.commodity.Description,
-        PublishDate: this.commodity.PublishDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
+      const product = {
+        Name: this.Productdata.product.Name,
+        OriginPrice: this.Productdata.product.OriginPrice,
+        Price: this.Productdata.product.Price,
+        Deposit: this.Productdata.product.Deposit,
+        Quantity: this.Productdata.product.Quantity,
+        City: this.Productdata.product.City,
+        Zone: this.Productdata.product.Zone,
+        Store: this.Productdata.product.Store,
+        Status: this.Productdata.product.Status,
+        Category: this.Productdata.product.Category,
+        Period: this.Productdata.product.Period,
+        Description: this.Productdata.product.Description,
+        PublishDate: this.Productdata.product.PublishDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
       }
+      const newproduct = JSON.stringify(product)
       const headers = {
         headers: {
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
         }
       }
+      const Id = this.$route.query.id
+      const api = `http://switcher.rocket-coding.com/api/product/${Id}`
       this.$http
-        .post(api, newproduct, headers)
+        .patch(api, newproduct, headers)
         .then(response => {
           // console.log(response)
           if (response.data.result) {
             console.log(response.data)
-            localStorage.setItem('token', response.data.token)
+            this.$router.push({
+              name: 'UploadProductphoto',
+              params: {
+                id: this.$route.query.id
+              }
+            })
           }
         })
     },
@@ -291,15 +304,12 @@ export default {
       this.$http
         .get(api)
         .then(response => {
-          this.Productdata = response.data.product
+          this.Productdata = response.data
           console.log(this.Productdata)
         })
         .catch(function (error) {
           console.log(error)
         })
-    },
-    Editcancel () {
-      this.$route.go(-1)
     }
   },
   created () {
