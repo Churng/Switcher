@@ -1,5 +1,5 @@
 <template>
-  <div class="OrderManagement vh-100">
+  <div class="OrderManagement">
     <div class="container">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb mb-4">
@@ -33,9 +33,9 @@
           >訂購紀錄</a>
         </div>
       </nav>
-      <div class="tab-content order-record vh-100 bg-light" id="nav-tabContent-order">
+      <div class="tab-content order-record bg-light" id="nav-tabContent-order">
         <div
-          class="tab-pane fade show active"
+          class="tab-pane fade show active orderTab-pane"
           id="nav-rented"
           role="tabpanel"
           aria-labelledby="nav-rented-tab"
@@ -44,7 +44,7 @@
           <RentalRecord :orderData="orderData" :userData="userData" v-else/>
         </div>
         <div
-          class="tab-pane fade"
+          class="tab-pane fade orderTab-pane"
           id="nav-ordered"
           role="tabpanel"
           aria-labelledby="nav-ordered-tab"
@@ -85,10 +85,10 @@ export default {
             Authorization: `Bearer ${token}`
           }
         }).then(res => {
-        console.log('出租紀錄', res.data.orders)
+        // console.log('出租紀錄', res.data.orders)
         this.orderData = res.data.orders
       }).catch(err => {
-        console.log(err.response)
+        // console.log(err.response)
         const errObj = err.response
         if (errObj.status === 404 && errObj.data.message === '無訂單記錄') {
           this.OrderError = true
@@ -105,10 +105,10 @@ export default {
             Authorization: `Bearer ${token}`
           }
         }).then(res => {
-        console.log('訂購紀錄', res.data.orders)
+        // console.log('訂購紀錄', res.data.orders)
         this.rentalData = res.data.orders
       }).catch(err => {
-        console.log(err.response)
+        // console.log(err.response)
         const errObj = err.response
         if (errObj.status === 404 && errObj.data.message === '無訂單記錄') {
           this.RentalError = true
@@ -125,7 +125,7 @@ export default {
             Authorization: `Bearer ${token}`
           }
         }).then(res => {
-        console.log('我是誰', res.data.member)
+        // console.log('我是誰', res.data.member)
         this.userData = res.data.member
         this.getRentalData()
         this.getOrderData()
@@ -140,5 +140,9 @@ export default {
 <style lang="scss">
 .table td{
   vertical-align: inherit;
+}
+.orderTab-pane{
+  height: 100vh;
+  overflow-y: scroll;
 }
 </style>

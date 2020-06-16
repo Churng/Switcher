@@ -11,12 +11,11 @@
                 <div class="col-md-6">
                     <div class="switcherStore-sellerCard bg-dark d-flex justify-content-around align-items-start shadow-sm pt-3 mb-4 bg-white rounded">
                         <div class="sellerImg">
-                            <img src="/img/users/iconfinder_11_avatar_2754576.png" alt="user01">
+                            <img src="" alt="user">
                         </div>
                         <div class="sellerTxt text-white">
-                            <h6 class="mb-0">阿瑄</h6>
+                            <h6 class="mb-0">{{}}</h6>
                             <p class="card-text mb-0">主要商品 : <span>遊戲片</span></p>
-                            <p class="mb-1">面交地點 : <span>7-11 鳳文門市</span></p>
                             <button type="button" class="btn btn-light pl-4 pr-4 w-100">我要聊聊</button>
                         </div>
                     </div>
@@ -70,86 +69,36 @@
             </div>
             <div class="mx-auto">
                 <ul class="row switcherStore-body list-unstyled flex-wrap pt-5 pb-4">
-                    <li class="col-10 col-sm-6 col-md-6 col-xl-3 col-lg-4">
-                        <div class="card mb-4">
-                            <img src="/img/gameHost/gameHost01.jpg" class="card-img-top" alt="gameHost">
-                            <div class="card-body">
-                                <div class="card-text">
-                                    <h3>Switch 灰黑機</h3>
-                                    <div class="card-text-top d-flex justify-content-between">
-                                        <div class="card-mainTxt">
-                                            <span class="location mr-2">高雄市</span>
-                                            <span class="isLease-icon"><i class="fas fa-circle"></i></span>
-                                            <span class="isLease">可出租</span>
-                                        </div>
-                                    </div>
-                                    <div class="card-text-bottom d-flex justify-content-between align-items-baseline mb-2">
-                                        <div class="onDate">
-                                            <span>上架日期</span>
-                                            <span>2020/05/05</span>
-                                        </div>
-                                        <div class="priceArea">
-                                            <p class="mb-0">租金<span>10</span>元/日</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="col-10 col-sm-6 col-md-6 col-xl-3 col-lg-4">
-                        <div class="card mb-4">
-                            <img src="/img/gameHost/gameHost01.jpg" class="card-img-top" alt="gameHost">
-                            <div class="card-body">
-                                <div class="card-text">
-                                    <h3>Switch 灰黑機</h3>
-                                    <div class="card-text-top d-flex justify-content-between">
-                                        <div class="card-mainTxt">
-                                            <span class="location mr-2">高雄市</span>
-                                            <span class="isLease-icon"><i class="fas fa-circle"></i></span>
-                                            <span class="isLease">可出租</span>
-                                        </div>
-                                    </div>
-                                    <div class="card-text-bottom d-flex justify-content-between align-items-baseline mb-2">
-                                        <div class="onDate">
-                                            <span>上架日期</span>
-                                            <span>2020/05/05</span>
-                                        </div>
-                                        <div class="priceArea">
-                                            <p class="mb-0">租金<span>10</span>元/日</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="col-10 col-sm-6 col-md-6 col-xl-3 col-lg-4">
-                        <div class="card mb-4">
-                            <img src="/img/gameHost/gameHost01.jpg" class="card-img-top" alt="gameHost">
-                            <div class="card-body">
-                                <div class="card-text">
-                                    <h3>Switch 灰黑機</h3>
-                                    <div class="card-text-top d-flex justify-content-between">
-                                        <div class="card-mainTxt">
-                                            <span class="location mr-2">高雄市</span>
-                                            <span class="isLease-icon"><i class="fas fa-circle"></i></span>
-                                            <span class="isLease">可出租</span>
-                                        </div>
-                                    </div>
-                                    <div class="card-text-bottom d-flex justify-content-between align-items-baseline mb-2">
-                                        <div class="onDate">
-                                            <span>上架日期</span>
-                                            <span>2020/05/05</span>
-                                        </div>
-                                        <div class="priceArea">
-                                            <p class="mb-0">租金<span>10</span>元/日</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                    <ShopItem v-for="item in filterSellerData" :key="item"/>
                 </ul>
             </div>
         </div>
     </section>
 </template>
+
+<script>
+import ShopItem from '../components/shared/ShopItem'
+
+export default {
+  data () {
+    return {
+      sellerData: {}
+    }
+  },
+  components: { ShopItem },
+  computed: {
+    filterSellerData () {
+      const copyData = JSON.parse(JSON.stringify(this.$root.productsData))
+      // const seller = this.$route.params.id
+      return copyData.filter(item => {
+        console.log(item)
+        // if (item.sellerid === seller) {
+        //   return console.log(item)
+        // } else {
+        //   return copyData
+        // }
+      })
+    }
+  }
+}
+</script>

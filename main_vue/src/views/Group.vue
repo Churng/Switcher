@@ -83,20 +83,20 @@
                     <h4 class="text-center mb-4 font-weight-bold">- 後端 -</h4>
                     <div class="row back_side">
                         <div class="col-md-3 col-6 imgArea">
-                            <img src="/img/users/skill01.png" alt="skill01">
-                            <p>Vue.js</p>
+                            <img src="/img/users/skill05.png" alt="skill05">
+                            <p>JWT 驗證</p>
                         </div>
                         <div class="col-md-3 col-6 imgArea">
-                            <img src="/img/users/skill02.png" alt="skill02">
-                            <p>Bootstrap</p>
+                            <img src="/img/users/skill07.png" alt="skill07">
+                            <p>Entity Framework</p>
                         </div>
                         <div class="col-md-3 col-6 imgArea">
-                            <img src="/img/users/skill03.png" alt="skill03">
-                            <p>Scss</p>
+                            <img src="/img/users/skill08.jpg" alt="skill08">
+                            <p>LINQ</p>
                         </div>
                         <div class="col-md-3 col-6 imgArea">
-                            <img src="/img/users/skill04.png" alt="skill04">
-                            <p>Git</p>
+                            <img src="/img/users/skill06.jpg" alt="skill06">
+                            <p>ASP.NET Web API 2</p>
                         </div>
                     </div>
                 </div>
@@ -148,6 +148,7 @@ h5{
     text-align: center;
     img{
         width: 100%;
+        object-fit: cover;
     }
 }
 </style>

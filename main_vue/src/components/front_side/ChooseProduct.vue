@@ -104,7 +104,7 @@ export default {
             this.$root.getCarts.filter(obj => {
               // console.log(obj.Seller, this.product.Member)
               if (this.product.Member !== obj.Seller) {
-                return this.postErrInfo
+                return this.postErrInfo()
               } else {
                 return this.postData()
               }
@@ -146,19 +146,19 @@ export default {
     },
     openLoginInfo () {
       this.$notify.info({
-        title: '消息',
-        message: '尚未登入會員! 請先登入後再下單呦！'
+        title: '尚未登入會員! 請先登入後再下單呦！'
       })
     },
     correctPost () {
       this.$notify({
         title: '已加入購物車',
-        // message: '这是一条成功的提示消息',
         type: 'success'
       })
     },
     postErrInfo () {
-      this.$message.error('此商品跟您購物車裡的賣家不符合,請先結單後再預約~')
+      this.$notify.error({
+        title: '此商品跟您購物車裡的賣家不符,請先結單後再預約呦！'
+      })
     }
   }
 }

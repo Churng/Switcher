@@ -2,59 +2,42 @@
     <div class="home-sellers-area mt-5">
         <h2 class="mb-5 text-center">精選賣家</h2>
         <div class="home-sellers mb-5">
-            <ul class="row mt-5 justify-content-center list-unstyled">
-                <li class="col-sm-6 col-md-5 col-lg-4">
-                    <div class="card">
-                        <div class="card-main pt-3 pb-3">
-                            <div class="card-body d-flex justify-content-around align-items-center">
-                                <div class="card-img">
-                                    <img src="/img/users/iconfinder_11_avatar_2754576.png" alt="user01">
-                                </div>
-                                <div class="card-txtArea">
-                                    <h5 class="card-title">阿瑄</h5>
-                                    <p class="card-text">主要商品 :<span>遊戲片</span></p>
-                                    <div class="evaluation d-flex align-items-baseline">
-                                        <p class="mr-2"><span><font-awesome-icon icon="star"/>評價 :</span></p>
-                                        <p class="evaluation-content">5.0</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-buttons d-flex justify-content-around mt-3">
-                                <button type="button" class="btn btn-light">進入賣場</button>
-                                <button type="button" class="btn btn-light">我要聊聊</button>
+            <el-carousel :interval="4000" type="card">
+              <el-carousel-item v-for="item in $root.menbersData" :key="item.Id">
+                  <div class="card-main w-100">
+                    <div class="card-body d-flex flex-column flex-lg-row justify-content-center align-items-center">
+                        <div class="card-img">
+                            <img :src="item.Photo" :alt="item.Name">
+                        </div>
+                        <div class="card-txtArea ml-lg-3">
+                            <h5 class="card-title text-center text-lg-left mr-2 mr-lg-0">{{item.Name}}</h5>
+                            <ul class="list-unstyled card-text d-md-flex flex-wrap ">
+                              <li>主要商品 : </li>
+                              <li class="pl-md-2 " v-for="(game, index) in item.Category" :key="index">{{game}}</li>
+                            </ul>
+                            <div class="evaluation d-flex align-items-baseline">
+                                <p class="mr-2"><span><font-awesome-icon icon="star"/>評價 :</span></p>
+                                <p class="evaluation-content">5.0</p>
                             </div>
                         </div>
                     </div>
-                </li>
-                <li class="col-sm-6 col-md-5 col-lg-4">
-                    <div class="card">
-                        <div class="card-main pt-3 pb-3">
-                            <div class="card-body d-flex justify-content-around align-items-center">
-                                <div class="card-img">
-                                    <img src="/img/users/iconfinder_11_avatar_2754576.png" alt="user01">
-                                </div>
-                                <div class="card-txtArea">
-                                    <h5 class="card-title">阿瑄</h5>
-                                    <p class="card-text">主要商品 :<span>遊戲片</span></p>
-                                    <div class="evaluation d-flex align-items-baseline">
-                                        <p class="mr-2"><span><font-awesome-icon icon="star"/>評價 :</span></p>
-                                        <p class="evaluation-content">5.0</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-buttons d-flex justify-content-around mt-3">
-                                <button type="button" class="btn btn-light">進入賣場</button>
-                                <button type="button" class="btn btn-light">我要聊聊</button>
-                            </div>
-                        </div>
+                    <div class="card-buttons d-flex justify-content-around mt-3">
+                        <button type="button" class="btn btn-light" @click="$router.push({name: 'Seller', params: { id: item.Id }})">進入賣場</button>
+                        <button type="button" class="btn btn-light" @click.prevent="openChatroom">我要聊聊</button>
                     </div>
-                </li>
-            </ul>
-        </div>
-        <div class="col-6 col-md-3 mx-auto mt-5 mb-5">
-            <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: 50%; background-color: #E60012;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
+                  </div>
+              </el-carousel-item>
+            </el-carousel>
         </div>
     </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    openChatroom (id) {
+      this.$message('此功能尚未開發')
+    }
+  }
+}
+</script>

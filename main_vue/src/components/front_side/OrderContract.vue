@@ -60,11 +60,6 @@
 
 <script>
 export default {
-  data () {
-    return {
-      p: ''
-    }
-  },
   methods: {
     createOrder () {
       const api = 'http://switcher.rocket-coding.com/api/order'
