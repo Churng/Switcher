@@ -37,6 +37,8 @@ new Vue({
     ChangeMember: false,
     productsData: [],
     productSearchData: false,
+    menbersData: [],
+    menberData: {},
     getCarts: [],
     getCartLen: 0,
     cartQuantity: false,

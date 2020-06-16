@@ -32,7 +32,7 @@
                             <span class="sr-only">Next</span>
                           </a>
                     </div>
-                    <ProductSellerStore :product="product"/>
+                    <ProductSellerStore :menberData="menberData"/>
                     <div class="switcherProduct-proInfo mb-3">
                         <h5 class="mb-4">商品資訊</h5>
                         <div class="proInfo-content d-flex justify-content-between align-items-end">
@@ -156,12 +156,14 @@ export default {
   data () {
     return {
       product: {},
-      loading: false
+      loading: false,
+      menberData: {}
     }
   },
   components: { ProductSellerStore, ChooseProduct, InstructionCard },
   created () {
     this.getProduct()
+    this.getSellerData()
   },
   methods: {
     getProduct () {
@@ -169,8 +171,23 @@ export default {
       this.loading = true
       this.$http.get(api).then(res => {
         this.product = res.data.product
-        // console.log(this.product)
+        console.log(res.data)
         this.loading = false
+      })
+    },
+    getSellerData () {
+      const api = 'http://switcher.rocket-coding.com/api/members'
+      const vm = this
+      this.$http.get(api).then(res => {
+        const menbers = res.data.members
+        menbers.filter(item => {
+          if (item.Name === vm.product.Member) {
+            console.log(item)
+            this.$root.menberData = item
+            this.menberData = item
+            return this.menberData
+          }
+        })
       })
     }
   }

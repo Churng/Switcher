@@ -16,9 +16,11 @@
         width: $font-size-base*3.125;
         height: $font-size-base*3.125;
         background-size: contain;
-        border-radius: 50%;
         img{
             width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
     }
     .btn,.switcherStore-sellerInfo{
@@ -184,9 +186,11 @@
         width: $font-size-base*3.125;
         height: $font-size-base*3.125;
         background-size: contain;
-        border-radius: 50%;
         img{
             width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
     }
     .userReview{

@@ -2,13 +2,13 @@
     <div class="switcherProduct-seller d-flex align-items-center pt-3 pb-3 mb-4">
         <div class="col-md-5 col-lg-5 d-flex align-items-center">
             <div class="sellerImg mr-3">
-                <img src="/img/users/iconfinder_11_avatar_2754576.png" alt="user01">
+                <img :src="menberData.Photo" alt="user">
             </div>
             <div class="sellerTxt">
-                <h6 class="mb-2">{{product.Member}}</h6>
+                <h6 class="mb-2">{{menberData.Name}}</h6>
                 <div class="sellerBtns d-flex">
-                    <button type="button" class="btn btn-outline-secondary w-50 mr-1" @click="$router.push({name: 'Seller', params: '/seller/:id'})">進入賣場</button>
-                    <button type="button" class="btn btn-outline-secondary w-50 ml-1">我要聊聊</button>
+                    <button type="button" class="btn btn-outline-secondary w-50 mr-1" @click="$router.push({name: 'Seller', params: { id: menberData.Id }})">進入賣場</button>
+                    <button type="button" class="btn btn-outline-secondary w-50 ml-1" @click.prevent="openChatroom(menberData.Id)">我要聊聊</button>
                 </div>
             </div>
         </div>
@@ -45,6 +45,11 @@
 
 <script>
 export default {
-  props: ['product']
+  props: ['menberData'],
+  methods: {
+    openChatroom (id) {
+      this.$message('此功能尚未開發')
+    }
+  }
 }
 </script>

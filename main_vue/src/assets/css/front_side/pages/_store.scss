@@ -6,18 +6,17 @@
 /*賣家卡片*/
 .switcherStore-sellerCard{
     padding: 1rem 1.88rem;
-    background-image: url('/img/users/AnimalCrossing_wallpaper_02.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    background-image: linear-gradient(-225deg, #0F2027 0%, #203A43 51%, #2C5364 100%);
     .sellerImg{
         width: $font-size-base*6.25;
         height: $font-size-base*6.25;
         background-repeat: no-repeat;
         background-size: contain;
-        border-radius: 50%;
         img{
             width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
     }
     .sellerTxt p,.sellerTxt button{

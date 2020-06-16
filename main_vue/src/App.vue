@@ -20,6 +20,7 @@ export default {
   components: { Header, Footer },
   created () {
     this.getProductData()
+    this.getSellersData()
   },
   methods: {
     getProductData () {
@@ -30,6 +31,17 @@ export default {
         this.$root.productsData = data.sort(function (a, b) {
           return a.Price - b.Price
         })
+        this.loading = false
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+    getSellersData () {
+      const api = 'http://switcher.rocket-coding.com/api/members'
+      this.loading = true
+      this.$http.get(api).then(res => {
+        // console.log(res.data.members)
+        this.$root.menbersData = res.data.members
         this.loading = false
       }).catch(err => {
         console.log(err)
