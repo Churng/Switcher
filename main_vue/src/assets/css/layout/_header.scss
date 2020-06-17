@@ -75,7 +75,7 @@ body{
             // height: 74px;
             background-color: $white;
         }
-        &:hover,&:active{
+        &:hover{
             text-decoration: none;
             .header-navBar-icon,.header-navBar-label{
                 color: $red;
@@ -90,6 +90,9 @@ body{
                 bottom: 2px;
             }
             transition: border-color 150ms cubic-bezier(.165,.84,.44,1),background-color 150ms cubic-bezier(.165,.84,.44,1),color 150ms cubic-bezier(.165,.84,.44,1);
+            &.textb .h-navBar-N2{
+              opacity: 1;
+            }
         }
         .header-navBar-icon{
             color: $fc-100;
@@ -106,6 +109,44 @@ body{
         }
     }
 }
+// .header-navBar .pc-eShop{
+//   position: relative;
+// }
+// .textb{
+//   width: 100%;
+//   display: none;
+//   position: absolute;
+//   z-index: 9999;
+//   top: 79px;
+//   left: 0;
+//   .h-navBar-N2{
+//     width: 100%;
+//     display: flex;
+//   }
+// }
+
+// .header-navBar .pc-eShop{
+//   &:hover{
+//     text-decoration: none;
+//     .header-navBar-icon,.header-navBar-label{
+//         color: $red;
+//     }
+//     &::after{
+//         content: '';
+//         position: absolute;
+//         height: 3px;
+//         background-color: $red;
+//         right: 2px;
+//         left: 2px;
+//         bottom: 2px;
+//     }
+//     transition: border-color 150ms cubic-bezier(.165,.84,.44,1),background-color 150ms cubic-bezier(.165,.84,.44,1),color 150ms cubic-bezier(.165,.84,.44,1);
+//     .textb{
+//       display: block;
+//     }
+//   }
+// }
+
 /*手機版展開導覽*/
 .header-navBar {
     .sm-findChevron{

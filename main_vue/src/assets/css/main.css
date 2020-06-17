@@ -11756,17 +11756,17 @@ body {
   }
 }
 
-.header-navBar li:hover, .header-navBar li:active {
+.header-navBar li:hover {
   text-decoration: none;
   -webkit-transition: border-color 150ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 150ms cubic-bezier(0.165, 0.84, 0.44, 1), color 150ms cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: border-color 150ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 150ms cubic-bezier(0.165, 0.84, 0.44, 1), color 150ms cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.header-navBar li:hover .header-navBar-icon, .header-navBar li:hover .header-navBar-label, .header-navBar li:active .header-navBar-icon, .header-navBar li:active .header-navBar-label {
+.header-navBar li:hover .header-navBar-icon, .header-navBar li:hover .header-navBar-label {
   color: #E60012;
 }
 
-.header-navBar li:hover::after, .header-navBar li:active::after {
+.header-navBar li:hover::after {
   content: '';
   position: absolute;
   height: 3px;
@@ -11774,6 +11774,10 @@ body {
   right: 2px;
   left: 2px;
   bottom: 2px;
+}
+
+.header-navBar li:hover.textb .h-navBar-N2 {
+  opacity: 1;
 }
 
 .header-navBar li .header-navBar-icon {

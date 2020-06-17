@@ -120,11 +120,6 @@
                         </a>
                     </div>
                 </div>
-                <!-- <div class="row h-navBar-cart" :class="pcShow.shoppingCart ? 'd-none' : 'd-flex justify-content-end'">
-                  <div class="col-md-4 cartItems shadow p-3 mb-5 bg-white rounded" v-if="this.$root.getCarts.length === 0">
-                    <div class="text-center"><span class="font-weight-bold text-center">沒有商品在購物車內</span></div>
-                  </div>
-                </div> -->
             </div>
         </div>
     </div>

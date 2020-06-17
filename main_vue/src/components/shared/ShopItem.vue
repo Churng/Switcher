@@ -4,7 +4,7 @@
             <img :src="item.Images[0]" class="card-img-top" alt="gameHost">
             <div class="card-body">
                 <div class="card-text">
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-between flex-wrap">
                         <h6 class="font-weight-bold">{{ item.Name }}</h6>
                         <span class="category-games bg-danger text-white rounded">{{ item.Category }}</span>
                     </div>

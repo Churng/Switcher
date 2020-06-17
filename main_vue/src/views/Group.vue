@@ -32,21 +32,21 @@
                         <a href="https://orid.rocket-coding.com/student_goal.html?Sid=16&first_mon=2019/10/01" target='_blank'><img src="/img/users/menber01.png" alt="menber1"></a>
                     </div>
                     <h5 class="mt-4">後端組 : Charles</h5>
-                    <p>...</p>
+                    <p>-火箭隊培訓營第3梯-</p>
                 </div>
                 <div class="col-md-3 d-flex flex-column justify-content-center align-items-center">
                     <div class="circle rounded-circle">
                         <a href="https://orid.rocket-coding.com/student_goal.html?Sid=19&first_mon=2019/10/01" target='_blank'><img src="/img/users/menber02.png" alt="menber2"></a>
                     </div>
                     <h5 class="mt-4">前端組 : 蟲蟲</h5>
-                    <p>...</p>
+                    <p>-火箭隊培訓營第3梯-</p>
                 </div>
                 <div class="col-md-3 d-flex flex-column justify-content-center align-items-center">
                     <div class="circle rounded-circle">
                         <a href="https://orid.rocket-coding.com/student_goal.html?Sid=18&first_mon=2019/10/01" target='_blank'><img src="/img/users/menber03.png" alt="menber3"></a>
                     </div>
                     <h5 class="mt-4">前端組 : Arisa</h5>
-                    <p>...</p>
+                    <p>-火箭隊培訓營第3梯-</p>
                 </div>
             </div>
         </div>
