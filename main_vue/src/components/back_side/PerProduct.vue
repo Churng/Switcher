@@ -1,66 +1,60 @@
 <template>
-    <div class="mx-auto">
-      <el-backtop :bottom="60"></el-backtop>
-        <ul class="row switcherStore-body list-unstyled flex-wrap pt-5 pb-4" >
-            <li class="col-10 col-sm-6 col-md-6 col-xl-3 col-lg-4" v-for="data in productData" :key="data.Id">
-                <div class="card mb-4">
-                    <img :src="data.Images[0]" class="card-img-top" alt="gameHost">
-                    <div class="card-body">
-                        <div class="card-text">
-                            <h3>{{data.Name}}</h3>
-                            <div class="card-text-top d-flex justify-content-between">
-                                <div class="card-mainTxt">
-                                    <span class="location mr-2">{{data.City}}</span>
-                                    <span :class="data.Status=='可出租' ? 'isLease-icon':'notLease'"><font-awesome-icon icon="circle"/></span>
-                                    <span class="isLease">{{data.Status}}</span>
-                                </div>
-                            </div>
-                            <div class="card-text-bottom d-flex justify-content-between align-items-baseline mb-2">
-                                <div class="onDate">
-                                    <span>上架日期</span>
-                                    <span>{{data.PublishDate}}</span>
-                                </div>
-                                <div class="priceArea">
-                                    <p class="mb-0">租金<span>{{data.Price}}</span>元/日</p>
-                                </div>
-                            </div>
-                            <div class="Edit-Deletebutton">
-                                <el-button type="info" icon="el-icon-edit" class="editbutton" @click="editPerProduct(data.Id)" plain ></el-button>
-                                <el-button type="info" icon="el-icon-delete" @click="deleteProduct(data.Id)" plain ></el-button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div>
+  <li class="col-10 col-sm-6 col-md-6 col-xl-3 col-lg-4">
+      <div class="card mb-4">
+          <img :src="item.Images[0]" class="card-img-top" alt="gameHost">
+          <div class="card-body">
+              <div class="card-text">
+                  <h3>{{item.Name}}</h3>
+                  <div class="card-text-top d-flex justify-content-between">
+                      <div class="card-mainTxt">
+                          <span class="location mr-2">{{item.City}}</span>
+                          <span :class="item.Status=='可出租' ? 'isLease-icon':'notLease'"><font-awesome-icon icon="circle"/></span>
+                          <span class="isLease">{{item.Status}}</span>
+                      </div>
+                  </div>
+                  <div class="card-text-bottom d-flex justify-content-between align-items-baseline mb-2">
+                      <div class="onDate">
+                          <span>上架日期</span>
+                          <span>{{item.PublishDate}}</span>
+                      </div>
+                      <div class="priceArea">
+                          <p class="mb-0">租金<span>{{item.Price}}</span>元/日</p>
+                      </div>
+                  </div>
+                  <div class="Edit-Deletebutton">
+                      <el-button type="info" icon="el-icon-edit" class="editbutton" @click="editPerProduct(item.Id)" plain ></el-button>
+                      <el-button type="info" icon="el-icon-delete" @click="deleteProduct(item.Id)" plain ></el-button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </li>
 </template>
 <script>
 
 export default {
-  data () {
-    return {
-      productData: []
-    }
+  props: {
+    item: Object,
+    index: Number
   },
   methods: {
-    getAllProduct () {
-      const api = 'http://switcher.rocket-coding.com/api/product/admin/all'
-      const token = localStorage.getItem('token')
-      this.$http
-        .get(api, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        })
-        .then(response => {
-          this.productData = response.data.products
-          console.log(this.productData)
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
-    },
+    // getAllProduct () {
+    //   const api = 'http://switcher.rocket-coding.com/api/product/admin/all'
+    //   const token = localStorage.getItem('token')
+    //   this.$http
+    //     .get(api, {
+    //       headers: {
+    //         Authorization: `Bearer ${token}`
+    //       }
+    //     })
+    //     .then(response => {
+    //       this.productData = response.data.products
+    //       // console.log(this.productData)
+    //     })
+    //     .catch(function (error) {
+    //       console.log(error)
+    //     })
+    // },
     deleteProduct (Id) { // 讀取 key 資料，去刪除產品
       const vm = this
       console.log(this)
@@ -85,7 +79,7 @@ export default {
     }
   },
   created () {
-    this.getAllProduct()
+    // this.getAllProduct()
   }
 }
 </script>

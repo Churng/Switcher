@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="row shop-navSelects bg-danger text-white flex-nowrap">
+        <!-- <div class="row shop-navSelects bg-danger text-white flex-nowrap">
             <nav class="col-md-8 navbar navbar-expand-lg navbar-light">
                 <span class="navbar-brand text-white">篩選 :</span>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,17 +32,17 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <ul class="row shop-body list-unstyled flex-wrap bg-white pt-5 pb-2 mb-0">
           <h3 class="text-center w-100" v-if="searchList.length <=0">尚無任何商品</h3>
-          <ShopItem v-for="(item, index) in searchList" :key="index" :item="item" :index="index"/>
+          <PerProduct  v-for="(item, index) in searchList" :key="index" :item="item" :index="index"/>
         </ul>
     </div>
 </template>
 
 <script>
 
-import ShopItem from '../shared/ShopItem'
+import PerProduct from '../back_side/PerProduct'
 
 export default {
   data () {
@@ -51,7 +51,7 @@ export default {
       seletTxt: '價格(低到高)'
     }
   },
-  components: { ShopItem },
+  components: { PerProduct },
   computed: {
     searchList () {
       if (this.$root.productSearchData) {
@@ -62,17 +62,17 @@ export default {
     }
   },
   created () {
-    this.game()
+    // this.game()
   },
   methods: {
-    game: function () {
-      const filterGame = this.$root.productsData.filter(item => {
-        return item.Category.search('遊戲片') !== -1
-      })
-      this.dataGame = filterGame.sort(function (a, b) {
-        return a.Price - b.Price
-      })
-    },
+    // game: function () {
+    //   const filterGame = this.$root.productsData.filter(item => {
+    //     return item.Category.search('遊戲片') !== -1
+    //   })
+    //   this.dataGame = filterGame.sort(function (a, b) {
+    //     return a.Price - b.Price
+    //   })
+    // },
     isRentMethod () {
       const filterStatus = this.dataGame.filter(data => {
         return data.Status.search('可出租') !== -1

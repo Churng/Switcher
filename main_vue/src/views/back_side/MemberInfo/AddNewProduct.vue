@@ -289,7 +289,7 @@ export default {
         Category: this.commodity.Category,
         Period: this.commodity.Period,
         Description: this.commodity.Description,
-        PublishDate: this.commodity.PublishDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
+        PublishDate: this.commodity.PublishDate = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate()
       }
       const headers = {
         headers: {

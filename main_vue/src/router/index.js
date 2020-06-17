@@ -28,7 +28,10 @@ import EditPerProduct from '../views/back_side/MemberInfo/EditPerProduct'
 import NotFound404 from '../views/back_side/NotFound404'
 import UploadProductphoto from '../components/back_side/UploadProductphoto'
 import AddProductphoto from '../components/back_side/AddProductphoto'
-
+import SellerAllGame from '../components/back_side/SellerAllGame'
+import SellerGameHost from '../components/back_side/SellerGameHost'
+import SellerGame from '../components/back_side/SellerGame'
+import SellerGameStick from '../components/back_side/SellerGameStick'
 Vue.use(VueRouter)
 
 // 解決报错显示:路由重复
@@ -167,8 +170,31 @@ const routes = [
   {
     path: '/sellerstore',
     name: 'SellerStore',
+    redirect: '/sellerstore/sellerallGame',
     component: SellerStore,
-    meta: { requiresAuth: true }
+    meta: { requiresAuth: true },
+    children: [
+      {
+        path: 'sellerallgame',
+        name: 'SellerAllGame',
+        component: SellerAllGame
+      },
+      {
+        path: 'sellergamehost',
+        name: 'SellerGameHost',
+        component: SellerGameHost
+      },
+      {
+        path: 'sellergame',
+        name: 'SellerGame',
+        component: SellerGame
+      },
+      {
+        path: 'sellergamestick',
+        name: 'SellerGameStick',
+        component: SellerGameStick
+      }
+    ]
   },
   {
     path: '/perproduct',

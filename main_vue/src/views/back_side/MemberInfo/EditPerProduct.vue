@@ -273,7 +273,7 @@ export default {
         Category: this.Productdata.product.Category,
         Period: this.Productdata.product.Period,
         Description: this.Productdata.product.Description,
-        PublishDate: this.Productdata.product.PublishDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
+        PublishDate: this.Productdata.product.PublishDate = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate()
       }
       const newproduct = JSON.stringify(product)
       const headers = {
