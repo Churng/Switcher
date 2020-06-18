@@ -23,7 +23,6 @@
                     </div>
                     <div class="card-buttons d-flex justify-content-around mt-3">
                         <button type="button" class="btn btn-light" @click="$router.push({name: 'Seller', params: { id: item.Id }})">進入賣場</button>
-                        <button type="button" class="btn btn-light" @click.prevent="openChatroom">我要聊聊</button>
                     </div>
                   </div>
               </el-carousel-item>
@@ -40,9 +39,6 @@ export default {
       const copyData = JSON.parse(JSON.stringify(this.$root.menbersData))
       const sliceData = copyData.slice(0, 6)
       return sliceData
-    },
-    openChatroom (id) {
-      this.$message('此功能尚未開發')
     }
   }
 }

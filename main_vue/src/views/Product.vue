@@ -32,11 +32,14 @@
                             <span class="sr-only">Next</span>
                           </a>
                     </div>
-                    <ProductSellerStore :menberData="menberData"/>
+                    <ProductSellerStore :allData="allData"/>
                     <div class="switcherProduct-proInfo mb-3">
                         <h5 class="mb-4">商品資訊</h5>
                         <div class="proInfo-content d-flex justify-content-between align-items-end">
-                            <div class="contentBox">
+                            <div class="contentBox" v-if="product.Description === ''">
+                               尚無資訊
+                            </div>
+                            <div class="contentBox" v-else>
                                 {{product.Description}}
                             </div>
                             <div class="contentDate">
@@ -64,7 +67,8 @@
                         </div>
                         <div class="day d-flex align-items-baseline">
                             <i class="mr-2"><font-awesome-icon icon="clock"/></i>
-                            <p>可租借天數 : <span>{{product.Period}}天</span></p>
+                            <p v-if="product.Period === null">可租借天數 : <span>0 天</span></p>
+                            <p v-else>可租借天數 : <span>{{product.Period}}天</span></p>
                         </div>
                         <div class="means d-flex align-items-baseline">
                             <i class="mr-2"><font-awesome-icon icon="shield-alt"/></i>
@@ -75,7 +79,7 @@
                             <p>剩餘商品數量 : <span>{{product.Quantity}}</span></p>
                         </div>
                     </div>
-                    <ChooseProduct :product="product"/>
+                    <ChooseProduct :product="product" :allData="allData"/>
                 </div>
             </div>
             <div class="row switcherProduct-review pb-3">
@@ -156,14 +160,13 @@ export default {
   data () {
     return {
       product: {},
-      loading: false,
-      menberData: {}
+      allData: {},
+      loading: false
     }
   },
   components: { ProductSellerStore, ChooseProduct, InstructionCard },
   created () {
     this.getProduct()
-    this.getSellerData()
   },
   methods: {
     getProduct () {
@@ -171,23 +174,9 @@ export default {
       this.loading = true
       this.$http.get(api).then(res => {
         this.product = res.data.product
-        console.log(res.data)
+        this.allData = res.data
+        // console.log(res.data)
         this.loading = false
-      })
-    },
-    getSellerData () {
-      const api = 'http://switcher.rocket-coding.com/api/members'
-      const vm = this
-      this.$http.get(api).then(res => {
-        const menbers = res.data.members
-        menbers.filter(item => {
-          if (item.Name === vm.product.Member) {
-            console.log(item)
-            this.$root.menberData = item
-            this.menberData = item
-            return this.menberData
-          }
-        })
       })
     }
   }

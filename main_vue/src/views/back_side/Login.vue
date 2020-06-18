@@ -217,12 +217,15 @@ export default {
         Email: this.user.Email,
         Password: this.user.Password
       }).then((response) => {
+        localStorage.setItem('menberId', response.data.id)
         if (response.data.result) {
           localStorage.setItem('token', response.data.token)
           this.getCartData()
           this.loginSuccess()
+          this.getUserData()
           vm.$router.push('/home')
           this.$root.$emit('changeToHome')
+          this.$root.changeBannerBtn = true
           this.$root.ChangeMember = true
           this.$root.cartQuantity = true
         }
@@ -279,9 +282,22 @@ export default {
           Authorization: `Bearer ${token}`
         }
       }).then(res => {
+        console.log(this.$root.getCartLen)
         this.$root.getCarts = res.data.carts
         this.$root.getCartLen = res.data.carts.length
         localStorage.setItem('cartLen', res.data.carts.length)
+        console.log(res.data.carts.length)
+      })
+    },
+    getUserData () {
+      const menberId = localStorage.getItem('menberId')
+      const api = `http://switcher.rocket-coding.com/api/member/${menberId}`
+      this.$http.get(api).then(res => {
+        console.log('我是誰', res.data.member)
+        this.$root.userName = res.data.member.Name
+        localStorage.setItem('userName', res.data.member.Name)
+      }).catch(err => {
+        console.log(err)
       })
     }
   }

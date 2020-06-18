@@ -20,7 +20,6 @@
                                 <p class="mb-0">總租金：<span>{{getSingleData[0].Total}}</span></p>
                                 <p class="mb-0">總押金：<span>{{getSingleData[0].Deposit}}</span></p>
                                 <p>交易門市：<span>{{getSingleData[0].Store}}門市</span></p>
-                                <el-button type="success" round @click.prevent="openChatroom">去聊聊</el-button>
                               </div>
                             </div>
                             <div class="w-100 cardContent d-flex align-items-center pt-2 pb-2" v-for="(item, index) in getSingleData" :key="item.ProductId">
@@ -34,9 +33,12 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <div class="sellerBtns d-flex justify-content-around" v-if="getAllData.Status === '等待確認'">
-                                <el-button type="info" plain @click.prevent="postOrderData(getAllData.Id, 1)">取消訂單</el-button>
-                                <el-button type="success" plain @click.prevent="postOrderData(getAllData.Id, 2)">接受訂單</el-button>
+                            <div class="sellerBtns" v-if="getAllData.Status === '等待確認'">
+                                <div class="d-flex justify-content-around">
+                                  <el-button type="info" plain @click.prevent="postOrderData(getAllData.Id, 1)">取消訂單</el-button>
+                                  <el-button type="success" plain @click.prevent="postOrderData(getAllData.Id, 2)">完成訂單</el-button>
+                                </div>
+                                <p class="text-primary txtPoint mt-2">*待買方歸還商品後即可點選'完成訂單'</p>
                             </div>
                             <h5 class="font-weight-bold text-center" v-else>{{getAllData.Status}}</h5>
                         </div>
@@ -66,7 +68,6 @@ export default {
           Authorization: `Bearer ${token}`
         }
       }).then(res => {
-        // console.log('狀態', res)
         this.refreshData(Id)
       }).catch(err => {
         this.errInfo(err)
@@ -90,7 +91,6 @@ export default {
             Authorization: `Bearer ${token}`
           }
         }).then(res => {
-        // console.log('單一訂單', res.data.order[0].Status)
         this.$emit('changeStatus', res.data.order[0].Status, Id)
       })
     }
@@ -100,9 +100,12 @@ export default {
 
 <style lang="scss">
 .rentalDetailCard{
-  background: rgba(0, 0, 0, 0.1) !important;
+  background: rgba(0, 0, 0, 0.05) !important;
   .card-main{
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05) !important;
   }
+}
+.txtPoint{
+  font-size: 12px;
 }
 </style>

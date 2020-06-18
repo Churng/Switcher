@@ -20,7 +20,10 @@ export default {
     isNewList () {
       // 深拷貝(賦予新址)
       const copyData = JSON.parse(JSON.stringify(this.$root.productsData))
-      const sliceData = copyData.slice(0, 8)
+      const filterData = copyData.filter(data => {
+        return data.Status.search('可出租') !== -1
+      })
+      const sliceData = filterData.slice(0, 8)
       sliceData.sort(function (a, b) {
         return Date.parse(b.PublishDate.replace(/-/g, '/')) - Date.parse(a.PublishDate.replace(/-/g, '/'))
       })

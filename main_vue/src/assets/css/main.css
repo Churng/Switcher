@@ -11719,7 +11719,6 @@ body {
 
 .header-navBar {
   height: 100%;
-  overflow: hidden;
   padding: 0;
 }
 
@@ -11733,7 +11732,7 @@ body {
   }
 }
 
-.header-navBar li {
+.header-navBar .sm-findChevron {
   width: 20%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -11748,7 +11747,7 @@ body {
 }
 
 @media (max-width: 767px) {
-  .header-navBar li {
+  .header-navBar .sm-findChevron {
     width: 100%;
     position: inherit;
     z-index: 9999;
@@ -11756,17 +11755,17 @@ body {
   }
 }
 
-.header-navBar li:hover {
+.header-navBar .sm-findChevron:hover {
   text-decoration: none;
   -webkit-transition: border-color 150ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 150ms cubic-bezier(0.165, 0.84, 0.44, 1), color 150ms cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: border-color 150ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 150ms cubic-bezier(0.165, 0.84, 0.44, 1), color 150ms cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.header-navBar li:hover .header-navBar-icon, .header-navBar li:hover .header-navBar-label {
+.header-navBar .sm-findChevron:hover .header-navBar-icon, .header-navBar .sm-findChevron:hover .header-navBar-label {
   color: #E60012;
 }
 
-.header-navBar li:hover::after {
+.header-navBar .sm-findChevron:hover::after {
   content: '';
   position: absolute;
   height: 3px;
@@ -11776,26 +11775,100 @@ body {
   bottom: 2px;
 }
 
-.header-navBar li:hover.textb .h-navBar-N2 {
+.header-navBar .sm-findChevron:hover.textb .h-navBar-N2 {
   opacity: 1;
 }
 
-.header-navBar li .header-navBar-icon {
+.header-navBar .sm-findChevron .header-navBar-icon {
   color: #B3B3B3;
 }
 
-.header-navBar li .header-navBar-label {
+.header-navBar .sm-findChevron .header-navBar-label {
   color: #3C3C3C;
 }
 
-.header-navBar li a {
+.header-navBar .sm-findChevron a {
   display: block;
   -webkit-transition: border-color 150ms linear,background-color 150ms linear,color 150ms linear;
   transition: border-color 150ms linear,background-color 150ms linear,color 150ms linear;
 }
 
-.header-navBar li a:hover, .header-navBar li a:active {
+.header-navBar .sm-findChevron a:hover, .header-navBar .sm-findChevron a:active {
   text-decoration: none;
+}
+
+.header-navBar .pc-eShop, .header-navBar .pc-menber {
+  position: relative;
+}
+
+.h-navBar-areaBg, .h-navBar-menberBg {
+  width: 100%;
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 75px;
+  left: 0;
+  background-color: #fff;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.h-navBar-areaBg a, .h-navBar-menberBg a {
+  color: #3C3C3C;
+}
+
+.h-navBar-areaBg a:hover, .h-navBar-menberBg a:hover {
+  text-decoration: none;
+}
+
+.h-navBar-areaBg a:hover p, .h-navBar-menberBg a:hover p {
+  color: #E60012;
+}
+
+.h-navBar-areaBg a:hover img, .h-navBar-areaBg a:hover .h-dropItem-linkHead, .h-navBar-menberBg a:hover img, .h-navBar-menberBg a:hover .h-dropItem-linkHead {
+  opacity: .7;
+  -webkit-transition: opacity 150ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: opacity 150ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.h-navBar-areaBg a img, .h-navBar-areaBg a .h-dropItem-linkHead, .h-navBar-menberBg a img, .h-navBar-menberBg a .h-dropItem-linkHead {
+  opacity: 1;
+  -webkit-transition: opacity 150ms linear;
+  transition: opacity 150ms linear;
+}
+
+.header-navBar .pc-eShop:hover {
+  text-decoration: none;
+  -webkit-transition: border-color 150ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 150ms cubic-bezier(0.165, 0.84, 0.44, 1), color 150ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: border-color 150ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 150ms cubic-bezier(0.165, 0.84, 0.44, 1), color 150ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.header-navBar .pc-eShop:hover .header-navBar-icon, .header-navBar .pc-eShop:hover .header-navBar-label {
+  color: #E60012;
+}
+
+.header-navBar .pc-eShop:hover::after {
+  content: '';
+  position: absolute;
+  height: 3px;
+  background-color: #E60012;
+  right: 2px;
+  left: 2px;
+  bottom: 2px;
+}
+
+@media (min-width: 768px) {
+  .header-navBar .pc-eShop:hover .h-navBar-areaBg {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .header-navBar .pc-menber:hover .h-navBar-menberBg {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
 }
 
 /*手機版展開導覽*/
@@ -11803,7 +11876,7 @@ body {
   position: relative;
 }
 
-.header-navBar .sm-findChevron p:hover {
+.header-navBar .hovered:hover {
   background-color: rgba(237, 28, 36, 0.1);
 }
 
@@ -11828,49 +11901,6 @@ body {
 }
 
 /* nav 滑入後顯示的區塊h-navBar*/
-.h-navBar-areaBg {
-  position: absolute;
-  top: 74px;
-}
-
-.h-navBar-area {
-  position: relative;
-  z-index: 9999;
-  -webkit-box-shadow: 0 1px 0 rgba(4, 0, 0, 0.1);
-          box-shadow: 0 1px 0 rgba(4, 0, 0, 0.1);
-}
-
-.h-navBar {
-  position: absolute;
-  background-color: #fff;
-  -webkit-transition: opacity 100ms cubic-bezier(0.445, 0.05, 0.55, 0.95), visibility 100ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  transition: opacity 100ms cubic-bezier(0.445, 0.05, 0.55, 0.95), visibility 100ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
-}
-
-.h-navBar .h-dropItem-content a {
-  color: #3C3C3C;
-}
-
-.h-navBar .h-dropItem-content a:hover {
-  text-decoration: none;
-}
-
-.h-navBar .h-dropItem-content a:hover p {
-  color: #E60012;
-}
-
-.h-navBar .h-dropItem-content a:hover img, .h-navBar .h-dropItem-content a:hover .h-dropItem-linkHead {
-  opacity: .7;
-  -webkit-transition: opacity 150ms cubic-bezier(0.165, 0.84, 0.44, 1);
-  transition: opacity 150ms cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.h-navBar .h-dropItem-content a img, .h-navBar .h-dropItem-content a .h-dropItem-linkHead {
-  opacity: 1;
-  -webkit-transition: opacity 150ms linear;
-  transition: opacity 150ms linear;
-}
-
 /*任天堂連結*/
 .h-dropItem-linkHead p {
   color: #E60012;
@@ -12095,6 +12125,10 @@ body {
 .originalPrice {
   font-size: 0.75rem;
   text-decoration: line-through;
+}
+
+.card-text-bottom {
+  height: 45px;
 }
 
 /* front_side Scss */
@@ -13128,7 +13162,7 @@ body {
 
 /*賣家卡片*/
 .switcherStore-sellerCard {
-  padding: 1rem 1.88rem;
+  padding: 1rem;
   background-image: linear-gradient(-225deg, #0F2027 0%, #203A43 51%, #2C5364 100%);
 }
 
@@ -13173,12 +13207,17 @@ body {
 }
 
 .switcherStore-aboutInfo .storeImg {
+  width: 100%;
   height: 100%;
-  background-image: url("/img/users/ryan-quintal-t8_tn3tqmoI-unsplash.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
   -webkit-box-shadow: 0 0 4px 4px #fff;
           box-shadow: 0 0 4px 4px #fff;
+}
+
+.switcherStore-aboutInfo .storeImg img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 @media (max-width: 576px) {

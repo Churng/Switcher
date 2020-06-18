@@ -9,7 +9,6 @@
         <th scope="col">總押金</th>
         <th scope="col">訂單狀態</th>
         <th scope="col">詳請</th>
-        <th scope="col">評論</th>
       </tr>
     </thead>
     <tbody class="text-center seller-order" v-if="noneData">
@@ -32,9 +31,6 @@
         v-if="dialogVisible"
         @changeDialogVisible ="dialogVisible = false"
         @changeStatus = "changeFaStatus"/>
-        <td>
-          <button class="btn btn-social openDetailBtn" type="submit" @click.prevent="openComment">去評論</button>
-        </td>
       </tr>
     </tbody>
   </table>
@@ -57,14 +53,19 @@ export default {
   computed: {
     filterIdArr () {
       const vm = this
-      return vm.rentalData.filter(item => {
-        if (item.User.Name === vm.userData.Name) {
+      const arr = vm.rentalData.filter(item => {
+        if (item.User.MemberId === vm.userData.Id) {
           return item
         } else {
           vm.noneData = true
           return vm.noneData
         }
       })
+      console.log(arr)
+      arr.sort(function (a, b) {
+        return a.OrderDate < b.OrderDate ? 1 : -1
+      })
+      return arr
     }
   },
   methods: {
@@ -77,14 +78,11 @@ export default {
             Authorization: `Bearer ${token}`
           }
         }).then(res => {
-        // console.log('單一訂單', res.data.order[0])
+        console.log('單一訂單', res.data.order[0])
         this.getAllData = res.data.order[0]
         this.getSingleData = res.data.order[0].Product
         this.dialogVisible = true
       })
-    },
-    openComment () {
-      this.$message('此功能尚未開發')
     },
     changeFaStatus (status, Id) {
       this.getAllData.Status = status

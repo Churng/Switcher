@@ -88,7 +88,7 @@ export default {
   },
   methods: {
     open (idx) {
-      this.$confirm('此操作將永遠刪除該文件, 是否继续 ?', '提示', {
+      this.$confirm('此操作將永遠刪除該商品, 是否繼續 ?', '提示', {
         confirmButtonText: '確定',
         cancelButtonText: '取消',
         type: 'warning'
@@ -100,11 +100,11 @@ export default {
             Authorization: `Bearer ${token}`
           }
         }).then(
+          this.getCartData(),
           this.$message({
             type: 'success',
             message: '删除成功!'
-          }),
-          this.getCartData()
+          })
         )
       }).catch(() => {
         this.$message({
@@ -139,7 +139,6 @@ export default {
         this.$root.getCarts = res.data.carts
         this.$root.getCartLen = res.data.carts.length
         localStorage.setItem('cartLen', res.data.carts.length)
-        // console.log(this.$root.getCarts)
         this.loading = false
         return this.$root.getCarts
       })

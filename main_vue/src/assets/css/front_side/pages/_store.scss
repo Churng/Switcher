@@ -5,7 +5,7 @@
 }
 /*賣家卡片*/
 .switcherStore-sellerCard{
-    padding: 1rem 1.88rem;
+    padding: 1rem;
     background-image: linear-gradient(-225deg, #0F2027 0%, #203A43 51%, #2C5364 100%);
     .sellerImg{
         width: $font-size-base*6.25;
@@ -43,24 +43,28 @@
         word-wrap: break-word;
     }
     .storeImg{
+        width: 100%;
         height: 100%;
-        background-image: url('/img/users/ryan-quintal-t8_tn3tqmoI-unsplash.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        box-shadow:0 0 4px 4px $white;  
+        box-shadow:0 0 4px 4px $white;
+        img{
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
     }
 }
 @include mobile_576{
-    .about-storeImg{
-        display: none;
-    }
+  .about-storeImg{
+      display: none;
+  }
 }
 
 /*賣場列表*/
 .switcherStore-main{
     .main-item{
         font-size: $fs-300;
-        opacity: .5;
+        cursor: pointer;
+        display: block;
         &:hover{
             opacity: 1;
         }

@@ -35,10 +35,13 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 new Vue({
   data: {
     ChangeMember: false,
+    changeBannerBtn: false,
     productsData: [],
     productSearchData: false,
     menbersData: [],
-    menberData: {},
+    sellerData: [],
+    sellerOwnData: false,
+    userName: '',
     getCarts: [],
     getCartLen: 0,
     cartQuantity: false,

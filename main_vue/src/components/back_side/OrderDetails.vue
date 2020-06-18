@@ -18,7 +18,6 @@
                               </div>
                               <div class="w-50 imgTxt">
                                 <p>交易門市：<span>{{getSingleData[0].Store}}門市</span></p>
-                                <el-button type="success" round @click.prevent="openChatroom">去聊聊</el-button>
                               </div>
                             </div>
                             <div class="w-100 cardContent d-flex align-items-center pt-2 pb-2" v-for="(item, index) in getSingleData" :key="item.ProductId">
@@ -73,9 +72,6 @@ export default {
         message: `${err}`
       })
     },
-    openChatroom () {
-      this.$message('此功能尚未開發')
-    },
     refreshData (Id) {
       const api = `http://switcher.rocket-coding.com/api/order/${Id}`
       const token = localStorage.getItem('token')
@@ -95,9 +91,9 @@ export default {
 
 <style lang="scss">
 .orderDetailCard{
-  background: rgba(0, 0, 0, 0.2) !important;
+  background: rgba(0, 0, 0, 0.05) !important;
   .card-main{
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05) !important;
   }
 }
 .orderBody{
