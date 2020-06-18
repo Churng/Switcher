@@ -8,7 +8,6 @@
             <div class="file-loading mt-5 mx-100">
               <input ref="ProductImage"  id="upload-prophoto" name="Upload-prophoto" type="file" accept="image/*" @change="uploadPhoto"  required />
             </div>
-            <!-- <hr> -->
             <div class="Button mx-auto d-flex justify-content-center pt-3">
               <button type="button" class="btn btn-primary " @click="$router.go(-1)">上一頁</button>
               <button type="button" class="btn btn-warning ml-3" @click="BackStore">確定</button>
@@ -29,12 +28,9 @@ export default {
   methods: {
     uploadPhoto () {
       const id = this.$route.params.id
-      // console.log(id)
       const photo = this.$refs.ProductImage.files[0]
-      // console.log(photo)
       const form = new FormData()
       form.append('ProductImage', photo)
-      // console.log(form)
       const token = localStorage.getItem('token')
       const api = `http://switcher.rocket-coding.com/api/product/upload/${id}`
       this.$http
@@ -45,7 +41,6 @@ export default {
           }
         })
         .then(response => {
-          console.log(response)
           this.photoSuccess()
           this.reload()
         })
@@ -63,7 +58,6 @@ export default {
     }
   },
   inject: ['reload'],
-  // eslint-disable-next-line vue/no-dupe-keys
   props: ['ProductImages']
 }
 </script>

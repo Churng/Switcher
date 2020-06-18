@@ -165,7 +165,6 @@
                 <p>以下帳號快速登入</p>
                 <div class="social-login">
                   <button type="button" class="btn btn-social login-facebook" @click.prevent="fbSignIn">Facebook</button>
-                  <button type="button" class="btn btn-danger login-google">Google</button>
                 </div>
               </div>
             </div>
@@ -229,11 +228,9 @@ export default {
           this.$root.ChangeMember = true
           this.$root.cartQuantity = true
         }
+      }).catch(function (error) {
+        this.loginFalse(error)
       })
-        .catch(function (error) {
-          console.log(error)
-          this.loginFalse()
-        })
     },
     loginSuccess () {
       this.$notify({
@@ -306,22 +303,19 @@ export default {
           Authorization: `Bearer ${token}`
         }
       }).then(res => {
-        console.log(this.$root.getCartLen)
         this.$root.getCarts = res.data.carts
         this.$root.getCartLen = res.data.carts.length
         localStorage.setItem('cartLen', res.data.carts.length)
-        console.log(res.data.carts.length)
       })
     },
     getUserData () {
       const menberId = localStorage.getItem('menberId')
       const api = `http://switcher.rocket-coding.com/api/member/${menberId}`
       this.$http.get(api).then(res => {
-        console.log('我是誰', res.data.member)
         this.$root.userName = res.data.member.Name
         localStorage.setItem('userName', res.data.member.Name)
       }).catch(err => {
-        console.log(err)
+        alert(err)
       })
     }
   }

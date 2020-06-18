@@ -27,11 +27,6 @@ library.add(fas, fab)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
-// export default new Vuex.Store({
-//   productsData: [],
-//   plugins: [createVuexAlong()]
-// })
-
 new Vue({
   data: {
     ChangeMember: false,

@@ -77,7 +77,6 @@ export default {
             Authorization: `Bearer ${token}`
           }
         }).then(res => {
-        // console.log('出租', res.data.order[0])
         this.getAllData = res.data.order[0]
         this.getSingleData = res.data.order[0].Product
         this.dialogVisible = true

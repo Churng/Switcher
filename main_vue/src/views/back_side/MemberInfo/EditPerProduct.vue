@@ -141,21 +141,19 @@
               </div>
             </div>
           </div>
-          <div class="goods-intro ml-3">
+          <div class="goods-intro">
             <div class="row">
-              <div class>
+              <div>
                 <label class="cat-lable" for>商品介紹</label>
               </div>
-              <div class="form-group col">
                 <!-- <label for="inputgoods-intro">輸入商品特色或描述商品外觀~</label> -->
                 <textarea
-                  class="form-control w-75"
+                  class="form-control col"
                   v-model="Productdata.product.Description"
                   id="inputgoods-intro"
                   rows="3"
                   placeholder="請輸入商品資訊..."
                 ></textarea>
-              </div>
             </div>
           </div>
           <div class="PublicTime d-none">
@@ -229,9 +227,7 @@ export default {
       this.$http
         .patch(api, newproduct, headers)
         .then(response => {
-          // console.log(response)
           if (response.data.result) {
-            // console.log(response.data)
             this.updateSuccess()
             this.$router.push({
               name: 'UploadProductphoto',
@@ -254,10 +250,9 @@ export default {
         .get(api)
         .then(response => {
           this.Productdata = response.data
-          console.log(this.Productdata)
         })
         .catch(function (error) {
-          console.log(error)
+          alert(error)
         })
     }
   },
