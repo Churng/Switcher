@@ -9,7 +9,7 @@
                       type="daterange"
                       value-format="yyyy-MM-dd"
                       range-separator="至"
-                      start-placeholder="开始日期"
+                      start-placeholder="開始日期"
                       end-placeholder="结束日期">
                   </el-date-picker>
                   <p class="total-rentDate ml-2">共<span>{{totalDays}}</span>日</p>
@@ -30,6 +30,7 @@
                 <button type="button" class="btn btn-outline-warning w-100 mb-3">賣家聊聊</button>
                 <button type="button" class="btn btn-warning w-100" @click="isLogin" v-if="product.Status==='可出租'">我要租借</button>
                 <button type="button" class="btn btn-secondary w-100" disabled v-else>我要租借</button>
+                <h6 class="mt-2" v-if="product.Status==='已出租'">*預計歸還時間 : {{returnDate}}</h6>
             </div>
         </div>
     </div>
@@ -71,7 +72,7 @@ export default {
       totalDay: 0
     }
   },
-  props: ['product'],
+  props: ['product', 'allData'],
   computed: {
     totalDays () {
       const sDate1 = this.value1[0]
@@ -89,6 +90,11 @@ export default {
         iDays = parseInt(Math.abs(oDate1 - oDate2) / 1000 / 60 / 60 / 24)
         return iDays
       }
+    },
+    returnDate () {
+      const start = new Date()
+      var str = start.getFullYear() + '-' + (start.getMonth() + 1) + '-' + start.getDate()
+      return this.getNewDay(str, this.product.Period)
     }
   },
   methods: {
@@ -102,8 +108,7 @@ export default {
         } else {
           if (this.$root.getCartLen > 0) {
             this.$root.getCarts.filter(obj => {
-              // console.log(obj.Seller, this.product.Member)
-              if (this.product.Member !== obj.Seller) {
+              if (this.allData.member.Id !== obj.SellerId) {
                 return this.postErrInfo()
               } else {
                 return this.postData()
@@ -131,6 +136,7 @@ export default {
         }
       }).then(res => {
         this.$root.getCarts = res.data.carts
+        console.log(this.$root.getCarts)
         this.$root.getCartLen = res.data.carts.length
         localStorage.setItem('cartLen', res.data.carts.length)
         this.correctPost()
@@ -159,6 +165,22 @@ export default {
       this.$notify.error({
         title: '此商品跟您購物車裡的賣家不符,請先結單後再預約呦！'
       })
+    },
+    getNewDay (today, days) {
+      var dateTemp = today.split('-')
+      var nDate = new Date(dateTemp[1] + '-' + dateTemp[2] + '-' + dateTemp[0])// 转换为MM-DD-YYYY格式
+      // 兼容火狐时间戳
+      if (nDate === 'Invalid Date') {
+        nDate = new Date(dateTemp[1] + '/' + dateTemp[2] + '/' + dateTemp[0])
+      }
+      var millSeconds = Math.abs(nDate) + (days * 24 * 60 * 60 * 1000)
+      var rDate = new Date(millSeconds)
+      var year = rDate.getFullYear()
+      var month = rDate.getMonth() + 1
+      if (month < 10) month = '0' + month
+      var date = rDate.getDate()
+      if (date < 10) date = '0' + date
+      return (year + '-' + month + '-' + date)
     }
   }
 }

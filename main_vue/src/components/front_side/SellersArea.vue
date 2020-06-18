@@ -3,7 +3,7 @@
         <h2 class="mb-5 text-center">精選賣家</h2>
         <div class="home-sellers mb-5">
             <el-carousel :interval="4000" type="card">
-              <el-carousel-item v-for="item in $root.menbersData" :key="item.Id">
+              <el-carousel-item v-for="item in isNewList()" :key="item.Id">
                   <div class="card-main w-100">
                     <div class="card-body d-flex flex-column flex-lg-row justify-content-center align-items-center">
                         <div class="card-img">
@@ -23,7 +23,6 @@
                     </div>
                     <div class="card-buttons d-flex justify-content-around mt-3">
                         <button type="button" class="btn btn-light" @click="$router.push({name: 'Seller', params: { id: item.Id }})">進入賣場</button>
-                        <button type="button" class="btn btn-light" @click.prevent="openChatroom">我要聊聊</button>
                     </div>
                   </div>
               </el-carousel-item>
@@ -35,8 +34,11 @@
 <script>
 export default {
   methods: {
-    openChatroom (id) {
-      this.$message('此功能尚未開發')
+    isNewList () {
+      // 深拷貝(賦予新址)
+      const copyData = JSON.parse(JSON.stringify(this.$root.menbersData))
+      const sliceData = copyData.slice(0, 6)
+      return sliceData
     }
   }
 }

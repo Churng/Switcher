@@ -207,7 +207,7 @@ export default {
   methods: {
     getMember() {
       const token = localStorage.getItem("token");
-      const id = localStorage.getItem("id")
+      const id = localStorage.getItem("menberId")
       console.log(id)
       const api = `http://switcher.rocket-coding.com/api/member/${id}`
       this.$http

@@ -52,13 +52,12 @@ body{
 
 .header-navBar{
     height: 100%;
-    overflow: hidden;
     padding: 0;
     @include ipad_767{
         flex-direction: column;
         overflow: inherit;      
     }
-    li{
+    .sm-findChevron{
         width: 20%;
         box-sizing: border-box;
         font-weight: bold;
@@ -75,7 +74,7 @@ body{
             // height: 74px;
             background-color: $white;
         }
-        &:hover,&:active{
+        &:hover{
             text-decoration: none;
             .header-navBar-icon,.header-navBar-label{
                 color: $red;
@@ -90,6 +89,9 @@ body{
                 bottom: 2px;
             }
             transition: border-color 150ms cubic-bezier(.165,.84,.44,1),background-color 150ms cubic-bezier(.165,.84,.44,1),color 150ms cubic-bezier(.165,.84,.44,1);
+            &.textb .h-navBar-N2{
+              opacity: 1;
+            }
         }
         .header-navBar-icon{
             color: $fc-100;
@@ -106,12 +108,79 @@ body{
         }
     }
 }
+.header-navBar .pc-eShop, .header-navBar .pc-menber{
+  position: relative;
+}
+.h-navBar-areaBg, .h-navBar-menberBg{
+  width: 100%;
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 75px;
+  left: 0;
+  background-color: $white;
+  justify-content: center;
+  transition: border-color 150ms linear,background-color 150ms linear,color 150ms linear;
+  a{
+    color: $fc-300;
+    &:hover{
+        text-decoration: none;
+        p{
+            color: $red;
+        }
+        img,.h-dropItem-linkHead{
+            opacity: .7;
+            transition: opacity 150ms cubic-bezier(.165,.84,.44,1);
+        }
+    }
+    img,.h-dropItem-linkHead{
+        opacity: 1;
+        transition: opacity 150ms linear;
+    }
+  }
+  p{
+    line-height: 20px;
+  }
+}
+
+.header-navBar .pc-eShop{
+  &:hover{
+    text-decoration: none;
+    .header-navBar-icon,.header-navBar-label{
+        color: $red;
+    }
+    &::after{
+        content: '';
+        position: absolute;
+        height: 3px;
+        background-color: $red;
+        right: 2px;
+        left: 2px;
+        bottom: 2px;
+    }
+    transition: border-color 150ms cubic-bezier(.165,.84,.44,1),background-color 150ms cubic-bezier(.165,.84,.44,1),color 150ms cubic-bezier(.165,.84,.44,1);
+  }
+}
+@include ipad_min768{
+  .header-navBar .pc-eShop:hover .h-navBar-areaBg{
+    display: flex;
+  }
+  .header-navBar .pc-menber:hover .h-navBar-menberBg{
+    display: flex;
+  }
+}
+
+
+// .h-navBar-menberBg{
+
+// }
+
 /*手機版展開導覽*/
 .header-navBar {
     .sm-findChevron{
         position: relative;
     }
-    .sm-findChevron p:hover{
+    .hovered:hover{
         background-color: rgba(237,28,36,.1);
     }
 }
@@ -132,39 +201,39 @@ body{
 }
 
 /* nav 滑入後顯示的區塊h-navBar*/
-.h-navBar-areaBg{
-    position: absolute;
-    top: 74px;
-}
-.h-navBar-area{
-    position: relative;
-    z-index: 9999;
-    box-shadow: 0 1px 0 rgba(4,0,0,0.1);
-}
-.h-navBar{
-    position: absolute;
-    background-color: $white;
-    transition: opacity 100ms cubic-bezier(.445,.05,.55,.95),visibility 100ms cubic-bezier(.445,.05,.55,.95);
-    .h-dropItem-content{
-        a{
-            color: $fc-300;
-            &:hover{
-                text-decoration: none;
-                p{
-                    color: $red;
-                }
-                img,.h-dropItem-linkHead{
-                    opacity: .7;
-                    transition: opacity 150ms cubic-bezier(.165,.84,.44,1);
-                }
-            }
-            img,.h-dropItem-linkHead{
-                opacity: 1;
-                transition: opacity 150ms linear;
-            }
-        }
-    }
-}
+// .h-navBar-areaBg{
+//     position: absolute;
+//     top: 74px;
+// }
+// .h-navBar-area{
+//     position: relative;
+//     z-index: 9999;
+//     box-shadow: 0 1px 0 rgba(4,0,0,0.1);
+// }
+// .h-navBar{
+//     position: absolute;
+//     background-color: $white;
+//     transition: opacity 100ms cubic-bezier(.445,.05,.55,.95),visibility 100ms cubic-bezier(.445,.05,.55,.95);
+//     .h-dropItem-content{
+//         a{
+//             color: $fc-300;
+//             &:hover{
+//                 text-decoration: none;
+//                 p{
+//                     color: $red;
+//                 }
+//                 img,.h-dropItem-linkHead{
+//                     opacity: .7;
+//                     transition: opacity 150ms cubic-bezier(.165,.84,.44,1);
+//                 }
+//             }
+//             img,.h-dropItem-linkHead{
+//                 opacity: 1;
+//                 transition: opacity 150ms linear;
+//             }
+//         }
+//     }
+// }
 
 /*任天堂連結*/
 .h-dropItem-linkHead{

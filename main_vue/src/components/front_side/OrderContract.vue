@@ -17,14 +17,14 @@
                 <h5 class="text-center">Switcher租賃契約</h5>
                 <div class="users mb-3">
                     <h6>立契約書人：</h6>
-                    <p>承租人：<span>{{this.$root.orderInfo.buyerName}}</span>(以下簡稱甲方)</p>
-                    <p>出租人：<span>{{this.$root.orderInfo.seller}}</span>(以下簡稱乙方)</p>
+                    <p>承租人：<span>{{$root.orderInfo.buyerName}}</span>(以下簡稱甲方)</p>
+                    <p>出租人：<span>{{$root.orderInfo.seller}}</span>(以下簡稱乙方)</p>
                 </div>
                 <div class="contract-info mb-3">
                     <h6>承租品明細：</h6>
-                    <p>出租總品項：<span class="gameTotal">{{this.$root.orderInfo.totalProducts}}</span>項</p>
-                    <p>總租金：<span>{{this.$root.orderInfo.totalPrice}}</span>元</p>
-                    <p>總押金：<span>{{this.$root.orderInfo.totalDeposit}}</span>元</p>
+                    <p>出租總品項：<span class="gameTotal">{{$root.orderInfo.totalProducts}}</span>項</p>
+                    <p>總租金：<span>{{$root.orderInfo.totalPrice}}</span>元</p>
+                    <p>總押金：<span>{{$root.orderInfo.totalDeposit}}</span>元</p>
                     <div class="size-sm">面交時乙方收取租金及押金</div>
                     <div class="size-sm">歸還時確認無誤後，乙方現場退還押金</div>
                 </div>
@@ -46,7 +46,7 @@
                     <h6>第五條 歸還流程:</h6>
                     <p>甲方於指定到期日歸還產品後，乙方確認無誤即完成歸還流程。</p>
                 </div>
-                <p class="text-center">{{this.$root.orderInfo.orderDate}}</p>
+                <p class="text-center">{{$root.orderInfo.orderDate}}</p>
             </div>
         </div>
         <div class="content-btn d-block justify-content-center text-center mt-5 mb-2">

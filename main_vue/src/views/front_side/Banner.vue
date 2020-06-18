@@ -12,7 +12,8 @@
                 <div class="carousel-caption d-none d-md-block">
                     <h2 class="display-4">簡單租借Switch遊戲 !</h2>
                     <p class="lead">隨時隨地   大家同樂</p>
-                    <button type="button" class="btn btn-danger btn-sm" @click.prevent="$router.push('/login')">立即加入</button>
+                    <button type="button" class="btn btn-danger btn-sm" @click.prevent="$router.push('/login')" v-if="!$root.changeBannerBtn">立即加入</button>
+                    <h4 v-else>歡迎 {{$root.userName}} !</h4>
                 </div>
                 </div>
                 <div class="carousel-item">
@@ -20,7 +21,8 @@
                 <div class="carousel-caption d-none d-md-block">
                     <h2 class="display-4 text-white">簡單租借Switch遊戲 !</h2>
                     <p class="lead text-white">隨時隨地   大家同樂</p>
-                    <button type="button" class="btn btn-danger btn-sm" @click.prevent="$router.push('/login')">立即加入</button>
+                    <button type="button" class="btn btn-danger btn-sm" @click.prevent="$router.push('/login')" v-if="!$root.changeBannerBtn">立即加入</button>
+                    <h4 v-else>歡迎 {{$root.userName}} !</h4>
                 </div>
                 </div>
                 <div class="carousel-item">
@@ -28,7 +30,8 @@
                 <div class="carousel-caption d-none d-md-block">
                     <h2 class="display-4 text-white">簡單租借Switch遊戲 !</h2>
                     <p class="lead text-white">隨時隨地   大家同樂</p>
-                    <button type="button" class="btn btn-danger btn-sm" @click.prevent="$router.push('/login')">立即加入</button>
+                    <button type="button" class="btn btn-danger btn-sm" @click.prevent="$router.push('/login')" v-if="!$root.changeBannerBtn">立即加入</button>
+                    <h4 v-else>歡迎 {{$root.userName}} !</h4>
                 </div>
                 </div>
             </div>

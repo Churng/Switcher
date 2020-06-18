@@ -18,18 +18,42 @@
                         <span class="header-navBar-label">團隊介紹</span>
                     </router-link>
                 </li>
-                <li class="sm-findChevron pc-eShop" @click.prevent="pcShow.eShop=!pcShow.eShop">
+                <li class="sm-findChevron pc-eShop">
                     <div class="d-flex justify-content-center w-100">
                         <span class="header-navBar-icon mr-2"><font-awesome-icon icon="shopping-bag"/></span>
                         <span class="header-navBar-label">Nintendo eShop</span>
                         <span class="header-navBar-icon findChevron" @click.prevent="phoneShow.eShop=!phoneShow.eShop"><font-awesome-icon :icon="phoneShow.eShop ? 'angle-up' :'chevron-down'"/></span>
                     </div>
                     <div class="w-100 sm-openItem" v-show="phoneShow.eShop">
-                        <p class="mb-0">Nintendo eShop (官方網頁)</p>
-                        <p class="mb-2">Nintendo eShop (服務由第三方提供)</p>
+                        <p class="mb-0 hovered">Nintendo eShop (官方網頁)</p>
+                        <p class="mb-2 hovered">Nintendo eShop (服務由第三方提供)</p>
+                    </div>
+                    <div class="h-navBar-areaBg pt-4 pb-4">
+                        <div>
+                          <a href="https://store.nintendo.com.hk/" target="_blank" class="d-block mr-5">
+                            <div class="h-dropItem-linkHead d-flex align-items-baseline">
+                                <p class="mb-2"><span class="fas"><font-awesome-icon icon="chevron-circle-right"/></span> Nintendo eShop (官方網頁)</p>
+                                <div class="h-dropItem-linkHead-icon ml-4"><font-awesome-icon icon="shopping-bag"/></div>
+                            </div>
+                            <div class="h-dropItem-linkText">
+                                <span>連接到提供Nintendo eShop下載軟體購買服務的網頁。</span>
+                            </div>
+                        </a>
+                        </div>
+                        <div>
+                          <a href="https://www.whatsmall.com/eshops/nintendohk" target="_blank" class="d-block">
+                            <div class="h-dropItem-linkHead d-flex align-items-baseline">
+                                <p class="mb-2"><span class="fas"><font-awesome-icon icon="chevron-circle-right"/></span> Nintendo eShop (服務由第三方提供)</p>
+                                <div class="h-dropItem-linkHead-icon ml-4"><font-awesome-icon icon="shopping-bag"/></div>
+                            </div>
+                            <div class="h-dropItem-linkText mb-3">
+                                <span>連接到提供Nintendo eShop下載軟體購買服務的外部網頁。</span>
+                            </div>
+                          </a>
+                        </div>
                     </div>
                 </li>
-                <li class="sm-findChevron">
+                <li :class="!$root.ChangeMember? 'sm-findChevron':'sm-findChevron pc-menber'">
                     <router-link to="/login" v-if="!$root.ChangeMember">
                         <span class="header-navBar-icon mr-2"><font-awesome-icon icon="sign-in-alt"/></span>
                         <span class="header-navBar-label">登入/註冊</span>
@@ -39,21 +63,44 @@
                           <span class="header-navBar-label ">會員管理</span>
                         <span class="header-navBar-icon findChevron" @click.prevent="phoneShow.user=!phoneShow.user"><font-awesome-icon :icon="phoneShow.user ? 'angle-up' :'chevron-down'"/></span>
                     </div>
+                    <div class="h-navBar-menberBg pt-4 pb-4">
+                        <div class="col-md-2 h-dropItem-content text-center">
+                        <router-link to="/editmemberinfo" class="d-block">
+                            <img src="/img/icon/iconfinder_READY_user-circle_2703062.png" alt="user">
+                            <p class="mb-0">會員資料</p>
+                        </router-link>
+                        </div>
+                        <div class="col-md-2 h-dropItem-content text-center">
+                            <router-link to="/orderseller" class="d-block">
+                                <img src="/img/icon/iconfinder_list-alt_1608448.png" alt="userList">
+                                <p class="mb-0">訂單管理</p>
+                            </router-link>
+                        </div>
+                        <div class="col-md-2 h-dropItem-content text-center">
+                            <router-link to="/sellerstore" class="d-block">
+                                <img src="/img/icon/iconfinder_thefreeforty_shop_1243706.png" alt="userStore">
+                                <p class="mb-0">我的賣場</p>
+                            </router-link>
+                        </div>
+                        <div class="col-md-2 h-dropItem-content text-center" @click.prevent="signout">
+                            <img src="/img/icon/iconfinder_icon-zoom-out_2867960.png" alt="loginout">
+                            <p class="mb-0">會員登出</p>
+                        </div>
+                    </div>
                     <div class="w-100 sm-openItem" v-show="phoneShow.user" >
                         <router-link to="/editmemberinfo"><p class="mb-0">會員資料</p></router-link>
                         <router-link to="/orderseller"><p class="mb-0">訂單管理</p></router-link>
-                        <p class="mb-0">我的賣場</p>
-                        <router-link to="/editnewproduct"><p class="mb-0">商品上架</p></router-link>
-                        <router-link to="/inbox"><p class="mb-0">聊天室</p></router-link>
+                        <router-link to="/sellerstore"><p class="mb-0">我的賣場</p></router-link>
                         <p class="mb-2" @click.prevent="signout">會員登出</p>
                     </div>
                 </li>
                 <li class="d-flex justify-content-center sm-findChevron pc-shoppingCart" @click.prevent="userCart">
                     <span class="header-navBar-icon"><font-awesome-icon icon="shopping-cart"/></span>
-                    <span class="ml-2" v-if="$root.cartQuantity">( {{this.$root.getCartLen}} )</span>
+                    <span class="ml-2" v-if="$root.cartQuantity">( {{$root.getCartLen}} )</span>
                 </li>
             </ul>
         </div>
+<<<<<<< HEAD
         <div class="container-fluid h-navBar-areaBg">
             <div class="row h-navBar-area">
                 <div class="col-md-12 pt-4 pb-4 h-navBar h-navBar-N" :class="[pcShow.eShop ? 'h-navBar-N-DN' : 'd-none']">
@@ -119,6 +166,8 @@
                 </div> -->
             </div>
         </div>
+=======
+>>>>>>> 45107fcc424835ca8079cf84d59742d119047cf3
     </div>
 </template>
 
@@ -134,10 +183,9 @@ export default {
         user: false
       },
       pcShow: {
-        eShop: false,
-        user: false,
-        shoppingCart: false
-      }
+        user: false
+      },
+      cartLen: 0
     }
   },
   created () {
@@ -145,7 +193,10 @@ export default {
     if (token) {
       this.$root.cartQuantity = true
       this.$root.ChangeMember = true
+      this.$root.changeBannerBtn = true
+      this.$root.userName = localStorage.getItem('userName')
       this.$root.getCartLen = localStorage.getItem('cartLen')
+      // this.cartLen = localStorage.getItem('cartLen')
     } else {
       this.$root.cartQuantity = false
       this.$root.ChangeMember = false
@@ -155,6 +206,9 @@ export default {
     signout () {
       localStorage.removeItem('token')
       localStorage.removeItem('cartLen')
+      localStorage.removeItem('menberId')
+      localStorage.removeItem('userName')
+      this.$root.changeBannerBtn = false
       this.$root.ChangeMember = false
       this.pcShow.user = false
       this.$root.cartQuantity = false
