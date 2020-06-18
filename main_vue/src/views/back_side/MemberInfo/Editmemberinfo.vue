@@ -27,6 +27,9 @@
       <!-- 手機版本上傳個人照 -->
       <div class="col-md-8 bg-light mt-5 px-4 py-5 col-sm-12 mem-info-sm">
         <div class="form-group form-inline">
+          <h2>基本資料</h2>
+        </div>
+        <div class="form-group form-inline">
           <label for="info-name" class="col-sm-2 col-form-label">姓名</label>
           <div class="col-md-7 col-sm-10">
             <input
@@ -49,7 +52,6 @@
               placeholder="請輸入信箱..."
             />
           </div>
-          <button type="button" class="btn btn-outline-social w-md-25 ver-sm">未驗證</button>
         </div>
 
         <div class="form-group form-inline">
@@ -76,7 +78,6 @@
               v-model="userData.member.Identity"
             />
           </div>
-          <button type="button" class="btn btn-outline-social active w-md-25 change-ver-sm">驗證身份</button>
         </div>
 
         <div class="form-group form-inline">
@@ -90,7 +91,6 @@
               v-model="userData.member.Password"
             />
           </div>
-          <button type="button" class="btn btn-outline-social active w-md-25 change-ver-sm">更改密碼</button>
         </div>
 
         <div class="form-group form-inline">
@@ -108,9 +108,14 @@
       </div>
 
       <div class="col-4 bg-light mt-5 pt-5 mem-upload-photo" >
-        <div class="member-photo-upload">
+        <!-- <div class="member-photo-upload">
         <img class="rounded-circle personal-photo" :src="userData.member.Photo" />
-        </div>
+        </div> -->
+        <el-image class="rounded-circle personal-photo" :src="userData.member.Photo">
+          <div slot="error" class="image-slot">
+            <i class="el-icon-picture-outline"></i>
+          </div>
+        </el-image>
         <div class="file-loading mt-5 mx-100">
           <input ref="uploadfile"  id="upload-memphoto" name="Upload-memphoto" type="file" accept="image/*" @change="userImage" required />
         </div>
@@ -118,12 +123,18 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-md-4 bg-light pt-5 pl-5">
-          <p>賣場圖片</p>
-          <div class="">
-          <img class="shop-photo" :src="userData.member.StoreImage" width="200" />
-          </div>
-          <div class="file-loading mt-5 mx-100">
+        <div class="col-md-4 bg-light px-4">
+          <h2>賣場資料</h2>
+          <p class="ml-4">賣場圖片</p>
+          <!-- <div class="Shop-Photo">
+            <img class="shop-photo ml-4" :src="userData.member.StoreImage"  width="200"  onerror="nofind()"  />
+          </div> -->
+          <el-image class="shop-photo ml-4" :src="userData.member.StoreImage"  width="200"  onerror="nofind()">
+            <div slot="error" class="image-slot">
+              <i class="el-icon-picture-outline"></i>
+            </div>
+          </el-image>
+          <div class="file-loading mt-5 mx-100 ml-4">
           <input ref="storeImg" id="upload-memphoto"  name="Upload-memphoto" type="file" accept="image/*" @change="storeImage"  required />
         </div>
         </div>
@@ -150,7 +161,7 @@
 </div>
     <div class="container">
       <div class="row bg-light d-flex justify-content-center">
-        <div class="mt-5 mb-3">
+        <div class="mt-5 mb-5">
           <button type="button" class="btn btn-danger" @click="$router.go(-1)">取消</button>
           <button type="button" class="btn btn-warning ml-3" @click="updateinfo">儲存變更</button>
         </div>
@@ -195,8 +206,10 @@ export default {
   },
   methods: {
     getMember() {
-      const api = "http://switcher.rocket-coding.com/api/member"
       const token = localStorage.getItem("token");
+      const id = localStorage.getItem("id")
+      console.log(id)
+      const api = `http://switcher.rocket-coding.com/api/member/${id}`
       this.$http
         .get(api, {
           headers: {
@@ -218,7 +231,7 @@ export default {
       const token = localStorage.getItem("token");
       let reply = ''
       this.GetReply.forEach(item => {
-        reply += `${item}/`
+        reply += `${item} `
       });
       const Info = {
           Id: this.userData.member.Id,
@@ -244,6 +257,9 @@ export default {
         })
         .then(response => {
           this.updateSuccess()
+          this.$router.push({
+          path: '/sellerstore'
+          })
           console.log(response);
         })
         .catch(error => {
@@ -273,15 +289,25 @@ export default {
       })
       .then(response => {
         console.log(response)
+        this.reload()
         this.photoSuccess()
         // vm.$set(vm.userData, 'imgUrl' , response.data.member.Photo)
       })
+      .catch(function (error) {
+        this.photoError()
+      });
     },
     photoSuccess() {
         this.$notify({
         title: '上傳個人圖片成功',
         type: 'success'
       })
+    },
+    photoError() {
+       this.$notify.error({
+          title: '無法上傳照片！',
+          message: '無法上傳照片！'
+        })
     },
     storeImage() {
       const storeImg = this.$refs.storeImg.files[0]
@@ -297,7 +323,7 @@ export default {
         }
       })
       .then(response => {
-        // console.log(response)
+        this.reload()
         this.storeSuccess()
       })
     },
@@ -306,11 +332,23 @@ export default {
         title: '上傳商店圖片成功',
         type: 'success'
       })
+    },
+    storeError() {
+       this.$notify.error({
+          title: '無法上傳照片！',
+          message: '無法上傳照片！'
+        })
+    },
+    nofind() {
+      let img=event.srcElement;
+      img.src="/Users/yuhsuanlee/Switcher/main_vue/public/img/game/game01.jpg"; //替換的圖片
+      img.onerror=null;
     }
   },
   created() {
     this.getMember();
-  }
+  },
+  inject: ['reload']
 };
 </script>
 
@@ -330,5 +368,12 @@ export default {
 }
 .el-checkbox-button__inner:hover{
   color:#FF7D01;
+}
+.el-image {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    width: 200px;
+    height: 200px;
 }
 </style>

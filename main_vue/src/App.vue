@@ -2,7 +2,7 @@
   <div>
       <Header />
       <div class="loading vh-100" v-if="loading"><img src="/img/Spinner-1.1s-200px.gif" alt="loading"></div>
-      <router-view></router-view>
+      <router-view v-if="isRouterAlive" ></router-view>
       <Footer />
   </div>
 </template>
@@ -14,7 +14,14 @@ import Footer from '../src/views/Footer'
 export default {
   data () {
     return {
-      loading: false
+      loading: false,
+      isRouterAlive: true
+
+    }
+  },
+  provide () {
+    return {
+      reload: this.reload
     }
   },
   components: { Header, Footer },
@@ -45,6 +52,12 @@ export default {
         this.loading = false
       }).catch(err => {
         console.log(err)
+      })
+    },
+    reload () {
+      this.isRouterAlive = false
+      this.$nextTick(function () {
+        this.isRouterAlive = true
       })
     }
   }

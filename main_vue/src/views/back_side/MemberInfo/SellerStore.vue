@@ -8,43 +8,37 @@
                 </div>
             </div>
             <div class="row switcherStore-header justify-content-center align-items-center pb-4 border-bottom">
-                <div class="col-md-6">
-                    <div class="switcherStore-sellerCard bg-dark d-flex justify-content-around align-items-start shadow-sm pt-3 mb-4 bg-white rounded">
+                <div class="col-12 col-md-7 col-lg-6">
+                    <div class="switcherStore-sellerCard bg-dark d-flex justify-content-around align-items-center shadow-sm pt-3 mb-4 rounded">
                         <div class="sellerImg">
-                            <img src="/img/users/iconfinder_11_avatar_2754576.png" alt="user01">
+                            <img :src="sellerData.member.Photo" :alt="sellerData.member.Name">
                         </div>
-                        <div class="sellerTxt text-white">
-                            <h6 class="mb-0">{{sellerData.member.Name}}</h6>
-                            <p class="card-text mb-0">主要商品 : <span>遊戲片</span></p>
-                            <p class="mb-1">面交地點 : <span>7-11 鳳文門市</span></p>
-                            <button type="button" class="btn btn-light pl-4 pr-4 w-100">我要聊聊</button>
+                        <div class="sellerTxt text-white w-50">
+                            <h5 class="mb-0">{{sellerData.member.Name}}</h5>
+                            <h6>主要商品 :</h6>
+                            <ul class="list-unstyled card-text d-flex">
+                              <li class="pr-2" v-for="(game, index) in sellerData.member.Category" :key="index">{{game}}</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-12 col-md-5">
                     <div class="switcherStore-sellerInfo">
-                        <div class="sellerInfo-header d-flex justify-content-around">
-                            <div class="sellerInfo-comment">
+                        <div class="sellerInfo d-flex flex-wrap justify-content-center">
+                            <div class="sellerInfo-comment pr-3">
                                 <font-awesome-icon icon="star"/>
-                                <span>評價</span>
-                                <span class="orange-txt">700 則</span>
+                                <span class="pl-2">評價</span>
+                                <span class="orange-txt pl-2">20 則</span>
                             </div>
-                            <div class="sellerInfo-joinTime">
-                                <font-awesome-icon icon="user-plus"/>
-                                <span>加入時間</span>
-                                <span class="orange-txt">3個月 前</span>
-                            </div>
-                        </div>
-                        <div class="sellerInfo-footer d-flex justify-content-around">
-                            <div class="sellerInfo-products">
+                            <div class="sellerInfo-products pr-3">
                                 <font-awesome-icon icon="shopping-bag"/>
-                                <span>商品</span>
-                                <span class="orange-txt">52</span>
+                                <span class="pl-2">商品</span>
+                                <span class="orange-txt pl-2">52</span>
                             </div>
                             <div class="sellerInfo-chat">
                                 <font-awesome-icon icon="comment-dots"/>
-                                <span>主要回應時間</span>
-                                <span class="orange-txt">{{sellerData.member.Reply}}</span>
+                                <span class="pl-2">主要回應時間</span>
+                                <span class="orange-txt pl-2">{{sellerData.member.Reply}}</span>
                             </div>
                         </div>
                     </div>
@@ -56,10 +50,11 @@
             <div class="row switcherStore-aboutInfo justify-content-between mb-5">
                 <div class="col-md-6 about-text">
                     <p>{{sellerData.member.StoreDescription}}</p>
-                    <!-- 歡迎光臨 本賣場有實體店面 請安心租借 Switch 相關產品 保固採上網註冊 會給普評價跟負評價的買家請勿下標 買家若對商品疑慮的話 可先詢問清楚後再決定是否下標 -->
                 </div>
                 <div class="col-md-6 about-storeImg">
-                    <div class="storeImg"></div>
+                    <div class="storeImg" >
+                      <img :src="sellerData.member.StoreImage" :alt="sellerData.member.StoreImage" width="450">
+                    </div>
                 </div>
             </div>
             <div class="row switcherStore-main bg-danger justify-content-center text-center pt-2 pb-2">
@@ -71,6 +66,10 @@
             </div>
             <router-view></router-view>
             <!-- <PerProduct /> -->
+            <router-link to="/addnewproduct" class="d-block">
+              <div class="float-button" title="新增商品"><p class="floatplus">＋</p></div>
+            </router-link>
+             <el-backtop :bottom="60"></el-backtop>
         </div>
     </section>
 </template>
@@ -92,14 +91,11 @@ export default {
     }
   },
   methods: {
-    getSeller () {
-      const api = 'http://switcher.rocket-coding.com/api/member'
-      const token = localStorage.getItem('token')
+    getSeller (id) {
+      const Id = localStorage.getItem('id') === 'undefined' ? 1 : localStorage.getItem('id')
+      const api = `http://switcher.rocket-coding.com/api/member/${Id}`
       this.$http
         .get(api, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
         })
         .then(response => {
           this.sellerData = response.data
@@ -136,4 +132,28 @@ export default {
   }
   // components: { PerProduct }
 }
+
 </script>
+
+<style lang="scss" scoped>
+  .float-button {
+    position: fixed;
+    height: 50px;
+    width: 50px;
+    bottom: 110px;
+    right: 35px;
+    background: #FF7D01;
+    border-radius: 50%;
+    box-shadow: 2px 1px 4px 0px #6c757d;
+    cursor: pointer;
+    z-index: 99999;
+}
+
+    .floatplus{
+    font-size: 45px;
+    margin: -10px 0px 10px 2px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    }
+</style>

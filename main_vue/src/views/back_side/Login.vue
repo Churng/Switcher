@@ -217,8 +217,9 @@ export default {
         Email: this.user.Email,
         Password: this.user.Password
       }).then((response) => {
+        localStorage.setItem('id', response.data.id)
+        localStorage.setItem('token', response.data.token)
         if (response.data.result) {
-          localStorage.setItem('token', response.data.token)
           this.getCartData()
           this.loginSuccess()
           vm.$router.push('/home')
@@ -227,6 +228,10 @@ export default {
           this.$root.cartQuantity = true
         }
       })
+        .catch(function (error) {
+          console.log(error)
+          this.loginFalse()
+        })
     },
     loginSuccess () {
       this.$notify({
@@ -234,21 +239,41 @@ export default {
         type: 'success'
       })
     },
+    loginFalse () {
+      this.$notify({
+        title: '警告',
+        message: '这是一条警告的提示消息',
+        type: 'warning'
+      })
+    },
+    loginError () {
+      this.$notify.error({
+        title: '帳號或密碼錯誤!',
+        message: '帳號或密碼錯誤!'
+      })
+    },
     signup () {
       const api = 'http://switcher.rocket-coding.com/register'
       const vm = this
       this.$http.post(api, vm.user).then(response => {
         if (response.data.result) {
+          this.signupSuccess()
           vm.$router.push('/home')
         } else {
-          this.errorImg()
+          this.signupSuccessfully()
         }
       })
     },
-    errorImg () {
+    signupSuccess () {
+      this.$notify({
+        title: '註冊成功',
+        type: 'success'
+      })
+    },
+    signupSuccessfully () {
       this.$notify.error({
-        title: '註冊失敗',
-        message: '註冊失敗!請再重試一次'
+        title: '此 Email 已經註冊!',
+        type: 'success'
       })
     },
     fbInit (d, s, id) {

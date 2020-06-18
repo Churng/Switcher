@@ -11,12 +11,8 @@
     padding: 1rem 1rem 0rem;
    .card-text{
         text-align: start;
-        h3{
+        h6{
         position: relative;
-        font-size: $fs-500;
-        @include ipad_767{
-            font-size: $fs-400;
-        }
         &::before{
             content: '';
             width: 3px;

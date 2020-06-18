@@ -1,5 +1,5 @@
 <template>
-    <ul class="row switcherStore-body list-unstyled flex-wrap pt-5 pb-4" >
+    <ul class="row switcherStore-body list-unstyled flex-wrap bg-white pt-5 pb-5" >
       <PerProduct v-for="(item, index) in allItem" :key="index" :item="item" :index="index"/>
     </ul>
 </template>

@@ -21,7 +21,9 @@
 export default {
   data () {
     return {
-      Editproductphoto: []
+      showImage: {
+        imageUrl: ''
+      }
     }
   },
   methods: {
@@ -44,15 +46,25 @@ export default {
         })
         .then(response => {
           console.log(response)
-          // this.getProductUrl(response.data.product.Id)
+          this.photoSuccess()
+          this.reload()
         })
+    },
+    photoSuccess () {
+      this.$notify({
+        title: '上傳圖片成功',
+        type: 'success'
+      })
     },
     BackStore () {
       this.$router.push({
         path: '/sellerstore'
       })
     }
-  }
+  },
+  inject: ['reload'],
+  // eslint-disable-next-line vue/no-dupe-keys
+  props: ['ProductImages']
 }
 </script>
 <style scoped>

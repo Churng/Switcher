@@ -4,178 +4,109 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <a href="#">首頁</a>
+            <a href="/Home">首頁</a>
           </li>
           <li class="breadcrumb-item active" aria-current="page">上架商品</li>
         </ol>
       </nav>
-
-      <!-- <div class="row border-bottom">
-        <div class="col-6 bg-light px-5 py-5 d-flex align-items-end">
-          <img src="https://fakeimg.pl/250x250/" />
-          <input type="file" accept="image/*" @change="previewImage" name="upload" class="ml-3" />
-        </div>
-        <div class="col-6 bg-light">
-          <div class="d-flex flex-wrap justify-content-around upload-goods-photo">
-            <img class="goods-photo" src="https://fakeimg.pl/145x145/" />
-            <img class="goods-photo" src="https://fakeimg.pl/145x145/" />
-            <img class="goods-photo" src="https://fakeimg.pl/145x145/" />
-            <img class="goods-photo" src="https://fakeimg.pl/145x145/" />
-            <img class="goods-photo" src="https://fakeimg.pl/145x145/" />
-            <img class="goods-photo" src="https://fakeimg.pl/145x145/" />
-          </div>
-        </div>
-      </div> -->
-
-      <!-- <form runat="server">
-        <input type='file' id="imgInp" />
-        <img id="blah" src="#" alt="your image" />
-      </form> -->
     </div>
-
     <section>
       <div class="container bg-light">
-        <form class="w-75 m-auto pt-5">
-          <div class="name mb-4">
-            <label for>商品名稱</label>
+        <form class="w-75 m-auto py-5">
+          <div class="Name mb-3">
+            <div>
+              <label>商品名稱</label>
+            </div>
             <input
               type="text"
+              aria-label="商品名稱"
               placeholder="請輸入商品名稱"
-              class="ml-3 w-75"
+              class="form-control"
               v-model.trim="commodity.Name"
             />
-          </div>
-          <div class="place d-flex flex-row mb-4">
-            <label for class>交易地點</label>
-            <div class="ChooseCity ml-md-3">
-              <label for="City" class="d-none"></label>
-              <input
-                type="text"
-                v-model.trim="commodity.City"
-                id="City"
-                placeholder="請填寫城市名稱ex:台南市"
-              />
             </div>
-            <div class="ChooseCity ml-md-3">
-              <label for="Zone" class="d-none"></label>
-              <input
-                type="text"
-                v-model.trim="commodity.Zone"
-                id="Zone"
-                placeholder="請填寫區域名稱ex:永康區"
-              />
-            </div>
-            <div class="ChooseCity ml-md-3">
-              <label for="Store" class="d-none"></label>
-              <input
-                type="text"
-                v-model.trim="commodity.Store"
-                id="Store"
-                placeholder="請填寫門市名稱ex:佳鼎門市"
-              />
-            </div>
-            <!-- <div class="col-md-3 mb-3 ml-3">
-            <select class="custom-select d-block w-100" id="country" required>
-              <option value>--請選擇地區--</option>
-              <option>高雄市</option>
-            </select>
-            <div class="invalid-feedback">請選擇地區</div>
-          </div>
-          <div class="col-md-3 mb-3 w-50">
-            <select class="custom-select d-block w-100" id="state" required>
-              <option value>--請選擇區域/鄉鎮--</option>
-              <option>三民區</option>
-            </select>
-            <div class="invalid-feedback">請選擇區域/鄉鎮</div>
-          </div>
-          <div class="col-md-3 mb-3">
-            <select class="custom-select d-block w-100" id="state" required>
-              <option value>--請選擇門市--</option>
-              <option>California</option>
-            </select>
-            <div class="invalid-feedback">請選擇門市</div>
-            </div>-->
-          </div>
-          <div class="time">
-            <!-- 這裡會插入套件顯示日期 -->
-            <label for="change-time">交易時間</label>
-            <input type="datetime-local" name id="change-time" class="mb-4 ml-3" />
-          </div>
-          <div class="price">
-            <div class="row pl-3 mb-4">
-              <div class="clol">
-                <label class for>交易價格</label>
-              </div>
-              <div class="col-2 d-flex flex-column w-md-50">
-                <div class>
-                  <label for="original-price" class="O-price text-primary">原價</label>
-                  <input type="text" v-model="commodity.OriginPrice" class="original-price" />
-                </div>
-                <div class>
-                  <label for="deposit" class="d-price">押金</label>
-                  <input type="text" class="deposit" v-model="commodity.Deposit" />
-                </div>
-              </div>
-              <div class="col-8 w-50 ml-5">
-                <label for="special-offer" class="text-primary">特價</label>
-                <input type="text" class="special-offer" v-model="commodity.Price" />＊當有特價請填此欄
-              </div>
-            </div>
-          </div>
-          <div class="Product-category d-flex flex-row mb-4">
-            <div class>
+          <div class="Product-category mb-3">
+            <div class="Category-product">
               <label class="cat-lable" for>商品類別</label>
             </div>
-
-            <select class="custom-select w-25 ml-md-3">
+            <select class="custom-select" v-model="commodity.Category">
               <option selected>請選擇類別</option>
               <option :value="0">遊戲主機</option>
               <option :value="1">遊戲配件</option>
               <option :value="2">遊戲片</option>
             </select>
           </div>
-          <!-- <div class="Product-category d-flex flex-row mb-4">
-          <div class>
-            <label class="cat-lable" for>商品類別</label>
+          <div class="Quantity mb-3">
+            <div>
+              <label class="cat-lable">商品數量</label>
+            </div>
+              <select class="custom-select" v-model="commodity.Quantity">
+                <option selected>請選擇數量</option>
+                <option :value="1">1</option>
+                <option :value="2">2</option>
+                <option :value="3">3</option>
+                <option :value="4">4</option>
+                <option :value="5">5</option>
+            </select>
+             <div class="invalid-feedback">請輸入正確數量！</div>
           </div>
-
-          <div class="form-check ml-3">
-            <input class="form-check-input" type="radio" :value="GameCategory" id="cat-game-machine" />
-            <label class="form-check-label" for="cat-game-machine">遊戲主機</label>
+          <div class="Place mb-3">
+            <label>交易地點</label>
+                <select class="custom-select d-block w-100 mb-2" id="country" v-model="commodity.City" required>
+                  <option value="City">--請選擇地區--</option>
+                  <option>高雄市</option>
+                </select>
+              <div class="invalid-feedback">請選擇地區</div>
+                  <select class="custom-select d-block w-100 mb-2" id="state" v-model="commodity.Zone" required>
+                    <option value="Zone">--請選擇區域/鄉鎮--</option>
+                    <option>前金區</option>
+                  </select>
+                <div class="invalid-feedback">請選擇區域/鄉鎮</div>
+                <select class="custom-select d-block w-100" id="state" v-model="commodity.Store" required>
+                  <option value="Store">--請選擇門市--</option>
+                  <option>太華門市</option>
+                  <option>文東門市</option>
+                  <option>市賢門市</option>
+                  <option>自強門市</option>
+                  <option>長生門市</option>
+                  <option>長青門市</option>
+                  <option>青盛門市</option>
+                  <option>前金門市</option>
+                  <option>愛河門市</option>
+                  <option>新生門市</option>
+                  <option>新盛門市</option>
+                  <option>新華都門市</option>
+                  <option>龍客門市</option>
+                </select>
+                <div class="invalid-feedback">請選擇門市</div>
           </div>
-          <div class="form-check ml-3">
-            <input class="form-check-input" type="radio" :value="GameCategory" id="cat-game-acs" />
-            <label class="form-check-label" for="cat-game-acs">遊戲配件</label>
+          <div class="price mb-3">
+                <label class for>交易價格</label>
+              <div class="">
+                <div class>
+                  <label for="original-price" class=" O-price text-primary">原價</label>
+                  <input type="text" v-model="commodity.OriginPrice" class="form-control" id="original-price"  placeholder="請輸入金額"/>
+                </div>
+                <div class="">
+                  <label for="deposit" class="d-price">押金</label>
+                  <input type="text" class="form-control" id="deposit" v-model="commodity.Deposit"  placeholder="請輸入金額"/>
+                </div>
+              </div>
+              <div class="">
+                <label for="special-offer" class="text-primary">特價</label>
+                <input type="text" class="form-control" id="special-offer" v-model="commodity.Price" placeholder="請輸入金額" />＊當有特價請填此欄
+              </div>
           </div>
-          <div class="form-check ml-3">
-            <input class="form-check-input" type="radio" :value="GameCategory" id="cat-game-card"  />
-            <label class="form-check-label" for="cat-game-card">遊戲片</label>
-          </div>
-          <p>/請擇一選取</p>
-          </div>-->
-          <div class="Quantity d-flex mb-4">
+          <div class="Rental-days mb-3">
             <div class>
-              <label class="cat-lable" for>商品數量</label>
+              <label class="cat-lable" for>租借天數</label>
             </div>
-            <div class="ml-3">
-              <select
-                class="custom-select d-block w-100"
-                id="country"
-                v-model.number="commodity.Quantity"
-                required
-              >
-                <option value>--請選擇數量--</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-              <div class="invalid-feedback">請輸入正確數量！</div>
+            <div class="">
+                <input type="text" class="form-control days" maxlength="30" v-model.number="commodity.Period"  placeholder="請輸入租借天數"/>
+                <div class="invalid-feedback">Please select a valid country.</div>
             </div>
           </div>
-
-          <div class="goods-status d-flex mb-4">
+          <div class="goods-status d-flex mb-3 ">
             <div class>
               <label class="cat-lable" for>商品狀態</label>
             </div>
@@ -206,42 +137,24 @@
               </div>
             </div>
           </div>
-          <div class="Rental-days d-flex mb-4">
-            <div class>
-              <label class="cat-lable" for>租借天數</label>
-            </div>
-            <div class="ml-3">
-              <div class>
-                <label for="deposit" class="rental"></label>
-                <input type="text" class="days" v-model.number="commodity.Period" />／天
-              </div>
-              <div class="invalid-feedback">Please select a valid country.</div>
-            </div>
-          </div>
-
-          <div class="goods-intro ml-3">
-            <div class="row">
+          <div class="goods-intro">
               <div class>
                 <label class="cat-lable" for>商品介紹</label>
               </div>
-              <div class="form-group col">
-                <!-- <label for="inputgoods-intro">輸入商品特色或描述商品外觀~</label> -->
                 <textarea
-                  class="form-control w-75"
+                  class="form-control col"
                   v-model="commodity.Description"
                   id="inputgoods-intro"
                   rows="3"
                   placeholder="請輸入商品資訊..."
                 ></textarea>
-              </div>
-            </div>
           </div>
           <div class="PublicTime d-none" >${PublishDate}</div>
           <div class="row bg-light d-flex justify-content-center">
             <div class="mt-3 mb-3">
-              <button type="submit" class="btn btn-warning ml-3" data-toggle="modal" data-target="#staticBackdrop" @click="addProduct">儲存</button>
-              <button type="submit" class="btn btn-primary ml-3" data-toggle="modal" data-target="#staticBackdrop" @click="BacktoStore">取消</button>
-              <router-view />
+              <button type="button" class="btn btn-primary ml-3"  @click="BacktoStore">取消</button>
+              <button type="button" class="btn btn-warning ml-3"  @click="addProduct">儲存</button>
+              <!-- <router-view /> -->
             </div>
           </div>
         </form>
@@ -256,13 +169,13 @@ export default {
     return {
       commodity: {
         Name: '',
-        OriginPrice: null,
-        Price: null,
-        Deposit: null,
-        Quantity: null,
-        City: '',
-        Zone: '',
-        Store: '',
+        OriginPrice: 100,
+        Price: 80,
+        Deposit: 50,
+        Quantity: 1,
+        City: '高雄市',
+        Zone: '前金區',
+        Store: '太華門市',
         Status: 0,
         Category: 0,
         Period: null,
@@ -299,9 +212,10 @@ export default {
       this.$http
         .post(api, newproduct, headers)
         .then(response => {
-          console.log(response)
+          // console.log(response)
           if (response.data.result) {
             console.log(response.data)
+            this.addSuccess()
             this.$router.push({
               name: 'AddProductphoto',
               params: {
@@ -310,6 +224,12 @@ export default {
             })
           }
         })
+    },
+    addSuccess () {
+      this.$notify({
+        title: '商品新增成功',
+        type: 'success'
+      })
     },
     BacktoStore () {
       this.$router.push({
@@ -325,4 +245,5 @@ export default {
   height: 300px;
   border: 1px solid #dee2e6;
 }
+
 </style>

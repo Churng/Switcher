@@ -4,7 +4,10 @@
           <img :src="item.Images[0]" class="card-img-top" alt="gameHost">
           <div class="card-body">
               <div class="card-text">
-                  <h3>{{item.Name}}</h3>
+                  <div class="d-flex justify-content-between align-items-baseline itemTitle">
+                        <h6 class="font-weight-bold">{{ item.Name }}</h6>
+                        <span class="category-games bg-danger text-white rounded">{{ item.Category }}</span>
+                    </div>
                   <div class="card-text-top d-flex justify-content-between">
                       <div class="card-mainTxt">
                           <span class="location mr-2">{{item.City}}</span>
@@ -38,25 +41,8 @@ export default {
     index: Number
   },
   methods: {
-    // getAllProduct () {
-    //   const api = 'http://switcher.rocket-coding.com/api/product/admin/all'
-    //   const token = localStorage.getItem('token')
-    //   this.$http
-    //     .get(api, {
-    //       headers: {
-    //         Authorization: `Bearer ${token}`
-    //       }
-    //     })
-    //     .then(response => {
-    //       this.productData = response.data.products
-    //       // console.log(this.productData)
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error)
-    //     })
-    // },
     deleteProduct (Id) { // 讀取 key 資料，去刪除產品
-      const vm = this
+      // const vm = this
       console.log(this)
       const token = localStorage.getItem('token')
       const headers = {
@@ -66,7 +52,15 @@ export default {
       }
       const api = `http://switcher.rocket-coding.com/api/product/delete/${Id}`
       this.$http.delete(api, headers).then(response => {
-        vm.getAllProduct()// 更新產品列表
+        this.reload()
+        this.deleteSuccess()
+        // vm.getAllProduct()// 更新產品列表
+      })
+    },
+    deleteSuccess () {
+      this.$notify({
+        title: '刪除商品成功',
+        type: 'success'
       })
     },
     editPerProduct (id) {
@@ -78,9 +72,7 @@ export default {
       })
     }
   },
-  created () {
-    // this.getAllProduct()
-  }
+  inject: ['reload']
 }
 </script>
 
@@ -165,5 +157,17 @@ export default {
   width: 180px;
   background:#e9ecef;
   border: #EBEEF5;
+}
+.itemTitle{
+  height: 45px;
+  h6{
+    width: 180px;
+  }
+  .category-games{
+    height: 30px;
+    font-size: 12px;
+    text-align: center;
+    width: 75px;
+  }
 }
 </style>
