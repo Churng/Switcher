@@ -181,4 +181,7 @@ export default {
   outline: none;
   }
 }
+.about-storeImg{
+  height: 100% !important;
+}
 </style>

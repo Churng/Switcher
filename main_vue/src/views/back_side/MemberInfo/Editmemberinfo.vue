@@ -199,8 +199,8 @@ export default {
         .then(response => {
           this.userData = response.data
         })
-        .catch(function(error) {
-          this.$message(error)
+        .catch(err => {
+        this.$message(err)
         })
     },
     updateinfo() {
@@ -264,7 +264,6 @@ export default {
       .then(response => {
         this.reload()
         this.photoSuccess()
-        // vm.$set(vm.userData, 'imgUrl' , response.data.member.Photo)
       })
       .catch(function (error) {
         this.photoError()

@@ -44,6 +44,9 @@ export default {
           this.photoSuccess()
           this.reload()
         })
+        .catch(err => {
+          this.$message(err)
+        })
     },
     photoSuccess () {
       this.$notify({

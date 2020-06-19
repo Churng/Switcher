@@ -49,10 +49,14 @@ export default {
         }
       }
       const api = `http://switcher.rocket-coding.com/api/product/delete/${Id}`
-      this.$http.delete(api, headers).then(response => {
-        this.reload()
-        this.deleteSuccess()
-      })
+      this.$http.delete(api, headers)
+        .then(response => {
+          this.reload()
+          this.deleteSuccess()
+        })
+        .catch(err => {
+          this.$message(err)
+        })
     },
     deleteSuccess () {
       this.$notify({

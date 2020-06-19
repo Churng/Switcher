@@ -99,7 +99,7 @@ export default {
   },
   methods: {
     getSeller (id) {
-      const Id = localStorage.getItem('menberId') === 'undefined' ? 1 : localStorage.getItem('menberId')
+      const Id = localStorage.getItem('menberId')
       const api = `http://switcher.rocket-coding.com/api/member/${Id}`
       this.$http
         .get(api, {
@@ -107,7 +107,7 @@ export default {
         .then(response => {
           this.sellerData = response.data
         })
-        .catch(function (err) {
+        .catch(err => {
           this.$message(err)
         })
     },
@@ -123,7 +123,7 @@ export default {
         .then(response => {
           this.$root.SellerproductData = response.data.products
         })
-        .catch(function (err) {
+        .catch(err => {
           this.$message(err)
         })
     },

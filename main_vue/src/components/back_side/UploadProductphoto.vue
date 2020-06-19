@@ -1,16 +1,27 @@
 <template>
   <div class="container">
-        <div class="NewProductImg px-4 py-4 " >
+        <div class="container">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="/Home">首頁</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">編輯商品</li>
+              <li class="breadcrumb-item active" aria-current="page">編輯圖片</li>
+            </ol>
+          </nav>
+        </div>
+        <div class="NewProductImg bg-light px-4 py-4 " >
             <p>上傳圖片</p>
             <div class="product-photo-upload">
-              <img class="img-fluid" alt="商品圖片" :src="userImg" width="200" />
+              <img class="img" alt="商品圖片" :src="userImg" width="200" />
             </div>
             <div class="file-loading mt-5 mx-100">
-              <input ref="ProductImage"  id="upload-prophoto" name="Upload-prophoto" type="file" accept="image/*" multiple="multiple" @change="uploadPhoto"  required />
+              <input ref="ProductImage"  id="upload-prophoto" name="Upload-prophoto" type="file" accept="image/*" multiple="multiple"   required />
             </div>
             <div class="Button mx-auto d-flex justify-content-center ">
               <button type="button" class="btn btn-primary " @click="$router.go(-1)">上一頁</button>
-              <button type="button" class="btn btn-warning ml-3" @click="BackStore">確定</button>
+              <button type="button" class="btn btn-warning ml-3" @click="BackStore" @change="uploadPhoto">確定</button>
             </div>
         </div>
   </div>
@@ -40,6 +51,9 @@ export default {
         })
         .then(response => {
           this.photoSuccess()
+        })
+        .catch(err => {
+          this.$message(err)
         })
     },
     photoSuccess () {

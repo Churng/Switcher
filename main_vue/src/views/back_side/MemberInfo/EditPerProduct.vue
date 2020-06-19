@@ -147,8 +147,7 @@
             </div>
           </div>
           <div class="goods-intro">
-            <div class="row">
-              <div>
+              <div class>
                 <label class="cat-lable" for>商品介紹</label>
               </div>
                 <textarea
@@ -158,7 +157,6 @@
                   rows="3"
                   placeholder="請輸入商品資訊..."
                 ></textarea>
-            </div>
           </div>
           <div class="PublicTime d-none">
             ${PublishDate}
@@ -241,6 +239,9 @@ export default {
             })
           }
         })
+        .catch(err => {
+          this.$message(err)
+        })
     },
     updateSuccess () {
       this.$notify({
@@ -255,8 +256,8 @@ export default {
         .then(response => {
           this.Productdata = response.data
         })
-        .catch(function (error) {
-          alert(error)
+        .catch(err => {
+          this.$message(err)
         })
     }
   },
