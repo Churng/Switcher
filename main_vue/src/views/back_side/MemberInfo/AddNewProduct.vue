@@ -4,7 +4,7 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <a href="/Home">首頁</a>
+            <a href="/sellerstore/sellerallGame">我的賣場</a>
           </li>
           <li class="breadcrumb-item active" aria-current="page">上架商品</li>
         </ol>
@@ -64,19 +64,19 @@
                 <div class="invalid-feedback">請選擇區域/鄉鎮</div>
                 <select class="custom-select d-block w-100" id="state" v-model="commodity.Store" required>
                   <option value="Store">--請選擇門市--</option>
-                  <option>太華門市</option>
-                  <option>文東門市</option>
-                  <option>市賢門市</option>
-                  <option>自強門市</option>
-                  <option>長生門市</option>
-                  <option>長青門市</option>
-                  <option>青盛門市</option>
-                  <option>前金門市</option>
-                  <option>愛河門市</option>
-                  <option>新生門市</option>
-                  <option>新盛門市</option>
-                  <option>新華都門市</option>
-                  <option>龍客門市</option>
+                  <option>太華</option>
+                  <option>文東</option>
+                  <option>市賢</option>
+                  <option>自強</option>
+                  <option>長生</option>
+                  <option>長青</option>
+                  <option>青盛</option>
+                  <option>前金</option>
+                  <option>愛河</option>
+                  <option>新生</option>
+                  <option>新盛</option>
+                  <option>新華都</option>
+                  <option>龍客</option>
                 </select>
                 <div class="invalid-feedback">請選擇門市</div>
           </div>
@@ -94,7 +94,7 @@
               </div>
               <div class="">
                 <label for="special-offer" class="text-primary">特價</label>
-                <input type="text" class="form-control" id="special-offer" v-model="commodity.Price" placeholder="請輸入金額" />＊當有特價請填此欄
+                <input type="text" class="form-control" id="special-offer" v-model="commodity.Price" placeholder="請輸入金額" />
               </div>
           </div>
           <div class="Rental-days mb-3">
@@ -169,15 +169,15 @@ export default {
     return {
       commodity: {
         Name: '',
-        OriginPrice: 100,
-        Price: 80,
-        Deposit: 50,
-        Quantity: 1,
-        City: '高雄市',
-        Zone: '前金區',
-        Store: '太華門市',
+        OriginPrice: '',
+        Price: '',
+        Deposit: '',
+        Quantity: '',
+        City: '',
+        Zone: '',
+        Store: '',
         Status: 0,
-        Category: 0,
+        Category: '',
         Period: null,
         Description: '',
         PublishDate: new Date()
@@ -212,9 +212,7 @@ export default {
       this.$http
         .post(api, newproduct, headers)
         .then(response => {
-          // console.log(response)
           if (response.data.result) {
-            console.log(response.data)
             this.addSuccess()
             this.$router.push({
               name: 'AddProductphoto',
@@ -223,6 +221,9 @@ export default {
               }
             })
           }
+        })
+        .catch(err => {
+          this.$message(err)
         })
     },
     addSuccess () {

@@ -208,7 +208,6 @@ export default {
     getMember() {
       const token = localStorage.getItem("token");
       const id = localStorage.getItem("menberId")
-      console.log(id)
       const api = `http://switcher.rocket-coding.com/api/member/${id}`
       this.$http
         .get(api, {
@@ -218,15 +217,12 @@ export default {
         })
         .then(response => {
           this.userData = response.data
-          console.log(this.userData)
-
         })
-        .catch(function(error) {
-          console.log(error)
-        });
+        .catch(err => {
+        this.$message(err)
+        })
     },
     updateinfo() {
-      console.log(this.GetReply)
       const api = "http://switcher.rocket-coding.com/api/member"
       const token = localStorage.getItem("token");
       let reply = ''
@@ -246,7 +242,6 @@ export default {
           StoreDescription: this.userData.member.StoreDescription,
           Reply: reply
         }
-      console.log(reply)
       const updateInfo = JSON.stringify(Info)
       this.$http
         .patch(api, updateInfo, {
@@ -260,10 +255,9 @@ export default {
           this.$router.push({
           path: '/sellerstore'
           })
-          console.log(response);
         })
         .catch(error => {
-          console.log(error);
+          this.$message(err)
         });
     },
     updateSuccess() {
@@ -279,7 +273,6 @@ export default {
       formData.append('uploadImg',userImg)
       const token = localStorage.getItem("token");
       const api = 'http://switcher.rocket-coding.com/api/member/upload/user'
-      console.log(userImg)
       this.$http
       .post(api,formData,{
         headers: {
@@ -288,10 +281,8 @@ export default {
         }
       })
       .then(response => {
-        console.log(response)
         this.reload()
         this.photoSuccess()
-        // vm.$set(vm.userData, 'imgUrl' , response.data.member.Photo)
       })
       .catch(function (error) {
         this.photoError()

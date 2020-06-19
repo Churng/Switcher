@@ -40,18 +40,17 @@ export default {
         })
         this.loading = false
       }).catch(err => {
-        console.log(err)
+        alert(err)
       })
     },
     getSellersData () {
       const api = 'http://switcher.rocket-coding.com/api/members'
       this.loading = true
       this.$http.get(api).then(res => {
-        // console.log(res.data.members)
         this.$root.menbersData = res.data.members
         this.loading = false
       }).catch(err => {
-        console.log(err)
+        alert(err)
       })
     },
     reload () {

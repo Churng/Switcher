@@ -1,6 +1,6 @@
 <template>
   <div class="login bg-light">
-    <div class="container">
+    <div class="container w-100" >
       <div class="row d-flex flex-column">
         <div class="login-content">
           <nav>
@@ -33,18 +33,11 @@
               aria-labelledby="nav-login-tab"
             >
               <form class="signin" @submit.prevent="login">
-                <div class="form-group">
                   <label class="loglabel" for="inputEmail">帳號</label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="inputEmail"
-                    placeholder="name@example.com"
-                    v-model="user.Email"
-                    required
-                  />
-                </div>
-                <div class="form-group">
+                  <el-form :model="user" :rules="rules" ref="user"  class="demo-ruleForm">
+                    <el-form-item  prop="Email">
+                      <el-input v-model="user.Email"></el-input>
+                    </el-form-item>
                   <label
                     class="d-flex justify-content-between LogininputPassword"
                     for="inputPassword"
@@ -56,22 +49,17 @@
                       </p>
                     </router-link>
                   </label>
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="inputPassword"
-                    placeholder="1234567890"
-                    v-model="user.Password"
-                    required
-                  />
-                </div>
+                    <el-form-item  prop="Password">
+                      <el-input v-model="user.Password"></el-input>
+                    </el-form-item>
+                  </el-form>
                 <button class="btn btn-warning login-submit login-btn" type="submit">登入</button>
               </form>
               <div class="tab-content-thirdlogin">
                 <p>以下帳號快速登入</p>
                 <div class="social-login">
                   <button type="button" class="btn btn-social login-facebook" @click.prevent="fbSignIn">Facebook</button>
-                  <button type="button" class="btn btn-danger login-google">Google</button>
+
                 </div>
               </div>
             </div>
@@ -83,81 +71,36 @@
             >
               <form class="registered @click.prevent" @submit.prevent="signup">
                 <div class="form-group">
-                  <label for="Login-Name">名稱</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="Login-Name"
-                    placeholder="Name"
-                    v-model="user.Name"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="Login-Email">帳號</label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="Login-Email"
-                    placeholder="請輸入Email"
-                    v-model="user.Email"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="Login-Phone">手機號碼</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="Login-Phone"
-                    placeholder="請輸入手機號碼"
-                    v-model="user.Phone"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="Login-Idnumber">身分證號碼</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="Login-Idnumber"
-                    placeholder="請輸入身分證號碼"
-                    v-model="user.Identity"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="Login-Address">地址</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="Login-Address"
-                    placeholder="請輸入地址"
-                    v-model="user.Address"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="Login-Password">密碼</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="Login-Password"
-                    placeholder="請輸入密碼"
-                    v-model="user.Password"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="Login-rePassword">確認密碼</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="Login-rePassword"
-                    placeholder="請再一次輸入密碼"
-                    v-model="user.rePassword"
-                    required
-                  />
+                  <el-form :model="user" :rules="rules" ref="user"  class="demo-ruleForm">
+                    <label for="Login-Name">名稱</label>
+                    <el-form-item  prop="Name">
+                      <el-input v-model="user.Name"></el-input>
+                    </el-form-item>
+                    <label for="Login-Email">帳號</label>
+                    <el-form-item  prop="Email">
+                      <el-input v-model="user.Email"></el-input>
+                    </el-form-item>
+                    <label for="Login-Phone">手機號碼</label>
+                    <el-form-item  prop="Phone">
+                      <el-input v-model="user.Phone"></el-input>
+                    </el-form-item>
+                    <label for="Login-Idnumber">身分證號碼</label>
+                     <el-form-item  prop="Identity">
+                      <el-input v-model="user.Identity"></el-input>
+                    </el-form-item>
+                    <label for="Login-Address" required>地址</label>
+                     <el-form-item  prop="Address">
+                      <el-input v-model="user.Address" required></el-input>
+                    </el-form-item>
+                    <label for="Login-Password">密碼</label>
+                      <el-form-item  prop="Password">
+                      <el-input v-model="user.Password"  autocomplete="off" required></el-input>
+                    </el-form-item>
+                    <label for="Login-rePassword">確認密碼</label>
+                    <el-form-item  prop="repassword">
+                      <el-input v-model="user.rePassword"  autocomplete="off" required></el-input>
+                    </el-form-item>
+                  </el-form>
                 </div>
                 <button class="btn btn-warning registered-submit" type="submit">註冊</button>
               </form>
@@ -165,7 +108,6 @@
                 <p>以下帳號快速登入</p>
                 <div class="social-login">
                   <button type="button" class="btn btn-social login-facebook" @click.prevent="fbSignIn">Facebook</button>
-                  <button type="button" class="btn btn-danger login-google">Google</button>
                 </div>
               </div>
             </div>
@@ -193,7 +135,34 @@ export default {
         Name: null,
         error: false
       },
-      connected: false
+      rules: {
+        Email: [
+          { required: true, message: '請輸入帳號', trigger: 'blur' },
+          { type: 'email', message: 'example@mail.com', trigger: ['blur', 'change'] }
+        ],
+        Password: [
+          { required: true, message: '請輸入密碼', trigger: 'blur' }
+        ],
+        repassword: [
+          { required: true, message: '請再次輸入密碼', trigger: 'blur' }
+        ],
+        Name: [
+          { required: true, message: '請輸入用戶名稱', trigger: 'blur' }
+        ],
+        Phone: [
+          { required: true, message: '請輸入正確電話號碼', trigger: 'blur' },
+          { type: 'number', message: '電話號碼必須為數字' }
+        ],
+        Identity: [
+          { required: true, message: '請輸入身分證號碼', trigger: 'blur' },
+          { max: 10, message: '請輸入正確身分證號碼：A123456789', trigger: 'blur' }
+        ],
+        Address: [
+          { required: true, message: '請輸入地址', trigger: 'blur' }
+        ]
+      },
+      connected: false,
+      errorMsg: false
     }
   },
   mounted () {
@@ -231,8 +200,14 @@ export default {
         }
       })
         .catch(function (error) {
-          console.log(error)
-          this.loginFalse()
+          const errObj = error.response
+          if (errObj.status === 400 && errObj.data.message === '登入失敗!') {
+            this.errorMsg = true
+            return this.errorMsg
+          } else if (errObj.status === 404 && errObj.data.message === '登入失敗!') {
+            this.errorMsg = true
+            return this.errorMsg
+          }
         })
     },
     loginSuccess () {
@@ -306,22 +281,20 @@ export default {
           Authorization: `Bearer ${token}`
         }
       }).then(res => {
-        console.log(this.$root.getCartLen)
         this.$root.getCarts = res.data.carts
         this.$root.getCartLen = res.data.carts.length
         localStorage.setItem('cartLen', res.data.carts.length)
-        console.log(res.data.carts.length)
       })
     },
     getUserData () {
       const menberId = localStorage.getItem('menberId')
       const api = `http://switcher.rocket-coding.com/api/member/${menberId}`
       this.$http.get(api).then(res => {
-        console.log('我是誰', res.data.member)
+        // console.log('我是誰', res.data.member)
         this.$root.userName = res.data.member.Name
         localStorage.setItem('userName', res.data.member.Name)
       }).catch(err => {
-        console.log(err)
+        this.$message(err)
       })
     }
   }

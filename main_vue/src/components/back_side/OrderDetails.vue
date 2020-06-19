@@ -60,7 +60,6 @@ export default {
           Authorization: `Bearer ${token}`
         }
       }).then(res => {
-        // console.log('狀態', res)
         this.refreshData(Id)
       }).catch(err => {
         this.errInfo(err)
@@ -81,7 +80,6 @@ export default {
             Authorization: `Bearer ${token}`
           }
         }).then(res => {
-        // console.log('單一訂單', res.data.order[0].Status)
         this.$emit('changeStatus', res.data.order[0].Status, Id)
       })
     }

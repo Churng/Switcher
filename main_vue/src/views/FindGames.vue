@@ -64,7 +64,6 @@ export default {
           this.searchData[county].push(data)
         }
       })
-      // console.log(this.searchData)
       return this.searchData
     }
   },

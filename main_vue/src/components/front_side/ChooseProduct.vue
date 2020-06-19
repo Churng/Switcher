@@ -136,12 +136,11 @@ export default {
         }
       }).then(res => {
         this.$root.getCarts = res.data.carts
-        console.log(this.$root.getCarts)
         this.$root.getCartLen = res.data.carts.length
         localStorage.setItem('cartLen', res.data.carts.length)
         this.correctPost()
       }).catch(err => {
-        console.log(err)
+        alert(err)
       })
     },
     openAlert () {

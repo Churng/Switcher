@@ -29,12 +29,9 @@ export default {
   methods: {
     uploadPhoto () {
       const id = this.$route.params.id
-      // console.log(id)
       const photo = this.$refs.ProductImage.files[0]
-      // console.log(photo)
       const form = new FormData()
       form.append('ProductImage', photo)
-      // console.log(form)
       const token = localStorage.getItem('token')
       const api = `http://switcher.rocket-coding.com/api/product/upload/${id}`
       this.$http
@@ -45,9 +42,11 @@ export default {
           }
         })
         .then(response => {
-          console.log(response)
           this.photoSuccess()
           this.reload()
+        })
+        .catch(err => {
+          this.$message(err)
         })
     },
     photoSuccess () {

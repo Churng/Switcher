@@ -61,7 +61,6 @@ export default {
           return vm.noneData
         }
       })
-      console.log(arr)
       arr.sort(function (a, b) {
         return a.OrderDate < b.OrderDate ? 1 : -1
       })
@@ -78,7 +77,6 @@ export default {
             Authorization: `Bearer ${token}`
           }
         }).then(res => {
-        console.log('單一訂單', res.data.order[0])
         this.getAllData = res.data.order[0]
         this.getSingleData = res.data.order[0].Product
         this.dialogVisible = true

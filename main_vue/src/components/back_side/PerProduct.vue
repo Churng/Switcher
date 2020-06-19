@@ -42,8 +42,6 @@ export default {
   },
   methods: {
     deleteProduct (Id) { // 讀取 key 資料，去刪除產品
-      // const vm = this
-      console.log(this)
       const token = localStorage.getItem('token')
       const headers = {
         headers: {
@@ -51,11 +49,14 @@ export default {
         }
       }
       const api = `http://switcher.rocket-coding.com/api/product/delete/${Id}`
-      this.$http.delete(api, headers).then(response => {
-        this.reload()
-        this.deleteSuccess()
-        // vm.getAllProduct()// 更新產品列表
-      })
+      this.$http.delete(api, headers)
+        .then(response => {
+          this.reload()
+          this.deleteSuccess()
+        })
+        .catch(err => {
+          this.$message(err)
+        })
     },
     deleteSuccess () {
       this.$notify({

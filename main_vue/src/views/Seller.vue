@@ -116,7 +116,6 @@ export default {
       const api = `http://switcher.rocket-coding.com/api/member/${this.$route.params.id}`
       this.loading = true
       this.$http.get(api).then(res => {
-        // console.log(res.data.member)
         this.memberData = res.data.member
         // 強制刷新
         setTimeout(_ => {
@@ -127,7 +126,6 @@ export default {
     },
     isAllGame () {
       const copyData = JSON.parse(JSON.stringify(this.$root.productsData))
-      // console.log(copyData, this.memberData)
       const arr = copyData.filter(item => {
         if (item.MemberName === this.memberData.Name) {
           return true
@@ -179,5 +177,8 @@ export default {
   opacity: 1;
   outline: none;
   }
+}
+.about-storeImg{
+  height: 100% !important;
 }
 </style>

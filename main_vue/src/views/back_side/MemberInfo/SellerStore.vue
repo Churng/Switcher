@@ -99,10 +99,9 @@ export default {
         })
         .then(response => {
           this.sellerData = response.data
-          // console.log(this.sellerData)
         })
-        .catch(function (error) {
-          console.log(error)
+        .catch(err => {
+          this.$message(err)
         })
     },
     getProduct () {
@@ -116,10 +115,9 @@ export default {
         })
         .then(response => {
           this.$root.SellerproductData = response.data.products
-          console.log(this.$root.SellerproductData)
         })
-        .catch(function (error) {
-          console.log(error)
+        .catch(err => {
+          this.$message(err)
         })
     },
     isAllItem () {

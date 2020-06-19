@@ -120,7 +120,7 @@ export default {
         this.getRentalData()
         this.getOrderData()
       }).catch(err => {
-        console.log(err)
+        this.$message(err)
       })
     }
   }
