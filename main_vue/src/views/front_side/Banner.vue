@@ -13,7 +13,7 @@
                     <h2 class="display-4">簡單租借Switch遊戲 !</h2>
                     <p class="lead">隨時隨地   大家同樂</p>
                     <button type="button" class="btn btn-danger btn-sm" @click.prevent="$router.push('/login')" v-if="!$root.changeBannerBtn">立即加入</button>
-                    <h4 v-else>歡迎 {{$root.userName}} !</h4>
+                    <div class="d-flex justify-content-center" v-else><h4 class="rounded">歡迎 {{$root.userName}} !</h4></div>
                 </div>
                 </div>
                 <div class="carousel-item">
@@ -22,7 +22,7 @@
                     <h2 class="display-4 text-white">簡單租借Switch遊戲 !</h2>
                     <p class="lead text-white">隨時隨地   大家同樂</p>
                     <button type="button" class="btn btn-danger btn-sm" @click.prevent="$router.push('/login')" v-if="!$root.changeBannerBtn">立即加入</button>
-                    <h4 v-else>歡迎 {{$root.userName}} !</h4>
+                    <div class="d-flex justify-content-center" v-else><h4 class="rounded">歡迎 {{$root.userName}} !</h4></div>
                 </div>
                 </div>
                 <div class="carousel-item">
@@ -31,7 +31,7 @@
                     <h2 class="display-4 text-white">簡單租借Switch遊戲 !</h2>
                     <p class="lead text-white">隨時隨地   大家同樂</p>
                     <button type="button" class="btn btn-danger btn-sm" @click.prevent="$router.push('/login')" v-if="!$root.changeBannerBtn">立即加入</button>
-                    <h4 v-else>歡迎 {{$root.userName}} !</h4>
+                    <div class="d-flex justify-content-center" v-else><h4 class="rounded">歡迎 {{$root.userName}} !</h4></div>
                 </div>
                 </div>
             </div>

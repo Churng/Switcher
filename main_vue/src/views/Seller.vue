@@ -2,6 +2,7 @@
     <section id="switcherStore" class="bg-light pt-5" v-if="memberData">
       <div class="loading vh-100" v-if="loading"><img src="/img/Spinner-1.1s-200px.gif" alt="loading"></div>
         <div class="container mb-5">
+            <el-backtop :bottom="60"></el-backtop>
             <div class="row returnMap mb-5">
                 <div class="col-12 d-flex text-muted align-items-center">
                     <i class="mr-2"><font-awesome-icon icon="chevron-left"/></i>
@@ -122,6 +123,8 @@ export default {
           this.isAllGame()
         }, 100)
         this.loading = false
+      }).catch(err => {
+        this.$message(err)
       })
     },
     isAllGame () {

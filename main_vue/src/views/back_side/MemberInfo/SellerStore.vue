@@ -14,7 +14,7 @@
                             <img :src="sellerData.member.Photo" :alt="sellerData.member.Name">
                         </div>
                         <div class="sellerTxt text-white w-50">
-                            <h5 class="mb-0">{{sellerData.member.Name}}</h5>
+                            <h5 class="mb-2">{{sellerData.member.Name}}</h5>
                             <h6>主要商品 :</h6>
                             <ul class="list-unstyled card-text d-flex">
                               <li class="pr-2" v-for="(game, index) in sellerData.member.Category" :key="index">{{game}}</li>
@@ -48,11 +48,21 @@
         <div class="container switcherStore-about pt-1 pb-1">
             <h5 class="mt-4"><i class="mr-2"><font-awesome-icon icon="store"/></i>關於賣場</h5>
             <div class="row switcherStore-aboutInfo justify-content-between mb-5">
-                <div class="col-md-6 about-text">
+                <div class="col-sm-6 about-text pt-3 pr-3 pl-3 pb-3">
+                    <h3 class="text-center h-50 noneTxt" v-if="sellerData.member.StoreDescription === null">尚未填寫</h3>
                     <p>{{sellerData.member.StoreDescription}}</p>
                 </div>
-                <div class="col-md-6 about-storeImg">
-                    <div class="storeImg" >
+                <div class="col-sm-6 about-storeImg h-100">
+                    <div class="demo-image__error" v-if="sellerData.member.StoreImage === ''">
+                      <div class="block sellerImg">
+                        <el-image>
+                          <div slot="error" class="image-slot">
+                            <i class="el-icon-picture-outline"></i>
+                          </div>
+                        </el-image>
+                      </div>
+                    </div>
+                    <div class="storeImg" v-else>
                       <img :src="sellerData.member.StoreImage" :alt="sellerData.member.StoreImage" width="450">
                     </div>
                 </div>
@@ -62,10 +72,8 @@
                 <div class="col-md-2 border-right"><router-link to="/sellerstore/sellergamehost" class="main-item d-block text-white" @click="isAllItem">遊戲主機</router-link></div>
                 <div class="col-md-2 border-right"><router-link to="/sellerstore/sellergame" class="main-item d-block text-white" @click="isAllItem">遊戲軟體</router-link></div>
                 <div class="col-md-2 border-right"><router-link to="/sellerstore/sellergamestick" class="main-item d-block text-white" @click="isAllItem">遊戲配件</router-link></div>
-                <!-- <div class="col-md-2"><a href="" class="main-item d-block text-white" @click="isAllItem">優惠活動</router-link></div> -->
             </div>
             <router-view></router-view>
-            <!-- <PerProduct /> -->
             <router-link to="/addnewproduct" class="d-block">
               <div class="float-button" title="新增商品"><p class="floatplus">＋</p></div>
             </router-link>
@@ -75,7 +83,6 @@
 </template>
 
 <script>
-// import PerProduct from '../../../components/back_side/PerProduct'
 
 export default {
   data () {
@@ -99,10 +106,9 @@ export default {
         })
         .then(response => {
           this.sellerData = response.data
-          // console.log(this.sellerData)
         })
-        .catch(function (error) {
-          console.log(error)
+        .catch(function (err) {
+          this.$message(err)
         })
     },
     getProduct () {
@@ -116,10 +122,9 @@ export default {
         })
         .then(response => {
           this.$root.SellerproductData = response.data.products
-          console.log(this.$root.SellerproductData)
         })
-        .catch(function (error) {
-          console.log(error)
+        .catch(function (err) {
+          this.$message(err)
         })
     },
     isAllItem () {
@@ -130,7 +135,6 @@ export default {
     this.getSeller()
     this.getProduct()
   }
-  // components: { PerProduct }
 }
 
 </script>
@@ -147,13 +151,16 @@ export default {
     box-shadow: 2px 1px 4px 0px #6c757d;
     cursor: pointer;
     z-index: 99999;
-}
+  }
 
-    .floatplus{
-    font-size: 45px;
-    margin: -10px 0px 10px 2px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    }
+  .floatplus{
+  font-size: 45px;
+  margin: -10px 0px 10px 2px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  }
+  .noneTxt {
+  line-height: 250px;
+  }
 </style>

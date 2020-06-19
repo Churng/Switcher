@@ -42,8 +42,6 @@ export default {
   },
   methods: {
     deleteProduct (Id) { // 讀取 key 資料，去刪除產品
-      // const vm = this
-      console.log(this)
       const token = localStorage.getItem('token')
       const headers = {
         headers: {
@@ -54,7 +52,6 @@ export default {
       this.$http.delete(api, headers).then(response => {
         this.reload()
         this.deleteSuccess()
-        // vm.getAllProduct()// 更新產品列表
       })
     },
     deleteSuccess () {

@@ -141,6 +141,8 @@ export default {
         localStorage.setItem('cartLen', res.data.carts.length)
         this.loading = false
         return this.$root.getCarts
+      }).catch(err => {
+        this.$message(err)
       })
     },
     totalPrice (val) {

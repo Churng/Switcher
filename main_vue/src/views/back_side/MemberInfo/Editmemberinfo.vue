@@ -11,19 +11,6 @@
     </nav>
 <div class="MemberContent" v-if="userData">
     <div class="row border-bottom row-info">
-      <!-- <div class="mem-upload-photo-sm">
-        <form>
-          <div class="head_img">
-            <img  class="rounded-circle personal-photo" :src="userData.Photo" />
-          </div>
-          <div class="setting_right" @click.stop="uploadHeadImg">
-            <div class="caption">更改頭像</div>
-          </div>
-          <div class="file-loading mt-5 mx-100">
-            <input type="file" accept="image/*" @change="handleFile" class="hiddenInput" />
-          </div>
-        </form>
-      </div> -->
       <!-- 手機版本上傳個人照 -->
       <div class="col-md-8 bg-light mt-5 px-4 py-5 col-sm-12 mem-info-sm">
         <div class="form-group form-inline">
@@ -108,9 +95,6 @@
       </div>
 
       <div class="col-4 bg-light mt-5 pt-5 mem-upload-photo" >
-        <!-- <div class="member-photo-upload">
-        <img class="rounded-circle personal-photo" :src="userData.member.Photo" />
-        </div> -->
         <el-image class="rounded-circle personal-photo" :src="userData.member.Photo">
           <div slot="error" class="image-slot">
             <i class="el-icon-picture-outline"></i>
@@ -126,9 +110,6 @@
         <div class="col-md-4 bg-light px-4">
           <h2>賣場資料</h2>
           <p class="ml-4">賣場圖片</p>
-          <!-- <div class="Shop-Photo">
-            <img class="shop-photo ml-4" :src="userData.member.StoreImage"  width="200"  onerror="nofind()"  />
-          </div> -->
           <el-image class="shop-photo ml-4" :src="userData.member.StoreImage"  width="200"  onerror="nofind()">
             <div slot="error" class="image-slot">
               <i class="el-icon-picture-outline"></i>
@@ -177,11 +158,11 @@
 </script>
 
 <script>
-import axios from "axios";
+import axios from "axios"
 
-const TimeOption = ['早上', '中午', '晚上'];
+const TimeOption = ['早上', '中午', '晚上']
 export default {
-  data() {
+  data () {
     return {
       userData: {
         member:{
@@ -202,13 +183,12 @@ export default {
       image: null,
       GetReply: [],
       time: TimeOption
-    };
+    }
   },
   methods: {
-    getMember() {
-      const token = localStorage.getItem("token");
+    getMember () {
+      const token = localStorage.getItem("token")
       const id = localStorage.getItem("menberId")
-      console.log(id)
       const api = `http://switcher.rocket-coding.com/api/member/${id}`
       this.$http
         .get(api, {
@@ -218,17 +198,14 @@ export default {
         })
         .then(response => {
           this.userData = response.data
-          console.log(this.userData)
-
         })
         .catch(function(error) {
-          console.log(error)
-        });
+          this.$message(error)
+        })
     },
     updateinfo() {
-      console.log(this.GetReply)
       const api = "http://switcher.rocket-coding.com/api/member"
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("token")
       let reply = ''
       this.GetReply.forEach(item => {
         reply += `${item} `
@@ -246,7 +223,6 @@ export default {
           StoreDescription: this.userData.member.StoreDescription,
           Reply: reply
         }
-      console.log(reply)
       const updateInfo = JSON.stringify(Info)
       this.$http
         .patch(api, updateInfo, {
@@ -260,11 +236,10 @@ export default {
           this.$router.push({
           path: '/sellerstore'
           })
-          console.log(response);
         })
-        .catch(error => {
-          console.log(error);
-        });
+        .catch(err => {
+          this.$message(err)
+        })
     },
     updateSuccess() {
       this.$notify({
@@ -276,10 +251,9 @@ export default {
       const vm = this
       const userImg = this.$refs.uploadfile.files[0]
       const formData = new FormData()
-      formData.append('uploadImg',userImg)
-      const token = localStorage.getItem("token");
+      formData.append('uploadImg', userImg)
+      const token = localStorage.getItem("token")
       const api = 'http://switcher.rocket-coding.com/api/member/upload/user'
-      console.log(userImg)
       this.$http
       .post(api,formData,{
         headers: {
@@ -288,14 +262,13 @@ export default {
         }
       })
       .then(response => {
-        console.log(response)
         this.reload()
         this.photoSuccess()
         // vm.$set(vm.userData, 'imgUrl' , response.data.member.Photo)
       })
       .catch(function (error) {
         this.photoError()
-      });
+      })
     },
     photoSuccess() {
         this.$notify({
@@ -304,22 +277,22 @@ export default {
       })
     },
     photoError() {
-       this.$notify.error({
-          title: '無法上傳照片！',
-          message: '無法上傳照片！'
-        })
+      this.$notify.error({
+        title: '無法上傳照片！',
+        message: '無法上傳照片！'
+      })
     },
     storeImage() {
       const storeImg = this.$refs.storeImg.files[0]
       const formData = new FormData()
-      formData.append('uploadImg',storeImg)
-      const token = localStorage.getItem("token");
+      formData.append('uploadImg', storeImg)
+      const token = localStorage.getItem("token")
       const api = 'http://switcher.rocket-coding.com/api/member/upload/store'
       this.$http
-      .post(api,formData,{
+      .post(api, formData, {
         headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'multipart/form-data'
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data'
         }
       })
       .then(response => {
@@ -327,32 +300,35 @@ export default {
         this.storeSuccess()
       })
     },
-    storeSuccess() {
+    storeSuccess () {
        this.$notify({
         title: '上傳商店圖片成功',
         type: 'success'
       })
     },
-    storeError() {
+    storeError () {
        this.$notify.error({
           title: '無法上傳照片！',
           message: '無法上傳照片！'
         })
     },
-    nofind() {
-      let img=event.srcElement;
-      img.src="/Users/yuhsuanlee/Switcher/main_vue/public/img/game/game01.jpg"; //替換的圖片
-      img.onerror=null;
+    nofind () {
+      let img = event.srcElement
+      img.src = "/Users/yuhsuanlee/Switcher/main_vue/public/img/game/game01.jpg" //替換的圖片
+      img.onerror = null
     }
   },
-  created() {
-    this.getMember();
+  created () {
+    this.getMember()
   },
   inject: ['reload']
 };
 </script>
 
 <style lang="scss" scode>
+.personal-photo img{
+  object-fit: cover;
+}
 .member-photo-upload{
   width: 200px;
   height: 200px;

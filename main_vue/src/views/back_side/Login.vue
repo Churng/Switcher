@@ -1,8 +1,8 @@
 <template>
   <div class="login bg-light">
-    <div class="container">
+    <div class="container loginHeight">
       <div class="row d-flex flex-column">
-        <div class="login-content">
+        <div class="login-content mt-5 mb-5">
           <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
               <a
@@ -65,13 +65,14 @@
                     required
                   />
                 </div>
-                <button class="btn btn-warning login-submit login-btn" type="submit">登入</button>
+                <div class="d-flex justify-content-end">
+                  <button class="btn btn-warning login-submit login-btn" type="submit">登入</button>
+                </div>
               </form>
               <div class="tab-content-thirdlogin">
                 <p>以下帳號快速登入</p>
                 <div class="social-login">
                   <button type="button" class="btn btn-social login-facebook" @click.prevent="fbSignIn">Facebook</button>
-                  <button type="button" class="btn btn-danger login-google">Google</button>
                 </div>
               </div>
             </div>
@@ -159,7 +160,9 @@
                     required
                   />
                 </div>
-                <button class="btn btn-warning registered-submit" type="submit">註冊</button>
+                <div class="d-flex justify-content-end">
+                  <button class="btn btn-warning registered-submit" type="submit">註冊</button>
+                </div>
               </form>
               <div class="tab-content-thirdlogin">
                 <p>以下帳號快速登入</p>
@@ -261,6 +264,8 @@ export default {
         } else {
           this.signupSuccessfully()
         }
+      }).catch(err => {
+        this.$message(err)
       })
     },
     signupSuccess () {
@@ -306,6 +311,8 @@ export default {
         this.$root.getCarts = res.data.carts
         this.$root.getCartLen = res.data.carts.length
         localStorage.setItem('cartLen', res.data.carts.length)
+      }).catch(err => {
+        this.$message(err)
       })
     },
     getUserData () {
@@ -315,7 +322,7 @@ export default {
         this.$root.userName = res.data.member.Name
         localStorage.setItem('userName', res.data.member.Name)
       }).catch(err => {
-        alert(err)
+        this.$message(err)
       })
     }
   }

@@ -40,7 +40,6 @@ export default {
         })
         .then(response => {
           this.photoSuccess()
-          console.log(response)
         })
     },
     photoSuccess () {

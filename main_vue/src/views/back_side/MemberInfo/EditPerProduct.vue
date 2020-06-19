@@ -63,6 +63,11 @@
               <select class="custom-select d-block w-100 mb-2" id="state" v-model="Productdata.product.Zone" required>
                 <option value="Zone">--請選擇區域/鄉鎮--</option>
                 <option>前金區</option>
+                <option>左營區</option>
+                <option>苓雅區</option>
+                <option>前鎮區</option>
+                <option>小港區</option>
+                <option>楠梓區</option>
               </select>
                 <div class="invalid-feedback">請選擇區域/鄉鎮</div>
               <select class="custom-select d-block w-100" id="state" v-model="Productdata.product.Store" required>
@@ -146,7 +151,6 @@
               <div>
                 <label class="cat-lable" for>商品介紹</label>
               </div>
-                <!-- <label for="inputgoods-intro">輸入商品特色或描述商品外觀~</label> -->
                 <textarea
                   class="form-control col"
                   v-model="Productdata.product.Description"

@@ -154,7 +154,6 @@
             <div class="mt-3 mb-3">
               <button type="button" class="btn btn-primary ml-3"  @click="BacktoStore">取消</button>
               <button type="button" class="btn btn-warning ml-3"  @click="addProduct">儲存</button>
-              <!-- <router-view /> -->
             </div>
           </div>
         </form>
@@ -212,9 +211,7 @@ export default {
       this.$http
         .post(api, newproduct, headers)
         .then(response => {
-          // console.log(response)
           if (response.data.result) {
-            console.log(response.data)
             this.addSuccess()
             this.$router.push({
               name: 'AddProductphoto',

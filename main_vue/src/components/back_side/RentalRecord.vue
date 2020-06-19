@@ -80,6 +80,8 @@ export default {
         this.getAllData = res.data.order[0]
         this.getSingleData = res.data.order[0].Product
         this.dialogVisible = true
+      }).catch(err => {
+        this.$message(err)
       })
     },
     changeFaStatus (status, Id) {

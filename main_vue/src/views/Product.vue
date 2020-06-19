@@ -63,7 +63,7 @@
                     <div class="columns-details d-flex justify-content-between">
                         <div class="location d-flex align-items-baseline">
                             <i class="mr-2"><font-awesome-icon icon="map-marker-alt"/></i>
-                            <p>面交地點 : <span>7-11 {{product.Store}} 門市</span></p>
+                            <p>面交地點 : <span>7-11 {{product.Store}}</span></p>
                         </div>
                         <div class="day d-flex align-items-baseline">
                             <i class="mr-2"><font-awesome-icon icon="clock"/></i>
@@ -175,8 +175,9 @@ export default {
       this.$http.get(api).then(res => {
         this.product = res.data.product
         this.allData = res.data
-        // console.log(res.data)
         this.loading = false
+      }).catch(err => {
+        this.$message(err)
       })
     }
   }
