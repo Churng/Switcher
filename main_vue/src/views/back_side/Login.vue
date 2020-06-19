@@ -198,6 +198,8 @@ export default {
           this.$root.ChangeMember = true
           this.$root.cartQuantity = true
         }
+      }).catch(function (error) {
+        this.loginFalse(error)
       })
         .catch(function (error) {
           const errObj = error.response
@@ -290,7 +292,6 @@ export default {
       const menberId = localStorage.getItem('menberId')
       const api = `http://switcher.rocket-coding.com/api/member/${menberId}`
       this.$http.get(api).then(res => {
-        // console.log('我是誰', res.data.member)
         this.$root.userName = res.data.member.Name
         localStorage.setItem('userName', res.data.member.Name)
       }).catch(err => {
