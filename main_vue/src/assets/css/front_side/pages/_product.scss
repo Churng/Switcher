@@ -39,9 +39,9 @@
     .switcherProduct-seller .btn{
         width: 100% !important;  
     }
-    .sellerBtns .btn:last-child {
-        display: none;
-    }
+    // .sellerBtns .btn:last-child {
+    //     display: none;
+    // }
 }
 @include mobile_320{
    .switcherProduct-seller{
@@ -164,7 +164,11 @@
 }
 .review-chooseBtn{
     @include mobile_375{
+        flex-wrap: wrap;
         justify-content: center;
+    }
+    @include  mobile_min576 {
+        margin-top: 10px;
     }
     .btn-outline-light{
         width: 70px;

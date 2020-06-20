@@ -53,7 +53,7 @@
                         </div>
                     </div>
                 </li>
-                <li :class="!$root.ChangeMember? 'sm-findChevron':'sm-findChevron pc-menber'">
+                <li :class="!$root.ChangeMember? 'sm-findChevron':'sm-findChevron pc-menber'" @click.prevent="closeToggle">
                     <router-link to="/login" v-if="!$root.ChangeMember">
                         <span class="header-navBar-icon mr-2"><font-awesome-icon icon="sign-in-alt"/></span>
                         <span class="header-navBar-label">登入/註冊</span>
@@ -192,6 +192,15 @@ a {
 }
 .el-submenu__title:hover,.el-menu--horizontal>.el-submenu .el-submenu__title:hover{
   background-color: #E60012;
+  // &::after{
+  //   content: '';
+  //   position: absolute;
+  //   height: 3px;
+  //   background-color: #E60012;
+  //   right: 2px;
+  //   left: 2px;
+  //   bottom: 2px;
+  // }
 }
 .txtBtn{
   line-height: 50px;

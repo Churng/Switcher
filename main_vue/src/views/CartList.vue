@@ -21,7 +21,7 @@
               <h6><i class="mr-2"><font-awesome-icon icon="store"/></i>賣家帳號 : <span>{{item}}</span></h6>
               <div class="row switcherOrder-content d-flex align-items-center pb-3 border-bottom border-light mb-3" v-for="info in index" :key="info.Id">
                   <div class="col-md-4 switcherOrder-img">
-                      <img :src="info.Product.ImageUrl" alt="game">
+                      <router-link :to ="{name: 'Product', params: { id: info.Product.ProductId }}"><img :src="info.Product.ImageUrl" alt="game"></router-link>
                   </div>
                   <div class="col-md-7">
                       <div class="d-flex align-items-baseline">

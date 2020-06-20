@@ -13,7 +13,7 @@
         <div class="endItem rounded">
             <i class="far mb-2"><font-awesome-icon icon="times-circle"/></i>
             <h6>預約失敗</h6>
-            <p>預約天數不符賣家規定</p>
+            <p>{{$root.orderResult}}</p>
             <button type="button" class="btn btn-secondary" @click.prevent="$router.push('/cartList')">返回</button>
         </div>
       </div>

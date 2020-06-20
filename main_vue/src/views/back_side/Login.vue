@@ -53,7 +53,9 @@
                       <el-input v-model="user.Password"></el-input>
                     </el-form-item>
                   </el-form>
-                <button class="btn btn-warning login-submit login-btn" type="submit">登入</button>
+                  <div class="d-flex justify-content-end">
+                     <button class="btn btn-warning login-submit login-btn" type="submit">登入</button>
+                  </div>
               </form>
               <div class="tab-content-thirdlogin">
                 <p>以下帳號快速登入</p>

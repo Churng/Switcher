@@ -18,13 +18,13 @@
           <div class="col-md-8">
             <keep-alive>
               <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm pt-3 pb-5">
-                <el-form-item label="中文姓名" prop="name">
+                <el-form-item label="會員姓名" prop="name">
                   <el-input v-model="ruleForm.name"></el-input>
                 </el-form-item>
                 <el-form-item label="行動電話" prop="phone">
                   <el-input v-model="ruleForm.phone"></el-input>
                 </el-form-item>
-                <el-form-item label="E-mail" prop="mail">
+                <el-form-item label="會員E-mail" prop="mail">
                   <el-input v-model="ruleForm.mail"></el-input>
                 </el-form-item>
               </el-form>
@@ -50,13 +50,13 @@ export default {
       },
       rules: {
         name: [
-          { required: true, message: '請輸入中文姓名', trigger: 'blur' }
+          { required: true, message: '請輸入會員姓名', trigger: 'blur' }
         ],
         phone: [
           { required: true, message: '請輸入行動電話', trigger: 'blur' }
         ],
         mail: [
-          { required: true, message: '請輸入E-mail', trigger: 'blur' }
+          { required: true, message: '請輸入會員E-mail', trigger: 'blur' }
         ]
       }
     }

@@ -13,6 +13,8 @@ import CartList from '../views/CartList'
 import CartInputs from '../views/CartInputs'
 import OrderContract from '../components/front_side/OrderContract'
 import FinishOrder from '../views/FinishOrder'
+import AboutHp from '../views/front_side/About_hp'
+import Question from '../views/front_side/Question'
 
 // back_side
 import Login from '../views/back_side/Login'
@@ -25,7 +27,6 @@ import Chatroom from '../views/back_side/MemberInfo/Chatroom'
 import SellerStore from '../views/back_side/MemberInfo/SellerStore'
 import PerProduct from '../components/back_side/PerProduct'
 import EditPerProduct from '../views/back_side/MemberInfo/EditPerProduct'
-import NotFound404 from '../views/back_side/NotFound404'
 import UploadProductphoto from '../components/back_side/UploadProductphoto'
 import AddProductphoto from '../components/back_side/AddProductphoto'
 import SellerAllGame from '../components/back_side/SellerAllGame'
@@ -41,10 +42,6 @@ VueRouter.prototype.push = function push (location) {
 }
 
 const routes = [
-  {
-    path: '/',
-    redirect: '/home'
-  },
   {
     path: '/home',
     name: 'Home',
@@ -113,6 +110,16 @@ const routes = [
     path: '/group',
     name: 'Group',
     component: Group
+  },
+  {
+    path: '/about_hp',
+    name: 'AboutHp',
+    component: AboutHp
+  },
+  {
+    path: '/question',
+    name: 'Question',
+    component: Question
   },
   {
     path: '/login',
@@ -207,9 +214,9 @@ const routes = [
     component: EditPerProduct
   },
   {
-    path: '*',
-    name: 'NotFound404',
-    component: NotFound404
+    path: '/*',
+    name: 'Home',
+    component: Home
   }
 ]
 

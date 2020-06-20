@@ -5,7 +5,7 @@
             <div class="row returnShop mb-2">
                 <div class="col-12 d-flex text-muted align-items-center mt-5">
                     <i class="mr-2"><font-awesome-icon icon="chevron-left"/></i>
-                    <span @click="$router.go(-1)">返回上一頁</span>
+                    <span @click.prevent="$router.go(-1)">返回上一頁</span>
                 </div>
             </div>
             <div class="row switcherProduct-columns" v-if="product">
@@ -83,12 +83,12 @@
                 </div>
             </div>
             <div class="row switcherProduct-review pb-3">
-                <div class="col-md-12">
+                <div class="col-12">
                     <h5>商品評價</h5>
-                    <div class="review-navBar bg-danger text-white d-flex justify-content-around align-items-center pt-2 pb-2">
-                        <div class="review-star text-center">
+                    <div class="row review-navBar bg-danger text-white d-flex justify-content-around align-items-center pt-2 pb-2">
+                        <div class="col-md-4 review-star text-center">
                             <p class="text-white font-weight-bold mb-1"><span class="num-large">5</span>/5</p>
-                            <div class="stars d-flex text-warning">
+                            <div class="stars d-flex text-warning justify-content-center">
                                 <font-awesome-icon icon="star"/>
                                 <font-awesome-icon icon="star"/>
                                 <font-awesome-icon icon="star"/>
@@ -96,7 +96,7 @@
                                 <font-awesome-icon icon="star"/>
                             </div>
                         </div>
-                        <div class="row review-chooseBtn d-flex">
+                        <div class="col-12 col-md-8 review-chooseBtn d-flex justify-content-center">
                             <button type="button" class="btn btn-outline-light">全部</button>
                             <button type="button" class="btn btn-outline-light">5星(<span>2</span>)</button>
                             <button type="button" class="btn btn-outline-light">4星(<span>0</span>)</button>

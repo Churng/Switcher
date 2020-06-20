@@ -65,6 +65,15 @@
     .card-header,.card-body,.card-footer{
         background-color: rgba(255, 255, 255, 1);
     }
+    @include mobile_480{
+      .card-body{
+        height: 300px;
+      }
+      .cardInfo{
+        height: 100%;
+        overflow-y: scroll;
+      }
+    }
     .card-main{
         box-shadow: 0 5px 15px rgba(0,0,0,.5);
     }
@@ -72,8 +81,21 @@
         font-size: $fs-200;
     }
     .card-steps{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        @include mobile_min480{
+          flex-direction: row;
+          justify-content: space-around;
+          align-items: flex-start;
+        }
         li{
-            width: 20%;
+            width: 100%;
+            @include mobile_min480{
+              width: 20%;
+            }
         }
         i{
             font-size: $fs-700;
@@ -82,4 +104,11 @@
             font-size: $fs-200;
         }
     }
+}
+
+.endLine{
+  width: 100px;
+  height: 5px;
+  background: #ededed;
+  margin: 0 auto;
 }

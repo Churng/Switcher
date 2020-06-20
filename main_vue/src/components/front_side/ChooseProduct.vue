@@ -27,7 +27,6 @@
                 </el-select>
             </div>
             <div class="columns-btnArea mb-4">
-                <button type="button" class="btn btn-outline-warning w-100 mb-3">賣家聊聊</button>
                 <button type="button" class="btn btn-warning w-100" @click="isLogin" v-if="product.Status==='可出租'">我要租借</button>
                 <button type="button" class="btn btn-secondary w-100" disabled v-else>我要租借</button>
                 <h6 class="mt-2" v-if="product.Status==='已出租'">*預計歸還時間 : {{returnDate}}</h6>

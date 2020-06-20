@@ -3,21 +3,17 @@
         <div class="row footer pt-4 pb-4 justify-content-between align-items-center">
             <div class="col-md-8 col-7">
                 <div class="footer-contents d-flex">
-                    <div class="col-md-3">
+                    <div class="col-md-3 footerInfo" @click.prevent="$router.push({name: 'Group', params: '/group'})">
                         <span class="fas"><font-awesome-icon icon="chevron-circle-right"/></span>
                         <span class="footer-text">關於我們</span>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 footerInfo" @click.prevent="$router.push({name: 'AboutHp', params: '/about_hp'})">
                         <span class="fas"><font-awesome-icon icon="chevron-circle-right"/></span>
                         <span class="footer-text">服務條款</span>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 footerInfo" @click.prevent="$router.push({name: 'Question', params: '/question'})">
                         <span class="fas"><font-awesome-icon icon="chevron-circle-right"/></span>
                         <span class="footer-text">常見問題</span>
-                    </div>
-                    <div class="col-md-4">
-                        <span class="fas"><font-awesome-icon icon="chevron-circle-right"/></span>
-                        <span class="footer-text">24小時線上客服</span>
                     </div>
                 </div>
             </div>
@@ -32,3 +28,9 @@
         </div>
     </div>
 </template>
+
+<style lang="scss" scoped>
+.footerInfo{
+  cursor: pointer;
+}
+</style>

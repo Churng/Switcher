@@ -1,5 +1,5 @@
 <template>
-    <li class="col-10 col-sm-6 col-md-6 col-xl-3 col-lg-4" @click="$router.push({name: 'Product', params: { id: item.Id }})">
+    <li class="col-10 col-sm-6 col-md-6 col-xl-3 col-lg-4" @click.prevent="$router.push({name: 'Product', params: { id: item.Id }})">
         <div class="card mb-4">
             <img :src="item.Images[0]" class="card-img-top" alt="gameHost">
             <div class="card-body">
