@@ -19,7 +19,7 @@
                 <input type="email" class="form-control" id="inputEmail4" placeholder="請輸入申請時Email">
             </div>
             <div class="reset-button mt-md-5">
-            <button type="button" class="btn btn-danger">返回</button>
+            <button type="button" class="btn btn-danger" @click="$router.go(-1)">返回</button>
             <button type="button" class="btn btn-warning">送出</button>
             </div>
         </div>

@@ -120,11 +120,7 @@ export default {
         this.getRentalData()
         this.getOrderData()
       }).catch(err => {
-<<<<<<< HEAD
         this.$message(err)
-=======
-        alert(err)
->>>>>>> 7255f882a94f26ff15338fdc50943a9704aa8ac8
       })
     }
   }

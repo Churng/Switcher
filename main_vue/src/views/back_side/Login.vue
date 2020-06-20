@@ -36,7 +36,7 @@
                   <label class="loglabel" for="inputEmail">帳號</label>
                   <el-form :model="user" :rules="rules" ref="user"  class="demo-ruleForm">
                     <el-form-item  prop="Email">
-                      <el-input v-model="user.Email"></el-input>
+                      <el-input v-model="user.Email" required></el-input>
                     </el-form-item>
                   <label
                     class="d-flex justify-content-between LogininputPassword"
@@ -50,10 +50,10 @@
                     </router-link>
                   </label>
                     <el-form-item  prop="Password">
-                      <el-input v-model="user.Password"></el-input>
+                      <el-input type="password" v-model="user.Password" autocomplete="new-password" required ></el-input>
                     </el-form-item>
                   </el-form>
-                <button class="btn btn-warning login-submit login-btn" type="submit">登入</button>
+                <button class="btn btn-warning login-submit login-btn" type="submit" >登入</button>
               </form>
               <div class="tab-content-thirdlogin">
                 <p>以下帳號快速登入</p>

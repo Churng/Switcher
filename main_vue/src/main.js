@@ -50,9 +50,7 @@ new Vue({
       seller: '',
       orderDate: ''
     },
-    orderResult: '',
-    SellerSearchData: false,
-    SellerproductData: []
+    orderResult: ''
   },
   router,
   render: h => h(App)
