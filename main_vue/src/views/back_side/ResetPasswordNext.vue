@@ -8,7 +8,7 @@
             </div>
 
             <div class="form-group">
-                <label for="inputEmail4">帳號</label>
+                <label for="inputEmail4">新密碼</label>
                 <input type="email" class="form-control" id="inputEmail4" placeholder="請輸入申請時Email">
             </div>
             <div class="reset-button mt-md-5">

@@ -17,11 +17,11 @@
               <img class="img" alt="商品圖片" :src="userImg" width="200" />
             </div>
             <div class="file-loading mt-5 mx-100">
-              <input ref="ProductImage"  id="upload-prophoto" name="Upload-prophoto" type="file" accept="image/*" multiple="multiple"   required />
+              <input ref="ProductImage"  id="upload-prophoto" name="Upload-prophoto" type="file" accept="image/*" multiple="multiple"   @change="uploadPhoto" required />
             </div>
             <div class="Button mx-auto d-flex justify-content-center ">
               <button type="button" class="btn btn-primary " @click="$router.go(-1)">上一頁</button>
-              <button type="button" class="btn btn-warning ml-3" @click="BackStore" @change="uploadPhoto">確定</button>
+              <button type="button" class="btn btn-warning ml-3" @click="BackStore">回到商店</button>
             </div>
         </div>
   </div>

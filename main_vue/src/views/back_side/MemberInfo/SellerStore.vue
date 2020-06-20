@@ -33,7 +33,7 @@
                             <div class="sellerInfo-products pr-3">
                                 <font-awesome-icon icon="shopping-bag"/>
                                 <span class="pl-2">商品</span>
-                                <span class="orange-txt pl-2">52</span>
+                                <span class="orange-txt pl-2">{{SellerproductData.length}}</span>
                             </div>
                             <div class="sellerInfo-chat">
                                 <font-awesome-icon icon="comment-dots"/>
@@ -68,12 +68,17 @@
                 </div>
             </div>
             <div class="row switcherStore-main bg-danger justify-content-center text-center pt-2 pb-2">
-                <div class="col-md-2 border-right"><router-link to="/sellerstore/sellerallGame" class="main-item active d-block text-white" @click.native="isAllItem">所有商品</router-link></div>
-                <div class="col-md-2 border-right"><router-link to="/sellerstore/sellergamehost" class="main-item d-block text-white" @click="isAllItem">遊戲主機</router-link></div>
-                <div class="col-md-2 border-right"><router-link to="/sellerstore/sellergame" class="main-item d-block text-white" @click="isAllItem">遊戲軟體</router-link></div>
-                <div class="col-md-2 border-right"><router-link to="/sellerstore/sellergamestick" class="main-item d-block text-white" @click="isAllItem">遊戲配件</router-link></div>
+                <div class="col-md-2 border-right"><span class="main-item active d-block text-white" @click="getProduct()">所有商品</span></div>
+                <div class="col-md-2 border-right"><span class="main-item d-block text-white" @click="isGameHost()">遊戲主機</span></div>
+                <div class="col-md-2 border-right"><span class="main-item d-block text-white" @click="isGame()">遊戲軟體</span></div>
+                <div class="col-md-2 border-right"><span class="main-item d-block text-white" @click="isGameStick()">遊戲配件</span></div>
             </div>
-            <router-view></router-view>
+            <div class="mx-auto">
+              <ul class="row switcherStore-body list-unstyled flex-wrap bg-white pt-5 pb-4" >
+                <PerProduct v-for="(item, index) in filterSellerData" :key="index" :item="item" :index="index"/>
+                <li class="w-100" v-if="filterSellerData.length === 0 "><h3 class="text-center noneTxt">尚無資料</h3></li>
+              </ul>
+            </div>
             <router-link to="/addnewproduct" class="d-block">
               <div class="float-button" title="新增商品"><p class="floatplus">＋</p></div>
             </router-link>
@@ -83,6 +88,7 @@
 </template>
 
 <script>
+import PerProduct from '../../../components/back_side/PerProduct'
 
 export default {
   data () {
@@ -94,6 +100,22 @@ export default {
           StoreDescription: '',
           StoreImage: ''
         }
+      },
+      SellerproductData: [],
+      productSearchData: false
+    }
+  },
+  components: { PerProduct },
+  created () {
+    this.getSeller()
+    this.getProduct()
+  },
+  computed: {
+    filterSellerData () {
+      if (this.productSearchData) {
+        return this.productSearchData
+      } else {
+        return this.SellerproductData
       }
     }
   },
@@ -105,6 +127,7 @@ export default {
         .get(api, {
         })
         .then(response => {
+          // console.log(response.data)
           this.sellerData = response.data
         })
         .catch(err => {
@@ -121,19 +144,38 @@ export default {
           }
         })
         .then(response => {
-          this.$root.SellerproductData = response.data.products
+          const filterData = response.data.products
+          const arr = filterData.filter(item => {
+            if (item.MemberName === this.sellerData.Member) {
+              return true
+            }
+          })
+          this.SellerproductData = arr
+          this.SellerproductDataLen = arr.length
+          this.productSearchData = arr
         })
         .catch(err => {
           this.$message(err)
         })
     },
-    isAllItem () {
-      this.$root.SellerSearchData = false
+    isGameHost () {
+      const gameHost = this.SellerproductData.filter(item => {
+        return item.Category.search('遊戲主機') !== -1
+      })
+      this.productSearchData = gameHost
+    },
+    isGame () {
+      const game = this.SellerproductData.filter(item => {
+        return item.Category.search('遊戲片') !== -1
+      })
+      this.productSearchData = game
+    },
+    isGameStick () {
+      const gameStick = this.SellerproductData.filter(item => {
+        return item.Category.search('遊戲配件') !== -1
+      })
+      this.productSearchData = gameStick
     }
-  },
-  created () {
-    this.getSeller()
-    this.getProduct()
   }
 }
 
@@ -160,7 +202,8 @@ export default {
   font-weight: bold;
   cursor: pointer;
   }
-  .noneTxt {
-  line-height: 250px;
+
+  .noneTxt{
+    height: 100vh;
   }
 </style>

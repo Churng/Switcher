@@ -33,6 +33,7 @@ import SellerAllGame from '../components/back_side/SellerAllGame'
 import SellerGameHost from '../components/back_side/SellerGameHost'
 import SellerGame from '../components/back_side/SellerGame'
 import SellerGameStick from '../components/back_side/SellerGameStick'
+import ResetPasswordNext from '../views/back_side/ResetPasswordNext'
 Vue.use(VueRouter)
 
 // 解決报错显示:路由重复
@@ -131,6 +132,11 @@ const routes = [
     path: '/resetpassword',
     name: 'ResetPassword',
     component: ResetPassword
+  },
+  {
+    path: '/resetpasswordnext',
+    name: 'ResetPasswordNext',
+    component: ResetPasswordNext
   },
   {
     path: '/editmemberinfo',

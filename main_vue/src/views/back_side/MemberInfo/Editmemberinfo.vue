@@ -335,7 +335,7 @@ export default {
   img{
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover!important;
   }
 }
 .el-checkbox-button.is-focus .el-checkbox-button__inner{

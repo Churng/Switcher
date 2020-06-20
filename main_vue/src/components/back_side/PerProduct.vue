@@ -26,7 +26,18 @@
                   </div>
                   <div class="Edit-Deletebutton">
                       <el-button type="info" icon="el-icon-edit" class="editbutton" @click="editPerProduct(item.Id)" plain ></el-button>
-                      <el-button type="info" icon="el-icon-delete" @click="deleteProduct(item.Id)" plain ></el-button>
+                      <!-- <el-button type="info" icon="el-icon-delete" @click="deleteProduct(item.Id)" plain ></el-button> -->
+                      <el-popover
+                        placement="top"
+                        width="160"
+                        v-model="visible">
+                        <p>確定要刪除商品嗎？</p>
+                        <div style="text-align: right; margin: 0">
+                          <el-button size="mini" type="text" @click="visible = false">取消</el-button>
+                          <el-button type="primary" size="mini"  @click="deleteProduct(item.Id)">刪除</el-button>
+                        </div>
+                        <el-button type="info" slot="reference" icon="el-icon-delete" ></el-button>
+                      </el-popover>
                   </div>
               </div>
           </div>
@@ -36,6 +47,12 @@
 <script>
 
 export default {
+  data () {
+    return {
+      visible: false
+      // dialogVisible: false
+    }
+  },
   props: {
     item: Object,
     index: Number
@@ -63,6 +80,13 @@ export default {
         title: '刪除商品成功',
         type: 'success'
       })
+    },
+    handleClose (done) {
+      this.$confirm('确认关闭？')
+        .then(_ => {
+          done()
+        })
+        .catch(_ => {})
     },
     editPerProduct (id) {
       this.$router.push({
