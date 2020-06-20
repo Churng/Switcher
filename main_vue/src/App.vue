@@ -40,7 +40,7 @@ export default {
         })
         this.loading = false
       }).catch(err => {
-        alert(err)
+        this.$message(err)
       })
     },
     getSellersData () {
@@ -50,7 +50,7 @@ export default {
         this.$root.menbersData = res.data.members
         this.loading = false
       }).catch(err => {
-        alert(err)
+        this.$message(err)
       })
     },
     reload () {

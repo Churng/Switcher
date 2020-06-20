@@ -5,17 +5,27 @@ body{
 @media (max-width: 320px) { 
     .login{
         height: calc(100%-80px);
-    }
-    
+    }  
+}
+.loginHeight{
+  min-height: calc(100vh - 12rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .login-content{
+  width: 250px;
+  padding: 25px;
+  background-color: $white;
+  border: 1px solid #dfdfdf;
+  border-radius: 8px;
+  @include mobile_min480{
+    width: 300px;
+  }
+  @include mobile_min576{
     width: 400px;
-    margin: 80px auto;
-    padding: 25px;
-    background-color: $white;
-    border: 1px solid #dfdfdf;
-    border-radius: 8px;
+  }
 }
 
 .loglabel{
@@ -24,21 +34,18 @@ body{
 
 .social-login{
     display: flex;
-    .login-facebook,.login-google{
-        width: 120px;
-        margin-right: 20px;
-    }
 }
 
 .signin,.registered{
     padding: 20px;
 }
 
-.login-btn,.registered-submit{
-    width: 120px;
-    margin-left: 190px;
+.login-btn,.registered-submit,.login-facebook{
+    width: 100%;
+    @include mobile_min480{
+      width: 30%;
+    }
 }
-
 
 .tab-content-thirdlogin{
     padding: 20px;

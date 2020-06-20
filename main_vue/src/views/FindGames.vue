@@ -3,8 +3,8 @@
         <div class="container pt-5">
                   <!-- 往上鍵統一放在HEADER下一層 -->
             <el-backtop :bottom="60"></el-backtop>
-            <div class="row searchBar justify-content-end mb-3">
-              <el-select v-model="countyValue" clearable placeholder="请選擇地區">
+            <div class="row searchBar justify-content-center justify-content-md-end mb-3">
+              <el-select v-model="countyValue" clearable placeholder="请選擇地區" class="col-sm-12 col-md-5 col-lg-3">
                   <el-option
                     v-for="(idx, county) in searchCity"
                     :key="county.id"
@@ -12,7 +12,7 @@
                     :value="idx">
                   </el-option>
                 </el-select>
-                <div class="col-md-5 d-flex">
+                <div class="col-md-5 d-flex mt-3 mt-md-0 mb-5">
                     <input type="text" class="form-control rounded-left" placeholder="請輸入遊戲關鍵字" aria-label="Recipient's username" aria-describedby="basic-addon2"
                       v-model="search"
                       @keyup.13="searchGame(search)"

@@ -1,8 +1,8 @@
 <template>
   <div class="login bg-light">
-    <div class="container w-100" >
+    <div class="container loginHeight">
       <div class="row d-flex flex-column">
-        <div class="login-content">
+        <div class="login-content mt-5 mb-5">
           <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
               <a
@@ -59,7 +59,6 @@
                 <p>以下帳號快速登入</p>
                 <div class="social-login">
                   <button type="button" class="btn btn-social login-facebook" @click.prevent="fbSignIn">Facebook</button>
-
                 </div>
               </div>
             </div>
@@ -102,7 +101,9 @@
                     </el-form-item>
                   </el-form>
                 </div>
-                <button class="btn btn-warning registered-submit" type="submit">註冊</button>
+                <div class="d-flex justify-content-end">
+                  <button class="btn btn-warning registered-submit" type="submit">註冊</button>
+                </div>
               </form>
               <div class="tab-content-thirdlogin">
                 <p>以下帳號快速登入</p>
@@ -241,6 +242,8 @@ export default {
         } else {
           this.signupSuccessfully()
         }
+      }).catch(err => {
+        this.$message(err)
       })
     },
     signupSuccess () {
@@ -286,6 +289,8 @@ export default {
         this.$root.getCarts = res.data.carts
         this.$root.getCartLen = res.data.carts.length
         localStorage.setItem('cartLen', res.data.carts.length)
+      }).catch(err => {
+        this.$message(err)
       })
     },
     getUserData () {

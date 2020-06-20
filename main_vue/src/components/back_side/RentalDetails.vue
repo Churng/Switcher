@@ -92,6 +92,8 @@ export default {
           }
         }).then(res => {
         this.$emit('changeStatus', res.data.order[0].Status, Id)
+      }).catch(err => {
+        this.errInfo(err)
       })
     }
   }

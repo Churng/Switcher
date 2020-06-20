@@ -4,15 +4,15 @@
             <router-link to="/home" class="homeLogo"><img src="/img/Swicher_Logo.png" alt="logo"></router-link>
             <a class="btn mr-3 text-white" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><font-awesome-icon icon="bars"/></a>
         </div>
-        <div class="collapse" id="collapseExample">
+        <div class="collapse" ref='closeShow' id="collapseExample">
             <ul class="header-navBar w-100 mb-0 pl-0 d-flex list-unstyled">
-                <li class="sm-findChevron pc-findGame d-flex justify-content-center">
+                <li class="sm-findChevron pc-findGame d-flex justify-content-center" @click.prevent="closeToggle">
                     <router-link to="/findGames" class="w-100">
                         <span class="header-navBar-icon mr-2"><font-awesome-icon icon="gamepad"/></span>
                         <span class="header-navBar-label">尋找周邊商品</span>
                     </router-link>
                 </li>
-                <li class="d-flex justify-content-center sm-findChevron pc-map">
+                <li class="d-flex justify-content-center sm-findChevron pc-map" @click.prevent="closeToggle">
                     <router-link to="/group" class="w-100">
                         <span class="header-navBar-icon mr-2"><font-awesome-icon icon="users"/></span>
                         <span class="header-navBar-label">團隊介紹</span>
@@ -25,8 +25,8 @@
                         <span class="header-navBar-icon findChevron" @click.prevent="phoneShow.eShop=!phoneShow.eShop"><font-awesome-icon :icon="phoneShow.eShop ? 'angle-up' :'chevron-down'"/></span>
                     </div>
                     <div class="w-100 sm-openItem" v-show="phoneShow.eShop">
-                        <p class="mb-0 hovered">Nintendo eShop (官方網頁)</p>
-                        <p class="mb-2 hovered">Nintendo eShop (服務由第三方提供)</p>
+                        <a href="https://store.nintendo.com.hk/" class="mb-0 txtBtn">Nintendo eShop (官方網頁)</a>
+                        <a href="https://store.nintendo.com.hk/" class="mb-2 txtBtn">Nintendo eShop (服務由第三方提供)</a>
                     </div>
                     <div class="h-navBar-areaBg pt-4 pb-4">
                         <div>
@@ -87,7 +87,7 @@
                             <p class="mb-0">會員登出</p>
                         </div>
                     </div>
-                    <div class="w-100 sm-openItem" v-show="phoneShow.user" >
+                    <div class="w-100 sm-openItem" v-show="phoneShow.user" @click.prevent="closeToggle">
                         <router-link to="/editmemberinfo"><p class="mb-0">會員資料</p></router-link>
                         <router-link to="/orderseller"><p class="mb-0">訂單管理</p></router-link>
                         <router-link to="/sellerstore"><p class="mb-0">我的賣場</p></router-link>
@@ -128,7 +128,6 @@ export default {
       this.$root.changeBannerBtn = true
       this.$root.userName = localStorage.getItem('userName')
       this.$root.getCartLen = localStorage.getItem('cartLen')
-      // this.cartLen = localStorage.getItem('cartLen')
     } else {
       this.$root.cartQuantity = false
       this.$root.ChangeMember = false
@@ -145,14 +144,17 @@ export default {
       this.pcShow.user = false
       this.$root.cartQuantity = false
       this.logoutSuccess()
+      this.closeToggle()
       this.$router.push('/home')
     },
     userCart () {
       token = localStorage.getItem('token')
       if (token) {
         this.$router.push('/cartList')
+        this.closeToggle()
       } else {
         this.$router.push('/login')
+        this.closeToggle()
       }
     },
     logoutSuccess () {
@@ -160,26 +162,17 @@ export default {
         title: '登出成功',
         type: 'success'
       })
+    },
+    closeToggle () {
+      if (document.documentElement.clientWidth < 768) {
+        this.$refs.closeShow.className = 'collapse'
+      }
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.router-link-exact-active {
-  .header-navBar-icon,.header-navBar-label{
-    color: #E60012 !important;
-  }
-  &::after{
-      content: '';
-      position: absolute;
-      height: 3px;
-      background-color: #E60012;
-      right: 2px;
-      left: 2px;
-      bottom: 2px;
-  }
-}
 a {
   text-decoration: none;
 }
@@ -190,5 +183,17 @@ a {
 .h-navBar-N-DN{
     display: flex;
     justify-content: center;
+}
+.el-menu{
+  background-color: #E60012;
+}
+.el-menu.el-menu--horizontal{
+  border-bottom: none;
+}
+.el-submenu__title:hover,.el-menu--horizontal>.el-submenu .el-submenu__title:hover{
+  background-color: #E60012;
+}
+.txtBtn{
+  line-height: 50px;
 }
 </style>

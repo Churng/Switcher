@@ -140,7 +140,7 @@ export default {
         localStorage.setItem('cartLen', res.data.carts.length)
         this.correctPost()
       }).catch(err => {
-        alert(err)
+        this.$message(err)
       })
     },
     openAlert () {

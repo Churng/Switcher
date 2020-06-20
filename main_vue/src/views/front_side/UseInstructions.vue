@@ -24,7 +24,7 @@
                             <div class="tab-pane-icon"><font-awesome-icon icon="map-marked-alt"/></div>
                             <div class="tab-pane-text">
                                 <h3>第二步</h3>
-                                <p>尋找附近買家</p>
+                                <p>尋找附近賣家</p>
                             </div>
                         </li>
                         <li>
