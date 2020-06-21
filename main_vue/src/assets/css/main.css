@@ -11765,16 +11765,6 @@ body {
   color: #E60012;
 }
 
-.header-navBar .sm-findChevron:hover::after {
-  content: '';
-  position: absolute;
-  height: 3px;
-  background-color: #E60012;
-  right: 2px;
-  left: 2px;
-  bottom: 2px;
-}
-
 .header-navBar .sm-findChevron:hover.textb .h-navBar-N2 {
   opacity: 1;
 }
@@ -11850,16 +11840,6 @@ body {
   color: #E60012;
 }
 
-.header-navBar .pc-eShop:hover::after {
-  content: '';
-  position: absolute;
-  height: 3px;
-  background-color: #E60012;
-  right: 2px;
-  left: 2px;
-  bottom: 2px;
-}
-
 @media (min-width: 768px) {
   .header-navBar .pc-eShop:hover .h-navBar-areaBg {
     display: -webkit-box;
@@ -11904,7 +11884,6 @@ body {
   line-height: 40px;
 }
 
-/* nav 滑入後顯示的區塊h-navBar*/
 /*任天堂連結*/
 .h-dropItem-linkHead p {
   color: #E60012;
@@ -12474,89 +12453,6 @@ body {
   .tab-pane-area .tab-pane-text h3 {
     font-size: 1.125rem;
   }
-}
-
-.switcherMap-searchArea .btn {
-  background-color: #fff;
-}
-
-.switcherMap-searchArea .btn:hover, .switcherMap-searchArea .btn:active {
-  background-color: #fff;
-  color: #3C3C3C;
-}
-
-.input-group-prepend {
-  cursor: pointer;
-}
-
-.switcherMap-map, .seller-information {
-  height: calc(100vh - 13rem);
-}
-
-/*右側欄*/
-.seller-information {
-  background-color: #ededed;
-}
-
-@media (min-width: 992px) {
-  .seller-information .seller-header {
-    padding-right: 3rem;
-  }
-}
-
-.seller-information .textHeader {
-  font-size: 1.125rem;
-}
-
-@media (min-width: 992px) {
-  .seller-information .textHeader {
-    font-size: 1.25rem;
-  }
-}
-
-.seller-information .cardsArea {
-  height: calc(100vh - 19rem);
-  overflow-y: auto;
-}
-
-.seller-information .cardsArea .card-img {
-  width: 6.25rem;
-  height: 6.25rem;
-  background-size: contain;
-  border-radius: 50%;
-}
-
-.seller-information .cardsArea .card-img img {
-  width: 100%;
-}
-
-.seller-information .cardsArea .card-txtArea {
-  font-size: 0.875rem;
-}
-
-.seller-information .cardsArea .evaluation {
-  color: #FF7D01;
-}
-
-.seller-information .card-buttons button {
-  width: 45%;
-  font-size: 0.75rem;
-}
-
-@media (min-width: 992px) {
-  .seller-information .card-buttons button {
-    font-size: 1rem;
-  }
-}
-
-.seller-information .card-buttons .btn-secondary {
-  border-color: #FF7D01;
-  background-color: #FF7D01;
-  color: #fff;
-}
-
-.card-info {
-  width: 60%;
 }
 
 .progress-txt p {
@@ -13217,6 +13113,13 @@ body {
   font-size: 0.875rem;
 }
 
+.endLine {
+  width: 100px;
+  height: 5px;
+  background: #ededed;
+  margin: 0 auto;
+}
+
 /*返回上頁*/
 .returnMap {
   font-size: 0.875rem;
@@ -13309,6 +13212,39 @@ body {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+  }
+}
+
+.listTxt {
+  -webkit-padding-start: 0px;
+          padding-inline-start: 0px;
+  padding: 0 15px;
+}
+
+.qusetionList h4 {
+  font-size: 20px;
+}
+
+.qusetionList p {
+  line-height: 2;
+}
+
+h6 {
+  font-weight: 600;
+}
+
+.linkTxt {
+  color: #FF7D01;
+  cursor: pointer;
+}
+
+.linkTxt:hover {
+  opacity: .5;
+}
+
+@media (max-width: 576px) {
+  .qusetionList p, .qusetionList .listTxt li {
+    font-size: 14px;
   }
 }
 

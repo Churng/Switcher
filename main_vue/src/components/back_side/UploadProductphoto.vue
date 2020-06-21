@@ -11,17 +11,35 @@
             </ol>
           </nav>
         </div>
-        <div class="NewProductImg bg-light px-4 py-4 " >
-            <p>上傳圖片</p>
-            <div class="product-photo-upload">
-              <img class="img" alt="商品圖片" :src="userImg" width="200" />
-            </div>
-            <div class="file-loading mt-5 mx-100">
-              <input ref="ProductImage"  id="upload-prophoto" name="Upload-prophoto" type="file" accept="image/*" multiple="multiple"   @change="uploadPhoto" required />
-            </div>
-            <div class="Button mx-auto d-flex justify-content-center ">
-              <button type="button" class="btn btn-primary " @click="$router.go(-1)">上一頁</button>
-              <button type="button" class="btn btn-warning ml-3" @click="BackStore">回到商店</button>
+        <div class="NewProductImg bg-light px-4 py-4" >
+            <h3 class="text-center mt-5 mb-5">上傳商品圖片<span class="limitNum">(最多6張)</span></h3>
+            <el-form class="form-wrapper padding" ref="showImage" :model="showImage" :rules="addRules">
+            <el-form-item prop="photo">
+            <el-upload
+              action="upload"
+              list-type="picture-card"
+              :multiple="multiple"
+              :limit="6"
+              accept="image/jpeg, image/png"
+              :before-upload="beforeAvatarUpload"
+              ref="upload"
+              :auto-upload="false"
+              :on-exceed="handleExceed"
+              :on-success="uploadSuccess"
+              :on-preview="handlePictureCardPreview"
+              :on-remove="handleRemove"
+             >
+              <i class="el-icon-plus"></i>
+            </el-upload>
+            <el-dialog :visible.sync="dialogVisible">
+              <img width="100%" :src="dialogImageUrl">
+            </el-dialog>
+            </el-form-item >
+            </el-form>
+            <div class="Button mx-auto d-flex justify-content-center pt-5">
+              <button type="button" class="btn btn-warning" @click.prevent="$router.go(-1)">上一頁</button>
+              <button type="button" class="btn btn-primary ml-3"  @click.prevent="uploadFile()">確定</button>
+              <button type="button" class="btn btn-warning ml-3"  @click.prevent="$router.push('/sellerstore/sellerallGame')">返回賣場</button>
             </div>
         </div>
   </div>
@@ -31,54 +49,93 @@
 export default {
   data () {
     return {
-      ProductImage: []
+      showImage: {
+        imageUrl: '',
+        id: ''
+      },
+      dialogImageUrl: '',
+      dialogVisible: false,
+      addRules: { // 表单验证规则
+        photo: [{ required: true, message: '請上傳商品照', trigger: 'blur' }]
+      },
+      multiple: true,
+      formData: '',
+      file: ''
     }
   },
   methods: {
-    uploadPhoto () {
-      const id = this.$route.params.id
-      const ProductImage = this.$refs.ProductImage.files[0]
-      const ProductData = new FormData()
-      ProductData.append('uploadProductImg', ProductImage)
-      const token = localStorage.getItem('token')
-      const api = `http://switcher.rocket-coding.com/api/product/upload/${id}`
-      this.$http
-        .post(api, ProductData, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'multipart/form-data'
-          }
-        })
-        .then(response => {
-          this.photoSuccess()
-        })
-        .catch(err => {
-          this.$message(err)
-        })
+    uploadSuccess (file) {
+      this.formData.append('file', file)
     },
-    photoSuccess () {
+    beforeAvatarUpload (file) {
+      const isJPG = file.type === 'image/jpeg' || 'image/png'
+      const isLt3M = file.size / 3072 / 3072 < 2
+      if (!isJPG) {
+        this.$message.error('上傳頭像圖片只能是 JPG / PNG 格式!')
+      }
+      if (!isLt3M) {
+        this.$message.error('上傳頭像圖片大小不能超过 3MB!')
+      }
+      // 校验成功上传文件
+      if (isJPG && isLt3M === true) {
+        this.file = file
+      }
+      return isJPG && isLt3M
+    },
+    uploadFile () {
+      const id = this.$route.params.id
+      const token = localStorage.getItem('token')
+      this.$refs.upload.submit(id)
+      const form = new FormData()
+      form.append('upload', this.file)
+      const api = `http://switcher.rocket-coding.com/api/product/upload/${id}`
+      this.$http.post(api, form, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(res => {
+        this.photoSuccess(res.data.message)
+      }).catch(err => {
+        this.$message(err)
+      })
+    },
+    photoSuccess (msg) {
       this.$notify({
-        title: '上傳圖片成功',
+        title: msg,
         type: 'success'
       })
     },
-    BackStore () {
-      this.$router.push({
-        path: '/sellerstore'
+    handleRemove (file) {
+      this.$notify({
+        title: `已移除 ${file.name}`,
+        type: 'success'
       })
+    },
+    handlePictureCardPreview (file) {
+      this.dialogImageUrl = file.url
+      this.dialogVisible = true
+    },
+    handleExceed (files, fileList) {
+      this.$message.warning(`目前共有 ${files.length} 張圖片，共選擇了 ${files.length + fileList.length} 張圖片`)
+    },
+    initInfo () {
+      this.editForm = {
+        id: 1,
+        photo: ''
+      }
     }
-  }
+  },
+  inject: ['reload'],
+  props: ['ProductImages']
 }
 </script>
-<style scoped>
-.NewProductImg{
-    height: 100vh;
-}
-hr {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  border: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
 
+<style lang="scss" scoped>
+.NewProductImg{
+  min-height: calc(100vh - 15rem);
+}
+.limitNum{
+  font-size: 16px;
+}
 </style>

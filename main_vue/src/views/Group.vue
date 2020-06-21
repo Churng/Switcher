@@ -1,6 +1,7 @@
 <template>
     <section id="groupIntroduction">
         <div class="container">
+          <el-backtop :bottom="60"></el-backtop>
             <div class="row groupInfo pt-5 pb-5 d-flex flex-column">
                 <div class="text-center pt-5 pb-3">
                     <h2 class="text-primary font-weight-bold">Meet Switcher</h2>

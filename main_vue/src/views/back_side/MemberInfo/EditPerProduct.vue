@@ -163,9 +163,9 @@
           </div>
           <div class="row bg-light d-flex justify-content-center">
             <div class="mt-3 mb-3">
-              <button type="button" class="btn btn-danger mr-4" @click="$router.go(-1)">返回商店</button>
-              <button type="submit" class="btn btn-warning mr-4" data-toggle="modal" data-target="#staticBackdrop" @click="updateProduct">更改</button>
-              <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#staticBackdrop" @click="toEditPhoto">修改照片</button>
+              <button type="button" class="btn btn-danger mr-4" @click="$router.go(-1)">返回賣場</button>
+              <button type="submit" class="btn btn-warning mr-4" data-toggle="modal" data-target="#staticBackdrop" @click="updateProduct">儲存</button>
+              <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#staticBackdrop" @click="toEditPhoto">新增照片</button>
             </div>
           </div>
         </form>
