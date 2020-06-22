@@ -85,10 +85,6 @@ export default {
   }
 }
 </script>
-<<<<<<< HEAD
-=======
-
->>>>>>> 06fd8f7ee0e742f2a76bfcc134f5d83d583c35b0
 <style lang="scss" scoped>
 .NewProductImg{
     height: 100vh

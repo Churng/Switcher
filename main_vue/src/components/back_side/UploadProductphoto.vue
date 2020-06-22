@@ -39,7 +39,7 @@
             <div class="Button mx-auto d-flex justify-content-center pt-5">
               <button type="button" class="btn btn-warning" @click.prevent="$router.go(-1)">上一頁</button>
               <button type="button" class="btn btn-primary ml-3"  @click.prevent="uploadFile()">確定</button>
-              <button type="button" class="btn btn-warning ml-3"  @click.prevent="$router.push('/sellerstore/sellerallGame')">返回賣場</button>
+              <button type="button" class="btn btn-warning ml-3"  @click.prevent="$router.push('/sellerstore')">返回賣場</button>
             </div>
         </div>
   </div>
