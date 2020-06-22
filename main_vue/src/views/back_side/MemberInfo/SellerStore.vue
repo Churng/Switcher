@@ -74,13 +74,13 @@
                 <div class="col-md-2 border-right"><span class="main-item d-block text-white" @click="isGameStick()">遊戲配件</span></div>
             </div>
             <div class="mx-auto">
-              <ul class="row switcherStore-body list-unstyled flex-wrap bg-white pt-5 pb-4" >
+              <ul class="row switcherStore-body list-unstyled flex-wrap bg-white pt-5 pb-4">
                 <PerProduct v-for="(item, index) in filterSellerData" :key="index" :item="item" :index="index"/>
                 <li class="w-100" v-if="filterSellerData.length === 0 "><h3 class="text-center noneTxt">尚無資料</h3></li>
               </ul>
             </div>
             <router-link to="/addnewproduct" class="d-block">
-              <div class="float-button" title="新增商品"><p class="floatplus">＋</p></div>
+              <div class="float-button" title="新增商品"><span class="addProduct">新增商品</span></div>
             </router-link>
              <el-backtop :bottom="60"></el-backtop>
         </div>
@@ -102,7 +102,8 @@ export default {
         }
       },
       SellerproductData: [],
-      productSearchData: false
+      productSearchData: false,
+      SellerFilterData: []
     }
   },
   components: { PerProduct },
@@ -117,6 +118,17 @@ export default {
       } else {
         return this.SellerproductData
       }
+    },
+    filterMemberData () {
+      const vm = this
+      const arr = vm.SellerproductData.filter(item => {
+        if (item.MemberName === this.sellerData.Member) {
+        }
+      })
+      arr.sort(function (a, b) {
+        return a.PublishDate < b.PublishDate ? 1 : -1
+      })
+      return arr
     }
   },
   methods: {
@@ -184,26 +196,21 @@ export default {
 <style lang="scss" scoped>
   .float-button {
     position: fixed;
-    height: 50px;
-    width: 50px;
-    bottom: 110px;
-    right: 35px;
+    height: 100px;
+    width: 49px;
+    bottom: 260px;
+    right: 0px;
     background: #FF7D01;
-    border-radius: 50%;
+    border-radius: 10px 0 0 10px;
     box-shadow: 2px 1px 4px 0px #6c757d;
     cursor: pointer;
     z-index: 99999;
   }
 
-  .floatplus{
-  font-size: 45px;
-  margin: -10px 0px 10px 2px;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  }
-
-  .noneTxt{
-    height: 100vh;
-  }
+ .addProduct{
+   writing-mode:vertical-rl;
+   color:white;
+   letter-spacing:5px;
+   padding: 8px;
+ }
 </style>

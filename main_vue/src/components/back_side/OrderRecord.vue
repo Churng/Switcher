@@ -58,6 +58,7 @@ export default {
           return item
         } else {
           vm.noneData = true
+          console.log(vm.noneData)
           return vm.noneData
         }
       })

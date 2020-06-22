@@ -29,10 +29,6 @@ import PerProduct from '../components/back_side/PerProduct'
 import EditPerProduct from '../views/back_side/MemberInfo/EditPerProduct'
 import UploadProductphoto from '../components/back_side/UploadProductphoto'
 import AddProductphoto from '../components/back_side/AddProductphoto'
-import SellerAllGame from '../components/back_side/SellerAllGame'
-import SellerGameHost from '../components/back_side/SellerGameHost'
-import SellerGame from '../components/back_side/SellerGame'
-import SellerGameStick from '../components/back_side/SellerGameStick'
 import ResetPasswordNext from '../views/back_side/ResetPasswordNext'
 Vue.use(VueRouter)
 
@@ -183,31 +179,8 @@ const routes = [
   {
     path: '/sellerstore',
     name: 'SellerStore',
-    redirect: '/sellerstore/sellerallGame',
     component: SellerStore,
-    meta: { requiresAuth: true },
-    children: [
-      {
-        path: 'sellerallgame',
-        name: 'SellerAllGame',
-        component: SellerAllGame
-      },
-      {
-        path: 'sellergamehost',
-        name: 'SellerGameHost',
-        component: SellerGameHost
-      },
-      {
-        path: 'sellergame',
-        name: 'SellerGame',
-        component: SellerGame
-      },
-      {
-        path: 'sellergamestick',
-        name: 'SellerGameStick',
-        component: SellerGameStick
-      }
-    ]
+    meta: { requiresAuth: true }
   },
   {
     path: '/perproduct',

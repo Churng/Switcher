@@ -14,14 +14,14 @@
         <div class="NewProductImg bg-light px-4 py-4 " >
             <p>上傳圖片</p>
             <div class="product-photo-upload">
-              <img class="img" alt="商品圖片" :src="userImg" width="200" />
+              <img class="img"  id="preview_progressbarTW_img"  src="#" />
             </div>
             <div class="file-loading mt-5 mx-100">
               <input ref="ProductImage"  id="upload-prophoto" name="Upload-prophoto" type="file" accept="image/*" multiple="multiple"   @change="uploadPhoto" required />
             </div>
             <div class="Button mx-auto d-flex justify-content-center ">
               <button type="button" class="btn btn-primary " @click="$router.go(-1)">上一頁</button>
-              <button type="button" class="btn btn-warning ml-3" @click="BackStore">回到商店</button>
+              <button type="button" class="btn btn-warning ml-3" @click="BackStore">確定</button>
             </div>
         </div>
   </div>
@@ -35,7 +35,15 @@ export default {
     }
   },
   methods: {
-    uploadPhoto () {
+    uploadPhoto (input) {
+      if (input.target.files && input.target.files[0]) {
+        var imageTagID = document.getElementById('preview_progressbarTW_img')
+        var reader = new FileReader()
+        reader.onload = function (e) {
+          imageTagID.setAttribute('src', e.target.result)
+        }
+        reader.readAsDataURL(input.target.files[0])
+      }
       const id = this.$route.params.id
       const ProductImage = this.$refs.ProductImage.files[0]
       const ProductData = new FormData()
@@ -70,7 +78,7 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .NewProductImg{
     height: 100vh;
 }
@@ -79,6 +87,38 @@ hr {
   margin-bottom: 1rem;
   border: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.product-photo-upload{
+    width: 100%;
+    height: 450px;
+    border: 5px solid #ccc;
+    text-align: center;
+    padding: 5px;
+  .img{
+    max-width: 100%;
+    max-height: 400px;
+    vertical-align: middle;
+    display: inline-block;
+    position: relative;
+  }
+}
+/* .img::before{
+   content: '';
+    position: absolute;
+  left: -391px;
+     top: -192px;
+     width: 800px;
+     height: 400px;
+     background-color: wheat;
+     vertical-align: middle;
+} */
+
+.product-photo-upload::before{
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align:middle;
+    width: 0;
 }
 
 </style>

@@ -87,16 +87,16 @@
                 <label class for>交易價格</label>
               <div class="">
                 <div class="">
-                    <label for="original-price" class="O-price text-primary">原價</label>
+                    <label for="original-price" class="O-price text-primary">原價 / 日</label>
                     <input type="text" v-model="commodity.OriginPrice" class="form-control" id="original-price" placeholder="請輸入金額"/>
                 </div>
                 <div class="">
-                    <label for="deposit" class="d-price">押金</label>
+                    <label for="deposit" class="d-price">押金 / 次</label>
                     <input type="text" class="form-control" id="deposit" v-model="commodity.Deposit" placeholder="請輸入金額" />
                 </div>
               </div>
               <div class="">
-                <label for="special-offer" class="text-primary">特價</label>
+                <label for="special-offer" class="text-primary">特價 / 日</label>
                 <input type="text" class="form-control" id="special-offer" v-model="commodity.Price" placeholder="請輸入金額" />＊當有特價請填此欄
               </div>
           </div>
@@ -223,6 +223,7 @@ export default {
         .post(api, newproduct, headers)
         .then(response => {
           if (response.data.result) {
+            this.$root.upLoadId = response.data.product.Id
             this.addSuccess()
             this.$router.push({
               name: 'AddProductphoto',
@@ -260,5 +261,4 @@ export default {
     }
   }
 }
-
 </style>

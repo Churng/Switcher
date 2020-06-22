@@ -90,18 +90,18 @@
           </div>
           <div class="price mb-3">
                 <label class for>交易價格</label>
-              <div class="">
-                <div class="">
-                    <label for="original-price" class="O-price text-primary">原價</label>
+              <div>
+                <div>
+                    <label for="original-price" class="O-price text-primary">原價/日</label>
                     <input type="text" v-model="Productdata.product.OriginPrice" class="form-control" id="original-price" placeholder="請輸入金額"/>
                 </div>
-                <div class="">
-                    <label for="deposit" class="d-price">押金</label>
+                <div>
+                    <label for="deposit" class="d-price">押金/次</label>
                     <input type="text" class="form-control" id="deposit" v-model="Productdata.product.Deposit" placeholder="請輸入金額" />
                 </div>
               </div>
-              <div class="">
-                <label for="special-offer" class="text-primary">特價</label>
+              <div>
+                <label for="special-offer" class="text-primary">特價/日</label>
                 <input type="text" class="form-control" id="special-offer" v-model="Productdata.product.Price" placeholder="請輸入金額" />＊當有特價請填此欄
               </div>
           </div>
@@ -109,7 +109,7 @@
             <div class>
               <label class="cat-lable" for>租借天數</label>
             </div>
-              <div class="">
+              <div>
                 <input type="text" class="form-control days" maxlength="30" v-model.number="Productdata.product.Period" placeholder="請輸入租借天數" />
                 <div class="invalid-feedback">Please select a valid country.</div>
               </div>
@@ -163,8 +163,8 @@
           </div>
           <div class="row bg-light d-flex justify-content-center">
             <div class="mt-3 mb-3">
-              <button type="button" class="btn btn-danger mr-4" @click="$router.go(-1)">返回商店</button>
-              <button type="submit" class="btn btn-warning mr-4" data-toggle="modal" data-target="#staticBackdrop" @click="updateProduct">更改</button>
+              <button type="button" class="btn btn-danger mr-4" @click="backStore">返回商店</button>
+              <button type="submit" class="btn btn-warning mr-4" data-toggle="modal" data-target="#staticBackdrop" @click="updateProduct">儲存</button>
               <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#staticBackdrop" @click="toEditPhoto">修改照片</button>
             </div>
           </div>
@@ -262,6 +262,9 @@ export default {
         .catch(err => {
           this.$message(err)
         })
+    },
+    backStore () {
+      this.$router.push('SellerStore')
     }
   },
   created () {
