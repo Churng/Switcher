@@ -71,7 +71,6 @@ export default {
           'Content-Type': 'multipart/form-data'
         }
       }).then(res => {
-        console.log(res)
         this.photoSuccess(res.data.message)
       }).catch(err => {
         this.$message(err)
@@ -86,6 +85,10 @@ export default {
   }
 }
 </script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 06fd8f7ee0e742f2a76bfcc134f5d83d583c35b0
 <style lang="scss" scoped>
 .NewProductImg{
     height: 100vh
@@ -115,6 +118,28 @@ export default {
   line-height: 250px;
   text-align: center;
   border: 5px dotted black;
+}
+.avatar-uploader{
+  display: flex;
+  justify-content: center;
+}
+.el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.el-upload:hover {
+  border-color: #409EFF;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 250px;
+  height: 250px;
+  line-height: 250px;
+  text-align: center;
 }
 .avatar {
   width: 250px;

@@ -4,7 +4,7 @@
           <img :src="item.Images[0]" class="card-img-top" alt="gameHost">
           <div class="card-body">
               <div class="card-text">
-                  <div class="d-flex justify-content-between align-items-baseline itemTitle">
+                  <div class="d-flex justify-content-between align-items-baseline itemTitle mb-2">
                         <h6 class="font-weight-bold">{{ item.Name }}</h6>
                         <span class="category-games bg-danger text-white rounded">{{ item.Category }}</span>
                     </div>
@@ -15,7 +15,7 @@
                           <span class="isLease">{{item.Status}}</span>
                       </div>
                   </div>
-                  <div class="card-text-bottom d-flex justify-content-between align-items-baseline mb-2">
+                  <div class="card-text-bottom d-flex justify-content-between align-items-baseline mb-1">
                       <div class="onDate">
                           <span>上架日期</span>
                           <span>{{item.PublishDate}}</span>
@@ -26,7 +26,6 @@
                   </div>
                   <div class="Edit-Deletebutton">
                       <el-button type="info" icon="el-icon-edit" class="editbutton" @click="editPerProduct(item.Id)" plain ></el-button>
-                      <!-- <el-button type="info" icon="el-icon-delete" @click="deleteProduct(item.Id)" plain ></el-button> -->
                       <el-popover
                         placement="top"
                         width="160"
@@ -182,6 +181,9 @@ export default {
   width: 180px;
   background:#e9ecef;
   border: #EBEEF5;
+  @media (min-width: 1200px) {
+    width: 150px;
+  }
 }
 .itemTitle{
   height: 45px;
