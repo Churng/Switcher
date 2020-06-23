@@ -181,8 +181,8 @@ export default {
       Productdata: {
         product: {
           Name: '',
-          OriginPrice: null,
-          Price: null,
+          OriginPrice: 0,
+          Price: 0,
           Deposit: null,
           Quantity: null,
           City: '',

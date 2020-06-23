@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="row switcherStore-header justify-content-center align-items-center pb-4 border-bottom">
-                <div class="col-12 col-md-7 col-lg-6">
+                <div class="col-12 col-md-6 col-lg-5">
                     <div class="switcherStore-sellerCard bg-dark d-flex justify-content-around align-items-center shadow-sm pt-3 mb-4 rounded">
                         <div class="sellerImg">
                             <img :src="memberData.Photo" :alt="memberData.Name">
@@ -180,8 +180,5 @@ export default {
   opacity: 1;
   outline: none;
   }
-}
-.about-storeImg{
-  height: 100% !important;
 }
 </style>

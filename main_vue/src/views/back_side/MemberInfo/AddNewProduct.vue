@@ -3,165 +3,78 @@
     <div class="container">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="/Home">首頁</a>
-          </li>
-          <li class="breadcrumb-item active" aria-current="page">編輯商品</li>
+          <li class="breadcrumb-item" @click.prevent="$router.push({name: 'SellerStore', params: '/sellerstore'})">我的賣場</li>
+          <li class="breadcrumb-item active text-primary" aria-current="page">上架商品</li>
         </ol>
       </nav>
     </div>
-    <section >
+    <section>
       <div class="container bg-light">
-        <form class="w-75 m-auto pt-5">
-          <div class="name mb-3">
-            <label>商品名稱</label>
-            <input
-              type="text"
-              aria-label="商品名稱"
-              aria-describedby="商品名稱"
-              placeholder="請輸入商品名稱"
-              class="form-control"
-              v-model.trim="commodity.Name"
-            />
-          </div>
-          <div class="Product-category mb-3">
-            <div class="Category-product">
-              <label class="cat-lable" for>商品類別</label>
+        <form class="w-50 m-auto py-5">
+          <el-form :model="commodity" :rules="rules" ref="commodity" :label-position="labelPosition">
+            <el-form-item label="商品名稱" prop="Name">
+              <el-input v-model="commodity.Name" required></el-input>
+            </el-form-item>
+            <AddArea/>
+            <div class="Category-Quantity">
+              <el-form-item label="商品類別" prop="Category">
+                <el-select v-model="commodity.Category" placeholder="請選擇商品類別" >
+                  <el-option
+                  v-for="(item, idx) in CategoryData"
+                  :key="idx"
+                  :label="item.label"
+                  :value="item.value"
+                  required
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="商品數量" prop="Quantity">
+                <el-select v-model="commodity.Quantity" placeholder="請選擇商品數量">
+                  <el-option
+                  v-for="item in QuantityData"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                  required>
+                  </el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="可租借天數" prop="Period"  required>
+                <el-input v-model="commodity.Period" placeholder="請輸入租借天數" required></el-input>
+              </el-form-item>
             </div>
-            <select class="custom-select" v-model="commodity.Category" required>
-              <option selected>請選擇類別</option>
-              <option :value="0">遊戲主機</option>
-              <option :value="1">遊戲配件</option>
-              <option :value="2">遊戲片</option>
-            </select>
-          </div>
-          <div class="Quantity mb-3">
-            <div>
-              <label class="cat-lable" for>商品數量</label>
-            </div>
-              <select
-                class="custom-select"
-                v-model.number="commodity.Quantity"
-                required
-              >
-                <option selected>--請選擇數量--</option>
-                <option :value="1">1</option>
-                <option :value="2">2</option>
-                <option :value="3">3</option>
-                <option :value="4">4</option>
-                <option :value="5">5</option>
-              </select>
-              <div class="invalid-feedback">請輸入正確數量！</div>
-          </div>
-          <div class="Place mb-3">
-            <label>交易地點</label>
-              <select class="custom-select d-block w-100 mb-2" id="country" v-model="commodity.City" required>
-                <option value="City">--請選擇地區--</option>
-                <option>高雄市</option>
-              </select>
-                <div class="invalid-feedback">請選擇地區</div>
-              <select class="custom-select d-block w-100 mb-2" id="state" v-model="commodity.Zone" required>
-                <option value="Zone">--請選擇區域/鄉鎮--</option>
-                <option>前金區</option>
-              </select>
-                <div class="invalid-feedback">請選擇區域/鄉鎮</div>
-              <select class="custom-select d-block w-100" id="state" v-model="commodity.Store" required>
-                <option value="Store">--請選擇門市--</option>
-                <option>太華門市</option>
-                <option>文東門市</option>
-                <option>市賢門市</option>
-                <option>自強門市</option>
-                <option>長生門市</option>
-                <option>長青門市</option>
-                <option>青盛門市</option>
-                <option>前金門市</option>
-                <option>愛河門市</option>
-                <option>新生門市</option>
-                <option>新盛門市</option>
-                <option>新華都門市</option>
-                <option>龍客門市</option>
-              </select>
-              <div class="invalid-feedback">請選擇門市</div>
-          </div>
-          <div class="price mb-3">
-                <label class for>交易價格</label>
-              <div class="">
-                <div class="">
-                    <label for="original-price" class="O-price text-primary">原價 / 日</label>
-                    <input type="text" v-model="commodity.OriginPrice" class="form-control" id="original-price" placeholder="請輸入金額"/>
-                </div>
-                <div class="">
-                    <label for="deposit" class="d-price">押金 / 次</label>
-                    <input type="text" class="form-control" id="deposit" v-model="commodity.Deposit" placeholder="請輸入金額" />
-                </div>
-              </div>
-              <div class="">
-                <label for="special-offer" class="text-primary">特價 / 日</label>
-                <input type="text" class="form-control" id="special-offer" v-model="commodity.Price" placeholder="請輸入金額" />＊當有特價請填此欄
-              </div>
-          </div>
-          <div class="Rental-days mb-3">
-            <div class>
-              <label class="cat-lable" for>租借天數</label>
-            </div>
-              <div class="">
-                <input type="text" class="form-control days" maxlength="30" v-model.number="commodity.Period" placeholder="請輸入租借天數" />
-                <div class="invalid-feedback">Please select a valid country.</div>
-              </div>
-          </div>
+            <div class="setPrice">
+              <el-form-item label="原價" prop="OriginPrice"  required>
+                <el-input v-model.number="commodity.OriginPrice"></el-input>
+              </el-form-item>
 
-       <div class="goods-status d-flex mb-4">
-            <div class>
-              <label class="cat-lable" for>商品狀態</label>
+              <el-form-item label="押金" prop="Deposit"  required>
+                <el-input v-model.number="commodity.Deposit"></el-input>
+              </el-form-item>
+
+              <el-form-item label="特價" prop="Price">
+                <el-input v-model.number="commodity.Price" placeholder="當有特價時填寫!"></el-input>
+              </el-form-item>
             </div>
-            <div class="form-check ml-3">
-              <div class="mb-3">
-                <input
-                  class="form-check-input"
-                  v-model.number="commodity.Status"
-                  type="radio"
-                  name="exampleRadios"
-                  id="normal"
-                  :value="0"
-                  checked
-                />
-                <label class="form-check-label" for="normal">可出租</label>
-              </div>
-              <div class>
-                <input
-                  class="form-check-input"
-                  v-model.number="commodity.Status"
-                  type="radio"
-                  name="exampleRadios"
-                  id="Notforrent"
-                  :value="1"
-                  checked
-                />
-                <label class="form-check-label" for="Notforrent">已出租/請擇一選取</label>
-              </div>
-            </div>
-          </div>
-          <div class="goods-intro">
-              <div class>
-                <label class="cat-lable" for>商品介紹</label>
-              </div>
-                <textarea
-                  class="form-control col"
-                  v-model="commodity.Description"
-                  id="inputgoods-intro"
-                  rows="3"
-                  placeholder="請輸入商品資訊..."
-                ></textarea>
-          </div>
-          <div class="PublicTime d-none">
-            ${PublishDate}
-          </div>
+            <el-form-item label="商品狀態" prop="Status">
+              <el-radio-group v-model="commodity.Status" required>
+                <el-radio label="可出租" :value="0"></el-radio>
+                <el-radio label="已出租" :value="1"></el-radio>
+              </el-radio-group>
+            </el-form-item>
+
+            <el-form-item label="商品介紹" prop="Description">
+              <el-input type="textarea" v-model="commodity.Description" required></el-input>
+            </el-form-item>
+          </el-form>
+          <div class="PublicTime d-none">${PublishDate}</div>
           <div class="row bg-light d-flex justify-content-center">
             <div class="mt-3 mb-3">
-              <button type="button" class="btn btn-danger mr-4" @click="$router.go(-1)">取消</button>
-              <button type="button" class="btn btn-warning ml-3"  @click="addProduct">儲存</button>
+              <button type="button" class="btn btn-primary ml-3" @click="BacktoStore">取消</button>
+              <button type="button" class="btn btn-warning ml-3" @click="submitForm('commodity')">儲存</button>
             </div>
           </div>
+          <p class="text-center text-primary specialTxt">＊字為必填選項</p>
         </form>
       </div>
     </section>
@@ -169,84 +82,169 @@
 </template>
 
 <script>
+import AddArea from '../../../components/back_side/AddArea'
 export default {
+  components: { AddArea },
   data () {
     return {
       commodity: {
         Name: '',
-        OriginPrice: '',
-        Price: '',
-        Deposit: '',
-        Quantity: '',
+        OriginPrice: null,
+        Price: null,
+        Deposit: null,
         City: '',
         Zone: '',
         Store: '',
-        Status: 0,
+        Quantity: '',
         Category: '',
+        Status: 0,
         Period: null,
         Description: '',
         PublishDate: new Date()
-      }
+      },
+      CategoryData: [{
+        value: '0',
+        label: '遊戲主機'
+      }, {
+        value: '1',
+        label: '遊戲配件'
+      }, {
+        value: '2',
+        label: '遊戲片'
+      }],
+      QuantityData: [{
+        value: '1',
+        label: '1'
+      }, {
+        value: '2',
+        label: '2'
+      }, {
+        value: '3',
+        label: '3'
+      }, {
+        value: '4',
+        label: '4'
+      }, {
+        value: '5',
+        label: '5'
+      }],
+      rules: {
+        Name: [
+          { required: true, message: '請輸入商品名稱', trigger: 'blur' },
+          { min: 5, max: 15, message: '長度介於5到15之間', trigger: 'blur' }
+        ],
+        Quantity: [
+          { required: true, message: '請選擇商品數量', trigger: 'change' }
+        ],
+        Category: [
+          { required: true, message: '請選擇商品類別', trigger: 'change' }
+        ],
+        Period: [
+          { required: true, message: '請填寫可租借天數', trigger: 'change' }
+        ],
+        City: [
+          { required: true, message: '請選擇地區', trigger: 'change' }
+        ],
+        Zone: [
+          { required: true, message: '請選擇區域/鄉鎮', trigger: 'change' }
+        ],
+        Store: [
+          { required: true, message: '請選擇門市', trigger: 'change' }
+        ],
+        OriginPrice: [
+          { required: true, message: '請輸入商品金額', trigger: 'blur' },
+          { type: 'number', message: '金額必須為數字' }
+        ],
+        Deposit: [
+          { required: true, message: '請輸入押金金額', trigger: 'blur' },
+          { type: 'number', message: '金額必須為數字' }
+        ],
+        Price: [
+          { required: false, message: '請輸入特價金額', trigger: 'blur' },
+          { type: 'number', message: '金額必須為數字' }
+        ],
+        Description: [
+          { required: true, message: '請填寫商品簡介', trigger: 'blur' }
+        ],
+        Status: [
+          { required: true, message: '請選擇商品狀態', trigger: 'change' }
+        ]
+      },
+      labelPosition: 'top'
     }
   },
   methods: {
-    addProduct () {
-      const api = 'http://switcher.rocket-coding.com/api/product/add'
-      const token = localStorage.getItem('token')
-      const today = new Date()
-      const newproduct = {
-        Name: this.commodity.Name,
-        OriginPrice: this.commodity.OriginPrice,
-        Price: this.commodity.Price,
-        Deposit: this.commodity.Deposit,
-        Quantity: this.commodity.Quantity,
-        City: this.commodity.City,
-        Zone: this.commodity.Zone,
-        Store: this.commodity.Store,
-        Status: this.commodity.Status,
-        Category: this.commodity.Category,
-        Period: this.commodity.Period,
-        Description: this.commodity.Description,
-        PublishDate: (this.commodity.PublishDate =
-          today.getFullYear() +
-          '/' +
-          (today.getMonth() + 1) +
-          '/' +
-          today.getDate())
-      }
-      const headers = {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }
-      this.$http
-        .post(api, newproduct, headers)
-        .then(response => {
-          if (response.data.result) {
-            this.$root.upLoadId = response.data.product.Id
-            this.addSuccess()
-            this.$router.push({
-              name: 'AddProductphoto',
-              params: {
-                id: response.data.product.Id
+    submitForm (formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          const api = 'http://switcher.rocket-coding.com/api/product/add'
+          const token = localStorage.getItem('token')
+          const today = new Date()
+          const newproduct = {
+            Name: this.commodity.Name,
+            OriginPrice: this.commodity.OriginPrice,
+            Price: this.commodity.Price,
+            Deposit: this.commodity.Deposit,
+            Quantity: this.commodity.Quantity,
+            City: this.City,
+            Zone: this.Zone,
+            Store: this.Store,
+            Status: this.commodity.Status,
+            Category: this.Category,
+            Period: this.commodity.Period,
+            Description: this.commodity.Description,
+            PublishDate: (this.commodity.PublishDate =
+            today.getFullYear() +
+            '/' +
+            (today.getMonth() + 1) +
+            '/' +
+            today.getDate())
+          }
+          const headers = {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }
+          this.$http
+            .post(api, newproduct, headers)
+            .then(response => {
+              if (response.data.result) {
+                this.addSuccess()
+                this.$router.push({
+                  name: 'AddProductphoto',
+                  params: {
+                    id: response.data.product.Id
+                  }
+                })
               }
             })
-          }
-        })
-        .catch(err => {
-          this.$message(err)
-        })
+            .catch(err => {
+              this.$message(err)
+            })
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
     },
     addSuccess () {
       this.$notify({
         title: '商品新增成功',
         type: 'success'
       })
+    },
+    BacktoStore () {
+      this.$router.push({
+        path: '/sellerstore'
+      })
     }
   }
 }
 </script>
 <style lang="scss">
+.breadcrumb-item{
+  cursor: pointer;
+}
 .product-photo-upload {
   width: 100%;
   height: 300px;
@@ -260,5 +258,8 @@ export default {
       margin: 0px 1px;
     }
   }
+}
+.specialTxt{
+  font-size: 14px;
 }
 </style>

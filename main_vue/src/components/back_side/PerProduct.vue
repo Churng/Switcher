@@ -15,14 +15,18 @@
                           <span class="isLease">{{item.Status}}</span>
                       </div>
                   </div>
-                  <div class="card-text-bottom d-flex justify-content-between align-items-baseline mb-1">
+                  <div class="card-text-bottom d-flex justify-content-between align-items-end mb-2">
                       <div class="onDate">
                           <span>上架日期</span>
                           <span>{{item.PublishDate}}</span>
                       </div>
-                      <div class="priceArea">
-                          <p class="mb-0">租金<span>{{item.Price}}</span>元/日</p>
-                      </div>
+                        <div class="priceArea text-right" v-if="item.OriginPrice - item.Price > 0">
+                            <p class="mb-0 originalPrice text-muted">租金<span>{{ item.OriginPrice }}</span>元 /日</p>
+                            <p class="mb-0">租金<span>{{ item.Price }}</span>元 /日</p>
+                        </div>
+                        <div class="priceArea" v-else>
+                            <p class="mb-0">租金<span>{{ item.Price }}</span>元 /日</p>
+                        </div>
                   </div>
                   <div class="Edit-Deletebutton">
                       <el-button type="info" icon="el-icon-edit" class="editbutton" @click="editPerProduct(item.Id)" plain ></el-button>
