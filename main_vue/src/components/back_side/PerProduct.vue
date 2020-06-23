@@ -20,12 +20,12 @@
                           <span>上架日期</span>
                           <span>{{item.PublishDate}}</span>
                       </div>
-                        <div class="priceArea text-right" v-if="item.OriginPrice - item.Price > 0">
+                        <!-- <div class="priceArea text-right" v-if="item.OriginPrice - item.Price > 0">
                             <p class="mb-0 originalPrice text-muted">租金<span>{{ item.OriginPrice }}</span>元 /日</p>
                             <p class="mb-0">租金<span>{{ item.Price }}</span>元 /日</p>
-                        </div>
-                        <div class="priceArea" v-else>
-                            <p class="mb-0">租金<span>{{ item.Price }}</span>元 /日</p>
+                        </div> -->
+                        <div class="priceArea">
+                            <p class="mb-0">租金<span>{{ item.OriginPrice }}</span>元 /日</p>
                         </div>
                   </div>
                   <div class="Edit-Deletebutton">
