@@ -15,7 +15,6 @@
             <el-form-item label="商品名稱" prop="Name">
               <el-input v-model="commodity.Name" required></el-input>
             </el-form-item>
-            <AddArea/>
             <div class="Category-Quantity">
               <el-form-item label="商品類別" prop="Category">
                 <el-select v-model="commodity.Category" placeholder="請選擇商品類別" >
@@ -43,6 +42,33 @@
                 <el-input v-model="commodity.Period" placeholder="請輸入租借天數" required></el-input>
               </el-form-item>
             </div>
+              <div class="Transaction">
+                <el-select v-model="commodity.City" placeholder="請選擇城市" label="城市" @change="selectAll()">
+                  <el-option
+                    v-for="(item, city) in CityData"
+                    :key="city"
+                    :label="city"
+                    :value="city"
+                    >
+                  </el-option>
+                </el-select>
+                <el-select v-model="commodity.Zone" placeholder="請選擇區域" @change="selectZone()">
+                  <el-option
+                    v-for="(item, idx) in zoneArr"
+                    :key="idx"
+                    :label="item.zone"
+                    :value="item.zone">
+                  </el-option>
+                </el-select>
+                <el-select v-model="commodity.Store" placeholder="請選擇門市">
+                  <el-option
+                    v-for="(item, idx) in storeArr"
+                    :key="idx"
+                    :label="item"
+                    :value="item">
+                  </el-option>
+                </el-select>
+              </div>
             <div class="setPrice">
               <el-form-item label="原價" prop="OriginPrice"  required>
                 <el-input v-model.number="commodity.OriginPrice"></el-input>
@@ -82,9 +108,7 @@
 </template>
 
 <script>
-import AddArea from '../../../components/back_side/AddArea'
 export default {
-  components: { AddArea },
   data () {
     return {
       commodity: {
@@ -128,6 +152,60 @@ export default {
         value: '5',
         label: '5'
       }],
+      CityData: {
+        高雄市: [
+          {
+            zone: '三民區',
+            store: ['太華門市', '大阪門市', '中都門市', '文藻門市']
+          },
+          {
+            zone: '前金區',
+            store: ['文東門市', '中央公園門市', '太華門市', '自強門市', '青盛門市']
+          },
+          {
+            zone: '鳳山區',
+            store: ['大洋門市', '中東門市', '天虹門市', '文建門市', '文衡門市', '光泰門市']
+          },
+          {
+            zone: '鹽埕區',
+            store: ['仁勇門市', '重義門市', '駁藝門市', '鹽埕門市', '鑫漢王門市', '客宭門市']
+          },
+          {
+            zone: '小港區',
+            store: ['市賢門市', '大坪頂門市', '孔鳳門市', '永益門市', '田金門市', '松旅門市']
+          }
+        ],
+        台南市: [
+          {
+            zone: '北區',
+            store: ['文五門市', '小北門市', '公平門市', '丹比門市', '西門門市', '育德門市']
+          },
+          {
+            zone: '東區',
+            store: ['文東門市', '一心門市', '仁文門市', '北門門市', '自由門市']
+          },
+          {
+            zone: '安平區',
+            store: ['文五門市', '安平門市', '安運門市', '怡平門市']
+          }
+        ],
+        台中市: [
+          {
+            zone: '中區',
+            store: ['市鑫門市', '成興門市', '第一廣場門市', '新繼光門市', '鼎站門市', '錦花門市']
+          },
+          {
+            zone: '大里區',
+            store: ['大明門市', '大金門市', '永隆門市', '玉豐門市', '東里門市']
+          },
+          {
+            zone: '東區',
+            store: ['世界門市', '光園門市', '東英門市', '富仁門市']
+          }
+        ]
+      },
+      zoneArr: [],
+      storeArr: [],
       rules: {
         Name: [
           { required: true, message: '請輸入商品名稱', trigger: 'blur' },
@@ -186,11 +264,11 @@ export default {
             Price: this.commodity.Price,
             Deposit: this.commodity.Deposit,
             Quantity: this.commodity.Quantity,
-            City: this.City,
-            Zone: this.Zone,
-            Store: this.Store,
+            City: this.commodity.City,
+            Zone: this.commodity.Zone,
+            Store: this.commodity.Store,
             Status: this.commodity.Status,
-            Category: this.Category,
+            Category: this.commodity.Category,
             Period: this.commodity.Period,
             Description: this.commodity.Description,
             PublishDate: (this.commodity.PublishDate =
@@ -237,6 +315,17 @@ export default {
       this.$router.push({
         path: '/sellerstore'
       })
+    },
+    selectAll () {
+      this.zoneArr = this.CityData[this.commodity.City]
+    },
+    selectZone () {
+      const arr = this.zoneArr.filter(item => {
+        if (item.zone === this.commodity.Zone) {
+          return true
+        }
+      })
+      this.storeArr = arr[0].store
     }
   }
 }

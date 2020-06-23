@@ -12,14 +12,14 @@
           </nav>
         </div>
         <div class="NewProductImg bg-light px-4 py-4" >
-            <h3 class="text-center mt-5 mb-5">上傳商品圖片<span class="limitNum">(最多6張)</span></h3>
+            <h3 class="text-center mt-5 mb-5">上傳商品圖片<span class="limitNum">(最多1張)</span></h3>
             <el-form class="form-wrapper padding" ref="showImage" :model="showImage" :rules="addRules">
             <el-form-item prop="photo">
             <el-upload
               action="upload"
               list-type="picture-card"
               :multiple="multiple"
-              :limit="6"
+              :limit="1"
               accept="image/jpeg, image/png"
               :before-upload="beforeAvatarUpload"
               ref="upload"

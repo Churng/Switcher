@@ -4,163 +4,99 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <a href="/Home">首頁</a>
+            <a href="/">首頁</a>
           </li>
           <li class="breadcrumb-item active" aria-current="page">編輯商品</li>
         </ol>
       </nav>
     </div>
-    <section >
+    <section>
       <div class="container bg-light">
-        <form class="w-75 m-auto pt-5">
-          <div class="name mb-3">
-            <label>商品名稱</label>
-            <input
-              type="text"
-              aria-label="商品名稱"
-              aria-describedby="商品名稱"
-              placeholder="請輸入商品名稱"
-              class="form-control"
-              v-model.trim="Productdata.product.Name"
-            />
-          </div>
-          <div class="Product-category mb-3">
-            <div class="Category-product">
-              <label class="cat-lable" for>商品類別</label>
+        <form class="w-50 m-auto py-5">
+          <span>＊字為必填選項</span>
+          <el-form :model="Productdata.product"  ref="Productdata.product" >
+            <el-form-item label="商品名稱" >
+              <el-input v-model="Productdata.product.Name" required></el-input>
+            </el-form-item>
+            <div class="Category-Quantity">
+              <el-form-item label="商品類別" >
+                <el-select v-model="Productdata.product.Category" placeholder="請選擇商品類別" >
+                  <el-option
+                  v-for="(item, idx) in CategoryData"
+                  :key="idx"
+                  :label="item.label"
+                  :value="item.value"
+                  required
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="商品數量" >
+                <el-select v-model="Productdata.product.Quantity" placeholder="請選擇商品數量">
+                  <el-option
+                  v-for="item in QuantityData"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                  required>
+                  </el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="可租借天數"   required>
+                <el-input v-model="Productdata.product.Period" placeholder="請輸入租借天數" required></el-input>
+              </el-form-item>
             </div>
-            <select class="custom-select" v-model="Productdata.product.Category" required>
-              <option selected>請選擇類別</option>
-              <option :value="0">遊戲主機</option>
-              <option :value="1">遊戲配件</option>
-              <option :value="2">遊戲片</option>
-            </select>
-          </div>
-          <div class="Quantity mb-3">
-            <div>
-              <label class="cat-lable" for>商品數量</label>
-            </div>
-              <select
-                class="custom-select"
-                v-model.number="Productdata.product.Quantity"
-                required
-              >
-                <option selected>--請選擇數量--</option>
-                <option :value="1">1</option>
-                <option :value="2">2</option>
-                <option :value="3">3</option>
-                <option :value="4">4</option>
-                <option :value="5">5</option>
-              </select>
-              <div class="invalid-feedback">請輸入正確數量！</div>
-          </div>
-          <div class="Place mb-3">
-            <label>交易地點</label>
-              <select class="custom-select d-block w-100 mb-2" id="country" v-model="Productdata.product.City" required>
-                <option value="City">--請選擇地區--</option>
-                <option>高雄市</option>
-              </select>
-                <div class="invalid-feedback">請選擇地區</div>
-              <select class="custom-select d-block w-100 mb-2" id="state" v-model="Productdata.product.Zone" required>
-                <option value="Zone">--請選擇區域/鄉鎮--</option>
-                <option>前金區</option>
-                <option>左營區</option>
-                <option>苓雅區</option>
-                <option>前鎮區</option>
-                <option>小港區</option>
-                <option>楠梓區</option>
-              </select>
-                <div class="invalid-feedback">請選擇區域/鄉鎮</div>
-              <select class="custom-select d-block w-100" id="state" v-model="Productdata.product.Store" required>
-                <option value="Store">--請選擇門市--</option>
-                <option>太華門市</option>
-                <option>文東門市</option>
-                <option>市賢門市</option>
-                <option>自強門市</option>
-                <option>長生門市</option>
-                <option>長青門市</option>
-                <option>青盛門市</option>
-                <option>前金門市</option>
-                <option>愛河門市</option>
-                <option>新生門市</option>
-                <option>新盛門市</option>
-                <option>新華都門市</option>
-                <option>龍客門市</option>
-              </select>
-              <div class="invalid-feedback">請選擇門市</div>
-          </div>
-          <div class="price mb-3">
-                <label class for>交易價格</label>
-              <div>
-                <div>
-                    <label for="original-price" class="O-price text-primary">原價/日</label>
-                    <input type="text" v-model="Productdata.product.OriginPrice" class="form-control" id="original-price" placeholder="請輸入金額"/>
-                </div>
-                <div>
-                    <label for="deposit" class="d-price">押金/次</label>
-                    <input type="text" class="form-control" id="deposit" v-model="Productdata.product.Deposit" placeholder="請輸入金額" />
-                </div>
+              <div class="Transaction">
+                <el-select v-model="Productdata.product.City" placeholder="請選擇城市" label="城市" @change="selectAll()">
+                  <el-option
+                    v-for="(item, city) in CityData"
+                    :key="city"
+                    :label="city"
+                    :value="city"
+                    >
+                  </el-option>
+                </el-select>
+                <el-select v-model="Productdata.product.Zone" placeholder="請選擇區域" @change="selectZone()">
+                  <el-option
+                    v-for="(item, idx) in zoneArr"
+                    :key="idx"
+                    :label="item.zone"
+                    :value="item.zone">
+                  </el-option>
+                </el-select>
+                <el-select v-model="Productdata.product.Store" placeholder="請選擇門市">
+                  <el-option
+                    v-for="(item, idx) in storeArr"
+                    :key="idx"
+                    :label="item"
+                    :value="item">
+                  </el-option>
+                </el-select>
               </div>
-              <div>
-                <label for="special-offer" class="text-primary">特價/日</label>
-                <input type="text" class="form-control" id="special-offer" v-model="Productdata.product.Price" placeholder="請輸入金額" />＊當有特價請填此欄
-              </div>
-          </div>
-          <div class="Rental-days mb-3">
-            <div class>
-              <label class="cat-lable" for>租借天數</label>
-            </div>
-              <div>
-                <input type="text" class="form-control days" maxlength="30" v-model.number="Productdata.product.Period" placeholder="請輸入租借天數" />
-                <div class="invalid-feedback">Please select a valid country.</div>
-              </div>
-          </div>
+            <div class="setPrice">
+              <el-form-item label="原價"   required>
+                <el-input v-model.number="Productdata.product.OriginPrice"></el-input>
+              </el-form-item>
 
-       <div class="goods-status d-flex mb-4">
-            <div class>
-              <label class="cat-lable" for>商品狀態</label>
+              <el-form-item label="押金"   required>
+                <el-input v-model.number="Productdata.product.Deposit"></el-input>
+              </el-form-item>
+
+              <el-form-item label="特價" >
+                <el-input v-model.number="Productdata.product.Price" placeholder="當有特價時填寫!"></el-input>
+              </el-form-item>
             </div>
-            <div class="form-check ml-3">
-              <div class="mb-3">
-                <input
-                  class="form-check-input"
-                  v-model.number="Productdata.product.Status"
-                  type="radio"
-                  name="exampleRadios"
-                  id="normal"
-                  :value="0"
-                  checked
-                />
-                <label class="form-check-label" for="normal">可出租</label>
-              </div>
-              <div class>
-                <input
-                  class="form-check-input"
-                  v-model.number="Productdata.product.Status"
-                  type="radio"
-                  name="exampleRadios"
-                  id="Notforrent"
-                  :value="1"
-                  checked
-                />
-                <label class="form-check-label" for="Notforrent">已出租/請擇一選取</label>
-              </div>
-            </div>
-          </div>
-          <div class="goods-intro">
-              <div class>
-                <label class="cat-lable" for>商品介紹</label>
-              </div>
-                <textarea
-                  class="form-control col"
-                  v-model="Productdata.product.Description"
-                  id="inputgoods-intro"
-                  rows="3"
-                  placeholder="請輸入商品資訊..."
-                ></textarea>
-          </div>
-          <div class="PublicTime d-none">
-            ${PublishDate}
-          </div>
+            <el-form-item label="商品狀態" >
+              <el-radio-group v-model="Productdata.product.Status" required>
+                <el-radio label="可出租" :value="0"></el-radio>
+                <el-radio label="已出租" :value="1"></el-radio>
+              </el-radio-group>
+            </el-form-item>
+
+            <el-form-item label="商品介紹" >
+              <el-input type="textarea" v-model="Productdata.product.Description" required></el-input>
+            </el-form-item>
+          </el-form>
+          <div class="PublicTime d-none">${PublishDate}</div>
           <div class="row bg-light d-flex justify-content-center">
             <div class="mt-3 mb-3">
               <button type="button" class="btn btn-danger mr-4" @click="backStore">返回商店</button>
@@ -195,8 +131,87 @@ export default {
           PublishDate: '',
           Id: ''
         }
-
-      }
+      },
+      CategoryData: [{
+        value: '0',
+        label: '遊戲主機'
+      }, {
+        value: '1',
+        label: '遊戲配件'
+      }, {
+        value: '2',
+        label: '遊戲片'
+      }],
+      QuantityData: [{
+        value: '1',
+        label: '1'
+      }, {
+        value: '2',
+        label: '2'
+      }, {
+        value: '3',
+        label: '3'
+      }, {
+        value: '4',
+        label: '4'
+      }, {
+        value: '5',
+        label: '5'
+      }],
+      CityData: {
+        高雄市: [
+          {
+            zone: '三民區',
+            store: ['太華門市', '大阪門市', '中都門市', '文藻門市']
+          },
+          {
+            zone: '前金區',
+            store: ['文東門市', '中央公園門市', '太華門市', '自強門市', '青盛門市']
+          },
+          {
+            zone: '鳳山區',
+            store: ['大洋門市', '中東門市', '天虹門市', '文建門市', '文衡門市', '光泰門市']
+          },
+          {
+            zone: '鹽埕區',
+            store: ['仁勇門市', '重義門市', '駁藝門市', '鹽埕門市', '鑫漢王門市', '客宭門市']
+          },
+          {
+            zone: '小港區',
+            store: ['市賢門市', '大坪頂門市', '孔鳳門市', '永益門市', '田金門市', '松旅門市']
+          }
+        ],
+        台南市: [
+          {
+            zone: '北區',
+            store: ['文五門市', '小北門市', '公平門市', '丹比門市', '西門門市', '育德門市']
+          },
+          {
+            zone: '東區',
+            store: ['文東門市', '一心門市', '仁文門市', '北門門市', '自由門市']
+          },
+          {
+            zone: '安平區',
+            store: ['文五門市', '安平門市', '安運門市', '怡平門市']
+          }
+        ],
+        台中市: [
+          {
+            zone: '中區',
+            store: ['市鑫門市', '成興門市', '第一廣場門市', '新繼光門市', '鼎站門市', '錦花門市']
+          },
+          {
+            zone: '大里區',
+            store: ['大明門市', '大金門市', '永隆門市', '玉豐門市', '東里門市']
+          },
+          {
+            zone: '東區',
+            store: ['世界門市', '光園門市', '東英門市', '富仁門市']
+          }
+        ]
+      },
+      zoneArr: [],
+      storeArr: []
     }
   },
   methods: {
