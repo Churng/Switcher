@@ -57,12 +57,12 @@
                     <button class="btn btn-warning login-submit login-btn" type="submit">登入</button>
                   </div>
               </form>
-              <div class="tab-content-thirdlogin">
+              <!-- <div class="tab-content-thirdlogin">
                 <p>以下帳號快速登入</p>
                 <div class="social-login">
                   <button type="button" class="btn btn-social login-facebook" @click.prevent="fbSignIn">Facebook</button>
                 </div>
-              </div>
+              </div> -->
             </div>
             <div
               class="tab-pane fade"
@@ -107,12 +107,12 @@
                   <button class="btn btn-warning registered-submit" type="submit">註冊</button>
                 </div>
               </form>
-              <div class="tab-content-thirdlogin">
+              <!-- <div class="tab-content-thirdlogin">
                 <p>以下帳號快速登入</p>
                 <div class="social-login">
                   <button type="button" class="btn btn-social login-facebook" @click.prevent="fbSignIn">Facebook</button>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -164,8 +164,7 @@ export default {
           { required: true, message: '請輸入地址', trigger: 'blur' }
         ]
       },
-      connected: false,
-      errorMsg: false
+      connected: false
     }
   },
   mounted () {
@@ -201,17 +200,19 @@ export default {
           this.$root.ChangeMember = true
           this.$root.cartQuantity = true
         }
-      }).catch(function (error) {
-        this.loginFalse(error)
       })
-        .catch(function (error) {
+        .catch(error => {
           const errObj = error.response
           if (errObj.status === 400 && errObj.data.message === '登入失敗!') {
-            this.errorMsg = true
-            return this.errorMsg
+            this.$message({
+              message: errObj.data.message,
+              type: 'warning'
+            })
           } else if (errObj.status === 404 && errObj.data.message === '登入失敗!') {
-            this.errorMsg = true
-            return this.errorMsg
+            this.$message({
+              message: errObj.data.message,
+              type: 'warning'
+            })
           }
         })
     },
@@ -219,19 +220,6 @@ export default {
       this.$notify({
         title: '登入成功',
         type: 'success'
-      })
-    },
-    loginFalse () {
-      this.$notify({
-        title: '警告',
-        message: '这是一条警告的提示消息',
-        type: 'warning'
-      })
-    },
-    loginError () {
-      this.$notify.error({
-        title: '帳號或密碼錯誤!',
-        message: '帳號或密碼錯誤!'
       })
     },
     signup () {

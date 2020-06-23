@@ -139,7 +139,6 @@ export default {
         .get(api, {
         })
         .then(response => {
-          // console.log(response.data)
           this.sellerData = response.data
         })
         .catch(err => {
@@ -161,6 +160,9 @@ export default {
             if (item.MemberName === this.sellerData.Member) {
               return true
             }
+          })
+          arr.sort(function (a, b) {
+            return a.PublishDate < b.PublishDate ? 1 : -1
           })
           this.SellerproductData = arr
           this.SellerproductDataLen = arr.length

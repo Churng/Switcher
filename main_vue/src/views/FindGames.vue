@@ -55,10 +55,6 @@ export default {
   computed: {
     searchCity () {
       const copyData = JSON.parse(JSON.stringify(this.$root.productsData))
-      // console.log(copyData)
-      // this.copyData.filter(item => {
-      //   console.log(item)
-      // })
       // 整理:城市篩選的api
       copyData.forEach(data => {
         const county = data.City
