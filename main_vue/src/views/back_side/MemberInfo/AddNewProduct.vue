@@ -331,6 +331,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss">
 .breadcrumb-item{
   cursor: pointer;
