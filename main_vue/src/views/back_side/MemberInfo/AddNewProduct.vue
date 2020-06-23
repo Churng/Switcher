@@ -42,8 +42,9 @@
                 <el-input v-model="commodity.Period" placeholder="請輸入租借天數" required></el-input>
               </el-form-item>
             </div>
+            <p class="localTxt"><span class="text-primary">*</span> 請選擇面交地點</p>
               <div class="Transaction">
-                <el-select v-model="commodity.City" placeholder="請選擇城市" label="城市" @change="selectAll()">
+                <el-select v-model="commodity.City" placeholder="請選擇城市" @change="selectAll()">
                   <el-option
                     v-for="(item, city) in CityData"
                     :key="city"
@@ -348,7 +349,7 @@ export default {
     }
   }
 }
-.specialTxt{
+.specialTxt, .localTxt{
   font-size: 14px;
 }
 </style>
