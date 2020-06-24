@@ -46,7 +46,7 @@
               </el-form-item>
             </div>
               <div class="Transaction">
-                <el-select v-model="commodity.City" :label="城市" placeholder="請選擇城市" label="城市" @change="selectAll()">
+                <el-select v-model="commodity.City" :label="城市" placeholder="請選擇城市"  @change="selectAll()">
                   <el-option
                     v-for="(item, city) in CityData"
                     :key="city"
