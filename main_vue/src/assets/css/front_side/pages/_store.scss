@@ -12,17 +12,11 @@
         height: $font-size-base*6.25;
         background-repeat: no-repeat;
         background-size: contain;
-        img, .el-image{
+        img{
             width: 100%;
             height: 100%;
             object-fit: cover;
             border-radius: 50%;
-        }
-        .el-image{
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background-color: #e9ecef;
         }
     }
     .sellerTxt p,.sellerTxt button{
@@ -56,14 +50,6 @@
           width: 100%;
           height: 100%;
           object-fit: cover;
-        }
-        .el-image{
-          width: 100%;
-          height: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background-color: #e9ecef;
         }
     }
 }

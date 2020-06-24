@@ -1,12 +1,7 @@
 <template>
   <li class="col-10 col-sm-6 col-md-6 col-xl-3 col-lg-4">
       <div class="card mb-4">
-          <el-image v-if="item.Images.length === 0">
-            <div slot="error" class="image-slot">
-              <i class="el-icon-picture-outline"></i>
-            </div>
-          </el-image>
-          <img :src="item.Images[0]" class="card-img-top" alt="gameHost" v-else>
+          <img :src="item.Images[0]" class="card-img-top" alt="gameHost">
           <div class="card-body">
               <div class="card-text">
                   <div class="d-flex justify-content-between align-items-baseline itemTitle mb-2">
@@ -25,9 +20,13 @@
                           <span>上架日期</span>
                           <span>{{item.PublishDate}}</span>
                       </div>
-                      <div class="priceArea">
-                          <p class="mb-0">租金<span>{{ item.OriginPrice }}</span>元 /日</p>
-                      </div>
+                        <!-- <div class="priceArea text-right" v-if="item.OriginPrice - item.Price > 0">
+                            <p class="mb-0 originalPrice text-muted">租金<span>{{ item.OriginPrice }}</span>元 /日</p>
+                            <p class="mb-0">租金<span>{{ item.Price }}</span>元 /日</p>
+                        </div> -->
+                        <div class="priceArea">
+                            <p class="mb-0">租金<span>{{ item.OriginPrice }}</span>元 /日</p>
+                        </div>
                   </div>
                   <div class="Edit-Deletebutton">
                       <el-button type="info" icon="el-icon-edit" class="editbutton" @click="editPerProduct(item.Id)" plain ></el-button>

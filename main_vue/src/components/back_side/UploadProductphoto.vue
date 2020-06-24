@@ -3,21 +3,23 @@
         <div class="container">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item" @click.prevent="$router.push({name: 'SellerStore', params: '/sellerstore'})">我的賣場</li>
+              <li class="breadcrumb-item">
+                <a href="/Home">首頁</a>
+              </li>
               <li class="breadcrumb-item active" aria-current="page">編輯商品</li>
               <li class="breadcrumb-item active" aria-current="page">編輯圖片</li>
             </ol>
           </nav>
         </div>
         <div class="NewProductImg bg-light px-4 py-4" >
-            <h3 class="text-center mt-5 mb-5">上傳商品圖片<span class="limitNum">(最多6張)</span></h3>
+            <h3 class="text-center mt-5 mb-5">上傳商品圖片<span class="limitNum">(最多1張)</span></h3>
             <el-form class="form-wrapper padding" ref="showImage" :model="showImage" :rules="addRules">
             <el-form-item prop="photo">
             <el-upload
               action="upload"
               list-type="picture-card"
               :multiple="multiple"
-              :limit="6"
+              :limit="1"
               accept="image/jpeg, image/png"
               :before-upload="beforeAvatarUpload"
               ref="upload"
@@ -53,7 +55,7 @@ export default {
       },
       dialogImageUrl: '',
       dialogVisible: false,
-      addRules: { // 表單驗證規則
+      addRules: { // 表单验证规则
         photo: [{ required: true, message: '請上傳商品照', trigger: 'blur' }]
       },
       multiple: true,
@@ -63,7 +65,7 @@ export default {
   },
   methods: {
     uploadSuccess (file) {
-      this.formData.append('file', file.file)
+      this.formData.append('file', file)
     },
     beforeAvatarUpload (file) {
       const isJPG = file.type === 'image/jpeg' || 'image/png'
@@ -72,9 +74,9 @@ export default {
         this.$message.error('上傳頭像圖片只能是 JPG / PNG 格式!')
       }
       if (!isLt3M) {
-        this.$message.error('上傳頭像圖片大小不能超過 3MB!')
+        this.$message.error('上傳頭像圖片大小不能超过 3MB!')
       }
-      // 較驗成功上傳的文件
+      // 校验成功上传文件
       if (isJPG && isLt3M === true) {
         this.file = file
       }
@@ -86,7 +88,6 @@ export default {
       this.$refs.upload.submit(id)
       const form = new FormData()
       form.append('upload', this.file)
-      // const formList = this.$refs.upload.uploadFiles
       const api = `http://switcher.rocket-coding.com/api/product/upload/${id}`
       this.$http.post(api, form, {
         headers: {

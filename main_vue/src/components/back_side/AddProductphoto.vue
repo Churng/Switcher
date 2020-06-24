@@ -1,6 +1,5 @@
 <template>
     <div class="container bg-light">
-        <div class="loading vh-100" v-if="loading"><img src="/img/Spinner-1.1s-200px.gif" alt="loading"></div>
         <div class="NewProductImg px-5 py-5" >
             <h3 class="text-center mt-5 mb-5">上傳商品圖片</h3>
             <el-upload
@@ -28,8 +27,7 @@ export default {
   data () {
     return {
       imageUrl: '',
-      file: '',
-      loading: false
+      file: ''
     }
   },
   inject: ['reload'],
@@ -47,9 +45,8 @@ export default {
       if (!isLt2M) {
         this.$message.error('上傳頭像圖片大小不能超过 2MB!')
       }
-      // 較驗成功上傳的文件
+      // 校验成功上传文件
       if (isJPG && isLt2M === true) {
-        console.log(file)
         this.file = file
       }
       return isJPG && isLt2M
@@ -62,7 +59,6 @@ export default {
       // 转换后的地址为 blob:http://xxx/7bf54338-74bb-47b9-9a7f-7a7093c716b5
     },
     uploadFile () {
-      this.loading = true
       const id = this.$route.params.id
       const token = localStorage.getItem('token')
       const form = new FormData()
@@ -74,18 +70,9 @@ export default {
           'Content-Type': 'multipart/form-data'
         }
       }).then(res => {
-        this.loading = false
-        this.imageUrl = ''
         this.photoSuccess(res.data.message)
       }).catch(err => {
-        this.loading = false
-        const errObj = err.response
-        if (errObj.status === 400 || errObj.status === 404 || errObj.status === 500) {
-          this.$message({
-            message: errObj.data.Message,
-            type: 'warning'
-          })
-        }
+        this.$message(err)
       })
     },
     photoSuccess (msg) {

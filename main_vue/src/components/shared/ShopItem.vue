@@ -1,12 +1,7 @@
 <template>
     <li class="col-10 col-sm-6 col-md-6 col-xl-3 col-lg-4" @click.prevent="$router.push({name: 'Product', params: { id: item.Id }})">
         <div class="card mb-4">
-            <el-image v-if="item.Images.length === 0">
-              <div slot="error" class="image-slot">
-                <i class="el-icon-picture-outline"></i>
-              </div>
-            </el-image>
-            <img :src="item.Images[0]" class="card-img-top" alt="gameHost" v-else>
+            <img :src="item.Images[0]" class="card-img-top" alt="gameHost">
             <div class="card-body">
                 <div class="card-text">
                     <div class="d-flex justify-content-between align-items-baseline itemTitle">
@@ -64,13 +59,5 @@ export default {
     text-align: center;
     width: 75px;
   }
-}
-.card .el-image{
-  width: 100%;
-  height: 190px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #e9ecef;
 }
 </style>

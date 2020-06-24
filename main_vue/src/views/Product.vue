@@ -15,17 +15,12 @@
                         <p>Nintendo</p>
                     </div>
                     <div id="carouselExampleIndicators" class="carousel slide switcherProduct-img mb-4" data-ride="carousel">
-                        <el-image v-if="product.Images.length === 0">
-                            <div slot="error" class="image-slot">
-                              <i class="el-icon-picture-outline"></i>
-                            </div>
-                        </el-image>
-                        <ol class="carousel-indicators" v-for="(img, index) in product.Images" :key="index" v-else>
+                        <ol class="carousel-indicators" v-for="(img, index) in product.Images" :key="index">
                             <li data-target="#carouselExampleIndicators" :data-slide-to="index" :class="index === 0 ? 'active':''"></li>
                         </ol>
                         <div class="carousel-inner">
                           <div :class="index === 0 ? 'carousel-item active':'carousel-item'" v-for="(img, index) in product.Images" :key="index">
-                            <img :src="img" class="d-block w-100">
+                            <img :src="img" class="d-block w-100" alt="...">
                           </div>
                         </div>
                           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -195,16 +190,5 @@ export default {
 }
 .contentBox{
   padding: 10px;
-}
-.switcherProduct-img .el-image{
-  width: 100%;
-  height: 600px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #e9ecef;
-  .el-icon-picture-outline{
-    font-size: 50px;
-  }
 }
 </style>
