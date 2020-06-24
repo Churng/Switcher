@@ -1,33 +1,35 @@
 <template>
-    <div class="container bg-light">
-        <div class="NewProductImg px-5 py-5" >
-            <h3 class="text-center mt-5 mb-5">上傳商品圖片</h3>
-            <el-upload
-              class="avatar-uploader"
-              action = "upload"
-              :show-file-list="false"
-              :on-success="handleAvatarSuccess"
-              :before-upload="beforeAvatarUpload"
-              ref="upload"
-              :on-change="imgSaveToUrl"
-              >
-              <img v-if="imageUrl" :src="imageUrl" class="avatar">
-              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-            </el-upload>
-            <div class="Button mx-auto d-flex justify-content-center mt-5 pt-3">
-              <button type="button" class="btn btn-warning" @click.prevent="$router.go(-1)">上一頁</button>
-              <button type="button" class="btn btn-primary ml-3"  @click.prevent="uploadFile()">確定</button>
-              <button type="button" class="btn btn-warning ml-3"  @click.prevent="$router.push('/sellerstore')">返回賣場</button>
-            </div>
-        </div>
-    </div>
+<div class="container bg-light">
+  <div class="loading vh-100" v-if="loading"><img src="/img/Spinner-1.1s-200px.gif" alt="loading"></div>
+    <div class="NewProductImg px-5 py-5" >
+      <h3 class="text-center mt-5 mb-5">上傳商品圖片</h3>
+      <el-upload
+        class="avatar-uploader"
+        action = "upload"
+        :show-file-list="false"
+        :on-success="handleAvatarSuccess"
+        :before-upload="beforeAvatarUpload"
+        ref="upload"
+        :on-change="imgSaveToUrl"
+        >
+        <img v-if="imageUrl" :src="imageUrl" class="avatar">
+        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+      </el-upload>
+      <div class="Button mx-auto d-flex justify-content-center mt-5 pt-3">
+        <button type="button" class="btn btn-warning" @click.prevent="$router.go(-1)">上一頁</button>
+        <button type="button" class="btn btn-primary ml-3"  @click.prevent="uploadFile()">確定</button>
+        <button type="button" class="btn btn-warning ml-3"  @click.prevent="$router.push('/sellerstore')">返回賣場</button>
+      </div>
+  </div>
+</div>
 </template>
 <script>
 export default {
   data () {
     return {
       imageUrl: '',
-      file: ''
+      file: '',
+      loading: false
     }
   },
   inject: ['reload'],
@@ -45,7 +47,6 @@ export default {
       if (!isLt2M) {
         this.$message.error('上傳頭像圖片大小不能超过 2MB!')
       }
-      // 校验成功上传文件
       if (isJPG && isLt2M === true) {
         this.file = file
       }
@@ -59,6 +60,7 @@ export default {
       // 转换后的地址为 blob:http://xxx/7bf54338-74bb-47b9-9a7f-7a7093c716b5
     },
     uploadFile () {
+      this.loading = true
       const id = this.$route.params.id
       const token = localStorage.getItem('token')
       const form = new FormData()
@@ -70,9 +72,18 @@ export default {
           'Content-Type': 'multipart/form-data'
         }
       }).then(res => {
+        this.loading = false
+        this.imageUrl = ''
         this.photoSuccess(res.data.message)
       }).catch(err => {
-        this.$message(err)
+        this.loading = false
+        const errObj = err.response
+        if (errObj.status === 400 || errObj.status === 404 || errObj.status === 500) {
+          this.$message({
+            message: errObj.data.Message,
+            type: 'warning'
+          })
+        }
       })
     },
     photoSuccess (msg) {

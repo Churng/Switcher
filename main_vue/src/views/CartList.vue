@@ -51,7 +51,7 @@
                           <p class="mb-1 ml-2">共<span>{{info.Product.Period}}</span>日</p>
                       </div>
                   </div>
-                  <div class="col-md-1 switcherOrder-delete" @click.prevent="open(index[0].Id)"><font-awesome-icon icon="trash-alt"/></div>
+                  <div class="col-md-1 switcherOrder-delete" @click.prevent="openDelete(index[0].Id)"><font-awesome-icon icon="trash-alt"/></div>
               </div>
               <div class="d-flex justify-content-between align-items-center">
                   <div class="d-flex justify-content-end pr-3">
@@ -87,7 +87,7 @@ export default {
     this.getCartData()
   },
   methods: {
-    open (idx) {
+    openDelete (idx) {
       this.$confirm('此操作將永遠刪除該商品, 是否繼續 ?', '提示', {
         confirmButtonText: '確定',
         cancelButtonText: '取消',

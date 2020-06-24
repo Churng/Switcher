@@ -254,7 +254,7 @@ export default {
     },
     toEditPhoto () {
       this.$router.push({
-        name: 'UploadProductphoto',
+        name: 'AddProductphoto',
         params: {
           id: this.$route.query.id
         }

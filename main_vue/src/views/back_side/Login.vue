@@ -203,12 +203,7 @@ export default {
       })
         .catch(error => {
           const errObj = error.response
-          if (errObj.status === 400 && errObj.data.message === '登入失敗!') {
-            this.$message({
-              message: errObj.data.message,
-              type: 'warning'
-            })
-          } else if (errObj.status === 404 && errObj.data.message === '登入失敗!') {
+          if (errObj.status === 400 || errObj.status === 404 || errObj.status === 500) {
             this.$message({
               message: errObj.data.message,
               type: 'warning'

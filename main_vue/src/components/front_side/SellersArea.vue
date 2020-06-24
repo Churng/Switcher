@@ -43,3 +43,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scope>
+.home-sellers .el-carousel__arrow{
+  background-color: #fff;
+  color: rgba(31,45,61,1);
+}
+</style>

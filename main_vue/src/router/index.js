@@ -27,12 +27,12 @@ import Chatroom from '../views/back_side/MemberInfo/Chatroom'
 import SellerStore from '../views/back_side/MemberInfo/SellerStore'
 import PerProduct from '../components/back_side/PerProduct'
 import EditPerProduct from '../views/back_side/MemberInfo/EditPerProduct'
-import UploadProductphoto from '../components/back_side/UploadProductphoto'
+// import UploadProductphoto from '../components/back_side/UploadProductphoto'
 import AddProductphoto from '../components/back_side/AddProductphoto'
 import ResetPasswordNext from '../views/back_side/ResetPasswordNext'
 Vue.use(VueRouter)
 
-// 解決报错显示:路由重复
+// 解決報錯顯示:路由重覆
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push (location) {
   return originalPush.call(this, location).catch(err => err)
@@ -151,12 +151,12 @@ const routes = [
     name: 'AddProductphoto',
     component: AddProductphoto
   },
-  {
-    path: '/uploadproductphoto/:id',
-    name: 'UploadProductphoto',
-    component: UploadProductphoto,
-    meta: { requiresAuth: true }
-  },
+  // {
+  //   path: '/uploadproductphoto/:id',
+  //   name: 'UploadProductphoto',
+  //   component: UploadProductphoto,
+  //   meta: { requiresAuth: true }
+  // },
   {
     path: '/orderseller',
     name: 'OrderSeller',

@@ -9,6 +9,7 @@
         <th scope="col">總押金</th>
         <th scope="col">訂單狀態</th>
         <th scope="col">詳請</th>
+        <th scope="col">評論</th>
       </tr>
     </thead>
     <tbody class="text-center seller-order" v-if="noneData">
@@ -25,12 +26,17 @@
         <td>{{item.FinalDeposit}}</td>
         <td>{{item.Status}}</td>
         <td><button class="btn btn-primary openDetailBtn" type="submit" @click.prevent="filterProductData(item.Id)">詳請</button></td>
+         <td v-if="item.Status === '已完成'"><button class="btn btn-info openDetailBtn" type="submit" @click.prevent="isComment(item.Id)">評論</button></td>
         <OrderDetails
         :getAllData="getAllData"
         :getSingleData="getSingleData"
         v-if="dialogVisible"
         @changeDialogVisible ="dialogVisible = false"
         @changeStatus = "changeFaStatus"/>
+        <OrderComment
+        v-if="openComment"
+        @changeDialogVisible ="openComment = false"
+        :item="item"/>
       </tr>
     </tbody>
   </table>
@@ -38,6 +44,7 @@
 
 <script>
 import OrderDetails from '../back_side/OrderDetails'
+import OrderComment from '../back_side/OrderComment'
 
 export default {
   data () {
@@ -45,11 +52,12 @@ export default {
       noneData: false,
       dialogVisible: false,
       getAllData: [],
-      getSingleData: []
+      getSingleData: [],
+      openComment: false
     }
   },
   props: ['rentalData', 'userData'],
-  components: { OrderDetails },
+  components: { OrderDetails, OrderComment },
   computed: {
     filterIdArr () {
       const vm = this
@@ -91,6 +99,41 @@ export default {
           data.Status = status
           return data.Status
         }
+      })
+    },
+    isComment (id) {
+      this.openComment = true
+    },
+    toComment (Id) {
+      const h = this.$createElement
+      this.$msgbox({
+        title: '請為此筆商品服務評論',
+        message: h('p', null, [
+          h('span', null, '滿意度 : '),
+          h('i', { style: 'color: teal' }, { class: 'el-icon-star-off' })
+        ]),
+        showCancelButton: true,
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        beforeClose: (action, instance, done) => {
+          if (action === 'confirm') {
+            instance.confirmButtonLoading = true
+            instance.confirmButtonText = '执行中...'
+            setTimeout(() => {
+              done()
+              setTimeout(() => {
+                instance.confirmButtonLoading = false
+              }, 300)
+            }, 3000)
+          } else {
+            done()
+          }
+        }
+      }).then(action => {
+        this.$message({
+          type: 'info',
+          message: 'action: ' + action
+        })
       })
     }
   }

@@ -13,7 +13,11 @@ body{
   justify-content: center;
   align-items: center;
 }
-
+.phoneLoginForget{
+    @include mobile_576{
+      min-height: calc(100vh - 40rem);
+    }
+  }  
 .login-content{
   width: 250px;
   padding: 25px;
