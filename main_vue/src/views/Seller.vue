@@ -13,7 +13,12 @@
                 <div class="col-12 col-md-6 col-lg-5">
                     <div class="switcherStore-sellerCard bg-dark d-flex justify-content-around align-items-center shadow-sm pt-3 mb-4 rounded">
                         <div class="sellerImg">
-                            <img :src="memberData.Photo" :alt="memberData.Name">
+                            <el-image v-if="memberData.Photo === null">
+                              <div slot="error" class="image-slot">
+                                <i class="el-icon-user"></i>
+                              </div>
+                            </el-image>
+                            <img :src="memberData.Photo" :alt="memberData.Name" v-else>
                         </div>
                         <div class="sellerTxt text-white w-50">
                             <h5 class="mb-0">{{memberData.Name}}</h5>
@@ -55,17 +60,13 @@
                     <p>{{memberData.StoreDescription}}</p>
                 </div>
                 <div class="col-sm-6 about-storeImg h-100">
-                    <div class="demo-image__error" v-if="memberData.StoreImage === ''">
-                      <div class="block sellerImg">
-                        <el-image>
+                    <div class="storeImg">
+                      <el-image v-if="sellerData.member.StoreImage === null">
                           <div slot="error" class="image-slot">
                             <i class="el-icon-picture-outline"></i>
                           </div>
-                        </el-image>
-                      </div>
-                    </div>
-                    <div class="storeImg" v-else>
-                      <img :src="memberData.StoreImage" alt="StoreImage">
+                      </el-image>
+                      <img :src="memberData.StoreImage" alt="StoreImage" v-else>
                     </div>
                 </div>
             </div>

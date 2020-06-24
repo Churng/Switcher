@@ -11,7 +11,12 @@
                 <div class="col-12 col-md-6 col-lg-5">
                     <div class="switcherStore-sellerCard bg-dark d-flex justify-content-around align-items-center shadow-sm pt-3 mb-4 rounded">
                         <div class="sellerImg">
-                            <img :src="sellerData.member.Photo" :alt="sellerData.member.Name">
+                            <el-image v-if="sellerData.member.Photo === null">
+                              <div slot="error" class="image-slot">
+                                <i class="el-icon-user"></i>
+                              </div>
+                            </el-image>
+                            <img :src="sellerData.member.Photo" :alt="sellerData.member.Name" v-else>
                         </div>
                         <div class="sellerTxt text-white w-50">
                             <h5 class="mb-2">{{sellerData.member.Name}}</h5>
@@ -38,7 +43,8 @@
                             <div class="sellerInfo-chat">
                                 <font-awesome-icon icon="comment-dots"/>
                                 <span class="pl-2">主要回應時間</span>
-                                <span class="orange-txt pl-2">{{sellerData.member.Reply}}</span>
+                                <span class="orange-txt pl-2" v-if="sellerData.member.Reply === null">無</span>
+                                <span class="orange-txt pl-2" v-else>{{sellerData.member.Reply}}</span>
                             </div>
                         </div>
                     </div>
@@ -53,17 +59,13 @@
                     <p>{{sellerData.member.StoreDescription}}</p>
                 </div>
                 <div class="col-sm-6 about-storeImg h-100">
-                    <div class="demo-image__error" v-if="sellerData.member.StoreImage === ''">
-                      <div class="block sellerImg">
-                        <el-image>
+                    <div class="storeImg">
+                      <el-image v-if="sellerData.member.StoreImage === null">
                           <div slot="error" class="image-slot">
                             <i class="el-icon-picture-outline"></i>
                           </div>
-                        </el-image>
-                      </div>
-                    </div>
-                    <div class="storeImg" v-else>
-                      <img :src="sellerData.member.StoreImage" :alt="sellerData.member.StoreImage" width="450">
+                      </el-image>
+                      <img :src="sellerData.member.StoreImage" :alt="sellerData.member.StoreImage" v-else>
                     </div>
                 </div>
             </div>

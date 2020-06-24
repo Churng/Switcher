@@ -13139,12 +13139,25 @@ body {
   background-size: contain;
 }
 
-.switcherStore-sellerCard .sellerImg img {
+.switcherStore-sellerCard .sellerImg img, .switcherStore-sellerCard .sellerImg .el-image {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
+}
+
+.switcherStore-sellerCard .sellerImg .el-image {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #e9ecef;
 }
 
 .switcherStore-sellerCard .sellerTxt p, .switcherStore-sellerCard .sellerTxt button {
@@ -13184,6 +13197,21 @@ body {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.switcherStore-aboutInfo .storeImg .el-image {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #e9ecef;
 }
 
 @media (max-width: 576px) {
@@ -13270,6 +13298,12 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media (max-width: 576px) {
+  .phoneLoginForget {
+    min-height: calc(100vh - 40rem);
+  }
 }
 
 .login-content {
@@ -13466,48 +13500,12 @@ body {
   font-size: 80px;
 }
 
-@media (max-width: 576px) {
-  .forgetpw {
-    width: 100%;
-    padding: 20px;
-    margin-bottom: 15px;
-  }
-}
-
-@media (min-width: 768px) {
-  .forgetpw {
-    width: 500px;
-  }
-}
-
 .resetleter {
   font-size: 50px;
 }
 
 .reset-button {
   text-align: center;
-}
-
-.reset-button {
-  padding-left: 11px;
-}
-
-.reset-button .btn-danger, .reset-button .btn-warning {
-  width: 120px;
-  margin-right: 20px;
-}
-
-@media (min-width: 768px) {
-  .alert-mail {
-    width: 300px;
-  }
-}
-
-@media (max-width: 414px) {
-  .reset-button .btn-danger,
-  .reset-button .btn-primary {
-    width: 93px;
-  }
 }
 
 body {
@@ -13532,7 +13530,7 @@ body {
   }
 }
 
-git body {
+body {
   color: #3C3C3C;
 }
 

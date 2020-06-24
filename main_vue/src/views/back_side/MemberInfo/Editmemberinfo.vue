@@ -93,10 +93,12 @@
       </div>
 
       <div class="col-4 bg-light mt-5 pt-5 mem-upload-photo" >
-        <el-image class="rounded-circle personal-photo" :src="userData.member.Photo">
+        <el-image class="nonePersonalImg" v-if="userData.member.Photo === null">
           <div slot="error" class="image-slot">
-            <i class="el-icon-picture-outline"></i>
+            <i class="el-icon-user"></i>
           </div>
+        </el-image>
+        <el-image class="rounded-circle personal-photo" :src="userData.member.Photo" v-else>
         </el-image>
         <div class="file-loading mt-5 mx-100">
           <input ref="uploadfile"  id="upload-memphoto" name="Upload-memphoto" type="file" accept="image/*" @change="userImage" required />
@@ -108,11 +110,12 @@
         <div class="col-md-4 bg-light px-4">
           <h2>賣場資料</h2>
           <p class="ml-4">賣場圖片</p>
-          <el-image class="shop-photo ml-4" :src="userData.member.StoreImage"  width="200"  onerror="nofind()">
+          <el-image class="shop-photo ml-4 d-flex justify-content-center align-items-center" v-if="userData.member.StoreImage === null">
             <div slot="error" class="image-slot">
               <i class="el-icon-picture-outline"></i>
             </div>
           </el-image>
+          <img :src="userData.member.StoreImage" width="200" v-else>
           <div class="file-loading mt-5 mx-100 ml-4">
           <input ref="storeImg" id="upload-memphoto"  name="Upload-memphoto" type="file" accept="image/*" @change="storeImage"  required />
         </div>
@@ -308,11 +311,6 @@ export default {
           title: '無法上傳照片！',
           message: '無法上傳照片！'
         })
-    },
-    nofind () {
-      let img = event.srcElement
-      img.src = "/Users/yuhsuanlee/Switcher/main_vue/public/img/game/game01.jpg" //替換的圖片
-      img.onerror = null
     }
   },
   created () {
@@ -322,7 +320,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scode>
+<style lang="scss" scope>
 .personal-photo img{
   object-fit: cover;
 }
@@ -348,5 +346,15 @@ export default {
     overflow: hidden;
     width: 200px;
     height: 200px;
+}
+.nonePersonalImg{
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .el-icon-user{
+    font-size: 30px;
+  }
 }
 </style>

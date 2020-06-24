@@ -50,13 +50,13 @@ export default {
       },
       rules: {
         name: [
-          { required: true, message: '請輸入會員姓名', trigger: 'blur' }
+          { required: true, message: '請輸入正確會員姓名', trigger: 'blur' }
         ],
         phone: [
           { required: true, message: '請輸入行動電話', trigger: 'blur' }
         ],
         mail: [
-          { required: true, message: '請輸入會員E-mail', trigger: 'blur' }
+          { required: true, message: '請輸入正確會員E-mail', trigger: 'blur' }
         ]
       }
     }
