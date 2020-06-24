@@ -3,14 +3,17 @@
     <div class="container">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item" @click.prevent="$router.push({name: 'SellerStore', params: '/sellerstore'})">我的賣場</li>
-          <li class="breadcrumb-item active text-primary" aria-current="page">上架商品</li>
+          <li class="breadcrumb-item">
+            <a href="/sellerstore">我的賣場</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">上架商品</li>
         </ol>
       </nav>
     </div>
     <section>
       <div class="container bg-light">
         <form class="w-50 m-auto py-5">
+          <span>＊字為必填選項</span>
           <el-form :model="commodity" :rules="rules" ref="commodity" :label-position="labelPosition">
             <el-form-item label="商品名稱" prop="Name">
               <el-input v-model="commodity.Name" required></el-input>
@@ -42,9 +45,8 @@
                 <el-input v-model="commodity.Period" placeholder="請輸入租借天數" required></el-input>
               </el-form-item>
             </div>
-            <p class="localTxt"><span class="text-primary">*</span> 請選擇面交地點</p>
               <div class="Transaction">
-                <el-select v-model="commodity.City" placeholder="請選擇城市" @change="selectAll()">
+                <el-select v-model="commodity.City" :label="城市" placeholder="請選擇城市"  @change="selectAll()">
                   <el-option
                     v-for="(item, city) in CityData"
                     :key="city"
@@ -101,7 +103,6 @@
               <button type="button" class="btn btn-warning ml-3" @click="submitForm('commodity')">儲存</button>
             </div>
           </div>
-          <p class="text-center text-primary specialTxt">＊字為必填選項</p>
         </form>
       </div>
     </section>
@@ -331,11 +332,7 @@ export default {
   }
 }
 </script>
-
 <style lang="scss">
-.breadcrumb-item{
-  cursor: pointer;
-}
 .product-photo-upload {
   width: 100%;
   height: 300px;
@@ -349,8 +346,5 @@ export default {
       margin: 0px 1px;
     }
   }
-}
-.specialTxt, .localTxt{
-  font-size: 14px;
 }
 </style>
