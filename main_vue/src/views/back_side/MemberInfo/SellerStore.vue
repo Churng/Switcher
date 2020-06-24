@@ -8,7 +8,7 @@
                 </div>
             </div>
             <div class="row switcherStore-header justify-content-center align-items-center pb-4 border-bottom">
-                <div class="col-12 col-md-7 col-lg-6">
+                <div class="col-12 col-md-6 col-lg-5">
                     <div class="switcherStore-sellerCard bg-dark d-flex justify-content-around align-items-center shadow-sm pt-3 mb-4 rounded">
                         <div class="sellerImg">
                             <img :src="sellerData.member.Photo" :alt="sellerData.member.Name">
@@ -68,10 +68,10 @@
                 </div>
             </div>
             <div class="row switcherStore-main bg-danger justify-content-center text-center pt-2 pb-2">
-                <div class="col-md-2 border-right"><span class="main-item active d-block text-white" @click="getProduct()">所有商品</span></div>
-                <div class="col-md-2 border-right"><span class="main-item d-block text-white" @click="isGameHost()">遊戲主機</span></div>
-                <div class="col-md-2 border-right"><span class="main-item d-block text-white" @click="isGame()">遊戲軟體</span></div>
-                <div class="col-md-2 border-right"><span class="main-item d-block text-white" @click="isGameStick()">遊戲配件</span></div>
+                <div class="col-md-2 border-right btnFous" tabindex="1"><span class="main-item active d-block text-white" @click="getProduct()">所有商品</span></div>
+                <div class="col-md-2 border-right btnFous" tabindex="1"><span class="main-item d-block text-white" @click="isGameHost()">遊戲主機</span></div>
+                <div class="col-md-2 border-right btnFous" tabindex="1"><span class="main-item d-block text-white" @click="isGame()">遊戲軟體</span></div>
+                <div class="col-md-2 border-right btnFous" tabindex="1"><span class="main-item d-block text-white" @click="isGameStick()">遊戲配件</span></div>
             </div>
             <div class="mx-auto">
               <ul class="row switcherStore-body list-unstyled flex-wrap bg-white pt-5 pb-4">
@@ -139,7 +139,6 @@ export default {
         .get(api, {
         })
         .then(response => {
-          // console.log(response.data)
           this.sellerData = response.data
         })
         .catch(err => {
@@ -161,6 +160,9 @@ export default {
             if (item.MemberName === this.sellerData.Member) {
               return true
             }
+          })
+          arr.sort(function (a, b) {
+            return a.PublishDate < b.PublishDate ? 1 : -1
           })
           this.SellerproductData = arr
           this.SellerproductDataLen = arr.length
@@ -194,23 +196,36 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .float-button {
-    position: fixed;
-    height: 100px;
-    width: 49px;
-    bottom: 260px;
-    right: 0px;
-    background: #FF7D01;
-    border-radius: 10px 0 0 10px;
-    box-shadow: 2px 1px 4px 0px #6c757d;
-    cursor: pointer;
-    z-index: 99999;
-  }
+.float-button {
+  position: fixed;
+  height: 100px;
+  width: 49px;
+  bottom: 260px;
+  right: 0px;
+  background: #FF7D01;
+  border-radius: 10px 0 0 10px;
+  box-shadow: 2px 1px 4px 0px #6c757d;
+  cursor: pointer;
+  z-index: 9999;
+}
 
- .addProduct{
-   writing-mode:vertical-rl;
-   color:white;
-   letter-spacing:5px;
-   padding: 8px;
- }
+.addProduct{
+  writing-mode:vertical-rl;
+  color:white;
+  letter-spacing:5px;
+  padding: 8px;
+}
+
+.btnFous{
+  color: white;
+  opacity: .5;
+  &:focus{
+  opacity: 1;
+  outline: none;
+  }
+}
+
+.noneTxt {
+  line-height: 250px;
+}
 </style>

@@ -1,9 +1,9 @@
 <template>
-    <section id="switcherOrder-one" class="bg-light pb-5">
+    <section id="switcherOrder-one" class="bg-light">
       <el-backtop :bottom="60"></el-backtop>
       <div class="loading vh-100" v-if="loading"><img src="/img/Spinner-1.1s-200px.gif" alt="loading"></div>
       <div>
-        <div class="container" v-if="$root.getCarts.length === 0 || this.$root.getCartLen === 0">
+      <div class="container" v-if="$root.getCarts.length === 0 || this.$root.getCartLen === 0">
           <div class="text-center vh-100 d-flex flex-column justify-content-center align-items-center">
             <h2 class="font-weight-bold pt-5 pb-5">沒有商品在購物車內</h2>
             <span class="shopping"><font-awesome-icon icon="cart-arrow-down"/></span>
@@ -63,7 +63,7 @@
             </div>
           </div>
       </div>
-      <div class="container">
+      <div class="container pb-5">
         <div class="row ">
           <div class="col-12 d-flex justify-content-center">
             <button type="button" class="btn btn-outline-primary btn-lg" @click.prevent="$router.push('/findGames/allGame')"><font-awesome-icon icon="shopping-cart" class="mr-2"/>繼續選購</button>
@@ -100,7 +100,9 @@ export default {
             Authorization: `Bearer ${token}`
           }
         }).then(
-          this.getCartData(),
+          setTimeout(_ => {
+            this.getCartData()
+          }, 100),
           this.$message({
             type: 'success',
             message: '删除成功!'
@@ -113,14 +115,14 @@ export default {
         })
       })
     },
-    async getCartData () {
+    getCartData () {
       this.cartData = {}
       this.$root.getCarts = []
       this.$root.getCartLen = 0
       const api = 'http://switcher.rocket-coding.com/api/cart'
       const token = localStorage.getItem('token')
       this.loading = true
-      await this.$http.get(api, {
+      this.$http.get(api, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -203,5 +205,8 @@ export default {
 }
 .submitBtn{
   height: fit-content;
+}
+#switcherOrder-one{
+  min-height: calc(100vh - 12rem);
 }
 </style>

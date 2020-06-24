@@ -3,10 +3,8 @@
     <div class="container">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb mb-4">
-          <li class="breadcrumb-item">
-            <a href="/">首頁</a>
-          </li>
-          <li class="breadcrumb-item active" aria-current="page">訂單管理</li>
+          <li class="breadcrumb-item" @click.prevent="$router.push({name: 'SellerStore', params: '/sellerstore'})">我的賣場</li>
+          <li class="breadcrumb-item active text-primary" aria-current="page">訂單管理</li>
         </ol>
       </nav>
     </div>

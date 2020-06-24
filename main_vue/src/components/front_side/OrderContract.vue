@@ -53,7 +53,7 @@
             <button type="button" class="btn btn-warning mr-2" @click.prevent="$router.go(-1)">上一步</button>
             <button type="button" class="btn btn-warning ml-2" @click.prevent="createOrder">送出預約</button>
         </div>
-        <div class="btn-footer text-center mb-5">點選「送出預約」，即表示同意以上租賃契約。</div>
+        <div class="btn-footer text-center pb-5">點選「送出預約」，即表示同意以上租賃契約。</div>
     </div>
   </section>
 </template>

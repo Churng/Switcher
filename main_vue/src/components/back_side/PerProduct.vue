@@ -15,7 +15,7 @@
                           <span class="isLease">{{item.Status}}</span>
                       </div>
                   </div>
-                  <div class="card-text-bottom d-flex justify-content-between align-items-baseline mb-1">
+                  <div class="card-text-bottom d-flex justify-content-between align-items-end mb-2">
                       <div class="onDate">
                           <span>上架日期</span>
                           <span>{{item.PublishDate}}</span>

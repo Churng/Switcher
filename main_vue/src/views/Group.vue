@@ -4,7 +4,7 @@
           <el-backtop :bottom="60"></el-backtop>
             <div class="row groupInfo pt-5 pb-5 d-flex flex-column">
                 <div class="text-center pt-5 pb-3">
-                    <h2 class="text-primary font-weight-bold">Meet Switcher</h2>
+                    <h2 class="text-primary font-weight-bold">遇見 Switcher</h2>
                     <p class="headerTxt font-weight-bold">SWITCH GAMES AND BE THE FAM</p>
                     <div class="endLine"></div>
                 </div>
@@ -23,7 +23,7 @@
         <div class="container-fluid mt-lg-5 pt-5 pb-5 groupTeam">
             <div class="row d-flex flex-column">
                 <div class="text-center mb-5">
-                    <h2 class="font-weight-bold mb-4">Development Team</h2>
+                    <h2 class="font-weight-bold mb-4">開發團隊</h2>
                     <div class="endLine"></div>
                 </div>
             </div>
@@ -54,7 +54,7 @@
         <div class="container mt-5 pt-5 pb-5">
             <div class="row d-flex flex-column">
                 <div class="text-center mb-5">
-                    <h2 class="text-primary font-weight-bold mb-4">Use Technology</h2>
+                    <h2 class="text-primary font-weight-bold mb-4">使用技術</h2>
                     <div class="endLine"></div>
                 </div>
             </div>

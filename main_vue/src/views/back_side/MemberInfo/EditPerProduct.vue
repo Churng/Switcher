@@ -3,17 +3,14 @@
     <div class="container">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="/">首頁</a>
-          </li>
-          <li class="breadcrumb-item active" aria-current="page">編輯商品</li>
+          <li class="breadcrumb-item" @click.prevent="$router.push({name: 'SellerStore', params: '/sellerstore'})">我的賣場</li>
+          <li class="breadcrumb-item active text-primary" aria-current="page">編輯商品</li>
         </ol>
       </nav>
     </div>
     <section>
       <div class="container bg-light">
         <form class="w-50 m-auto py-5">
-          <span>＊字為必填選項</span>
           <el-form :model="Productdata.product"  ref="Productdata.product" >
             <el-form-item label="商品名稱" >
               <el-input v-model="Productdata.product.Name" required></el-input>
@@ -45,6 +42,7 @@
                 <el-input v-model="Productdata.product.Period" placeholder="請輸入租借天數" required></el-input>
               </el-form-item>
             </div>
+              <p class="localTxt"><span class="text-primary">*</span> 請選擇面交地點</p>
               <div class="Transaction">
                 <el-select v-model="Productdata.product.City" placeholder="請選擇城市" label="城市" @change="selectAll()">
                   <el-option
@@ -86,7 +84,7 @@
               </el-form-item>
             </div>
             <el-form-item label="商品狀態" >
-              <el-radio-group v-model="Productdata.product.Status" required>
+              <el-radio-group v-model="Productdata.product.Status" required class="pl-3">
                 <el-radio label="可出租" :value="0"></el-radio>
                 <el-radio label="已出租" :value="1"></el-radio>
               </el-radio-group>
@@ -104,6 +102,7 @@
               <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#staticBackdrop" @click="toEditPhoto">修改照片</button>
             </div>
           </div>
+          <p class="text-center text-primary specialTxt">＊字為必填選項</p>
         </form>
       </div>
     </section>
@@ -288,3 +287,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scope>
+.el-form-item__content{
+  line-height: 50px;
+}
+</style>
