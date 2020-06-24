@@ -57,7 +57,7 @@ export default {
       this.$emit('changeDialogVisible')
     },
     postComment (id) {
-      console.log(this.item.id, id)
+      console.log(id)
     }
   }
 }
