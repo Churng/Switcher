@@ -22,17 +22,24 @@
                             </div>
                             <div class="w-100 cardContent d-flex align-items-center pt-2 pb-2" v-for="(item, index) in getSingleData" :key="item.ProductId">
                               <h3 class="w-25 text-center font-weight-bold text-muted">{{index+1}}</h3>
-                              <div class="w-75">
-                                <p>商品名稱：<span>{{item.ProductName}}</span></p>
-                                <p>租借價格：<span>{{item.Price}}/天</span></p>
-                                <p>開始日期：<span>{{item.StartDate}}</span></p>
-                                <p>歸還日期：<span>{{item.EndDate}}</span></p>
+                              <div class="w-75 d-flex justify-content-between align-items-center">
+                                <div>
+                                  <p>商品名稱：<span>{{item.ProductName}}</span></p>
+                                  <p>租借價格：<span>{{item.Price}}/天</span></p>
+                                  <p>開始日期：<span>{{item.StartDate}}</span></p>
+                                  <p>歸還日期：<span>{{item.EndDate}}</span></p>
+                                </div>
+                                <el-button v-if="getAllData.Status === '已完成'" @click="isComment(item.ProductId)" class="commentBtn" type="primary" icon="el-icon-edit" circle></el-button>
+                                <OrderComment
+                                  v-if="openComment"
+                                  @changeDialogVisible ="openComment = false"
+                                  :item ="item"/>
                               </div>
                             </div>
                         </div>
                         <div class="card-footer text-center">
                             <el-button type="success" plain @click.prevent="postOrderData(getAllData.Id, 1)" v-if="getAllData.Status === '等待確認'">取消訂單</el-button>
-                            <h5 class="font-weight-bold text-center" v-else>訂單已取消</h5>
+                            <h5 class="font-weight-bold text-center" v-else>{{getAllData.Status}}</h5>
                         </div>
                     </div>
                 </div>
@@ -42,7 +49,15 @@
 </template>
 
 <script>
+import OrderComment from './OrderComment'
+
 export default {
+  data () {
+    return {
+      openComment: false
+    }
+  },
+  components: { OrderComment },
   props: ['getAllData', 'getSingleData'],
   methods: {
     changeDialogVisible () {
@@ -84,6 +99,11 @@ export default {
       }).catch(err => {
         this.errInfo(err)
       })
+    },
+    isComment (id) {
+      console.log(id)
+      console.log(this.getSingleData)
+      this.openComment = true
     }
   }
 }
@@ -122,5 +142,9 @@ button:focus{
   .userImg{
     object-fit: cover;
   }
+}
+.commentBtn{
+  width: 40px;
+  height: 40px;
 }
 </style>

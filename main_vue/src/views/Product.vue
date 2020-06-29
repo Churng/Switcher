@@ -179,6 +179,7 @@ export default {
       this.loading = true
       this.$http.get(api).then(res => {
         this.product = res.data.product
+        console.log(res.data)
         this.allData = res.data
         this.loading = false
       }).catch(err => {

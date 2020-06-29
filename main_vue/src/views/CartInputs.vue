@@ -1,6 +1,6 @@
 <template>
   <section id="switcherOrder-Two" class="bg-light vh-100 d-flex align-items-center">
-    <div class="container" v-if="$root.getCartLen > 0">
+    <div class="container pt-5" v-if="$root.getCartLen > 0">
       <div class="row">
           <div class="col-md-6 col-10 mx-auto mb-5">
               <div class="progress-txt d-flex justify-content-around">
@@ -16,6 +16,7 @@
       <div class="endLine mb-4"></div>
       <div class="row flex-column justify-content-center align-items-center">
           <div class="col-md-8">
+            <i class="simpleTitle text-warning text-right d-block" @click.prevent="openAlert()"><font-awesome-icon icon="exclamation-circle"/> 會員小提示</i>
             <keep-alive>
               <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm pt-3 pb-5">
                 <el-form-item label="會員姓名" prop="name">
@@ -61,6 +62,9 @@ export default {
       }
     }
   },
+  created () {
+    this.openAlert()
+  },
   methods: {
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
@@ -83,6 +87,13 @@ export default {
     },
     isError () {
       this.$message.error('送出錯誤,請在試一次！')
+    },
+    openAlert () {
+      const h = this.$createElement
+      this.$notify({
+        title: '會員小提示',
+        message: h('p', { style: 'color: teal' }, '輸入資料請填寫當初註冊的會員姓名 / E-mail, 以利後續合約之生成 !')
+      })
     }
   }
 }
@@ -91,5 +102,8 @@ export default {
 <style lang="scss" scoped>
 .text-primary{
   font-size: 12px;
+}
+.simpleTitle{
+  cursor: pointer;
 }
 </style>

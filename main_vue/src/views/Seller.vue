@@ -61,12 +61,12 @@
                 </div>
                 <div class="col-sm-6 about-storeImg h-100">
                    <div class="storeImg">
-                      <el-image v-if="sellerData.member.StoreImage === null">
+                      <el-image v-if="memberData.StoreImage === null">
                           <div slot="error" class="image-slot">
                             <i class="el-icon-picture-outline"></i>
                           </div>
                      </el-image>
-                      <img :src="memberData.StoreImage" alt="StoreImage" v-else>
+                      <img :src="memberData.StoreImage" alt="StoreImage">
                     </div>
                 </div>
             </div>

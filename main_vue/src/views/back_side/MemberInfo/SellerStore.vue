@@ -11,13 +11,13 @@
                 <div class="col-12 col-md-6 col-lg-5">
                     <div class="switcherStore-sellerCard bg-dark d-flex justify-content-around align-items-center shadow-sm pt-3 mb-4 rounded">
                         <div class="sellerImg">
-                        </div>
-                          <el-image v-if="sellerData.member.Photo === null">
+                            <el-image v-if="sellerData.member.Photo === null">
                               <div slot="error" class="image-slot">
                                 <i class="el-icon-user"></i>
                               </div>
-                          </el-image>
-                          <img :src="sellerData.member.Photo" :alt="sellerData.member.Name" v-else>
+                            </el-image>
+                            <img :src="sellerData.member.Photo" :alt="sellerData.member.Name" v-else>
+                        </div>
                         <div class="sellerTxt text-white w-50">
                             <h5 class="mb-2">{{sellerData.member.Name}}</h5>
                             <h6>主要商品 :</h6>
