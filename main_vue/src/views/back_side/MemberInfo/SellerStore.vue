@@ -42,7 +42,6 @@
                             <div class="sellerInfo-chat">
                                 <font-awesome-icon icon="comment-dots"/>
                                 <span class="pl-2">主要回應時間</span>
-                                <span class="orange-txt pl-2">{{sellerData.member.Reply}}</span>
                                 <span class="orange-txt pl-2" v-if="sellerData.member.Reply === null">無</span>
                                 <span class="orange-txt pl-2" v-else>{{sellerData.member.Reply}}</span>
                             </div>
@@ -141,6 +140,7 @@ export default {
         .get(api, {
         })
         .then(response => {
+          console.log(this.sellerData)
           this.sellerData = response.data
         })
         .catch(err => {

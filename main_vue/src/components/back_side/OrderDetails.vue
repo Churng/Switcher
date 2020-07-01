@@ -3,7 +3,7 @@
       <!-- 訂購紀錄詳情 -->
         <div class="container">
             <div class="row instructionCard justify-content-center align-items-center visible orderDetailCard">
-                <div class="col-6 pl-0 pr-0 h-50">
+                <div class="col-10 col-md-6 pl-0 pr-0 h-50">
                     <div class="card-main border border-muted rounded bg-white overflow-auto orderBody h-100">
                         <div class="d-flex justify-content-start align-items-center">
                             <button type="button" class="close" aria-label="Close">
@@ -11,13 +11,13 @@
                             </button>
                         </div>
                         <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                            <div class="cardImgArea w-100 d-flex align-items-center pb-2 mb-2">
+                            <div class="cardImgArea w-100 d-flex flex-column flex-sm-row align-items-center pb-2 mb-2">
                               <div class="w-50 d-flex flex-column justify-content-center align-items-center">
                                 <div class="cardImgInfo"><img :src="getSingleData[0].ImageUrl" class="userImg w-100 h-100 rounded-circle" alt="game"></div>
                                 <p class="pt-2 mb-0">{{getSingleData[0].Seller}}</p>
                               </div>
                               <div class="w-50 imgTxt">
-                                <p>交易門市：<span>{{getSingleData[0].Store}}門市</span></p>
+                                <p>交易門市：<span>{{getSingleData[0].Store}}</span></p>
                               </div>
                             </div>
                             <div class="w-100 cardContent d-flex align-items-center pt-2 pb-2" v-for="(item, index) in getSingleData" :key="item.ProductId">
@@ -29,11 +29,19 @@
                                   <p>開始日期：<span>{{item.StartDate}}</span></p>
                                   <p>歸還日期：<span>{{item.EndDate}}</span></p>
                                 </div>
-                                <el-button v-if="getAllData.Status === '已完成'" @click="isComment(item.ProductId)" class="commentBtn" type="primary" icon="el-icon-edit" circle></el-button>
+                                <el-button
+                                v-if="getAllData.Status === '已完成'"
+                                @click="isComment(item)"
+                                class="commentBtn"
+                                type="primary"
+                                icon="el-icon-edit"
+                                :disabled = "isdisabled"
+                                circle
+                                ></el-button>
                                 <OrderComment
                                   v-if="openComment"
                                   @changeDialogVisible ="openComment = false"
-                                  :item ="item"/>
+                                  :commentItem ="commentItem"/>
                               </div>
                             </div>
                         </div>
@@ -54,7 +62,9 @@ import OrderComment from './OrderComment'
 export default {
   data () {
     return {
-      openComment: false
+      openComment: false,
+      isdisabled: false,
+      commentItem: {}
     }
   },
   components: { OrderComment },
@@ -62,6 +72,13 @@ export default {
   methods: {
     changeDialogVisible () {
       this.$emit('changeDialogVisible')
+    },
+    changeEditBtn (msg) {
+      if (msg === '已新增評論') {
+        this.isdisabled = true
+      } else {
+        this.isdisabled = false
+      }
     },
     postOrderData (Id, statusNum) {
       const api = 'http://switcher.rocket-coding.com/api/order-status'
@@ -100,9 +117,8 @@ export default {
         this.errInfo(err)
       })
     },
-    isComment (id) {
-      console.log(id)
-      console.log(this.getSingleData)
+    isComment (item) {
+      this.commentItem = item
       this.openComment = true
     }
   }

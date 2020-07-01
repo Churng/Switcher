@@ -15,7 +15,7 @@
                         <p>Nintendo</p>
                     </div>
                     <div id="carouselExampleIndicators" class="carousel slide switcherProduct-img mb-4" data-ride="carousel">
-                        <el-image v-if="product.Images.length === 0">
+                        <el-image v-if="product.Images && product.Images.length === 0">
                             <div slot="error" class="image-slot">
                               <i class="el-icon-picture-outline"></i>
                             </div>
@@ -92,60 +92,30 @@
                     <h5>商品評價</h5>
                     <div class="row review-navBar bg-danger text-white d-flex justify-content-around align-items-center pt-2 pb-2">
                         <div class="col-md-4 review-star text-center">
-                            <p class="text-white font-weight-bold mb-1"><span class="num-large">5</span>/5</p>
+                            <p class="text-white font-weight-bold mb-1"><span class="num-large pr-2">{{allData.average}}</span>/ 5</p>
                             <div class="stars d-flex text-warning justify-content-center">
-                                <font-awesome-icon icon="star"/>
-                                <font-awesome-icon icon="star"/>
-                                <font-awesome-icon icon="star"/>
-                                <font-awesome-icon icon="star"/>
-                                <font-awesome-icon icon="star"/>
+                                <font-awesome-icon icon="star" v-for="(star, idx) in allData.average" :key="idx"/>
                             </div>
                         </div>
                         <div class="col-12 col-md-8 review-chooseBtn d-flex justify-content-center">
-                            <button type="button" class="btn btn-outline-light">全部</button>
-                            <button type="button" class="btn btn-outline-light">5星(<span>2</span>)</button>
-                            <button type="button" class="btn btn-outline-light">4星(<span>0</span>)</button>
-                            <button type="button" class="btn btn-outline-light">3星(<span>0</span>)</button>
-                            <button type="button" class="btn btn-outline-light">2星(<span>0</span>)</button>
-                            <button type="button" class="btn btn-outline-light">1星(<span>0</span>)</button>
+                            <button type="button" class="btn btn-outline-light" v-for="item in 5" :key="item" @click.prevent="filterStars(item)">{{item}}星</button>
+                            <button type="button" class="btn btn-outline-light" @click.prevent="getProduct()">全部</button>
                         </div>
                     </div>
                     <ul class="review-list list-unstyled">
-                        <li class="pt-3 pl-4 pr-4">
+                        <li v-if="noneComment" class="text-center pt-5 pb-5">尚無任何評論</li>
+                        <li class="pt-3 pl-4 pr-4" v-for="(item, idx) in filterCommentData" :key="idx">
                             <div class="review-item d-flex border-bottom border-light pb-3">
                                 <div class="userImag">
-                                    <img src="/img/users/iconfinder_7_avatar_2754582.png" alt="user02">
+                                    <img :src="item.Photo" :alt="item.Buyer">
                                 </div>
-                                <div class="userReview ml-2">
-                                    <p class="user mb-1">k****x</p>
-                                    <div class="stars d-flex text-warning">
-                                        <font-awesome-icon icon="star"/>
-                                        <font-awesome-icon icon="star"/>
-                                        <font-awesome-icon icon="star"/>
-                                        <font-awesome-icon icon="star"/>
-                                        <font-awesome-icon icon="star"/>
+                                <div class="userReview ml-4">
+                                    <p class="user mb-1">{{item.Buyer}}</p>
+                                    <div class="stars d-flex text-warning mb-2">
+                                        <font-awesome-icon icon="star" v-for="(star, idx) in item.Star" :key="idx"/>
                                     </div>
-                                    <p class="user-comments mb-1">賣家親切，商品優質，推薦！</p>
-                                    <p class="comments-date mb-1">2020-05-20 14:25</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="pt-3 pl-4 pr-4">
-                            <div class="review-item d-flex border-bottom border-light pb-3">
-                                <div class="userImag">
-                                    <img src="/img/users/iconfinder_9_avatar_2754584.png" alt="user02">
-                                </div>
-                                <div class="userReview ml-2">
-                                    <p class="user mb-1">s****l</p>
-                                    <div class="stars d-flex text-warning">
-                                        <font-awesome-icon icon="star"/>
-                                        <font-awesome-icon icon="star"/>
-                                        <font-awesome-icon icon="star"/>
-                                        <font-awesome-icon icon="star"/>
-                                        <font-awesome-icon icon="star"/>
-                                    </div>
-                                    <p class="user-comments mb-1">賣家親切，推薦！</p>
-                                    <p class="comments-date mb-1">2020-05-22 11:05</p>
+                                    <p class="user-comments mb-1">{{item.Content}}</p>
+                                    <p class="comments-date mb-1">{{item.CreateDate}}</p>
                                 </div>
                             </div>
                         </li>
@@ -166,12 +136,24 @@ export default {
     return {
       product: {},
       allData: {},
-      loading: false
+      comments: [],
+      loading: false,
+      commentData: false,
+      noneComment: false
     }
   },
   components: { ProductSellerStore, ChooseProduct, InstructionCard },
   created () {
     this.getProduct()
+  },
+  computed: {
+    filterCommentData () {
+      if (this.commentData) {
+        return this.commentData
+      } else {
+        return this.comments
+      }
+    }
   },
   methods: {
     getProduct () {
@@ -179,12 +161,23 @@ export default {
       this.loading = true
       this.$http.get(api).then(res => {
         this.product = res.data.product
-        console.log(res.data)
+        this.comments = res.data.evaluation
         this.allData = res.data
         this.loading = false
       }).catch(err => {
         this.$message(err)
       })
+    },
+    filterStars (num) {
+      const data = this.comments.filter(item => {
+        if (item.Star === num) {
+          this.noneComment = false
+          return item
+        } else {
+          this.noneComment = true
+        }
+      })
+      this.commentData = data
     }
   }
 }

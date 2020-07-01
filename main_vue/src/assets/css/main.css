@@ -13046,7 +13046,7 @@ body {
 }
 
 @media (max-width: 480px) {
-  .instructionCard .card-body {
+  .instructionCard .txtContent {
     height: 300px;
   }
   .instructionCard .cardInfo {

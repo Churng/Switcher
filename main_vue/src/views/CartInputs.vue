@@ -46,7 +46,7 @@ export default {
     return {
       ruleForm: {
         name: '',
-        phone: '',
+        phone: null,
         mail: ''
       },
       rules: {

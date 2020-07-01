@@ -12,7 +12,7 @@
                                 <span aria-hidden="true" @click="dialogVisible = false">&times;</span>
                             </button>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body txtContent">
                             <div class="cardInfo">
                               <p class="card-title mb-4">享受租借Switch遊戲周邊商品的方便。</p>
                                 <ul class="card-steps list-unstyled mb-0">
