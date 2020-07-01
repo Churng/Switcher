@@ -101,6 +101,7 @@ export default {
             Authorization: `Bearer ${token}`
           }
         }).then(res => {
+        console.log(res.data.orders)
         this.rentalData = res.data.orders
       }).catch(err => {
         const errObj = err.response

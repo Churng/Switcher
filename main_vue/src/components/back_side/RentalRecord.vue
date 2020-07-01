@@ -53,18 +53,20 @@ export default {
   computed: {
     filterIdArr () {
       const vm = this
-      const arr = vm.orderData.filter(item => {
-        if (item.Product.SellerId === vm.userData.Id) {
-          return item
-        } else {
-          vm.noneData = true
-          return vm.noneData
-        }
-      })
-      arr.sort(function (a, b) {
-        return a.OrderDate < b.OrderDate ? 1 : -1
-      })
-      return arr
+      if (vm.orderData) {
+        const arr = vm.orderData.filter(item => {
+          if (item.Product.SellerId === vm.userData.Id) {
+            return item
+          }
+        })
+        arr.sort(function (a, b) {
+          return a.OrderDate < b.OrderDate ? 1 : -1
+        })
+        return arr
+      } else {
+        vm.noneData = true
+        return vm.noneData
+      }
     }
   },
   methods: {
