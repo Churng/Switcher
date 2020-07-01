@@ -38,12 +38,13 @@
                             <div class="sellerInfo-products pr-3">
                                 <font-awesome-icon icon="shopping-bag"/>
                                 <span class="pl-2">商品</span>
+                                 <span class="orange-txt pl-2">{{SellerproductData.length}}</span>
                             </div>
                             <div class="sellerInfo-chat">
                                 <font-awesome-icon icon="comment-dots"/>
                                 <span class="pl-2">主要回應時間</span>
-                                <span class="orange-txt pl-2">{{sellerData.member.Reply}}</span>
-                                <span class="orange-txt pl-2" v-if="sellerData.member.Reply === null">無</span>
+                                <!-- <span class="orange-txt pl-2">{{sellerData.member.Reply}}</span> -->
+                                <span class="orange-txt pl-2" v-if="sellerData.member.Reply === '' ">無</span>
                                 <span class="orange-txt pl-2" v-else>{{sellerData.member.Reply}}</span>
                             </div>
                         </div>
