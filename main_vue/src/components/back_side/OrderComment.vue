@@ -82,7 +82,6 @@ export default {
         }
       }).then(res => {
         if (res.status === 200 && res.statusText === 'OK') {
-          console.log(res.data.message)
           this.changeDialogVisible()
           this.$notify.info({
             title: '評論成功',

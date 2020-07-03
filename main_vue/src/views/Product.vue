@@ -104,7 +104,7 @@
                     </div>
                     <ul class="review-list list-unstyled">
                         <li v-if="noneComment" class="text-center pt-5 pb-5">尚無任何評論</li>
-                        <li class="pt-3 pl-4 pr-4" v-for="(item, idx) in filterCommentData" :key="idx">
+                        <li class="pt-3 pl-4 pr-4" v-for="(item, idx) in filterCommentData" :key="idx" v-else>
                             <div class="review-item d-flex border-bottom border-light pb-3">
                                 <div class="userImag">
                                     <img :src="item.Photo" :alt="item.Buyer">
@@ -114,7 +114,8 @@
                                     <div class="stars d-flex text-warning mb-2">
                                         <font-awesome-icon icon="star" v-for="(star, idx) in item.Star" :key="idx"/>
                                     </div>
-                                    <p class="user-comments mb-1">{{item.Content}}</p>
+                                    <p class="user-comments mb-1" v-if="item.Content === null">普通</p>
+                                    <p class="user-comments mb-1" v-else>{{item.Content}}</p>
                                     <p class="comments-date mb-1">{{item.CreateDate}}</p>
                                 </div>
                             </div>
@@ -164,6 +165,9 @@ export default {
         this.comments = res.data.evaluation
         this.allData = res.data
         this.loading = false
+        if (this.comments.length === 0) {
+          this.noneComment = true
+        }
       }).catch(err => {
         this.$message(err)
       })

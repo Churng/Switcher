@@ -141,7 +141,6 @@ export default {
         .get(api, {
         })
         .then(response => {
-          console.log(this.sellerData)
           this.sellerData = response.data
         })
         .catch(err => {
