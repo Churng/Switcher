@@ -135,6 +135,7 @@ export default {
         }
       }).then(res => {
         this.$root.getCarts = res.data.carts
+        console.log(this.$root.getCarts)
         this.$root.getCartLen = res.data.carts.length
         localStorage.setItem('cartLen', res.data.carts.length)
         this.correctPost()
@@ -166,8 +167,8 @@ export default {
     },
     getNewDay (today, days) {
       var dateTemp = today.split('-')
-      var nDate = new Date(dateTemp[1] + '-' + dateTemp[2] + '-' + dateTemp[0])// 转换为MM-DD-YYYY格式
-      // 兼容火狐时间戳
+      var nDate = new Date(dateTemp[1] + '-' + dateTemp[2] + '-' + dateTemp[0])// 轉換為MM-DD-YYYY格式
+      // 兼容火狐時間戳
       if (nDate === 'Invalid Date') {
         nDate = new Date(dateTemp[1] + '/' + dateTemp[2] + '/' + dateTemp[0])
       }

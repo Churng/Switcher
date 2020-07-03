@@ -16,7 +16,6 @@ export default {
     return {
       loading: false,
       isRouterAlive: true
-
     }
   },
   provide () {

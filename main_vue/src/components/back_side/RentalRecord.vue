@@ -80,6 +80,7 @@ export default {
           }
         }).then(res => {
         this.getAllData = res.data.order[0]
+        console.log(res.data)
         this.getSingleData = res.data.order[0].Product
         this.dialogVisible = true
       }).catch(err => {

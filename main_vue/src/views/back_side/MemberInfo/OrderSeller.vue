@@ -83,7 +83,11 @@ export default {
             Authorization: `Bearer ${token}`
           }
         }).then(res => {
-        this.orderData = res.data.orders
+        // 去除重複的物件id
+        const mapData = res.data.orders
+        const set = new Set()
+        const result = mapData.filter(item => !set.has(item.Id) ? set.add(item.Id) : false)
+        this.orderData = result
       }).catch(err => {
         const errObj = err.response
         if (errObj.status === 404 && errObj.data.message === '無訂單記錄') {
@@ -101,7 +105,6 @@ export default {
             Authorization: `Bearer ${token}`
           }
         }).then(res => {
-        console.log(res.data.orders)
         this.rentalData = res.data.orders
       }).catch(err => {
         const errObj = err.response

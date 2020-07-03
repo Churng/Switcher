@@ -76,7 +76,7 @@ export default {
           Authorization: `Bearer ${token}`
         }
       }).then(res => {
-        console.log(res.data.message)
+        console.log(res)
         this.$root.getCartLen = 0
         this.$root.orderResult = res.data.message
         this.$router.push('/finishOrder')
